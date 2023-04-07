@@ -1,0 +1,11 @@
+# Ignore all files in the node_modules directory
+node_modules/**
+
+# Ignore any files that match these patterns
+*.png
+*.jpg
+*.gif
+
+# Ignore specific directories
+/dist
+/build
