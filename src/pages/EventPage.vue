@@ -1,15 +1,15 @@
 <template>
   <div class="container">
-    <side-bar></side-bar>
+    <side-navbar></side-navbar>
     <div class="content"></div>
   </div>
 </template>
 
 <script setup>
-import SideBar from '@/components/SideBar.vue'
+import SideNavbar from '@/components/SideNavbar.vue'
 </script>
 
-<style>
+<style scoped>
 html,
 body {
   margin: 0;
@@ -25,7 +25,7 @@ body {
 
 .content {
   flex: 1;
-  margin: 0 0 0 80px;
+  margin: 0 0 0 75px;
   padding: 0;
   background-color: #eee;
 }

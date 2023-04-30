@@ -1,21 +1,21 @@
 <template>
   <div class="container">
-    <side-bar></side-bar>
-    <div class="content">
+    <side-navbar></side-navbar>
+    <div class="content-container">
       <img class="banner" src="https://i.imgur.com/jXWUriN.png" alt="Example Banner" />
-      <div>
+      <div class="content">
         <h1>Welcome to My Vue.js App!</h1>
         <p>This is the homepage.</p>
         <router-link to="/about">Go to About page</router-link>
+        <hello-world></hello-world>
       </div>
-      <hello-world></hello-world>
     </div>
   </div>
 </template>
 
 <script setup>
 import HelloWorld from '@/components/HelloWorld.vue'
-import SideBar from '@/components/SideBar.vue'
+import SideNavbar from '@/components/SideNavbar.vue'
 </script>
 
 <style>
@@ -32,16 +32,21 @@ body {
   padding: 0;
 }
 
-.content {
-  flex: 1;
-  margin: 0 0 0 80px;
+.content-container {
+  flex: 1 1 0; /* Take up remaining space */
+  margin: 0 0 0 75px;
   padding: 0;
   background-color: #eee;
+}
+
+.content {
+  padding-left: 20px;
 }
 
 .banner {
   display: block;
   width: 100%;
+  height: 100vh;
   margin: 0;
   padding: 0;
 }
