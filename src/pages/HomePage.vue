@@ -9,17 +9,34 @@
             <p>CSSA</p>
           </div>
         </div>
-        <dl class="info-list">
-          <dt>INFO1</dt>
-          <dd>Description this is a placeholder for description.</dd>
-          <dt>INFO1</dt>
-          <dd>Description this is a placeholder for description.</dd>
-          <dt>INFO1</dt>
-          <dd>Description this is a placeholder for description.</dd>
-        </dl>
+        <ul class="info-list">
+          <li class="info">
+            <div>Description for the info, placeholder for now.</div>
+            <div>INFO TITLE</div>
+          </li>
+          <li class="info">
+            <div>Description for the info, placeholder for now.</div>
+            <div>INFO TITLE</div>
+          </li>
+          <li class="info">
+            <div>Description for the info, placeholder for now.</div>
+            <div>INFO TITLE</div>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="recent-events"></div>
+    <div class="recent-events">
+      <div class="recent-events-title">
+        <div class="zhs-title">近期活动</div>
+        <div class="en-title">RECENT EVENTS</div>
+      </div>
+      <div class="events-wrapper">
+        <div class="event"></div>
+        <div class="event"></div>
+        <div class="event"></div>
+        <div class="event"></div>
+      </div>
+    </div>
     <div class="about-us"></div>
     <div class="footer"></div>
   </div>
@@ -33,7 +50,6 @@ body {
 }
 
 .page-container {
-  background-color: red;
   display: flex;
   flex-direction: column;
 }
@@ -51,7 +67,7 @@ body {
 .navbar {
   background-color: #333333;
   width: 100%;
-  height: 80px;
+  height: 60px;
 }
 
 .banner-content {
@@ -59,13 +75,13 @@ body {
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  font-size: 18vh;
-  /* padding-bottom: 1vh; */
+  font-size: 164px;
+  padding-bottom: 1vh;
 }
 
 .banner-title {
-  margin-left: 3vw;
-  margin-top: 5vh;
+  margin-left: 2vw;
+  margin-top: 10vh;
   flex: 1;
   display: flex;
   align-items: center;
@@ -78,19 +94,75 @@ body {
   font-weight: bold;
   color: #ffffff;
   letter-spacing: -8px; /* Adjust the value to decrease letter spacing */
-  line-height: 14vh; /* Adjust the value to decrease the line height */
+  line-height: 120px; /* Adjust the value to decrease the line height */
   transform: scale(1, 0.95); /* Adjust the first value to squash horizontally */
 }
 
 .info-list {
-  display: grid;
-  grid-template-rows: auto auto;
-  grid-auto-columns: 1fr;
-  grid-auto-flow: column;
-  column-gap: 3vw;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
   align-self: center;
-  font-size: 0.2em;
+  gap: 2em;
+  font-size: 0.15em;
   color: #ffffff;
-  margin-bottom: 5vh;
+}
+
+.recent-events {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 750px;
+  background-color: #e8ded1;
+  padding-bottom: 10px;
+}
+
+.recent-events-title {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.recent-events-title .zhs-title {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1em;
+  letter-spacing: 0.175em;
+  line-height: 0.8em;
+  color: #ff6c6c;
+}
+
+.recent-events-title .en-title {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.75em;
+  line-height: 0.8em;
+}
+
+.events-wrapper {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.event {
+  outline: 4px dotted #333333;
+}
+
+.about-us {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 750px;
+  background-color: #e8ded1;
 }
 </style>
