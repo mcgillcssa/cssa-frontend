@@ -13,4 +13,9 @@
   color: #2c3e50;
   margin-left: 100px;
 }
+* {
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+}
 </style>
