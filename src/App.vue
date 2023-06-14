@@ -7,7 +7,7 @@
         </router-link>
       </li>
       <li class="nav_item">
-        <router-link to="/">Events</router-link>
+        <router-link to="/event">Events</router-link>
       </li>
       <li class="nav_item" style="width: 1%">
         |
