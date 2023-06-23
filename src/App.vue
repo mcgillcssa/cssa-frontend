@@ -27,7 +27,7 @@
     </ul>
     <div id="dropdown" class="dropdown-content">
       <div class="phone_nav_item">
-        <router-link to="/">Events</router-link>
+        <router-link to="/event">Events</router-link>
       </div>
       <div class="phone_nav_item">
         <router-link to="/">Membership</router-link>

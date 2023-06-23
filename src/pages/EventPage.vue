@@ -74,6 +74,7 @@ export default {
       var triangle = document.createElement("div");
       var date = document.createElement("div");
       triangle.classList.add("date");
+      triangle.classList.add("arrow");
       triangle.style.flexGrow="1";
       triangle.innerHTML = "&#9658;";
       date.classList.add("date");
@@ -122,6 +123,53 @@ export default {
 </script>
 
 <style>
+@media only screen and (max-width: 720px) {
+  /* For mobile phones: */
+  .flex-container{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .collapse-content {
+    border-left: none !important;
+  }
+
+  .event{
+    border: 1px solid #2c3e50 !important;
+  }
+
+  .event-title{
+    border-bottom: 1px solid #2c3e50 !important;
+    font-weight: 300 !important;
+    font-size: 2em !important;
+    text-align: center !important;
+  }
+
+  .event-content{
+    margin-right: 0;
+    font-weight: 200 !important;
+    font-size: 1em !important;
+  }
+
+  .arrow{
+    display: none;
+  }
+
+  .date{
+    font-size: 2em !important;
+    font-variant-numeric: oldstyle-nums;
+    background-color: #2c3e50;
+    color: #FFF7EC;
+    text-align: center;
+    border-radius: 20px;
+    width: 100%;
+  }
+
+  .flex-container > div {
+    margin-bottom: 5%;
+  }
+}
+
 .year{
   display: flex;
   height: 8em;
@@ -153,14 +201,14 @@ export default {
 
 .event{
   font-family: 	Microsoft JhengHei;
-  border: 2px black solid;
+  border: 2px solid #2c3e50;
   flex-direction: column;
   border-radius: 20px;
   padding: 2%;
 }
 
 .event-title{
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #2c3e50;
   font-weight: bold;
   font-size: 2em;
 }
