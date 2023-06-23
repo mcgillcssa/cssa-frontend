@@ -116,6 +116,7 @@ body{
   list-style: none;
   text-align: center;
   font-family: Corbel;
+  font-weight: 300;
   font-size: 1.5em;
   color: #FF6C6C;
 }
