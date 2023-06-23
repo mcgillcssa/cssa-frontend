@@ -170,7 +170,7 @@ body{
 
 .display {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
 }
 
 </style>
