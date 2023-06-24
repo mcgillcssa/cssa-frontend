@@ -1,23 +1,24 @@
 <template>
   <div>
-    <ul id = "nav_bar" class="nav_list sticky">
+    <ul id="nav_bar" class="nav_list sticky">
       <li class="nav_icon">
         <router-link to="/">
-          <img src="https://i.imgur.com/rZahX5F.png" width="60" height="60" class="d-inline-block align-text-top">
+          <img
+            src="https://i.imgur.com/rZahX5F.png"
+            width="60"
+            height="60"
+            class="d-inline-block align-text-top"
+          />
         </router-link>
       </li>
       <li class="nav_item">
         <router-link to="/">Events</router-link>
       </li>
-      <li class="nav_item" style="width: 1%">
-        |
-      </li>
+      <li class="nav_item" style="width: 1%">|</li>
       <li class="nav_item">
         <router-link to="/">Membership</router-link>
       </li>
-      <li class="nav_item" style="width: 1%">
-        |
-      </li>
+      <li class="nav_item" style="width: 1%">|</li>
       <li class="nav_item" style="margin-right: 5%">
         <router-link to="/">Sponsors</router-link>
       </li>
@@ -43,12 +44,24 @@
 <script>
 export default {
   methods: {
-    drop: function(){
-      var position = document.getElementById("nav_bar").getBoundingClientRect();
-      var dropdown = document.getElementById("dropdown");
-      dropdown.style.top = position.bottom+"px";
-      dropdown.classList.toggle("display");
+    drop: function () {
+      var position = document.getElementById('nav_bar').getBoundingClientRect()
+      var dropdown = document.getElementById('dropdown')
+      dropdown.style.top = position.bottom + 'px'
+      dropdown.classList.toggle('display')
+    },
+    handleResize: function () {
+      const dropdown = document.getElementById('dropdown')
+      if (window.innerWidth > 720 && dropdown.classList.contains('display')) {
+        dropdown.classList.remove('display')
+      }
     }
+  },
+  mounted() {
+    window.addEventListener('resize', this.handleResize)
+  },
+  beforeUnmount() {
+    window.removeEventListener('resize', this.handleResize)
   }
 }
 </script>
@@ -56,7 +69,7 @@ export default {
 <style>
 @media only screen and (max-width: 720px) {
   /* For mobile phones: */
-  .nav_item{
+  .nav_item {
     display: none;
   }
 
@@ -75,58 +88,58 @@ export default {
   color: #2c3e50;
 }
 
-body{
+body {
   margin: 0;
 }
 
-.phone_nav_item{
+.phone_nav_item {
   margin: 5% 5% 5%;
 }
 
-.phone_nav_item a{
+.phone_nav_item a {
   text-decoration: none;
   font-weight: 300;
-  color: #FF6C6C;
+  color: #ff6c6c;
 }
 
-.phone_nav_item a:hover{
+.phone_nav_item a:hover {
   color: #2c3e50;
 }
 
-.nav_list{
+.nav_list {
   display: flex;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #E8DED1;
-  color: #FF6C6C;
+  background-color: #e8ded1;
+  color: #ff6c6c;
   align-items: center;
   justify-content: flex-end;
 }
 
-.nav_icon{
+.nav_icon {
   list-style: none;
   margin-left: 2%;
   margin-right: auto;
   flex-grow: 0.5;
 }
 
-.nav_item{
+.nav_item {
   margin-right: 2%;
   list-style: none;
   text-align: center;
   font-family: Corbel;
   font-weight: 300;
   font-size: 1.5em;
-  color: #FF6C6C;
+  color: #ff6c6c;
 }
 
-.nav_item a{
+.nav_item a {
   text-decoration: none;
-  color: #FF6C6C;
+  color: #ff6c6c;
 }
 
-.nav_item a:hover{
+.nav_item a:hover {
   color: #2c3e50;
 }
 
@@ -143,7 +156,7 @@ body{
 .dropdown_button {
   background-color: transparent;
   border: none;
-  color: #FF6C6C;
+  color: #ff6c6c;
   margin-right: 2%;
   text-align: center;
   font-family: Corbel;
@@ -152,7 +165,7 @@ body{
   cursor: pointer;
 }
 
-.dropdown_button:hover{
+.dropdown_button:hover {
   color: #2c3e50;
 }
 
@@ -160,7 +173,7 @@ body{
   list-style: none;
   display: none;
   position: fixed;
-  background-color: #E8DED1;
+  background-color: #e8ded1;
   z-index: 1;
   font-size: 1.5em;
   font-family: Corbel;
@@ -172,5 +185,4 @@ body{
   display: flex;
   flex-direction: column;
 }
-
 </style>
