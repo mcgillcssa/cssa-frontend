@@ -1,0 +1,85 @@
+<template>
+  <div id="carousel">
+    <div
+      v-for="(item, index) in items"
+      :key="index"
+      :class="{ active: index === currentIndex }"
+      class="carousel-item"
+    >
+      <h3>{{ item.title }}</h3>
+      <p>{{ item.text }}</p>
+      <img :src="item.image" alt="Slide image" />
+    </div>
+    <div class="carousel-indicators">
+      <span
+        v-for="(item, index) in items"
+        :key="index"
+        @click="currentIndex = index"
+        :class="{ active: index === currentIndex }"
+        class="carousel-dot"
+      ></span>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      items: [
+        { title: 'Slide 1', text: 'Text 1', image: 'path/to/image1.jpg' },
+        { title: 'Slide 2', text: 'Text 2', image: 'path/to/image2.jpg' },
+        { title: 'Slide 3', text: 'Text 3', image: 'path/to/image3.jpg' },
+        { title: 'Slide 4', text: 'Text 4', image: 'path/to/image4.jpg' }
+      ],
+      currentIndex: 0
+    }
+  }
+}
+</script>
+
+<style scoped>
+#carousel {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.carousel-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.carousel-item.active {
+  opacity: 1;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.carousel-dot.active {
+  background-color: #333;
+}
+</style>

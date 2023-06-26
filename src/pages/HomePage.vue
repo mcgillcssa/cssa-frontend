@@ -30,19 +30,28 @@
         <div class="zhs-title">近期活动</div>
         <div class="en-title">RECENT EVENTS</div>
       </div>
-      <div class="events-wrapper">
+      <!-- <div class="events-wrapper">
         <div class="event"></div>
         <div class="event"></div>
         <div class="event"></div>
         <div class="event"></div>
-      </div>
+      </div> -->
+      <EventsCarousel></EventsCarousel>
     </div>
     <div class="about-us"></div>
     <div class="footer"></div>
   </div>
 </template>
 
-<script setup></script>
+<script>
+import EventsCarousel from '../components/RecentEvents.vue'
+
+export default {
+  components: {
+    EventsCarousel
+  }
+}
+</script>
 
 <style>
 body {
