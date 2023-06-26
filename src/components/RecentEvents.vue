@@ -1,23 +1,29 @@
 <template>
-  <div id="carousel">
-    <div
-      v-for="(item, index) in items"
-      :key="index"
-      :class="{ active: index === currentIndex }"
-      class="carousel-item"
-    >
-      <h3>{{ item.title }}</h3>
-      <p>{{ item.text }}</p>
-      <img :src="item.image" alt="Slide image" />
+  <div class="recent-events">
+    <div class="recent-events-title">
+      <div class="zhs-title">近期活动</div>
+      <div class="en-title">RECENT EVENTS</div>
     </div>
-    <div class="carousel-indicators">
-      <span
+    <div id="carousel">
+      <div
         v-for="(item, index) in items"
         :key="index"
-        @click="currentIndex = index"
         :class="{ active: index === currentIndex }"
-        class="carousel-dot"
-      ></span>
+        class="carousel-item"
+      >
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.text }}</p>
+        <img :src="item.image" alt="Slide image" />
+      </div>
+      <div class="carousel-indicators">
+        <span
+          v-for="(item, index) in items"
+          :key="index"
+          @click="currentIndex = index"
+          :class="{ active: index === currentIndex }"
+          class="carousel-dot"
+        ></span>
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +45,43 @@ export default {
 </script>
 
 <style scoped>
+.recent-events {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 750px;
+  background-color: #e8ded1;
+  padding-bottom: 10px;
+}
+
+.recent-events-title {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.recent-events-title .zhs-title {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1em;
+  letter-spacing: 0.175em;
+  line-height: 0.8em;
+  color: #ff6c6c;
+}
+
+.recent-events-title .en-title {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.75em;
+  line-height: 0.8em;
+}
+
 #carousel {
   position: relative;
   width: 100%;

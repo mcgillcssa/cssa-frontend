@@ -9,46 +9,22 @@
             <p>CSSA</p>
           </div>
         </div>
-        <ul class="info-list">
-          <li class="info">
-            <div>Description for the info, placeholder for now.</div>
-            <div>INFO TITLE</div>
-          </li>
-          <li class="info">
-            <div>Description for the info, placeholder for now.</div>
-            <div>INFO TITLE</div>
-          </li>
-          <li class="info">
-            <div>Description for the info, placeholder for now.</div>
-            <div>INFO TITLE</div>
-          </li>
-        </ul>
       </div>
     </div>
-    <div class="recent-events">
-      <div class="recent-events-title">
-        <div class="zhs-title">近期活动</div>
-        <div class="en-title">RECENT EVENTS</div>
-      </div>
-      <!-- <div class="events-wrapper">
-        <div class="event"></div>
-        <div class="event"></div>
-        <div class="event"></div>
-        <div class="event"></div>
-      </div> -->
-      <EventsCarousel></EventsCarousel>
-    </div>
+
+    <RecentEvents></RecentEvents>
+
     <div class="about-us"></div>
     <div class="footer"></div>
   </div>
 </template>
 
 <script>
-import EventsCarousel from '../components/RecentEvents.vue'
+import RecentEvents from '../components/RecentEvents.vue'
 
 export default {
   components: {
-    EventsCarousel
+    RecentEvents
   }
 }
 </script>
@@ -69,7 +45,7 @@ body {
   background-size: cover;
   background-blend-mode: luminosity;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 }
 
@@ -107,70 +83,10 @@ body {
   transform: scale(1, 0.95); /* Adjust the first value to squash horizontally */
 }
 
-.info-list {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  align-self: center;
-  gap: 2em;
-  font-size: 0.15em;
-  color: #ffffff;
-}
-
-.recent-events {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 750px;
-  background-color: #e8ded1;
-  padding-bottom: 10px;
-}
-
-.recent-events-title {
-  width: 100%;
-  height: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-}
-
-.recent-events-title .zhs-title {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 1em;
-  letter-spacing: 0.175em;
-  line-height: 0.8em;
-  color: #ff6c6c;
-}
-
-.recent-events-title .en-title {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 1.75em;
-  line-height: 0.8em;
-}
-
-.events-wrapper {
-  display: grid;
-  flex: 1;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
-.event {
-  outline: 4px dotted #333333;
-}
-
 .about-us {
   display: flex;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   height: 750px;
   background-color: #e8ded1;
 }
