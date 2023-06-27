@@ -45,13 +45,18 @@ export default {
 </script>
 
 <style scoped>
+body {
+  margin: 0;
+}
+
 .recent-events {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 750px;
-  background-color: #e8ded1;
-  padding-bottom: 10px;
+  background: #fff;
+  padding: 20;
 }
 
 .recent-events-title {

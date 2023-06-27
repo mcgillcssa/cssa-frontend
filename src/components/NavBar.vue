@@ -1,26 +1,21 @@
 <template>
   <div>
-    <ul id="nav_bar" class="nav_list sticky">
+    <ul id="nav_bar" class="nav_list">
       <li class="nav_icon">
         <router-link to="/">
-          <img
-            src="https://i.imgur.com/rZahX5F.png"
-            width="60"
-            height="60"
-            class="d-inline-block align-text-top"
-          />
+          <img src="https://i.imgur.com/rZahX5F.png" width="60" height="60" />
         </router-link>
       </li>
       <li class="nav_item">
-        <router-link to="/">Events</router-link>
+        <router-link to="/">EVENTS</router-link>
       </li>
-      <li class="nav_item" style="width: 1%">|</li>
+      <!-- <li class="nav_item" style="width: 1%">|</li> -->
       <li class="nav_item">
-        <router-link to="/">Membership</router-link>
+        <router-link to="/">MEMBERSHIP</router-link>
       </li>
-      <li class="nav_item" style="width: 1%">|</li>
+      <!-- <li class="nav_item" style="width: 1%">|</li> -->
       <li class="nav_item" style="margin-right: 5%">
-        <router-link to="/">Sponsors</router-link>
+        <router-link to="/">SPONSORS</router-link>
       </li>
       <li class="dropdown">
         <button v-on:click="drop()" class="dropdown_button">|||</button>
@@ -67,7 +62,6 @@ export default {
 
 <style>
 @media only screen and (max-width: 720px) {
-  /* For mobile phones: */
   .nav_item {
     display: none;
   }
@@ -103,8 +97,8 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #e8ded1;
-  color: #ff6c6c;
+  height: 100px;
+  /* background-color: #e8ded1; */
   align-items: center;
   justify-content: flex-end;
 }
@@ -117,22 +111,22 @@ body {
 }
 
 .nav_item {
-  margin-right: 2%;
+  margin-left: 50px;
   list-style: none;
   text-align: center;
-  font-family: Corbel;
-  font-weight: 300;
+  font-family: 'Raleway';
+  font-weight: 500;
   font-size: 1.5em;
-  color: #ff6c6c;
+  color: #ffffff;
 }
 
 .nav_item a {
   text-decoration: none;
-  color: #ff6c6c;
+  color: #ffffff;
 }
 
 .nav_item a:hover {
-  color: #2c3e50;
+  color: #959a9f;
 }
 
 .sticky {
@@ -148,9 +142,8 @@ body {
 .dropdown_button {
   background-color: transparent;
   border: none;
-  color: #ff6c6c;
+  color: #ffffff;
   margin-right: 2%;
-  text-align: center;
   font-family: Corbel;
   font-size: 1.5em;
   font-weight: 300;
