@@ -3,19 +3,22 @@
     <ul id="nav_bar" class="nav_list">
       <li class="nav_icon">
         <router-link to="/">
-          <img src="https://i.imgur.com/L0ikCsh.png" width="60" height="60" />
+          <img src="https://i.imgur.com/1uMELFN.png" width="80" height="80" />
         </router-link>
       </li>
       <li class="nav_item">
         <router-link to="/">EVENTS</router-link>
+        <div class="underline"></div>
       </li>
       <!-- <li class="nav_item" style="width: 1%">|</li> -->
       <li class="nav_item">
         <router-link to="/">MEMBERSHIP</router-link>
+        <div class="underline"></div>
       </li>
       <!-- <li class="nav_item" style="width: 1%">|</li> -->
       <li class="nav_item" style="margin-right: 5%">
         <router-link to="/">SPONSORS</router-link>
+        <div class="underline"></div>
       </li>
       <li class="dropdown">
         <button v-on:click="drop()" class="dropdown_button">|||</button>
@@ -118,6 +121,7 @@ body {
   font-weight: 500;
   font-size: 1.5em;
   color: #ffffff;
+  position: relative;
 }
 
 .nav_item a {
@@ -125,8 +129,24 @@ body {
   color: #ffffff;
 }
 
-.nav_item a:hover {
+/* .nav_item a:hover {
   color: #959a9f;
+} */
+
+.nav_item:hover .underline {
+  width: 100%;
+}
+
+.underline {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(-50%);
 }
 
 .sticky {

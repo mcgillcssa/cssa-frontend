@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div class="banner-background">
+    <div class="vertical-flex-container banner-background">
       <NavBar />
       <div class="banner-title">
         <div>
@@ -12,8 +12,10 @@
 
     <RecentEvents />
 
-    <!-- <div class="about-us"></div>
-    <div class="footer"></div> -->
+    <div class="about-us">
+      <div class="vertical-flex-container about-us-desc"></div>
+    </div>
+    <div class="footer"></div>
   </div>
 </template>
 
@@ -33,20 +35,16 @@ export default {
 body {
   margin: 0;
 }
-
-.navbar {
-  background-color: #333333;
-  width: 100%;
-  height: 60px;
+.vertical-flex-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .banner-background {
   position: relative;
-  display: flex;
-  background: #804147 url('https://i.imgur.com/ZgCeJBq.jpg');
+  background: #814147 url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-blend-mode: overlay;
-  flex-direction: column;
   width: 100%;
   height: 100vh;
 }
@@ -69,5 +67,6 @@ body {
   letter-spacing: -8px;
   line-height: 6vw;
   transform: scale(1, 0.95);
+  user-select: none;
 }
 </style>
