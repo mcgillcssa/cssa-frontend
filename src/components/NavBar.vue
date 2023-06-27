@@ -3,7 +3,7 @@
     <ul id="nav_bar" class="nav_list">
       <li class="nav_icon">
         <router-link to="/">
-          <img src="https://i.imgur.com/rZahX5F.png" width="60" height="60" />
+          <img src="https://i.imgur.com/L0ikCsh.png" width="60" height="60" />
         </router-link>
       </li>
       <li class="nav_item">

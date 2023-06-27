@@ -33,10 +33,10 @@ export default {
   data() {
     return {
       items: [
-        { title: 'Slide 1', text: 'Text 1', image: 'path/to/image1.jpg' },
-        { title: 'Slide 2', text: 'Text 2', image: 'path/to/image2.jpg' },
-        { title: 'Slide 3', text: 'Text 3', image: 'path/to/image3.jpg' },
-        { title: 'Slide 4', text: 'Text 4', image: 'path/to/image4.jpg' }
+        { title: 'Slide 1', text: 'Text 1', image: 'https://i.imgur.com/syf1nkI.jpg' },
+        { title: 'Slide 2', text: 'Text 2', image: 'https://i.imgur.com/syf1nkI.jpg' },
+        { title: 'Slide 3', text: 'Text 3', image: 'https://i.imgur.com/syf1nkI.jpg' },
+        { title: 'Slide 4', text: 'Text 4', image: 'https://i.imgur.com/syf1nkI.jpg' }
       ],
       currentIndex: 0
     }
