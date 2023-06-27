@@ -11,9 +11,9 @@
         :class="{ active: index === currentIndex }"
         class="carousel-item"
       >
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.text }}</p>
-        <img :src="item.image" alt="Slide image" />
+        <h3>{{ item.eventName }}</h3>
+        <p>{{ item.eventDescription }}</p>
+        <img :src="item.eventImageUrl" alt="Slide image" />
       </div>
       <div class="carousel-indicators">
         <span
@@ -29,16 +29,22 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
-      items: [
-        { title: 'Slide 1', text: 'Text 1', image: 'https://i.imgur.com/syf1nkI.jpg' },
-        { title: 'Slide 2', text: 'Text 2', image: 'https://i.imgur.com/syf1nkI.jpg' },
-        { title: 'Slide 3', text: 'Text 3', image: 'https://i.imgur.com/syf1nkI.jpg' },
-        { title: 'Slide 4', text: 'Text 4', image: 'https://i.imgur.com/syf1nkI.jpg' }
-      ],
+      items: [],
       currentIndex: 0
+    }
+  },
+
+  async created() {
+    try {
+      const response = await axios.get('http://localhost:8080/api/events/upcoming/4')
+      this.items = response.data.events
+      console.log(response.data.events)
+    } catch (err) {
+      console.error(err)
     }
   }
 }
@@ -90,7 +96,7 @@ body {
 #carousel {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 300px;
   overflow: hidden;
 }
 
