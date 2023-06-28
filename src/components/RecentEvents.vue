@@ -5,24 +5,15 @@
       <div class="en-title">RECENT EVENTS</div>
     </div>
     <div id="carousel">
-      <div
-        v-for="(item, index) in items"
-        :key="index"
-        :class="{ active: index === currentIndex }"
-        class="carousel-item"
-      >
-        <h3>{{ item.eventName }}</h3>
-        <p>{{ item.eventDescription }}</p>
+      <div v-for="(item, index) in items" :key="index" class="carousel-item">
+        <div class="carousel-item-content">
+          <div class="event-heading">
+            <h3>{{ item.eventName }}</h3>
+            <span class="event-date">{{ item.eventStartDate }}</span>
+          </div>
+          <p class="event-description">{{ item.eventDescription }}</p>
+        </div>
         <img :src="item.eventImageUrl" alt="Slide image" />
-      </div>
-      <div class="carousel-indicators">
-        <span
-          v-for="(item, index) in items"
-          :key="index"
-          @click="currentIndex = index"
-          :class="{ active: index === currentIndex }"
-          class="carousel-dot"
-        ></span>
       </div>
     </div>
   </div>
@@ -33,8 +24,7 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      items: [],
-      currentIndex: 0
+      items: []
     }
   },
 
@@ -60,7 +50,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 750px;
+  height: auto;
   background: #fff;
   padding: 20;
 }
@@ -96,44 +86,49 @@ body {
 #carousel {
   position: relative;
   width: 100%;
-  height: 300px;
-  overflow: hidden;
+  height: auto;
 }
 
 .carousel-item {
-  position: absolute;
-  width: 100%;
-  height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-start;
   font-size: 1.5rem;
-  transition: opacity 0.5s ease-in-out;
-  opacity: 0;
+  padding: 1rem;
+  margin: 0 auto; /* This will center the content */
+  max-width: 60%; /* This will limit the width of the content to 80% of the parent element's width */
 }
 
-.carousel-item.active {
-  opacity: 1;
+.carousel-item:nth-child(even) {
+  flex-direction: row-reverse;
 }
 
-.carousel-indicators {
+.carousel-item-content h3 {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  padding-top: 3rem;
+}
+
+.event-heading {
+  position: relative;
+  left: 4rem;
+}
+
+.event-date {
   position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
+  opacity: 0.5; /* makes the date half transparent */
+  top: 0;
+  left: 0;
+  font-size: 6rem; /* adjust as needed */
 }
 
-.carousel-dot {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: #ccc;
-  cursor: pointer;
+.carousel-item img {
+  width: 60%;
+  max-width: 600px;
 }
 
-.carousel-dot.active {
-  background-color: #333;
+.event-description {
+  padding-left: 7rem;
+  padding-right: 5rem;
 }
 </style>
