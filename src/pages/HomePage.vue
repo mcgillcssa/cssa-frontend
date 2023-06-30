@@ -4,8 +4,12 @@
       <NavBar />
       <div class="banner-title">
         <div>
-          <p>MCGILL</p>
-          <p>CSSA</p>
+          <p style="margin-left: -5vw; font-size: 7vw">MCGILL</p>
+          <div class="title-text">
+            <p>CHINESE STUDENTS &</p>
+            <p>SCHOLARS</p>
+            <p>ASSOCIATION</p>
+          </div>
         </div>
       </div>
     </div>
@@ -35,6 +39,13 @@ export default {
 body {
   margin: 0;
 }
+
+.cssa-logo {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
 .vertical-flex-container {
   display: flex;
   flex-direction: column;
@@ -49,24 +60,55 @@ body {
   height: 100vh;
 }
 
+.banner-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 27.5%;
+  height: 100%;
+  background-color: rgba(173, 28, 28, 0.974);
+}
+
 .banner-title {
-  margin-left: 2vw;
+  margin-left: 6vw;
   flex: 1;
   display: flex;
   align-items: center;
   margin-bottom: 6vh;
   z-index: 2;
+  position: relative;
+}
+
+.title-text {
+  /* margin-left: 22vw; */
+  position: relative;
+}
+
+.title-text::before {
+  content: '';
+  position: absolute;
+  left: -3vw;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #ffffff;
 }
 
 .banner-title p {
   margin: 0;
-  font-size: 10vw;
+  font-size: 8vw;
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
   color: #ffffff;
-  letter-spacing: -8px;
+  letter-spacing: -3px;
   line-height: 6vw;
   transform: scale(1, 0.95);
   user-select: none;
+}
+
+.title-text p {
+  -webkit-text-stroke: 2px #ffffff; /* Change to the desired stroke color */
+  color: transparent;
 }
 </style>

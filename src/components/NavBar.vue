@@ -1,10 +1,16 @@
 <template>
   <div>
     <ul id="nav_bar" class="nav_list">
-      <li class="nav_icon">
+      <li
+        class="nav_item"
+        style="list-style: none; margin-left: 2%; margin-right: auto; flex-grow: 0.5 position: absolute"
+        v-if="$route.path !== '/'"
+      >
         <router-link to="/">
           <img src="https://i.imgur.com/1uMELFN.png" width="80" height="80" />
+          <!-- HOME -->
         </router-link>
+        <div class="underline"></div>
       </li>
       <li class="nav_item">
         <router-link to="/">EVENTS</router-link>
@@ -150,7 +156,7 @@ body {
 }
 
 .sticky {
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100%;
 }
