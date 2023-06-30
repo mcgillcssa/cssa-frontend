@@ -13,7 +13,7 @@
           </div>
           <p class="event-description">{{ item.eventDescription }}</p>
         </div>
-        <img :src="item.eventImageUrl" alt="Slide image" />
+        <img class="event-image" :src="item.eventImageUrl" alt="Slide image" />
       </div>
     </div>
   </div>
@@ -52,7 +52,7 @@ body {
   width: 100%;
   height: auto;
   background: #fff;
-  padding: 20;
+  padding: 20px;
 }
 
 .recent-events-title {
@@ -62,7 +62,6 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
 }
 
 .recent-events-title .zhs-title {
@@ -81,6 +80,11 @@ body {
   font-weight: 700;
   font-size: 1.75em;
   line-height: 0.8em;
+  font-size: 5vw;
+}
+
+.recent-events-title .en-title {
+  font-size: 5vw;
 }
 
 #carousel {
@@ -93,42 +97,85 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  font-size: 1.5rem;
   padding: 1rem;
-  margin: 0 auto; /* This will center the content */
-  max-width: 60%; /* This will limit the width of the content to 80% of the parent element's width */
+  margin: 0 auto;
 }
 
 .carousel-item:nth-child(even) {
   flex-direction: row-reverse;
 }
 
-.carousel-item-content h3 {
-  font-size: 4rem;
-  margin-bottom: 0.5rem;
-  padding-top: 3rem;
-}
-
-.event-heading {
-  position: relative;
-  left: 4rem;
-}
-
-.event-date {
-  position: absolute;
-  opacity: 0.5; /* makes the date half transparent */
-  top: 0;
-  left: 0;
-  font-size: 6rem; /* adjust as needed */
-}
-
-.carousel-item img {
+.carousel-item-content {
   width: 60%;
-  max-width: 600px;
 }
 
-.event-description {
-  padding-left: 7rem;
-  padding-right: 5rem;
+.carousel-item-content .event-heading h3 {
+  font-size: 2vw;
+}
+
+.carousel-item-content .event-date {
+  font-size: 2vw;
+}
+
+.carousel-item-content .event-description {
+  font-size: 2vw;
+}
+
+.event-image {
+  width: 40%;
+  max-width: 800px;
+}
+
+@media (max-width: 1200px) {
+  ::v-deep .carousel-item {
+    flex-direction: column;
+  }
+
+  ::v-deep .carousel-item:nth-child(even) {
+    flex-direction: column;
+  }
+
+  ::v-deep .carousel-item-content,
+  ::v-deep .event-image {
+    width: 100%;
+  }
+
+  ::v-deep .recent-events-title .zhs-title,
+  ::v-deep .recent-events-title .en-title,
+  ::v-deep .event-heading h3 {
+    font-size: 1rem;
+  }
+
+  ::v-deep .event-date {
+    font-size: 2rem;
+  }
+
+  ::v-deep .event-description {
+    padding-left: 0rem;
+    padding-right: 0rem;
+  }
+}
+
+@media (min-width: 1201px) {
+  ::v-deep .recent-events-title .zhs-title {
+    font-size: 1em;
+  }
+
+  ::v-deep .recent-events-title .en-title {
+    font-size: 1.75em;
+  }
+
+  ::v-deep .event-heading h3 {
+    font-size: 4rem;
+  }
+
+  ::v-deep .event-date {
+    font-size: 6rem;
+  }
+
+  ::v-deep .event-description {
+    padding-left: 7rem;
+    padding-right: 5rem;
+  }
 }
 </style>
