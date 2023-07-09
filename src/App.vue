@@ -1,57 +1,8 @@
 <template>
-  <div>
-    <ul id = "nav_bar" class="nav_list sticky">
-      <li class="nav_icon">
-        <router-link to="/">
-          <img src="https://i.imgur.com/rZahX5F.png" width="60" height="60" class="d-inline-block align-text-top">
-        </router-link>
-      </li>
-      <li class="nav_item">
-        <router-link to="/event">Events</router-link>
-      </li>
-      <li class="nav_item" style="width: 1%">
-        |
-      </li>
-      <li class="nav_item">
-        <router-link to="/">Membership</router-link>
-      </li>
-      <li class="nav_item" style="width: 1%">
-        |
-      </li>
-      <li class="nav_item" style="margin-right: 5%">
-        <router-link to="/">Sponsors</router-link>
-      </li>
-      <li class="dropdown">
-        <button v-on:click="drop()" class="dropdown_button">|||</button>
-      </li>
-    </ul>
-    <div id="dropdown" class="dropdown-content">
-      <div class="phone_nav_item">
-        <router-link to="/event">Events</router-link>
-      </div>
-      <div class="phone_nav_item">
-        <router-link to="/">Membership</router-link>
-      </div>
-      <div class="phone_nav_item">
-        <router-link to="/">Sponsors</router-link>
-      </div>
-    </div>
-  </div>
-  <router-view></router-view>
+  <router-view> </router-view>
 </template>
 
-<script>
-export default {
-  methods: {
-    drop: function(){
-      var position = document.getElementById("nav_bar").getBoundingClientRect();
-      var dropdown = document.getElementById("dropdown");
-      dropdown.style.top = position.bottom+"px";
-      dropdown.classList.toggle("display");
-    }
-  }
-}
-</script>
+<script></script>
 
 <style>
 @media only screen and (max-width: 720px) {
