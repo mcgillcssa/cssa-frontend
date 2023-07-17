@@ -7,3 +7,33 @@
   font-family: 'Hertical Smooth';
   src: url('../../../public/fonts/Hertical\ Sans\ Smooth.ttf');
 }
+
+@font-face {
+  font-family: 'Infinity';
+  src: url('../../../public/fonts/Infinity-Regular.otf');
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Infinity';
+  src: url('../../../public/fonts/Infinity-Medium.otf');
+  font-weight: medium;
+}
+
+@font-face {
+  font-family: 'Infinity';
+  src: url('../../../public/fonts/Infinity-Black.otf');
+  font-weight: Black;
+}
+
+@font-face {
+  font-family: 'Infinity';
+  src: url('../../../public/fonts/Infinity-Thin.otf');
+  font-weight: Thin;
+}
+
+@font-face {
+  font-family: 'Infinity';
+  src: url('../../../public/fonts/Infinity-Light.otf');
+  font-weight: Light;
+}
