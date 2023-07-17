@@ -1,33 +1,32 @@
 <template>
+  <NavBar></NavBar>
   <div class="container" id="container">
   </div>
 </template>
 
 <script>
+import NavBar from "@/components/NavBar";
+import axios from 'axios';
 export default {
   name: "EventPage",
+  components: {NavBar},
   data: function() {
     return {
       years: [
-          2023, 2022, 2021
+          2023, 2022, 2021, 2020
       ],
-      events: [
-        {
-          title: "McGill Frosh",
-          content: "每年9月开学季CSSA会组织新生Frosh活动。活动中，学长学姐组织各种有趣的游戏，带大家玩转Montreal。新生们既能结交到新朋友，也可以进一步适应McGill的校园生活。",
-          thumbnail: "https://i.imgur.com/syf1nkI.jpg",
-          date: "6/10/2023"
-        },
-        {
-          title: "McGill SendOff",
-          content: "又是一年新生准备入学啦。这次cssa在北京、上海举办了send off，以第一手的入学信息帮助大家做好步入大学的准备。",
-          thumbnail: "https://i.imgur.com/D5EzRhd.png",
-          date: "6/5/2023"
-        }
-      ]
+      posts: [],
     }
   },
   methods: {
+    async getPosts() {
+      this.posts = await axios.get('http://localhost:8080/api/events/all')
+      let events = this.posts.data.events
+      for (let i in events){
+        this.addEvent(events[i], Number(events[i].eventStartDate.substring(0,4)));
+      }
+    }
+    ,
     addYear(year){
       // year header
       var header = document.createElement("div");
@@ -68,55 +67,75 @@ export default {
     addEvent(event, year){
       var container = document.createElement("div");
       container.classList.add("flex-container");
-      container.style.marginRight = "1%";
-
-      // date
-      var triangle = document.createElement("div");
-      var date = document.createElement("div");
-      triangle.classList.add("date");
-      triangle.classList.add("arrow");
-      triangle.style.flexGrow="1";
-      triangle.innerHTML = "&#9658;";
-      date.classList.add("date");
-      date.style.flexGrow="2";
-      date.innerHTML= event.date;
-      container.appendChild(triangle);
-      container.appendChild(date);
 
       //image
       var image_div = document.createElement("div");
-      image_div.style.flexGrow = "6";
+      image_div.style.flexGrow = "3";
       var image = document.createElement("img");
-      image.src = event.thumbnail;
-      image.width = 256;
-      image.height = 256;
+      image.src = event.eventImageUrl;
+      image.width = 384;
+      image.height = 384;
+      image.style.display = "block";
+      image.style.marginLeft = "auto";
+      image.style.marginRight = "auto";
+
       image_div.appendChild(image);
       container.appendChild(image_div);
 
       //event
       var event_container = document.createElement("div");
-      event_container.style.flexGrow = "12";
+      event_container.style.flexGrow = "5";
       event_container.classList.add("event");
       var event_title = document.createElement("div");
       event_title.classList.add("event-title");
-      event_title.innerHTML = event.title;
+      var title = document.createElement("span");
+      title.innerHTML = event.eventName;
+      event_title.appendChild(title);
       var event_content = document.createElement("div");
       event_content.classList.add("event-content");
-      event_content.innerHTML = event.content;
+      event_content.innerHTML = event.eventDescription;
       event_container.appendChild(event_title);
       event_container.appendChild(event_content);
       container.appendChild(event_container);
+
+      //right side
+      var side_block = document.createElement("div");
+      side_block.style.flexGrow="2";
+
+      // date
+      var date_block = document.createElement("flex-container-vertical");
+      date_block.style.backgroundColor="#E8DED1";
+      var date_title = document.createElement("div");
+      date_title.innerHTML = "Date"
+      var date = document.createElement("div");
+      date.classList.add("side");
+      date.innerHTML= event.eventStartDate + " -> " + event.eventEndDate;
+      date_block.appendChild(date_title);
+      date_block.appendChild(date);
+
+      // location
+      var location_block = document.createElement("flex-container-vertical");
+      location_block.style.backgroundColor="#E8DED1";
+      location_block.style.marginTop = "2%";
+      var location_title = document.createElement("div");
+      location_title.innerHTML = "Location"
+      var location = document.createElement("div");
+      location.classList.add("side");
+      location.innerHTML= event.eventLocation;
+      location_block.appendChild(location_title);
+      location_block.appendChild(location);
+
+      side_block.appendChild(date_block);
+      side_block.appendChild(location_block);
+      container.appendChild(side_block);
 
       document.getElementById("collapse-" + year).appendChild(container);
     }
   },
   mounted() {
+    this.getPosts()
     for (let i in this.years){
       this.addYear(this.years[i]);
-    }
-
-    for (let i in this.events){
-      this.addEvent(this.events[i], 2023);
     }
   }
 }
@@ -128,6 +147,7 @@ export default {
   .flex-container{
     flex-direction: column;
     align-items: center;
+    margin-right: 0% !important;
   }
 
   .collapse-content {
@@ -135,24 +155,18 @@ export default {
   }
 
   .event{
-    border: 1px solid #2c3e50 !important;
+    border-left: none !important;
   }
 
   .event-title{
-    border-bottom: 1px solid #2c3e50 !important;
-    font-weight: 300 !important;
-    font-size: 2em !important;
     text-align: center !important;
+    border-bottom: 1px solid black !important;
+    font-size: 2em !important;
   }
 
   .event-content{
     margin-right: 0;
-    font-weight: 200 !important;
     font-size: 1em !important;
-  }
-
-  .arrow{
-    display: none;
   }
 
   .date{
@@ -161,7 +175,6 @@ export default {
     background-color: #2c3e50;
     color: #FFF7EC;
     text-align: center;
-    border-radius: 20px;
     width: 100%;
   }
 
@@ -174,13 +187,13 @@ export default {
   display: flex;
   height: 8em;
   width: 100%;
-  background-color: #E4C59D;
+  background-color: transparent;
+  border-bottom: 2px solid black;
   margin-top: 1%;
-  border-radius: 20px;
 }
 
 .container{
-  background-color: #E8DED1;
+  background-color: #B84545;
   padding-top: 60px;
   padding-left: 1%;
   padding-right: 1%;
@@ -190,9 +203,8 @@ export default {
   display: flex;
   max-height: 100%;
   flex-direction: column;
-  color: #FFF7EC;
+  color: white;
   font-size: 6em;
-  font-weight: lighter;
   margin-left: 2%;
   margin-top: auto;
   margin-bottom: auto;
@@ -201,31 +213,37 @@ export default {
 
 .event{
   font-family: 	Microsoft JhengHei;
-  border: 2px solid #2c3e50;
   flex-direction: column;
-  border-radius: 20px;
-  padding: 2%;
+  color: black;
 }
 
 .event-title{
-  border-bottom: 2px solid #2c3e50;
-  font-weight: bold;
-  font-size: 2em;
+  text-align: left;
+  font-size: 3em;
+  font-weight: 200;
+  color: white;
+}
+
+.event-title span{
+  background-color: #B84545;
+  padding: 1% 2%;
 }
 
 .event-content{
+  margin-top: 2%;
   margin-right: 0;
-  font-weight: bold;
   font-size: 1.5em;
+  font-weight: 200;
 }
 
 button {
-  width: 1em;
-  height: 1em;
-  border: 4px solid #FFF7EC;
+  width: 0.5em;
+  height: 0.5em;
+  border: 2px solid black;
   border-left: 0;
   border-top: 0;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .open{
@@ -251,7 +269,8 @@ button {
 
 .flex-container{
   display: flex;
-  margin-top: 1%;
+  padding: 2% 1%;
+  border-bottom: 2px solid #B84545;
 }
 
 .flex-container > div {
@@ -259,11 +278,16 @@ button {
   min-width: 0;
 }
 
-.date{
+.flex-container-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.side{
   margin-top: auto;
   margin-bottom: auto;
   font-size: 1.5em;
-  font-variant-numeric: oldstyle-nums;
 }
 
 ::-webkit-scrollbar {
