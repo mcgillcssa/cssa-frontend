@@ -238,4 +238,52 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@media screen and (max-width: 960px) {
+  .about-us {
+    flex-direction: column;
+    margin: 0;
+    height: auto;
+  }
+
+  #about-us-left {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #about-us-image {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+  }
+
+  #about-us-description {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  #about-us-number,
+  #about-us-right {
+    padding: 0;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .about-us-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .info-number {
+    font-size: 4em;
+  }
+
+  .info-description {
+    font-size: 1.5em;
+  }
+}
 </style>
