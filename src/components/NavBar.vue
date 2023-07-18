@@ -1,26 +1,30 @@
 <template>
   <div>
-    <ul id="nav_bar" class="nav_list sticky">
-      <li class="nav_icon">
+    <ul id="nav_bar" class="nav_list">
+      <li
+        class="nav_item"
+        style="list-style: none; margin-left: 2%; margin-right: auto; flex-grow: 0.5 position: absolute"
+        v-if="$route.path !== '/'"
+      >
         <router-link to="/">
-          <img
-            src="https://i.imgur.com/rZahX5F.png"
-            width="60"
-            height="60"
-            class="d-inline-block align-text-top"
-          />
+          <img src="https://i.imgur.com/1uMELFN.png" width="80" height="80" />
+          <!-- HOME -->
         </router-link>
+        <div class="underline"></div>
       </li>
       <li class="nav_item">
-        <router-link to="/">Events</router-link>
+        <router-link to="/">EVENTS</router-link>
+        <div class="underline"></div>
       </li>
-      <li class="nav_item" style="width: 1%">|</li>
+      <!-- <li class="nav_item" style="width: 1%">|</li> -->
       <li class="nav_item">
-        <router-link to="/">Membership</router-link>
+        <router-link to="/">MEMBERSHIP</router-link>
+        <div class="underline"></div>
       </li>
-      <li class="nav_item" style="width: 1%">|</li>
+      <!-- <li class="nav_item" style="width: 1%">|</li> -->
       <li class="nav_item" style="margin-right: 5%">
-        <router-link to="/">Sponsors</router-link>
+        <router-link to="/">SPONSORS</router-link>
+        <div class="underline"></div>
       </li>
       <li class="dropdown">
         <button v-on:click="drop()" class="dropdown_button">|||</button>
@@ -67,7 +71,6 @@ export default {
 
 <style>
 @media only screen and (max-width: 720px) {
-  /* For mobile phones: */
   .nav_item {
     display: none;
   }
@@ -103,8 +106,8 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #e8ded1;
-  color: #ff6c6c;
+  height: 100px;
+  /* background-color: #e8ded1; */
   align-items: center;
   justify-content: flex-end;
 }
@@ -117,26 +120,43 @@ body {
 }
 
 .nav_item {
-  margin-right: 2%;
+  margin-left: 50px;
   list-style: none;
   text-align: center;
-  font-family: Corbel;
-  font-weight: 300;
+  font-family: 'Raleway';
+  font-weight: 500;
   font-size: 1.5em;
-  color: #ff6c6c;
+  color: #ffffff;
+  position: relative;
 }
 
 .nav_item a {
   text-decoration: none;
-  color: #ff6c6c;
+  color: #ffffff;
 }
 
-.nav_item a:hover {
-  color: #2c3e50;
+/* .nav_item a:hover {
+  color: #959a9f;
+} */
+
+.nav_item:hover .underline {
+  width: 100%;
+}
+
+.underline {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(-50%);
 }
 
 .sticky {
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100%;
 }
@@ -148,9 +168,8 @@ body {
 .dropdown_button {
   background-color: transparent;
   border: none;
-  color: #ff6c6c;
+  color: #ffffff;
   margin-right: 2%;
-  text-align: center;
   font-family: Corbel;
   font-size: 1.5em;
   font-weight: 300;
