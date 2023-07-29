@@ -24,7 +24,8 @@
             <p>hello</p>
           </ImageSlide>
         </ImageCarousel>
-        <p>{{ this.currentBenefit.websiteUrl }}</p>
+        <p>Address: {{ this.currentBenefit.websiteUrl }}</p>
+        <p>Website: {{ this.currentBenefit.address }}</p>
       </div>
     </div>
   </div>
@@ -47,9 +48,10 @@ export default {
         benefits: [
           {
             id: 1,
-            name: "Benefit A",
+            name: "CNTRBND",
             imageUrl: 'https://i.imgur.com/BA7Se7s.png',
-            websiteUrl: "./assets/22chatime.png",
+            websiteUrl: "https://www.cntrbndshop.com/",
+            address: ": 2185 Rue Crescent, Montréal, QC H3G 2C1",
             shopImages: [
               { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
               { id: 2, url: "https://i.imgur.com/JfjKXl2.png", alt: "Image 2" },
@@ -59,7 +61,8 @@ export default {
             id: 2,
             name: "Benefit B",
             imageUrl: "https://i.imgur.com/BA7Se7s.png",
-            websiteUrl: "https://www.benefitB-website.com",
+            websiteUrl: "https://www.cntrbndshop.com/",
+            address: ": 2185 Rue Crescent, Montréal, QC H3G 2C1",
             shopImages: [
               { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
               { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
@@ -76,6 +79,7 @@ export default {
             name: "Benefit C",
             imageUrl: "https://i.imgur.com/BA7Se7s.png",
             websiteUrl: "https://www.benefitC-website.com",
+            address: "2185 Rue Crescent, Montréal, QC H3G 2C1",
             shopImages: [
               { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
               { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
@@ -86,6 +90,7 @@ export default {
             name: "Benefit D",
             imageUrl: "https://i.imgur.com/BA7Se7s.png",
             websiteUrl: "https://www.benefitD-website.com",
+            address: ": 2185 Rue Crescent, Montréal, QC H3G 2C1",
             shopImages: [
               { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
               { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
@@ -96,6 +101,7 @@ export default {
             name: "Benefit F",
             imageUrl: "https://i.imgur.com/BA7Se7s.png",
             websiteUrl: "https://www.benefitD-website.com",
+            address: "2185 Rue Crescent, Montréal, QC H3G 2C1",
             shopImages: [
               { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
               { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
@@ -112,6 +118,7 @@ export default {
             name: "Benefit C",
             imageUrl: "https://i.imgur.com/BA7Se7s.png",
             websiteUrl: "https://www.benefitC-website.com",
+            address: "2185 Rue Crescent, Montréal, QC H3G 2C1",
             shopImages: [
               { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
               { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
@@ -122,6 +129,7 @@ export default {
             name: "Benefit D",
             imageUrl: "https://i.imgur.com/BA7Se7s.png",
             websiteUrl: "https://www.benefitD-website.com",
+            address: "2185 Rue Crescent, Montréal, QC H3G 2C1",
             shopImages: [
               { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
               { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
@@ -132,6 +140,7 @@ export default {
             name: "Benefit F",
             imageUrl: "https://i.imgur.com/BA7Se7s.png",
             websiteUrl: "https://www.benefitD-website.com",
+            address: "2185 Rue Crescent, Montréal, QC H3G 2C1",
             shopImages: [
               { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
               { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
@@ -174,7 +183,7 @@ export default {
 /* Styling for the component */
 .benefit-categories {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns per row for PC screens */
+  grid-template-columns: repeat(3, 1fr); /* 4 columns per row for PC screens */
   gap: 5px; /* 5px spacing between grid items */
 }
 
@@ -242,6 +251,16 @@ export default {
   max-height: 350px;
 }
 /* Media query for smaller screens */
+@media (max-width: 992px) {
+  .benefit-categories {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns per row for smaller screens */
+  }
+
+  .benefit-image {
+    width: 300px; /* Smaller image size for smaller screens */
+  }
+}
+
 @media (max-width: 768px) {
   .benefit-categories {
     grid-template-columns: repeat(1, 1fr); /* 2 columns per row for smaller screens */

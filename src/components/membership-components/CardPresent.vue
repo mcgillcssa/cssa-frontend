@@ -6,7 +6,7 @@
     </div>
     <div class="card-text-display">
       <div class="card-dis">
-        <img src="https://i.imgur.com/BA7Se7s.png" alt="This is membership card" id="card" />
+        <img src="https://i.imgur.com/A0HEhlU.jpg" alt="This is membership card" id="card" />
       </div>
       <div class="text-dis">
         <p class="text en" id="mem-text">
@@ -40,6 +40,7 @@ export default {
   display: grid;
   grid-template-areas: 'image text';
   grid-template-columns: 40% 60%;
+  gap: 25px;
   position: relative;
 }
 
@@ -83,5 +84,14 @@ export default {
 .cn {
   color: #ff6c6c;
   margin-bottom: 0%;
+}
+@media (max-width: 1024px) {
+  .card-text-display {
+  display: grid;
+  grid-template-areas: 'image' 'text';
+  grid-template-rows: 40% 60%;
+  position: relative;
+}
+  
 }
 </style>
