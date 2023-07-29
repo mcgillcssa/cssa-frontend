@@ -17,8 +17,7 @@
             ><fa :icon="['fab', 'instagram']" size="3x"
           /></a>
           <a href=""><fa :icon="['fab', 'weixin']" size="3x" /></a>
-          <a
-            href="https://space.bilibili.com/405502104?spm_id_from=333.337.search-card.all.click"
+          <a href="https://space.bilibili.com/405502104?spm_id_from=333.337.search-card.all.click"
             ><fa :icon="['fab', 'bilibili']" size="3x"
           /></a>
         </div>
@@ -48,14 +47,14 @@
 
 <script>
 export default {
-  name: "web-Footer",
+  name: 'web-Footer',
 
   data() {
     return {
-      currentYear: new Date().getFullYear(),
-    };
-  },
-};
+      currentYear: new Date().getFullYear()
+    }
+  }
+}
 </script>
 
 <style>
@@ -73,10 +72,10 @@ export default {
   grid-template-columns: 1fr 1px 2fr;
   /*grid-template-rows: 1fr 1fr 1fr 1fr; */
   grid-template-areas:
-    "follow follow follow"
-    "icon line tag"
-    "icon line tag"
-    "void void cp";
+    'follow follow follow'
+    'icon line tag'
+    'icon line tag'
+    'void void cp';
   max-width: inherit;
   max-height: inherit;
   margin: 30px;
@@ -91,7 +90,7 @@ export default {
   display: grid;
   gap: 10px;
   grid-area: icon;
-  grid-template-areas: "i1 i2 i3";
+  grid-template-areas: 'i1 i2 i3';
 }
 
 .separator {
@@ -103,7 +102,7 @@ export default {
   display: grid;
   grid-area: tag;
   font-size: 20px;
-  grid-template-areas: "t1 t2 t3";
+  grid-template-areas: 't1 t2 t3';
 }
 
 .all-text {

@@ -87,11 +87,10 @@ export default {
 }
 @media (max-width: 1024px) {
   .card-text-display {
-  display: grid;
-  grid-template-areas: 'image' 'text';
-  grid-template-rows: 40% 60%;
-  position: relative;
-}
-  
+    display: grid;
+    grid-template-areas: 'image' 'text';
+    grid-template-rows: 40% 60%;
+    position: relative;
+  }
 }
 </style>

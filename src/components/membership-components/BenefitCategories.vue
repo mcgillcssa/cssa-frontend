@@ -16,10 +16,10 @@
     </div>
     <div v-if="showPopup" class="popup" @click="hideWebsitePopup">
       <div class="popup-content">
-        <ImageCarousel class="carousel" v-slot="{currentSlide}">
+        <ImageCarousel class="carousel" v-slot="{ currentSlide }">
           <ImageSlide v-for="(slide, index) in this.currentBenefit.shopImages" :key="index">
             <div v-show="currentSlide === index + 1" class="slide-info">
-              <img :src="slide.url" :alt="slide.alt" class="slide-image" /> 
+              <img :src="slide.url" :alt="slide.alt" class="slide-image" />
             </div>
             <p>hello</p>
           </ImageSlide>
@@ -32,151 +32,152 @@
 </template>
 
 <script>
-import ImageCarousel from "./ImageCarousel.vue";
-import ImageSlide from "./ImageSlide.vue";
+import ImageCarousel from './ImageCarousel.vue'
+import ImageSlide from './ImageSlide.vue'
 export default {
   components: {
-    ImageCarousel,ImageSlide
+    ImageCarousel,
+    ImageSlide
   },
 
   data() {
-  return {
-    categories: [
-      {
-        id: 1,
-        name: "Category 1",
-        benefits: [
-          {
-            id: 1,
-            name: "CNTRBND",
-            imageUrl: 'https://i.imgur.com/BA7Se7s.png',
-            websiteUrl: "https://www.cntrbndshop.com/",
-            address: ": 2185 Rue Crescent, Montréal, QC H3G 2C1",
-            shopImages: [
-              { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
-              { id: 2, url: "https://i.imgur.com/JfjKXl2.png", alt: "Image 2" },
-            ],
-          },
-          {
-            id: 2,
-            name: "Benefit B",
-            imageUrl: "https://i.imgur.com/BA7Se7s.png",
-            websiteUrl: "https://www.cntrbndshop.com/",
-            address: ": 2185 Rue Crescent, Montréal, QC H3G 2C1",
-            shopImages: [
-              { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
-              { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
-            ],
-          },
-        ],
-      },
-      {
-        id: 2,
-        name: "Category 2",
-        benefits: [
-          {
-            id: 3,
-            name: "Benefit C",
-            imageUrl: "https://i.imgur.com/BA7Se7s.png",
-            websiteUrl: "https://www.benefitC-website.com",
-            address: "2185 Rue Crescent, Montréal, QC H3G 2C1",
-            shopImages: [
-              { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
-              { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
-            ],
-          },
-          {
-            id: 4,
-            name: "Benefit D",
-            imageUrl: "https://i.imgur.com/BA7Se7s.png",
-            websiteUrl: "https://www.benefitD-website.com",
-            address: ": 2185 Rue Crescent, Montréal, QC H3G 2C1",
-            shopImages: [
-              { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
-              { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
-            ],
-          },
-          {
-            id: 5,
-            name: "Benefit F",
-            imageUrl: "https://i.imgur.com/BA7Se7s.png",
-            websiteUrl: "https://www.benefitD-website.com",
-            address: "2185 Rue Crescent, Montréal, QC H3G 2C1",
-            shopImages: [
-              { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
-              { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
-            ],
-          },
-        ],
-      },
-      {
-        id: 2,
-        name: "Category 3",
-        benefits: [
-          {
-            id: 3,
-            name: "Benefit C",
-            imageUrl: "https://i.imgur.com/BA7Se7s.png",
-            websiteUrl: "https://www.benefitC-website.com",
-            address: "2185 Rue Crescent, Montréal, QC H3G 2C1",
-            shopImages: [
-              { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
-              { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
-            ],
-          },
-          {
-            id: 4,
-            name: "Benefit D",
-            imageUrl: "https://i.imgur.com/BA7Se7s.png",
-            websiteUrl: "https://www.benefitD-website.com",
-            address: "2185 Rue Crescent, Montréal, QC H3G 2C1",
-            shopImages: [
-              { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
-              { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
-            ],
-          },
-          {
-            id: 5,
-            name: "Benefit F",
-            imageUrl: "https://i.imgur.com/BA7Se7s.png",
-            websiteUrl: "https://www.benefitD-website.com",
-            address: "2185 Rue Crescent, Montréal, QC H3G 2C1",
-            shopImages: [
-              { id: 1, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 1" },
-              { id: 2, url: "https://i.imgur.com/BA7Se7s.png", alt: "Image 2" },
-            ],
-          },
-        ],
-      },
-      // Add more categories here if you have any initial data
-    ],
-    showPopup: false,
-    currentBenefit: null,
-  };
-},
+    return {
+      categories: [
+        {
+          id: 1,
+          name: 'Category 1',
+          benefits: [
+            {
+              id: 1,
+              name: 'CNTRBND',
+              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
+              websiteUrl: 'https://www.cntrbndshop.com/',
+              address: ': 2185 Rue Crescent, Montréal, QC H3G 2C1',
+              shopImages: [
+                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
+                { id: 2, url: 'https://i.imgur.com/JfjKXl2.png', alt: 'Image 2' }
+              ]
+            },
+            {
+              id: 2,
+              name: 'Benefit B',
+              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
+              websiteUrl: 'https://www.cntrbndshop.com/',
+              address: ': 2185 Rue Crescent, Montréal, QC H3G 2C1',
+              shopImages: [
+                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
+                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
+              ]
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: 'Category 2',
+          benefits: [
+            {
+              id: 3,
+              name: 'Benefit C',
+              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
+              websiteUrl: 'https://www.benefitC-website.com',
+              address: '2185 Rue Crescent, Montréal, QC H3G 2C1',
+              shopImages: [
+                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
+                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
+              ]
+            },
+            {
+              id: 4,
+              name: 'Benefit D',
+              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
+              websiteUrl: 'https://www.benefitD-website.com',
+              address: ': 2185 Rue Crescent, Montréal, QC H3G 2C1',
+              shopImages: [
+                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
+                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
+              ]
+            },
+            {
+              id: 5,
+              name: 'Benefit F',
+              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
+              websiteUrl: 'https://www.benefitD-website.com',
+              address: '2185 Rue Crescent, Montréal, QC H3G 2C1',
+              shopImages: [
+                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
+                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
+              ]
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: 'Category 3',
+          benefits: [
+            {
+              id: 3,
+              name: 'Benefit C',
+              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
+              websiteUrl: 'https://www.benefitC-website.com',
+              address: '2185 Rue Crescent, Montréal, QC H3G 2C1',
+              shopImages: [
+                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
+                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
+              ]
+            },
+            {
+              id: 4,
+              name: 'Benefit D',
+              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
+              websiteUrl: 'https://www.benefitD-website.com',
+              address: '2185 Rue Crescent, Montréal, QC H3G 2C1',
+              shopImages: [
+                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
+                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
+              ]
+            },
+            {
+              id: 5,
+              name: 'Benefit F',
+              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
+              websiteUrl: 'https://www.benefitD-website.com',
+              address: '2185 Rue Crescent, Montréal, QC H3G 2C1',
+              shopImages: [
+                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
+                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
+              ]
+            }
+          ]
+        }
+        // Add more categories here if you have any initial data
+      ],
+      showPopup: false,
+      currentBenefit: null
+    }
+  },
   mounted() {
-    document.addEventListener("click", this.handleClickOutside);
+    document.addEventListener('click', this.handleClickOutside)
   },
   beforeUnmount() {
-    document.removeEventListener("click", this.handleClickOutside);
+    document.removeEventListener('click', this.handleClickOutside)
   },
   methods: {
     showWebsitePopup(benefit) {
-      this.showPopup = true;
-      this.currentBenefit = benefit;
+      this.showPopup = true
+      this.currentBenefit = benefit
     },
     hideWebsitePopup() {
-      this.showPopup = false;
-      this.currentBenefit = null;
+      this.showPopup = false
+      this.currentBenefit = null
     },
     handleClickOutside(event) {
-      const popup = this.$el.querySelector(".popup");
+      const popup = this.$el.querySelector('.popup')
       if (popup && !popup.contains(event.target)) {
-        this.hideWebsitePopup();
+        this.hideWebsitePopup()
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style>
@@ -229,7 +230,7 @@ export default {
 }
 
 .popup-content {
-  display:grid;
+  display: grid;
   gap: 5px;
   background-color: #fff;
   height: 500px;
@@ -270,5 +271,4 @@ export default {
     width: 300px; /* Smaller image size for smaller screens */
   }
 }
-
 </style>
