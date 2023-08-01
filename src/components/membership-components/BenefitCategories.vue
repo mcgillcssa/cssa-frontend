@@ -1,14 +1,18 @@
 <!-- BenefitCategories.vue -->
 <template>
   <div class="benefit-categories">
-    <div class="category-table" v-for="category in categories" :key="category.id">
-      <h3 class="category-title">{{ category.name }}</h3>
+    <div
+      class="category-table"
+      v-for="(benefits, categoryName) in benefitsByType"
+      :key="categoryName"
+    >
+      <h3 class="category-title">{{ categoryName }}</h3>
       <div class="benefit-images-container">
         <img
-          v-for="benefit in category.benefits"
-          :key="benefit.id"
-          :src="benefit.imageUrl"
-          :alt="benefit.name"
+          v-for="benefit in benefits"
+          :key="benefit.merchantName"
+          :src="benefit.stripeUrl"
+          :alt="benefit.merchantName"
           @click.stop="showWebsitePopup(benefit)"
           class="benefit-image"
         />
@@ -17,15 +21,17 @@
     <div v-if="showPopup" class="popup" @click="hideWebsitePopup">
       <div class="popup-content">
         <ImageCarousel class="carousel" v-slot="{ currentSlide }">
-          <ImageSlide v-for="(slide, index) in this.currentBenefit.shopImages" :key="index">
+          <ImageSlide v-for="(slide, index) in this.currentBenefit.merchantImagesUrl" :key="index">
             <div v-show="currentSlide === index + 1" class="slide-info">
-              <img :src="slide.url" :alt="slide.alt" class="slide-image" />
+              <img :src="slide" :alt="slide.alt" class="slide-image" />
             </div>
-            <p>hello</p>
           </ImageSlide>
         </ImageCarousel>
-        <p>Address: {{ this.currentBenefit.websiteUrl }}</p>
-        <p>Website: {{ this.currentBenefit.address }}</p>
+        <p>Address: {{ this.currentBenefit.merchantAddress }}</p>
+        <p>Phone: {{ this.currentBenefit.merchantPhone }}</p>
+        <p>Opening hours: {{ this.currentBenefit.merchantOpeningHours }}</p>
+        <p>Discount: {{ this.currentBenefit.merchantDiscount }}</p>
+        <p>Payment methods: {{ this.currentBenefit.merchantPaymentMethods }}</p>
       </div>
     </div>
   </div>
@@ -34,6 +40,7 @@
 <script>
 import ImageCarousel from './ImageCarousel.vue'
 import ImageSlide from './ImageSlide.vue'
+import axios from 'axios'
 export default {
   components: {
     ImageCarousel,
@@ -42,119 +49,24 @@ export default {
 
   data() {
     return {
-      categories: [
-        {
-          id: 1,
-          name: 'Category 1',
-          benefits: [
-            {
-              id: 1,
-              name: 'CNTRBND',
-              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
-              websiteUrl: 'https://www.cntrbndshop.com/',
-              address: ': 2185 Rue Crescent, Montréal, QC H3G 2C1',
-              shopImages: [
-                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
-                { id: 2, url: 'https://i.imgur.com/JfjKXl2.png', alt: 'Image 2' }
-              ]
-            },
-            {
-              id: 2,
-              name: 'Benefit B',
-              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
-              websiteUrl: 'https://www.cntrbndshop.com/',
-              address: ': 2185 Rue Crescent, Montréal, QC H3G 2C1',
-              shopImages: [
-                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
-                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
-              ]
-            }
-          ]
-        },
-        {
-          id: 2,
-          name: 'Category 2',
-          benefits: [
-            {
-              id: 3,
-              name: 'Benefit C',
-              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
-              websiteUrl: 'https://www.benefitC-website.com',
-              address: '2185 Rue Crescent, Montréal, QC H3G 2C1',
-              shopImages: [
-                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
-                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
-              ]
-            },
-            {
-              id: 4,
-              name: 'Benefit D',
-              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
-              websiteUrl: 'https://www.benefitD-website.com',
-              address: ': 2185 Rue Crescent, Montréal, QC H3G 2C1',
-              shopImages: [
-                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
-                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
-              ]
-            },
-            {
-              id: 5,
-              name: 'Benefit F',
-              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
-              websiteUrl: 'https://www.benefitD-website.com',
-              address: '2185 Rue Crescent, Montréal, QC H3G 2C1',
-              shopImages: [
-                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
-                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
-              ]
-            }
-          ]
-        },
-        {
-          id: 2,
-          name: 'Category 3',
-          benefits: [
-            {
-              id: 3,
-              name: 'Benefit C',
-              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
-              websiteUrl: 'https://www.benefitC-website.com',
-              address: '2185 Rue Crescent, Montréal, QC H3G 2C1',
-              shopImages: [
-                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
-                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
-              ]
-            },
-            {
-              id: 4,
-              name: 'Benefit D',
-              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
-              websiteUrl: 'https://www.benefitD-website.com',
-              address: '2185 Rue Crescent, Montréal, QC H3G 2C1',
-              shopImages: [
-                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
-                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
-              ]
-            },
-            {
-              id: 5,
-              name: 'Benefit F',
-              imageUrl: 'https://i.imgur.com/BA7Se7s.png',
-              websiteUrl: 'https://www.benefitD-website.com',
-              address: '2185 Rue Crescent, Montréal, QC H3G 2C1',
-              shopImages: [
-                { id: 1, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 1' },
-                { id: 2, url: 'https://i.imgur.com/BA7Se7s.png', alt: 'Image 2' }
-              ]
-            }
-          ]
-        }
-        // Add more categories here if you have any initial data
-      ],
+      benefitsByType: [],
       showPopup: false,
       currentBenefit: null
     }
   },
+
+  async created() {
+    try {
+      const response = await axios.get(
+        'http://localhost:8080/api/membershipBenefits/allByMerchantType'
+      )
+      this.benefitsByType = response.data.benefitsByType
+      console.log(response.data.benefitsByType)
+    } catch (err) {
+      console.error(err)
+    }
+  },
+
   mounted() {
     document.addEventListener('click', this.handleClickOutside)
   },
@@ -230,10 +142,11 @@ export default {
 }
 
 .popup-content {
-  display: grid;
-  gap: 5px;
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
-  height: 500px;
+  justify-content: center;
+  height: auto;
   width: 400px;
   padding: 20px;
   border-radius: 5px;
@@ -247,9 +160,17 @@ export default {
   max-height: 200px;
 }
 
+.slide-info {
+  display: flex;
+  justify-content: center;
+}
+
 .slide-image {
-  max-width: 350px;
-  max-height: 350px;
+  max-width: 250px;
+  max-height: 200px; /* Reducing the height */
+  object-fit: contain;
+  align-self: center;
+  margin-bottom: 10px;
 }
 /* Media query for smaller screens */
 @media (max-width: 992px) {

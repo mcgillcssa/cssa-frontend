@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <RecentEvents />
+    <BenefitCategories />
 
     <div class="about-us">
       <div id="about-us-left">
@@ -72,11 +72,12 @@
 
 <script>
 import NavBar from '../components/NavBar.vue'
-import RecentEvents from '../components/RecentEvents.vue'
+//import RecentEvents from '../components/RecentEvents.vue'
+import BenefitCategories from '../components/membership-components/BenefitCategories.vue'
 
 export default {
   components: {
-    RecentEvents,
+    BenefitCategories,
     NavBar
   }
 }
