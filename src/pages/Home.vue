@@ -73,6 +73,7 @@
 <script>
 import NavBar from '../components/NavBar.vue'
 import RecentEvents from '../components/RecentEvents.vue'
+//import BenefitCategories from '../components/membership-components/BenefitCategories.vue'
 
 export default {
   components: {
