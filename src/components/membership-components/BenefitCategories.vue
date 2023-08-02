@@ -27,11 +27,13 @@
             </div>
           </ImageSlide>
         </ImageCarousel>
-        <p>Address: {{ this.currentBenefit.merchantAddress }}</p>
-        <p>Phone: {{ this.currentBenefit.merchantPhone }}</p>
-        <p>Opening hours: {{ this.currentBenefit.merchantOpeningHours }}</p>
-        <p>Discount: {{ this.currentBenefit.merchantDiscount }}</p>
-        <p>Payment methods: {{ this.currentBenefit.merchantPaymentMethods }}</p>
+        <p>{{ this.currentBenefit.merchantName }}</p>
+        <p>{{ this.currentBenefit.merchantAlternativeName }}</p>
+        <p>地址: {{ this.currentBenefit.merchantAddress }}</p>
+        <p>电话: {{ this.currentBenefit.merchantPhone }}</p>
+        <p>营业时间: {{ this.currentBenefit.merchantOpeningHours }}</p>
+        <p>折扣: {{ this.currentBenefit.merchantDiscount }}</p>
+        <p>支付方式: {{ this.currentBenefit.merchantPaymentMethods }}</p>
       </div>
     </div>
   </div>
