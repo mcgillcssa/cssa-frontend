@@ -1,78 +1,93 @@
+<!-- eslint-disable no-unused-vars -->
 <template>
   <div class="carousel">
-    <slot :currentSlide="currentSlide" />
-  </div>
-
-  <div class="navigate">
-    <div class="toggle-page left">
-      <fa :icon="['fas', 'chevron-left']" size="3x" class="i" @click.stop="prevSlide" />
-    </div>
-    <div class="toggle-page right">
-      <fa :icon="['fas', 'chevron-right']" size="3x" class="i" @click.stop="nextSlide" />
+    <button class="control previous" @click="previous">Previous</button>
+    <img :src="images[currentImage]" alt="" />
+    <button class="control next" @click="next">Next</button>
+    <div class="slide-selector">
+      <span
+        class="selector"
+        v-for="(image, index) in images"
+        :key="index"
+        :class="{ active: index === currentImage }"
+        @click="goToImage(index)"
+      ></span>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
 export default {
-  setup() {
-    const currentSlide = ref(1)
-    const getSlideCount = ref(null)
-
-    const nextSlide = () => {
-      if (currentSlide.value === getSlideCount.value) {
-        currentSlide.value = 1
-      }
-      currentSlide.value += 1
+  props: ['images'],
+  data() {
+    return {
+      currentImage: 0
     }
-
-    const prevSlide = () => {
-      if (currentSlide.value === 1) {
-        currentSlide.value = 1
-        return
-      }
-      currentSlide.value -= 1
+  },
+  methods: {
+    next() {
+      this.currentImage = (this.currentImage + 1) % this.images.length
+    },
+    previous() {
+      this.currentImage = (this.currentImage + this.images.length - 1) % this.images.length
+    },
+    goToImage(index) {
+      this.currentImage = index
     }
-
-    onMounted(() => {
-      getSlideCount.value = document.querySelectorAll('.slide').length
-      console.log(getSlideCount.value)
-    })
-    return { currentSlide, nextSlide, prevSlide }
   }
 }
 </script>
 
-<style>
-.navigate {
-  padding: 0 16px;
+<style scoped>
+.carousel {
+  position: relative;
   display: flex;
-  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel img {
+  max-width: 100%;
+  height: auto;
+}
+
+.control {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.previous {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.slide-selector {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
   width: 100%;
-  justify-content: center;
-  align-items: center;
 }
 
-.toggle-page {
-  display: flex;
-
-  flex: 1;
-}
-
-.right {
-  justify-content: flex-end;
-}
-
-.i {
+/* Updated .selector class */
+.selector {
+  height: 4px; /* Make the line thicker */
+  width: 20px;
+  margin: 0 5px;
+  background-color: rgb(255, 255, 255);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: width 0.3s ease, border-radius 0.3s ease; /* Added border-radius transition */
+  border-radius: 2px; /* Make the ends rounded */
 }
 
-.i:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+.selector.active {
+  width: 40px;
+  background-color: rgb(191, 149, 231);
+  border-radius: 2px; /* Keep the ends rounded when active */
 }
 </style>
