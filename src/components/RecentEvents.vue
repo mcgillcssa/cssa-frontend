@@ -41,7 +41,7 @@ export default {
 
   async created() {
     try {
-      const response = await axios.get('http://localhost:8080/api/events/upcoming/4')
+      const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/events/upcoming/4`)
       this.items = response.data.events
       console.log(response.data.events)
     } catch (err) {

@@ -60,7 +60,7 @@ export default {
   async created() {
     try {
       const response = await axios.get(
-        'http://localhost:8080/api/membershipBenefits/allByMerchantType'
+        `${process.env.VUE_APP_BACKEND_URL}/api/membershipBenefits/allByMerchantType`
       )
       this.benefitsByType = response.data.benefitsByType
       console.log(response.data.benefitsByType)
