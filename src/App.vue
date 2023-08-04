@@ -2,9 +2,14 @@
   <router-view> </router-view>
 </template>
 
+<script>
+import '@icon-park/vue-next/styles/index.css'
+export default {}
+</script>
+
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: left;

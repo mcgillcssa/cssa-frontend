@@ -121,69 +121,69 @@ body {
   width: 40%;
   max-width: 800px;
 }
-
 @media (max-width: 1200px) {
-  ::v-deep(.event-name) {
+  :deep(.event-name) {
     font-size: 40px; /* change to fixed size */
   }
 
-  ::v-deep(.event-date) {
+  :deep(.event-date) {
     font-size: 100px; /* change to fixed size */
   }
 
-  ::v-deep(.carousel-item-content .event-heading h3) {
+  :deep(.carousel-item-content .event-heading h3) {
     font-size: 30px;
   }
 
-  ::v-deep(.carousel-item-content .event-description) {
+  :deep(.carousel-item-content .event-description) {
     font-size: 25px; /* change to fixed size */
     padding-left: 0;
     padding-right: 0;
   }
-  ::v-deep .carousel-item {
+
+  :deep(.carousel-item) {
     flex-direction: column;
     align-items: center;
   }
 
-  ::v-deep .carousel-item:nth-child(even) {
+  :deep(.carousel-item:nth-child(even)) {
     flex-direction: column;
   }
 
-  ::v-deep .carousel-item-content,
-  ::v-deep .event-image {
+  :deep(.carousel-item-content),
+  :deep(.event-image) {
     width: 100%;
   }
 
-  ::v-deep .recent-events-title .zhs-title,
-  ::v-deep .recent-events-title .en-title,
-  ::v-deep .event-heading h3 {
+  :deep(.recent-events-title .zhs-title),
+  :deep(.recent-events-title .en-title),
+  :deep(.event-heading h3) {
     font-size: 2rem;
   }
 
-  ::v-deep .event-heading .event-date {
+  :deep(.event-heading .event-date) {
     font-size: 4rem;
   }
 
-  ::v-deep .event-description {
+  :deep(.event-description) {
     padding-left: 7rem;
     padding-right: 5rem;
   }
 }
 
 @media (min-width: 1201px) {
-  ::v-deep .recent-events-title .zhs-title {
+  :deep(.recent-events-title .zhs-title) {
     font-size: 1em;
   }
 
-  ::v-deep .recent-events-title .en-title {
+  :deep(.recent-events-title .en-title) {
     font-size: 1.75em;
   }
 
-  ::v-deep .event-heading h3 {
+  :deep(.event-heading h3) {
     font-size: 50px;
   }
 
-  ::v-deep .event-heading .event-date {
+  :deep(.event-heading .event-date) {
     font-size: 7rem;
   }
 
@@ -195,7 +195,7 @@ body {
     margin: 0 auto;
   }
 
-  ::v-deep .event-description {
+  :deep(.event-description) {
     font-size: 30px;
     padding-left: 7rem;
     padding-right: 5rem;
