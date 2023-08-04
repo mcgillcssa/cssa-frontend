@@ -10,7 +10,8 @@ const routes = [
   {
     path: '/membership-benefits',
     name: 'Membership Benefits',
-    component: MembershipBenefitsPage
+    component: MembershipBenefitsPage,
+    meta: { title: 'McGill CSSA | 会员福利' }
   },
   {
     path: '/access/qrscan',
@@ -21,6 +22,11 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'McGill CSSA'
+  next()
 })
 
 export default router
