@@ -1,9 +1,25 @@
 <!-- eslint-disable no-unused-vars -->
 <template>
   <div class="carousel">
-    <button class="control previous" @click="previous">Previous</button>
+    <left-c
+      class="control previous"
+      theme="two-tone"
+      size="48"
+      :fill="['#FFF', '#9C71C6']"
+      strokeLinejoin="miter"
+      strokeLinecap="square"
+      @click="previous"
+    />
     <img :src="images[currentImage]" alt="" />
-    <button class="control next" @click="next">Next</button>
+    <right-c
+      class="control next"
+      theme="two-tone"
+      size="48"
+      :fill="['#FFF', '#9C71C6']"
+      strokeLinejoin="miter"
+      strokeLinecap="square"
+      @click="next"
+    />
     <div class="slide-selector">
       <span
         class="selector"
@@ -17,7 +33,13 @@
 </template>
 
 <script>
+import { LeftC, RightC } from '@icon-park/vue-next'
+
 export default {
+  components: {
+    LeftC,
+    RightC
+  },
   props: ['images'],
   data() {
     return {
@@ -42,13 +64,17 @@ export default {
 .carousel {
   position: relative;
   display: flex;
+  flex-direction: column;
+  width: 100%;
   justify-content: center;
   align-items: center;
 }
 
 .carousel img {
-  max-width: 100%;
-  height: auto;
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+  display: block;
 }
 
 .control {
@@ -56,6 +82,16 @@ export default {
   z-index: 1;
   top: 50%;
   transform: translateY(-50%);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.control:hover {
+  transform: translateY(-50%) scale(1.2); /* Slightly increase size when hovering */
+}
+
+.control:active {
+  transform: translateY(-50%) scale(0.9); /* Slightly decrease size when clicking */
 }
 
 .previous {
@@ -67,7 +103,10 @@ export default {
 }
 
 .slide-selector {
-  position: absolute;
+  margin-top: 5px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
   bottom: 10px;
   display: flex;
   justify-content: center;
@@ -77,17 +116,18 @@ export default {
 /* Updated .selector class */
 .selector {
   height: 4px; /* Make the line thicker */
-  width: 20px;
+  width: 20%;
   margin: 0 5px;
   background-color: rgb(255, 255, 255);
+  border: #9c71c6 2px solid;
   cursor: pointer;
   transition: width 0.3s ease, border-radius 0.3s ease; /* Added border-radius transition */
   border-radius: 2px; /* Make the ends rounded */
 }
 
 .selector.active {
-  width: 40px;
-  background-color: rgb(191, 149, 231);
+  width: 40%;
+  background-color: #9c71c6;
   border-radius: 2px; /* Keep the ends rounded when active */
 }
 </style>

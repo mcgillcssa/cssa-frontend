@@ -26,16 +26,72 @@
     <div v-if="showPopup" class="modal-overlay" @click.self="hideWebsitePopup">
       <!-- The content of the modal -->
       <div class="modal">
-        <!-- Carousel of images related to the benefit -->
-        <ImageCarousel :images="this.currentBenefit.merchantImagesUrl"> </ImageCarousel>
+        <!-- Container of merchant name and carousel-->
+        <div class="modal-top-container">
+          <div class="merchant-name">
+            {{ this.currentBenefit.merchantName }} /
+            {{ this.currentBenefit.merchantAlternativeName }}
+          </div>
+          <!-- Carousel of images related to the benefit -->
+          <ImageCarousel :images="this.currentBenefit.merchantImagesUrl"> </ImageCarousel>
+        </div>
         <!-- The information related to the benefit is displayed -->
-        <p>{{ this.currentBenefit.merchantName }}</p>
-        <p>{{ this.currentBenefit.merchantAlternativeName }}</p>
-        <p>地址: {{ this.currentBenefit.merchantAddress }}</p>
-        <p>电话: {{ this.currentBenefit.merchantPhone }}</p>
-        <p>营业时间: {{ this.currentBenefit.merchantOpeningHours }}</p>
-        <p>折扣: {{ this.currentBenefit.merchantDiscount }}</p>
-        <p>支付方式: {{ this.currentBenefit.merchantPaymentMethods }}</p>
+        <ul class="info-list">
+          <li>
+            <local
+              theme="filled"
+              size="36"
+              fill="#9C71C6"
+              strokeLinejoin="miter"
+              strokeLinecap="square"
+            />
+            <span class="list-content">{{ this.currentBenefit.merchantAddress }}</span>
+          </li>
+          <li>
+            <phone-call
+              theme="filled"
+              size="36"
+              fill="#9C71C6"
+              :strokeWidth="3"
+              strokeLinejoin="miter"
+              strokeLinecap="square"
+            />
+            <span class="list-content">{{ this.currentBenefit.merchantPhone }}</span>
+          </li>
+          <li>
+            <alarm-clock
+              theme="filled"
+              size="36"
+              fill="#9C71C6"
+              :strokeWidth="3"
+              strokeLinejoin="miter"
+              strokeLinecap="square"
+            />
+            <span class="list-content">{{ this.currentBenefit.merchantOpeningHours }}</span>
+          </li>
+          <li>
+            <coupon
+              theme="filled"
+              size="36"
+              fill="#9C71C6"
+              :strokeWidth="3"
+              strokeLinejoin="miter"
+              strokeLinecap="square"
+            />
+            <span class="list-content">{{ this.currentBenefit.merchantDiscount }}</span>
+          </li>
+          <li>
+            <buy
+              theme="filled"
+              size="36"
+              fill="#9C71C6"
+              :strokeWidth="3"
+              strokeLinejoin="miter"
+              strokeLinecap="square"
+            />
+            <span class="list-content">{{ this.currentBenefit.merchantPaymentMethods }}</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -44,11 +100,17 @@
 <script>
 import ImageCarousel from './ImageCarousel.vue'
 import axios from 'axios'
+import { Local, PhoneCall, AlarmClock, Coupon, Buy } from '@icon-park/vue-next'
 
 export default {
   // Importing used components
   components: {
-    ImageCarousel
+    ImageCarousel,
+    Local,
+    PhoneCall,
+    AlarmClock,
+    Coupon,
+    Buy
   },
 
   data() {
@@ -106,6 +168,7 @@ export default {
 .category-title {
   font-size: 20px;
   font-weight: bold;
+  font-family: 'Raleway';
   text-align: center;
   margin-bottom: 10px;
 }
@@ -146,11 +209,57 @@ export default {
   background-color: #fff;
   justify-content: center;
   height: auto;
-  width: 400px;
-  padding: 20px;
+  width: 500px;
+  padding-top: 20px;
   border-radius: 5px;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.modal-top-container {
+  background-color: #9c71c6;
+  width: 100%;
+}
+
+.merchant-name {
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.info-list {
+  margin-top: 20px;
+  width: 450px;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.info-list li {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  position: relative;
+  gap: 20px;
+}
+
+.list-content {
+  display: flex;
+  justify-content: center; /* New: centers the text */
+  align-items: center; /* New: centers the text vertically */
+  background-color: #f8f1ff;
+  flex-grow: 1; /* New: makes the span fill the remaining space */
+  padding: 10px 20px; /* New: adds some padding around the text */
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 450;
+  color: #9c71c6;
+  border-radius: 5px;
+  transform: scale(1, 0.95);
 }
 
 /* Adjust grid and image size for smaller screens */
