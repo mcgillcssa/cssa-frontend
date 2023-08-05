@@ -29,7 +29,7 @@
         <!-- Container of merchant name and carousel-->
         <div class="modal-top-container">
           <div class="merchant-name">
-            {{ this.currentBenefit.merchantName }} /
+            {{ this.currentBenefit.merchantName }} <br />
             {{ this.currentBenefit.merchantAlternativeName }}
           </div>
           <!-- Carousel of images related to the benefit -->
@@ -40,7 +40,7 @@
           <li>
             <local
               theme="filled"
-              size="36"
+              :size="listIconSize"
               fill="#9C71C6"
               strokeLinejoin="miter"
               strokeLinecap="square"
@@ -50,7 +50,7 @@
           <li>
             <phone-call
               theme="filled"
-              size="36"
+              :size="listIconSize"
               fill="#9C71C6"
               :strokeWidth="3"
               strokeLinejoin="miter"
@@ -61,7 +61,7 @@
           <li>
             <alarm-clock
               theme="filled"
-              size="36"
+              :size="listIconSize"
               fill="#9C71C6"
               :strokeWidth="3"
               strokeLinejoin="miter"
@@ -72,7 +72,7 @@
           <li>
             <coupon
               theme="filled"
-              size="36"
+              :size="listIconSize"
               fill="#9C71C6"
               :strokeWidth="3"
               strokeLinejoin="miter"
@@ -83,7 +83,7 @@
           <li>
             <buy
               theme="filled"
-              size="36"
+              :size="listIconSize"
               fill="#9C71C6"
               :strokeWidth="3"
               strokeLinejoin="miter"
@@ -115,6 +115,7 @@ export default {
 
   data() {
     return {
+      listIconSize: '36',
       // Data arrays for benefits and current benefit
       benefitsByType: [],
       showPopup: false,
@@ -123,6 +124,8 @@ export default {
   },
 
   async created() {
+    window.addEventListener('resize', this.updateListIconSize)
+    this.updateListIconSize()
     try {
       // Fetch data from backend API on component creation
       const response = await axios.get(
@@ -144,6 +147,13 @@ export default {
     hideWebsitePopup() {
       this.showPopup = false
       this.currentBenefit = null
+    },
+    updateListIconSize() {
+      if (window.innerWidth < 600) {
+        this.listIconSize = '24'
+      } else {
+        this.listIconSize = '36'
+      }
     }
   }
 }
@@ -214,15 +224,18 @@ export default {
   border-radius: 5px;
   align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  font-size: 16px;
 }
 
 .modal-top-container {
+  font-size: 1em;
   background-color: #9c71c6;
   width: 100%;
 }
 
 .merchant-name {
   text-align: center;
+  font-size: 1.5em;
   font-family: 'Montserrat', sans-serif;
   font-weight: bold;
   color: #ffffff;
@@ -231,12 +244,13 @@ export default {
 
 .info-list {
   margin-top: 20px;
-  width: 450px;
+  width: calc(100% - 40px);
   list-style: none;
   padding: 0;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  font-size: 1em;
 }
 
 .info-list li {
@@ -255,7 +269,6 @@ export default {
   flex-grow: 1; /* New: makes the span fill the remaining space */
   padding: 10px 20px; /* New: adds some padding around the text */
   font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
   font-weight: 450;
   color: #9c71c6;
   border-radius: 5px;
@@ -273,14 +286,34 @@ export default {
   }
 }
 
-/* Adjust grid and image size for even smaller screens */
-@media (max-width: 768px) {
+/* Extra small devices (phones, 600px and down) */
+@media (max-width: 600px) {
   .benefit-categories {
     grid-template-columns: repeat(1, 1fr);
   }
 
   .benefit-image {
     width: 150px;
+  }
+
+  .modal {
+    padding-top: 10px;
+    width: 300px;
+    font-size: 12px;
+  }
+
+  .merchant-name {
+    padding: 5px;
+  }
+
+  .info-list {
+    margin-top: 10px;
+    width: calc(100% - 20px);
+    gap: 10px;
+  }
+
+  .info-list li {
+    gap: 10px;
   }
 }
 </style>
