@@ -102,6 +102,7 @@ export default {
 .carousel img {
   width: 100%;
   height: auto;
+  max-height: 300px;
   object-fit: cover;
   display: block;
 }
@@ -158,5 +159,11 @@ export default {
 .selector.active {
   background-color: #9c71c6;
   border-radius: 2px; /* Keep the ends rounded when active */
+}
+
+@media (max-width: 600px) {
+  .carousel img {
+    max-height: 180px;
+  }
 }
 </style>
