@@ -3,8 +3,11 @@
   <div class="carousel">
     <left-c
       class="control previous"
+      :style="{
+        top: `calc(50% - ${buttonSize / 2}px)`
+      }"
       theme="two-tone"
-      size="48"
+      :size="buttonSize"
       :fill="['#FFF', '#9C71C6']"
       strokeLinejoin="miter"
       strokeLinecap="square"
@@ -13,8 +16,11 @@
     <img :src="images[currentImage]" alt="" />
     <right-c
       class="control next"
+      :style="{
+        top: `calc(50% - ${buttonSize / 2}px)`
+      }"
       theme="two-tone"
-      size="48"
+      :size="buttonSize"
       :fill="['#FFF', '#9C71C6']"
       strokeLinejoin="miter"
       strokeLinecap="square"
@@ -25,6 +31,9 @@
         class="selector"
         v-for="(image, index) in images"
         :key="index"
+        :style="{
+          width: index === currentImage ? `${activeSelectorWidth}%` : `${selectorWidth}%`
+        }"
         :class="{ active: index === currentImage }"
         @click="goToImage(index)"
       ></span>
@@ -43,7 +52,20 @@ export default {
   props: ['images'],
   data() {
     return {
-      currentImage: 0
+      currentImage: 0,
+      buttonSize: 48
+    }
+  },
+  mounted() {
+    window.addEventListener('resize', this.updateButtonSize)
+    this.updateButtonSize()
+  },
+  computed: {
+    selectorWidth() {
+      return 60 / (this.images.length + 1)
+    },
+    activeSelectorWidth() {
+      return this.selectorWidth * 2
     }
   },
   methods: {
@@ -55,6 +77,13 @@ export default {
     },
     goToImage(index) {
       this.currentImage = index
+    },
+    updateButtonSize() {
+      if (window.innerWidth < 600) {
+        this.buttonSize = '36'
+      } else {
+        this.buttonSize = '48'
+      }
     }
   }
 }
@@ -71,8 +100,8 @@ export default {
 }
 
 .carousel img {
-  width: 500px;
-  height: 300px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
   display: block;
 }
@@ -80,18 +109,20 @@ export default {
 .control {
   position: absolute;
   z-index: 1;
-  top: 50%;
   transform: translateY(-50%);
   transition: transform 0.3s ease;
   cursor: pointer;
 }
 
-.control:hover {
-  transform: translateY(-50%) scale(1.2); /* Slightly increase size when hovering */
+/* Apply hover effects only for devices that support hover */
+@media (hover: hover) {
+  .control:hover {
+    transform: translateY(-50%) scale(1.2);
+  }
 }
 
 .control:active {
-  transform: translateY(-50%) scale(0.9); /* Slightly decrease size when clicking */
+  transform: translateY(-50%) scale(0.9);
 }
 
 .previous {
@@ -116,7 +147,6 @@ export default {
 /* Updated .selector class */
 .selector {
   height: 4px; /* Make the line thicker */
-  width: 20%;
   margin: 0 5px;
   background-color: rgb(255, 255, 255);
   border: #9c71c6 2px solid;
@@ -126,7 +156,6 @@ export default {
 }
 
 .selector.active {
-  width: 40%;
   background-color: #9c71c6;
   border-radius: 2px; /* Keep the ends rounded when active */
 }
