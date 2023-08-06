@@ -1,9 +1,20 @@
 <template>
   <div class="benefit-category" v-for="(benefits, categoryName) in benefits" :key="categoryName">
-    <h3 class="category-title">
+    <h3 class="category-title" @click.self="toggleCategoryVisibility(categoryName)">
       {{ categoryName
       }}<down
         class="expand-icon"
+        v-show="!visibleCategories[categoryName]"
+        theme="filled"
+        :size="iconSize"
+        fill="#9C71C6"
+        :strokeWidth="3"
+        strokeLinejoin="miter"
+        strokeLinecap="square"
+      />
+      <up
+        class="expand-icon"
+        v-show="visibleCategories[categoryName]"
         theme="filled"
         :size="iconSize"
         fill="#9C71C6"
@@ -12,7 +23,7 @@
         strokeLinecap="square"
       />
     </h3>
-    <div class="benefit-images-container">
+    <div class="benefit-images-container" v-show="visibleCategories[categoryName]">
       <img
         v-for="benefit in benefits"
         :key="benefit.merchantName"
@@ -24,56 +35,71 @@
     </div>
   </div>
   <benefit-modal
-    :visibleModal="this.visibleModal"
-    :benefit="this.currentBenefit"
+    :isModalVisible="isModalVisible"
+    :benefit="currentBenefit"
     @hide-modal="hideModal"
   />
 </template>
 
-<script>
-import { Down } from '@icon-park/vue-next'
+<script setup>
+import { ref, defineProps, watch, onMounted, onUnmounted } from 'vue'
+import { Down, Up } from '@icon-park/vue-next'
 import BenefitModal from './BenefitModal.vue'
 
-export default {
-  components: {
-    Down,
-    BenefitModal
-  },
-  props: {
-    benefits: { type: Object, required: true }
-  },
-  data() {
-    return {
-      iconSize: '36',
-      visibleModal: false,
-      currentBenefit: null
+const props = defineProps({
+  benefits: { type: Object, required: true }
+})
+
+const visibleCategories = ref({})
+const iconSize = ref('36')
+const isModalVisible = ref(false)
+const currentBenefit = ref(null)
+
+watch(
+  props.benefits,
+  newBenefits => {
+    for (let categoryName in newBenefits) {
+      visibleCategories.value[categoryName] = true
     }
   },
-  created() {
-    window.addEventListener('resize', this.updateIconSize)
-  },
-  mounted() {
-    this.updateIconSize()
-  },
-  methods: {
-    showModal(benefit) {
-      this.visibleModal = true
-      this.currentBenefit = benefit
-    },
-    hideModal() {
-      this.visibleModal = false
-      this.currentBenefit = null
-    },
-    updateIconSize() {
-      if (window.innerWidth <= 600) {
-        this.iconSize = '24'
-      } else if (window.innerWidth <= 1200) {
-        this.iconSize = '28'
-      } else {
-        this.iconSize = '36'
-      }
-    }
+  { deep: true, immediate: true }
+)
+
+const updateIconSize = () => {
+  if (window.innerWidth <= 600) {
+    iconSize.value = '24'
+  } else if (window.innerWidth <= 1200) {
+    iconSize.value = '28'
+  } else {
+    iconSize.value = '36'
   }
+}
+
+onMounted(() => {
+  updateIconSize()
+  window.addEventListener('resize', updateIconSize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateIconSize)
+})
+
+const toggleCategoryVisibility = categoryName => {
+  if (visibleCategories.value[categoryName] === undefined) {
+    visibleCategories.value[categoryName] = true
+  } else {
+    visibleCategories.value[categoryName] = !visibleCategories.value[categoryName]
+  }
+}
+
+const showModal = benefit => {
+  isModalVisible.value = true
+  currentBenefit.value = benefit
+}
+
+const hideModal = () => {
+  isModalVisible.value = false
+  currentBenefit.value = null
 }
 </script>
 
@@ -88,7 +114,7 @@ export default {
 
 .category-title {
   position: relative;
-  margin: 0 0 20px 0;
+  margin: 0;
   padding: 10px;
   background: #eaebf6;
   color: #9c71c6;
@@ -112,6 +138,7 @@ export default {
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
+  margin-top: 20px;
   padding: 0 10px 0 10px;
 }
 

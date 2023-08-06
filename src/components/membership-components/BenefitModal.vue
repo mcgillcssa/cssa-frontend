@@ -1,5 +1,5 @@
 <template>
-  <div v-if="visibleModal" class="modal-overlay" @click.self="emitHideModal">
+  <div v-if="isModalVisible" class="modal-overlay" @click.self="emitHideModal">
     <div class="modal">
       <div class="modal-top-container">
         <div class="merchant-name">
@@ -82,8 +82,8 @@ export default {
     Buy
   },
   props: {
-    visibleModal: { type: Boolean, required: true },
-    benefit: { type: Object, required: true }
+    isModalVisible: { type: Boolean, required: true },
+    benefit: { type: Object }
   },
   data() {
     return {

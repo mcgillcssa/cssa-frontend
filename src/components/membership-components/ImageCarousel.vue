@@ -41,52 +41,47 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref, defineProps, onMounted, computed } from 'vue'
 import { LeftC, RightC } from '@icon-park/vue-next'
 
-export default {
-  components: {
-    LeftC,
-    RightC
-  },
-  props: ['images'],
-  data() {
-    return {
-      currentImage: 0,
-      buttonSize: 48
-    }
-  },
-  mounted() {
-    window.addEventListener('resize', this.updateButtonSize)
-    this.updateButtonSize()
-  },
-  computed: {
-    selectorWidth() {
-      return 60 / (this.images.length + 1)
-    },
-    activeSelectorWidth() {
-      return this.selectorWidth * 2
-    }
-  },
-  methods: {
-    next() {
-      this.currentImage = (this.currentImage + 1) % this.images.length
-    },
-    previous() {
-      this.currentImage = (this.currentImage + this.images.length - 1) % this.images.length
-    },
-    goToImage(index) {
-      this.currentImage = index
-    },
-    updateButtonSize() {
-      if (window.innerWidth < 600) {
-        this.buttonSize = '36'
-      } else {
-        this.buttonSize = '48'
-      }
-    }
+const props = defineProps(['images'])
+
+let currentImage = ref(0)
+let buttonSize = ref(48)
+
+const selectorWidth = computed(() => {
+  return 60 / (props.images.length + 1)
+})
+
+const activeSelectorWidth = computed(() => {
+  return selectorWidth.value * 2
+})
+
+const next = () => {
+  currentImage.value = (currentImage.value + 1) % props.images.length
+}
+
+const previous = () => {
+  currentImage.value = (currentImage.value + props.images.length - 1) % props.images.length
+}
+
+const goToImage = index => {
+  currentImage.value = index
+}
+
+const updateButtonSize = () => {
+  if (window.innerWidth < 600) {
+    buttonSize.value = 36
+  } else {
+    buttonSize.value = 48
   }
 }
+
+onMounted(() => {
+  window.addEventListener('resize', updateButtonSize)
+  updateButtonSize()
+})
 </script>
 
 <style scoped>
