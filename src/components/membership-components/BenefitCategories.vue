@@ -10,7 +10,18 @@
         :key="categoryName"
       >
         <!-- Display the name of the benefit category -->
-        <h3 class="category-title">{{ categoryName }}</h3>
+        <h3 class="category-title">
+          {{ categoryName
+          }}<down
+            class="expand-icon"
+            theme="filled"
+            :size="iconSize"
+            fill="#9C71C6"
+            :strokeWidth="3"
+            strokeLinejoin="miter"
+            strokeLinecap="square"
+          />
+        </h3>
         <!-- Container for all the images related to the benefits in this category -->
         <div class="benefit-images-container">
           <!-- An image is displayed for each benefit. Clicking on the image opens a popup with more information -->
@@ -33,7 +44,18 @@
         :key="categoryName"
       >
         <!-- Display the name of the benefit category -->
-        <h3 class="category-title">{{ categoryName }}</h3>
+        <h3 class="category-title">
+          {{ categoryName
+          }}<down
+            class="expand-icon"
+            theme="filled"
+            :size="iconSize"
+            fill="#9C71C6"
+            :strokeWidth="3"
+            strokeLinejoin="miter"
+            strokeLinecap="square"
+          />
+        </h3>
         <!-- Container for all the images related to the benefits in this category -->
         <div class="benefit-images-container">
           <!-- An image is displayed for each benefit. Clicking on the image opens a popup with more information -->
@@ -56,7 +78,18 @@
         :key="categoryName"
       >
         <!-- Display the name of the benefit category -->
-        <h3 class="category-title">{{ categoryName }}</h3>
+        <h3 class="category-title">
+          {{ categoryName
+          }}<down
+            class="expand-icon"
+            theme="filled"
+            :size="iconSize"
+            fill="#9C71C6"
+            :strokeWidth="3"
+            strokeLinejoin="miter"
+            strokeLinecap="square"
+          />
+        </h3>
         <!-- Container for all the images related to the benefits in this category -->
         <div class="benefit-images-container">
           <!-- An image is displayed for each benefit. Clicking on the image opens a popup with more information -->
@@ -89,7 +122,7 @@
           <li>
             <local
               theme="filled"
-              :size="listIconSize"
+              :size="iconSize"
               fill="#9C71C6"
               strokeLinejoin="miter"
               strokeLinecap="square"
@@ -99,7 +132,7 @@
           <li>
             <phone-call
               theme="filled"
-              :size="listIconSize"
+              :size="iconSize"
               fill="#9C71C6"
               :strokeWidth="3"
               strokeLinejoin="miter"
@@ -110,7 +143,7 @@
           <li>
             <alarm-clock
               theme="filled"
-              :size="listIconSize"
+              :size="iconSize"
               fill="#9C71C6"
               :strokeWidth="3"
               strokeLinejoin="miter"
@@ -121,7 +154,7 @@
           <li>
             <coupon
               theme="filled"
-              :size="listIconSize"
+              :size="iconSize"
               fill="#9C71C6"
               :strokeWidth="3"
               strokeLinejoin="miter"
@@ -132,7 +165,7 @@
           <li>
             <buy
               theme="filled"
-              :size="listIconSize"
+              :size="iconSize"
               fill="#9C71C6"
               :strokeWidth="3"
               strokeLinejoin="miter"
@@ -150,11 +183,12 @@
 <script>
 import ImageCarousel from './ImageCarousel.vue'
 import axios from 'axios'
-import { Local, PhoneCall, AlarmClock, Coupon, Buy } from '@icon-park/vue-next'
+import { Down, Local, PhoneCall, AlarmClock, Coupon, Buy } from '@icon-park/vue-next'
 
 export default {
   // Importing used components
   components: {
+    Down,
     ImageCarousel,
     Local,
     PhoneCall,
@@ -165,7 +199,7 @@ export default {
 
   data() {
     return {
-      listIconSize: '36',
+      iconSize: '36',
       // Data arrays for benefits and current benefit
       benefitsByType: {},
       column1Benefits: {},
@@ -178,7 +212,7 @@ export default {
   },
 
   async created() {
-    window.addEventListener('resize', this.updateListIconSize)
+    window.addEventListener('resize', this.updateIconSize)
     try {
       // Fetch data from backend API on component creation
       const response = await axios.get(
@@ -193,7 +227,7 @@ export default {
   },
 
   mounted() {
-    this.updateListIconSize()
+    this.updateIconSize()
   },
 
   methods: {
@@ -207,11 +241,13 @@ export default {
       this.showPopup = false
       this.currentBenefit = null
     },
-    updateListIconSize() {
-      if (window.innerWidth < 600) {
-        this.listIconSize = '24'
+    updateIconSize() {
+      if (window.innerWidth <= 600) {
+        this.iconSize = '24'
+      } else if (window.innerWidth <= 1200) {
+        this.iconSize = '28'
       } else {
-        this.listIconSize = '36'
+        this.iconSize = '36'
       }
     },
     distributeBenefits() {
@@ -240,7 +276,7 @@ export default {
 
 <style>
 body {
-  font-size: 48;
+  font-size: 24px;
 }
 
 .gradient-stripe {
@@ -279,7 +315,7 @@ body {
   letter-spacing: 2px;
   font-weight: 600;
   border-radius: 20px;
-  font-size: 3em;
+  font-size: 2em;
 }
 
 .title-container h1::before,
@@ -328,16 +364,24 @@ body {
 
 /* Title for each benefit category is bold and centered */
 .category-title {
+  position: relative;
   margin: 0 0 20px 0;
   padding: 10px;
   background: #eaebf6;
   color: #9c71c6;
   border: 1px solid #cbbcdb;
-  font-size: 20px;
+  font-size: 1em;
   font-weight: bold;
   font-family: 'Raleway';
   text-align: center;
   border-radius: 10px;
+}
+
+.expand-icon {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%); /* to center it vertically */
 }
 
 /* Benefit images are displayed under the category title and centered */
@@ -469,6 +513,9 @@ body {
 
 /* Two Columns for Medium Screens (for screens between 600px and 1199px) */
 @media (min-width: 600px) and (max-width: 1199px) {
+  body {
+    font-size: 20px;
+  }
   .column {
     flex: 0 0 50%;
     max-width: 50%;
@@ -482,11 +529,13 @@ body {
     padding: 3px 0 0 0;
     width: 500px;
     height: 60px;
-    font-size: 2.5em;
   }
 }
 /* Small devices */
 @media (max-width: 600px) {
+  body {
+    font-size: 16px;
+  }
   .categories-list {
     flex-direction: column; /* This will stack the columns vertically */
   }
@@ -502,7 +551,6 @@ body {
     padding: 2px 0 0 0;
     width: 400px;
     height: 50px;
-    font-size: 2em;
   }
 
   .modal {
