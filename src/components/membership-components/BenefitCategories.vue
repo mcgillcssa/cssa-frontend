@@ -1,25 +1,74 @@
 <template>
-  <!-- The outer div contains all the benefit categories -->
-  <div class="benefit-categories">
-    <!-- A category table is created for each benefit type -->
-    <div
-      class="category-table"
-      v-for="(benefits, categoryName) in benefitsByType"
-      :key="categoryName"
-    >
-      <!-- Display the name of the benefit category -->
-      <h3 class="category-title">{{ categoryName }}</h3>
-      <!-- Container for all the images related to the benefits in this category -->
-      <div class="benefit-images-container">
-        <!-- An image is displayed for each benefit. Clicking on the image opens a popup with more information -->
-        <img
-          v-for="benefit in benefits"
-          :key="benefit.merchantName"
-          :src="benefit.stripeUrl"
-          :alt="benefit.merchantName"
-          @click="showWebsitePopup(benefit)"
-          class="benefit-image"
-        />
+  <div class="gradient-stripe"></div>
+
+  <div class="title-container"><h1>会员卡合作商家</h1></div>
+  <div class="categories-list">
+    <div class="column">
+      <div
+        class="benefit-category"
+        v-for="(benefits, categoryName) in column1Benefits"
+        :key="categoryName"
+      >
+        <!-- Display the name of the benefit category -->
+        <h3 class="category-title">{{ categoryName }}</h3>
+        <!-- Container for all the images related to the benefits in this category -->
+        <div class="benefit-images-container">
+          <!-- An image is displayed for each benefit. Clicking on the image opens a popup with more information -->
+          <img
+            v-for="benefit in benefits"
+            :key="benefit.merchantName"
+            :src="benefit.stripeUrl"
+            :alt="benefit.merchantName"
+            @click="showWebsitePopup(benefit)"
+            class="benefit-image"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div
+        class="benefit-category"
+        v-for="(benefits, categoryName) in column2Benefits"
+        :key="categoryName"
+      >
+        <!-- Display the name of the benefit category -->
+        <h3 class="category-title">{{ categoryName }}</h3>
+        <!-- Container for all the images related to the benefits in this category -->
+        <div class="benefit-images-container">
+          <!-- An image is displayed for each benefit. Clicking on the image opens a popup with more information -->
+          <img
+            v-for="benefit in benefits"
+            :key="benefit.merchantName"
+            :src="benefit.stripeUrl"
+            :alt="benefit.merchantName"
+            @click="showWebsitePopup(benefit)"
+            class="benefit-image"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div
+        class="benefit-category"
+        v-for="(benefits, categoryName) in column3Benefits"
+        :key="categoryName"
+      >
+        <!-- Display the name of the benefit category -->
+        <h3 class="category-title">{{ categoryName }}</h3>
+        <!-- Container for all the images related to the benefits in this category -->
+        <div class="benefit-images-container">
+          <!-- An image is displayed for each benefit. Clicking on the image opens a popup with more information -->
+          <img
+            v-for="benefit in benefits"
+            :key="benefit.merchantName"
+            :src="benefit.stripeUrl"
+            :alt="benefit.merchantName"
+            @click="showWebsitePopup(benefit)"
+            class="benefit-image"
+          />
+        </div>
       </div>
     </div>
     <!-- The modal overlay is displayed when a benefit image is clicked -->
@@ -95,6 +144,7 @@
       </div>
     </div>
   </div>
+  <div class="gradient-stripe"></div>
 </template>
 
 <script>
@@ -117,7 +167,11 @@ export default {
     return {
       listIconSize: '36',
       // Data arrays for benefits and current benefit
-      benefitsByType: [],
+      benefitsByType: {},
+      column1Benefits: {},
+      column2Benefits: {},
+      column3Benefits: {},
+      benefitWeights: {},
       showPopup: false,
       currentBenefit: null
     }
@@ -125,7 +179,6 @@ export default {
 
   async created() {
     window.addEventListener('resize', this.updateListIconSize)
-    this.updateListIconSize()
     try {
       // Fetch data from backend API on component creation
       const response = await axios.get(
@@ -134,7 +187,13 @@ export default {
       this.benefitsByType = response.data.benefitsByType
     } catch (err) {
       console.error(err)
+      alert('Failed to fetch benefits.')
     }
+    this.distributeBenefits()
+  },
+
+  mounted() {
+    this.updateListIconSize()
   },
 
   methods: {
@@ -154,33 +213,130 @@ export default {
       } else {
         this.listIconSize = '36'
       }
+    },
+    distributeBenefits() {
+      let column1Weight = 0
+      let column2Weight = 0
+      let column3Weight = 0
+
+      for (let [categoryName, benefits] of Object.entries(this.benefitsByType)) {
+        const categoryWeight = benefits.length
+
+        if (Math.min(column1Weight, column2Weight, column3Weight) == column1Weight) {
+          this.column1Benefits[categoryName] = benefits
+          column1Weight += categoryWeight
+        } else if (Math.min(column1Weight, column2Weight, column3Weight) == column2Weight) {
+          this.column2Benefits[categoryName] = benefits
+          column2Weight += categoryWeight
+        } else {
+          this.column3Benefits[categoryName] = benefits
+          column3Weight += categoryWeight
+        }
+      }
     }
   }
 }
 </script>
 
 <style>
-/* Styling for the component */
-/* 3 columns grid to display the benefit categories */
-.benefit-categories {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
+body {
+  font-size: 48;
 }
 
-/* Each benefit category has a padding and includes the padding and border in width */
-.category-table {
-  padding: 10px;
-  box-sizing: border-box;
+.gradient-stripe {
+  width: 100%;
+  height: 24px;
+  background: linear-gradient(
+    90deg,
+    #ffc6b4 0.67%,
+    #ffa7d1 14.09%,
+    #ad87cb 39.63%,
+    #8986ed 68.36%,
+    #4f78c9 100%
+  );
+}
+
+.title-container {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eaebf6;
+  margin: 0;
+  padding: 0;
+}
+
+.title-container h1 {
+  background: #8987cb;
+  text-align: center;
+  margin: 0 auto;
+  padding: 5px 0 0 0;
+  width: 600px;
+  height: 75px;
+  color: #fff;
+  letter-spacing: 2px;
+  font-weight: 600;
+  border-radius: 20px;
+  font-size: 3em;
+}
+
+.title-container h1::before,
+.title-container h1::after {
+  content: ''; /* this is necessary for the pseudo-element to be shown */
+  width: 10px; /* width of the square */
+  height: 10px; /* height of the square */
+  background-color: #7a65a3; /* color of the square */
+  position: absolute; /* position it absolutely with respect to the h1 element */
+  top: 50%; /* center it vertically */
+  transform: translateY(-50%); /* perfectly center it vertically */
+}
+
+.title-container h1::before {
+  left: -15px; /* position it to the left of the h1 */
+}
+
+.title-container h1::after {
+  right: -15px; /* position it to the right of the h1 */
+}
+
+.categories-list {
+  margin: 0;
+  padding: 0 0 50px 0;
+  display: flex;
+  flex-wrap: wrap; /* Wrap the columns if they don't fit the container width */
+  background: #eaebf6;
+  min-height: calc(100vh - 48px);
+}
+
+.column {
+  margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.benefit-category {
+  background: #fff;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #cbbcdb;
+  border-radius: 10px;
 }
 
 /* Title for each benefit category is bold and centered */
 .category-title {
+  margin: 0 0 20px 0;
+  padding: 10px;
+  background: #eaebf6;
+  color: #9c71c6;
+  border: 1px solid #cbbcdb;
   font-size: 20px;
   font-weight: bold;
   font-family: 'Raleway';
   text-align: center;
-  margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 /* Benefit images are displayed under the category title and centered */
@@ -188,14 +344,16 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-grow: 1;
+  padding: 0 10px 0 10px;
 }
 
 /* Custom size for benefit images */
 .benefit-image {
-  width: 300px;
+  width: 100%;
   height: auto;
   display: block;
-  margin: 5px;
+  margin: 10px 0 10px 0;
   cursor: pointer;
 }
 
@@ -300,26 +458,29 @@ export default {
   border-radius: 5px;
   transform: scale(1, 0.95);
 }
-
-/* Adjust grid and image size for smaller screens */
-@media (max-width: 992px) {
-  .benefit-categories {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .benefit-image {
-    width: 200px;
+/* Three Columns for Large Screens (for screens larger than 1200px) */
+@media (min-width: 1200px) {
+  .column {
+    flex: 0 0 33.33%; /* flex-grow, flex-shrink, flex-basis */
+    max-width: 33.33%;
   }
 }
 
-/* Extra small devices (phones, 600px and down) */
+/* Two Columns for Medium Screens (for screens between 600px and 1199px) */
+@media (min-width: 600px) and (max-width: 1199px) {
+  .column {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+/* Small devices */
 @media (max-width: 600px) {
-  .benefit-categories {
-    grid-template-columns: repeat(1, 1fr);
+  .categories-list {
+    flex-direction: column; /* This will stack the columns vertically */
   }
 
-  .benefit-image {
-    width: 150px;
+  .column {
+    width: 100%;
   }
 
   .modal {
