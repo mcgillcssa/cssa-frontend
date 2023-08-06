@@ -268,6 +268,7 @@ body {
 }
 
 .title-container h1 {
+  position: relative;
   background: #8987cb;
   text-align: center;
   margin: 0 auto;
@@ -472,6 +473,17 @@ body {
     flex: 0 0 50%;
     max-width: 50%;
   }
+
+  .title-container {
+    height: 125px;
+  }
+
+  .title-container h1 {
+    padding: 3px 0 0 0;
+    width: 500px;
+    height: 60px;
+    font-size: 2.5em;
+  }
 }
 /* Small devices */
 @media (max-width: 600px) {
@@ -481,6 +493,16 @@ body {
 
   .column {
     width: 100%;
+  }
+  .title-container {
+    height: 100px;
+  }
+
+  .title-container h1 {
+    padding: 2px 0 0 0;
+    width: 400px;
+    height: 50px;
+    font-size: 2em;
   }
 
   .modal {
