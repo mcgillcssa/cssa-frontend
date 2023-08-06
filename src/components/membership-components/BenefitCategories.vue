@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      listIconSize: '36',
+      iconSize: '36',
       // Data arrays for benefits and current benefit
       benefitsByType: {},
       column1Benefits: {},
@@ -29,7 +29,6 @@ export default {
       column3Benefits: {}
     }
   },
-
   async created() {
     try {
       const response = await axios.get(
@@ -42,7 +41,6 @@ export default {
     }
     this.distributeBenefits()
   },
-
   methods: {
     distributeBenefits() {
       let column1Weight = 0
@@ -68,113 +66,81 @@ export default {
 }
 </script>
 
-<style>
-body {
-  font-size: 48;
-}
-
-.gradient-stripe {
-  width: 100%;
-  height: 24px;
-  background: linear-gradient(
-    90deg,
-    #ffc6b4 0.67%,
-    #ffa7d1 14.09%,
-    #ad87cb 39.63%,
-    #8986ed 68.36%,
-    #4f78c9 100%
-  );
-}
-
-.title-container {
-  width: 100%;
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #eaebf6;
-  margin: 0;
-  padding: 0;
-}
-
-.title-container h1 {
+<style scoped>
+.carousel {
   position: relative;
-  background: #8987cb;
-  text-align: center;
-  margin: 0 auto;
-  padding: 5px 0 0 0;
-  width: 600px;
-  height: 75px;
-  color: #fff;
-  letter-spacing: 2px;
-  font-weight: 600;
-  border-radius: 20px;
-  font-size: 3em;
-}
-
-.title-container h1::before,
-.title-container h1::after {
-  content: '';
-  width: 10px;
-  height: 10px;
-  background-color: #7a65a3;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.title-container h1::before {
-  left: -15px;
-}
-
-.title-container h1::after {
-  right: -15px;
-}
-
-.categories-list {
-  margin: 0;
-  padding: 0 0 50px 0;
-  display: flex;
-  flex-wrap: wrap;
-  background: #eaebf6;
-  min-height: calc(100vh - 48px);
-}
-
-.column {
-  margin: 0;
-  flex: 1;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel img {
+  width: 100%;
   height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  display: block;
 }
 
-@media screen and (min-width: 1200px) {
-  .column {
-    flex: 0 0 33.33%;
-    max-width: 33.33%;
+.control {
+  position: absolute;
+  z-index: 1;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Apply hover effects only for devices that support hover */
+@media (hover: hover) {
+  .control:hover {
+    transform: translateY(-50%) scale(1.2);
   }
 }
 
-@media screen and (min-width: 600px) and (max-width: 1199px) {
-  body {
-    font-size: 20px;
-  }
-  .column {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
+.control:active {
+  transform: translateY(-50%) scale(0.9);
 }
 
-@media screen and (max-width: 600px) {
-  body {
-    font-size: 16px;
-  }
-  .categories-list {
-    flex-direction: column;
-  }
+.previous {
+  left: 10px;
+}
 
-  .column {
-    width: 100%;
+.next {
+  right: 10px;
+}
+
+.slide-selector {
+  margin-top: 5px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  bottom: 10px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Updated .selector class */
+.selector {
+  height: 4px; /* Make the line thicker */
+  margin: 0 5px;
+  background-color: rgb(255, 255, 255);
+  border: #9c71c6 2px solid;
+  cursor: pointer;
+  transition: width 0.3s ease, border-radius 0.3s ease; /* Added border-radius transition */
+  border-radius: 2px; /* Make the ends rounded */
+}
+
+.selector.active {
+  background-color: #9c71c6;
+  border-radius: 2px; /* Keep the ends rounded when active */
+}
+
+@media (max-width: 600px) {
+  .carousel img {
+    max-height: 180px;
   }
 }
 </style>
