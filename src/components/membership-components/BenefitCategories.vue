@@ -214,20 +214,44 @@ export default {
 
 /* Styles for the content in the modal window */
 .modal {
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  justify-content: center;
   height: auto;
   width: 500px;
   padding-top: 20px;
   border-radius: 5px;
-  align-items: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   font-size: 16px;
+  max-height: 90vh; /* Set the maximum height to 90% of the viewport height */
+  overflow-y: auto; /* Add vertical scroll when needed */
+  margin: 5% auto; /* Add vertical margin to the modal */
+  flex-shrink: 0;
+}
+
+.modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 113, 198, 0.5); /* Semi-transparent purple */
+  border-radius: 4px;
+}
+
+.modal::-webkit-scrollbar-track {
+  background: transparent; /* Make the track transparent */
+}
+
+/* Styling the scrollbar for Firefox */
+.modal {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 113, 198, 0.5) transparent;
 }
 
 .modal-top-container {
+  margin: auto;
+  position: relative;
   font-size: 1em;
   background-color: #9c71c6;
   width: 100%;
@@ -243,7 +267,9 @@ export default {
 }
 
 .info-list {
+  margin: auto;
   margin-top: 20px;
+  margin-bottom: 20px;
   width: calc(100% - 40px);
   list-style: none;
   padding: 0;
