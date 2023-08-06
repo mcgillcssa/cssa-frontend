@@ -1,69 +1,62 @@
 <template>
   <div class="gradient-stripe"></div>
-
-  <div class="title-container"><h1>会员卡合作商家</h1></div>
-  <div class="categories-list">
-    <div class="column"><category-accordion :benefits="this.column1Benefits" /></div>
-    <div class="column"><category-accordion :benefits="this.column2Benefits" /></div>
-    <div class="column"><category-accordion :benefits="this.column3Benefits" /></div>
+  <div class="page-content">
+    <div class="title-container"><h1>会员卡合作商家</h1></div>
+    <div class="categories-list">
+      <div
+        class="column"
+        v-for="(benefits, index) in [column1Benefits, column2Benefits, column3Benefits]"
+        :key="index"
+      >
+        <category-accordion :benefits="benefits" />
+      </div>
+    </div>
   </div>
   <div class="gradient-stripe"></div>
 </template>
-
-<script>
+<script setup>
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
-
 import CategoryAccordion from '../components/membership-components/CategoryAccordion.vue'
 
-export default {
-  components: {
-    CategoryAccordion
-  },
-  data() {
-    return {
-      iconSize: '36',
-      // Data arrays for benefits and current benefit
-      benefitsByType: {},
-      column1Benefits: {},
-      column2Benefits: {},
-      column3Benefits: {}
-    }
-  },
-  async created() {
-    try {
-      const response = await axios.get(
-        `${process.env.VUE_APP_BACKEND_URL}/api/membershipBenefits/allByMerchantType`
-      )
-      this.benefitsByType = response.data.benefitsByType
-    } catch (err) {
-      console.error(err)
-      alert('Failed to fetch benefits.')
-    }
-    this.distributeBenefits()
-  },
-  methods: {
-    distributeBenefits() {
-      let column1Weight = 0
-      let column2Weight = 0
-      let column3Weight = 0
+const benefitsByType = ref({})
+const column1Benefits = ref({})
+const column2Benefits = ref({})
+const column3Benefits = ref({})
 
-      for (let [categoryName, benefits] of Object.entries(this.benefitsByType)) {
-        const categoryWeight = benefits.length
+const distributeBenefits = () => {
+  let column1Weight = 0
+  let column2Weight = 0
+  let column3Weight = 0
 
-        if (Math.min(column1Weight, column2Weight, column3Weight) == column1Weight) {
-          this.column1Benefits[categoryName] = benefits
-          column1Weight += categoryWeight
-        } else if (Math.min(column1Weight, column2Weight, column3Weight) == column2Weight) {
-          this.column2Benefits[categoryName] = benefits
-          column2Weight += categoryWeight
-        } else {
-          this.column3Benefits[categoryName] = benefits
-          column3Weight += categoryWeight
-        }
-      }
+  for (let [categoryName, benefits] of Object.entries(benefitsByType.value)) {
+    const categoryWeight = benefits.length
+
+    if (Math.min(column1Weight, column2Weight, column3Weight) == column1Weight) {
+      column1Benefits.value[categoryName] = benefits
+      column1Weight += categoryWeight
+    } else if (Math.min(column1Weight, column2Weight, column3Weight) == column2Weight) {
+      column2Benefits.value[categoryName] = benefits
+      column2Weight += categoryWeight
+    } else {
+      column3Benefits.value[categoryName] = benefits
+      column3Weight += categoryWeight
     }
   }
 }
+
+onMounted(async () => {
+  try {
+    const response = await axios.get(
+      `${process.env.VUE_APP_BACKEND_URL}/api/membershipBenefits/allByMerchantType`
+    )
+    benefitsByType.value = response.data.benefitsByType
+    distributeBenefits()
+  } catch (err) {
+    console.error(err)
+    alert('Failed to fetch benefits.')
+  }
+})
 </script>
 
 <style>
@@ -81,6 +74,10 @@ body {
     #8986ed 68.36%,
     #4f78c9 100%
   );
+}
+.page-content {
+  min-height: calc(100vh - 48px);
+  background-color: #eaebf6;
 }
 .title-container {
   width: 100%;
@@ -123,12 +120,8 @@ body {
   right: -15px; /* position it to the right of the h1 */
 }
 .categories-list {
-  margin: 0;
-  padding: 0 0 50px 0;
-  display: flex;
-  flex-wrap: wrap; /* Wrap the columns if they don't fit the container width */
-  background: #eaebf6;
-  min-height: calc(100vh - 48px);
+  display: grid;
+  padding: 0 20px 0 20px;
 }
 .column {
   margin: 0;
@@ -140,19 +133,18 @@ body {
 
 /* Three Columns for Large Screens (for screens larger than 1200px) */
 @media (min-width: 1200px) {
-  .column {
-    flex: 0 0 33.33%; /* flex-grow, flex-shrink, flex-basis */
-    max-width: 33.33%;
+  .categories-list {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
+
 /* Two Columns for Medium Screens (for screens between 600px and 1199px) */
 @media (min-width: 600px) and (max-width: 1199px) {
+  .categories-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
   body {
     font-size: 20px;
-  }
-  .column {
-    flex: 0 0 50%;
-    max-width: 50%;
   }
   .title-container {
     height: 125px;
@@ -163,17 +155,16 @@ body {
     height: 60px;
   }
 }
+
 /* Small devices */
 @media (max-width: 600px) {
   body {
     font-size: 16px;
   }
-  .categories-list {
-    flex-direction: column; /* This will stack the columns vertically */
-  }
-  .column {
-    width: 100%;
-  }
+  /* No need for this since by default we set it to one column */
+  /* .categories-list {
+    grid-template-columns: 1fr;
+  } */
   .title-container {
     height: 100px;
   }
