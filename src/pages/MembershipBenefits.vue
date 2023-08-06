@@ -131,15 +131,13 @@ body {
   height: auto;
 }
 
-/* Three Columns for Large Screens (for screens larger than 1200px) */
-@media (min-width: 1200px) {
+@media (min-width: 1201px) {
   .categories-list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Two Columns for Medium Screens (for screens between 600px and 1199px) */
-@media (min-width: 600px) and (max-width: 1199px) {
+@media (min-width: 801px) and (max-width: 1200px) {
   .categories-list {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -157,7 +155,7 @@ body {
 }
 
 /* Small devices */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   body {
     font-size: 16px;
   }

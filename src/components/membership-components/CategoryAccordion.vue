@@ -4,7 +4,7 @@
       {{ categoryName
       }}<down
         class="expand-icon"
-        v-show="!visibleCategories[categoryName]"
+        v-show="isCollapsible && !visibleCategories[categoryName]"
         theme="filled"
         :size="iconSize"
         fill="#9C71C6"
@@ -14,7 +14,7 @@
       />
       <up
         class="expand-icon"
-        v-show="visibleCategories[categoryName]"
+        v-show="isCollapsible && visibleCategories[categoryName]"
         theme="filled"
         :size="iconSize"
         fill="#9C71C6"
@@ -23,7 +23,10 @@
         strokeLinecap="square"
       />
     </h3>
-    <div class="benefit-images-container" v-show="visibleCategories[categoryName]">
+    <div
+      class="benefit-images-container"
+      v-show="!isCollapsible || visibleCategories[categoryName]"
+    >
       <img
         v-for="benefit in benefits"
         :key="benefit.merchantName"
@@ -50,6 +53,7 @@ const props = defineProps({
   benefits: { type: Object, required: true }
 })
 
+const isCollapsible = ref(true)
 const visibleCategories = ref({})
 const iconSize = ref('36')
 const isModalVisible = ref(false)
@@ -65,26 +69,30 @@ watch(
   { deep: true, immediate: true }
 )
 
-const updateIconSize = () => {
-  if (window.innerWidth <= 600) {
+const updateWindowWidth = () => {
+  if (window.innerWidth <= 800) {
     iconSize.value = '24'
+    isCollapsible.value = true
   } else if (window.innerWidth <= 1200) {
     iconSize.value = '28'
+    isCollapsible.value = false
   } else {
     iconSize.value = '36'
+    isCollapsible.value = true
   }
 }
 
 onMounted(() => {
-  updateIconSize()
-  window.addEventListener('resize', updateIconSize)
+  updateWindowWidth()
+  window.addEventListener('resize', updateWindowWidth)
 })
 
 onUnmounted(() => {
-  window.removeEventListener('resize', updateIconSize)
+  window.removeEventListener('resize', updateWindowWidth)
 })
 
 const toggleCategoryVisibility = categoryName => {
+  if (!isCollapsible.value) return
   if (visibleCategories.value[categoryName] === undefined) {
     visibleCategories.value[categoryName] = true
   } else {
@@ -150,34 +158,15 @@ const hideModal = () => {
   cursor: pointer;
 }
 
-@media screen and (min-width: 600px) and (max-width: 1199px) {
-  body {
-    font-size: 20px;
-  }
-  .title-container {
-    height: 125px;
-  }
-
-  .title-container h1 {
-    padding: 3px 0 0 0;
-    width: 500px;
-    height: 60px;
+@media screen and (min-width: 801px) and (max-width: 1200px) {
+  .benefit-category {
+    font-size: 22px;
   }
 }
 
-@media screen and (max-width: 600px) {
-  body {
-    font-size: 16px;
-  }
-
-  .title-container {
-    height: 100px;
-  }
-
-  .title-container h1 {
-    padding: 2px 0 0 0;
-    width: 400px;
-    height: 50px;
+@media screen and (max-width: 800px) {
+  .benefit-category {
+    font-size: 20px;
   }
 }
 </style>
