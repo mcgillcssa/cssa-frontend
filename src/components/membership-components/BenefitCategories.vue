@@ -3,200 +3,22 @@
 
   <div class="title-container"><h1>会员卡合作商家</h1></div>
   <div class="categories-list">
-    <div class="column">
-      <div
-        class="benefit-category"
-        v-for="(benefits, categoryName) in column1Benefits"
-        :key="categoryName"
-      >
-        <!-- Display the name of the benefit category -->
-        <h3 class="category-title">
-          {{ categoryName
-          }}<down
-            class="expand-icon"
-            theme="filled"
-            :size="iconSize"
-            fill="#9C71C6"
-            :strokeWidth="3"
-            strokeLinejoin="miter"
-            strokeLinecap="square"
-          />
-        </h3>
-        <!-- Container for all the images related to the benefits in this category -->
-        <div class="benefit-images-container">
-          <!-- An image is displayed for each benefit. Clicking on the image opens a popup with more information -->
-          <img
-            v-for="benefit in benefits"
-            :key="benefit.merchantName"
-            :src="benefit.stripeUrl"
-            :alt="benefit.merchantName"
-            @click="showWebsitePopup(benefit)"
-            class="benefit-image"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div class="column">
-      <div
-        class="benefit-category"
-        v-for="(benefits, categoryName) in column2Benefits"
-        :key="categoryName"
-      >
-        <!-- Display the name of the benefit category -->
-        <h3 class="category-title">
-          {{ categoryName
-          }}<down
-            class="expand-icon"
-            theme="filled"
-            :size="iconSize"
-            fill="#9C71C6"
-            :strokeWidth="3"
-            strokeLinejoin="miter"
-            strokeLinecap="square"
-          />
-        </h3>
-        <!-- Container for all the images related to the benefits in this category -->
-        <div class="benefit-images-container">
-          <!-- An image is displayed for each benefit. Clicking on the image opens a popup with more information -->
-          <img
-            v-for="benefit in benefits"
-            :key="benefit.merchantName"
-            :src="benefit.stripeUrl"
-            :alt="benefit.merchantName"
-            @click="showWebsitePopup(benefit)"
-            class="benefit-image"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div class="column">
-      <div
-        class="benefit-category"
-        v-for="(benefits, categoryName) in column3Benefits"
-        :key="categoryName"
-      >
-        <!-- Display the name of the benefit category -->
-        <h3 class="category-title">
-          {{ categoryName
-          }}<down
-            class="expand-icon"
-            theme="filled"
-            :size="iconSize"
-            fill="#9C71C6"
-            :strokeWidth="3"
-            strokeLinejoin="miter"
-            strokeLinecap="square"
-          />
-        </h3>
-        <!-- Container for all the images related to the benefits in this category -->
-        <div class="benefit-images-container">
-          <!-- An image is displayed for each benefit. Clicking on the image opens a popup with more information -->
-          <img
-            v-for="benefit in benefits"
-            :key="benefit.merchantName"
-            :src="benefit.stripeUrl"
-            :alt="benefit.merchantName"
-            @click="showWebsitePopup(benefit)"
-            class="benefit-image"
-          />
-        </div>
-      </div>
-    </div>
-    <!-- The modal overlay is displayed when a benefit image is clicked -->
-    <div v-if="showPopup" class="modal-overlay" @click.self="hideWebsitePopup">
-      <!-- The content of the modal -->
-      <div class="modal">
-        <!-- Container of merchant name and carousel-->
-        <div class="modal-top-container">
-          <div class="merchant-name">
-            {{ this.currentBenefit.merchantName }} <br />
-            {{ this.currentBenefit.merchantAlternativeName }}
-          </div>
-          <!-- Carousel of images related to the benefit -->
-          <ImageCarousel :images="this.currentBenefit.merchantImagesUrl"> </ImageCarousel>
-        </div>
-        <!-- The information related to the benefit is displayed -->
-        <ul class="info-list">
-          <li>
-            <local
-              theme="filled"
-              :size="iconSize"
-              fill="#9C71C6"
-              strokeLinejoin="miter"
-              strokeLinecap="square"
-            />
-            <span class="list-content">{{ this.currentBenefit.merchantAddress }}</span>
-          </li>
-          <li>
-            <phone-call
-              theme="filled"
-              :size="iconSize"
-              fill="#9C71C6"
-              :strokeWidth="3"
-              strokeLinejoin="miter"
-              strokeLinecap="square"
-            />
-            <span class="list-content">{{ this.currentBenefit.merchantPhone }}</span>
-          </li>
-          <li>
-            <alarm-clock
-              theme="filled"
-              :size="iconSize"
-              fill="#9C71C6"
-              :strokeWidth="3"
-              strokeLinejoin="miter"
-              strokeLinecap="square"
-            />
-            <span class="list-content">{{ this.currentBenefit.merchantOpeningHours }}</span>
-          </li>
-          <li>
-            <coupon
-              theme="filled"
-              :size="iconSize"
-              fill="#9C71C6"
-              :strokeWidth="3"
-              strokeLinejoin="miter"
-              strokeLinecap="square"
-            />
-            <span class="list-content">{{ this.currentBenefit.merchantDiscount }}</span>
-          </li>
-          <li>
-            <buy
-              theme="filled"
-              :size="iconSize"
-              fill="#9C71C6"
-              :strokeWidth="3"
-              strokeLinejoin="miter"
-              strokeLinecap="square"
-            />
-            <span class="list-content">{{ this.currentBenefit.merchantPaymentMethods }}</span>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <div class="column"><category-accordion :benefits="this.column1Benefits" /></div>
+    <div class="column"><category-accordion :benefits="this.column2Benefits" /></div>
+    <div class="column"><category-accordion :benefits="this.column3Benefits" /></div>
   </div>
   <div class="gradient-stripe"></div>
 </template>
 
 <script>
-import ImageCarousel from './ImageCarousel.vue'
 import axios from 'axios'
-import { Down, Local, PhoneCall, AlarmClock, Coupon, Buy } from '@icon-park/vue-next'
+
+import CategoryAccordion from './CategoryAccordion.vue'
 
 export default {
-  // Importing used components
   components: {
-    Down,
-    ImageCarousel,
-    Local,
-    PhoneCall,
-    AlarmClock,
-    Coupon,
-    Buy
+    CategoryAccordion
   },
-
   data() {
     return {
       iconSize: '36',
@@ -204,17 +26,11 @@ export default {
       benefitsByType: {},
       column1Benefits: {},
       column2Benefits: {},
-      column3Benefits: {},
-      benefitWeights: {},
-      showPopup: false,
-      currentBenefit: null
+      column3Benefits: {}
     }
   },
-
   async created() {
-    window.addEventListener('resize', this.updateIconSize)
     try {
-      // Fetch data from backend API on component creation
       const response = await axios.get(
         `${process.env.VUE_APP_BACKEND_URL}/api/membershipBenefits/allByMerchantType`
       )
@@ -225,31 +41,7 @@ export default {
     }
     this.distributeBenefits()
   },
-
-  mounted() {
-    this.updateIconSize()
-  },
-
   methods: {
-    // Show the website popup and set the current benefit when an image is clicked
-    showWebsitePopup(benefit) {
-      this.showPopup = true
-      this.currentBenefit = benefit
-    },
-    // Hide the website popup when anywhere outside the popup is clicked
-    hideWebsitePopup() {
-      this.showPopup = false
-      this.currentBenefit = null
-    },
-    updateIconSize() {
-      if (window.innerWidth <= 600) {
-        this.iconSize = '24'
-      } else if (window.innerWidth <= 1200) {
-        this.iconSize = '28'
-      } else {
-        this.iconSize = '36'
-      }
-    },
     distributeBenefits() {
       let column1Weight = 0
       let column2Weight = 0
@@ -274,303 +66,81 @@ export default {
 }
 </script>
 
-<style>
-body {
-  font-size: 24px;
-}
-
-.gradient-stripe {
-  width: 100%;
-  height: 24px;
-  background: linear-gradient(
-    90deg,
-    #ffc6b4 0.67%,
-    #ffa7d1 14.09%,
-    #ad87cb 39.63%,
-    #8986ed 68.36%,
-    #4f78c9 100%
-  );
-}
-
-.title-container {
-  width: 100%;
-  height: 150px;
+<style scoped>
+.carousel {
+  position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  width: 100%;
   justify-content: center;
-  background: #eaebf6;
-  margin: 0;
-  padding: 0;
-}
-
-.title-container h1 {
-  position: relative;
-  background: #8987cb;
-  text-align: center;
-  margin: 0 auto;
-  padding: 5px 0 0 0;
-  width: 600px;
-  height: 75px;
-  color: #fff;
-  letter-spacing: 2px;
-  font-weight: 600;
-  border-radius: 20px;
-  font-size: 2em;
-}
-
-.title-container h1::before,
-.title-container h1::after {
-  content: ''; /* this is necessary for the pseudo-element to be shown */
-  width: 10px; /* width of the square */
-  height: 10px; /* height of the square */
-  background-color: #7a65a3; /* color of the square */
-  position: absolute; /* position it absolutely with respect to the h1 element */
-  top: 50%; /* center it vertically */
-  transform: translateY(-50%); /* perfectly center it vertically */
-}
-
-.title-container h1::before {
-  left: -15px; /* position it to the left of the h1 */
-}
-
-.title-container h1::after {
-  right: -15px; /* position it to the right of the h1 */
-}
-
-.categories-list {
-  margin: 0;
-  padding: 0 0 50px 0;
-  display: flex;
-  flex-wrap: wrap; /* Wrap the columns if they don't fit the container width */
-  background: #eaebf6;
-  min-height: calc(100vh - 48px);
-}
-
-.column {
-  margin: 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  height: auto;
-}
-
-.benefit-category {
-  background: #fff;
-  margin: 10px;
-  padding: 20px;
-  border: 1px solid #cbbcdb;
-  border-radius: 10px;
-}
-
-/* Title for each benefit category is bold and centered */
-.category-title {
-  position: relative;
-  margin: 0 0 20px 0;
-  padding: 10px;
-  background: #eaebf6;
-  color: #9c71c6;
-  border: 1px solid #cbbcdb;
-  font-size: 1em;
-  font-weight: bold;
-  font-family: 'Raleway';
-  text-align: center;
-  border-radius: 10px;
-}
-
-.expand-icon {
-  position: absolute;
-  top: 50%;
-  right: 5px;
-  transform: translateY(-50%); /* to center it vertically */
-}
-
-/* Benefit images are displayed under the category title and centered */
-.benefit-images-container {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  flex-grow: 1;
-  padding: 0 10px 0 10px;
 }
 
-/* Custom size for benefit images */
-.benefit-image {
+.carousel img {
   width: 100%;
   height: auto;
+  max-height: 300px;
+  object-fit: cover;
   display: block;
-  margin: 10px 0 10px 0;
+}
+
+.control {
+  position: absolute;
+  z-index: 1;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
   cursor: pointer;
 }
 
-/* Styles for the modal overlay when it is displayed */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+/* Apply hover effects only for devices that support hover */
+@media (hover: hover) {
+  .control:hover {
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+.control:active {
+  transform: translateY(-50%) scale(0.9);
+}
+
+.previous {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.slide-selector {
+  margin-top: 5px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  bottom: 10px;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-/* Styles for the content in the modal window */
-.modal {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  height: auto;
-  width: 500px;
-  padding-top: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  font-size: 16px;
-  max-height: 90vh; /* Set the maximum height to 90% of the viewport height */
-  overflow-y: auto; /* Add vertical scroll when needed */
-  margin: 5% auto; /* Add vertical margin to the modal */
-  flex-shrink: 0;
-}
-
-.modal::-webkit-scrollbar {
-  width: 8px;
-}
-
-.modal::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 113, 198, 0.5); /* Semi-transparent purple */
-  border-radius: 4px;
-}
-
-.modal::-webkit-scrollbar-track {
-  background: transparent; /* Make the track transparent */
-}
-
-/* Styling the scrollbar for Firefox */
-.modal {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(156, 113, 198, 0.5) transparent;
-}
-
-.modal-top-container {
-  margin: auto;
-  position: relative;
-  font-size: 1em;
-  background-color: #9c71c6;
   width: 100%;
 }
 
-.merchant-name {
-  text-align: center;
-  font-size: 1.5em;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: bold;
-  color: #ffffff;
-  padding: 10px;
+/* Updated .selector class */
+.selector {
+  height: 4px; /* Make the line thicker */
+  margin: 0 5px;
+  background-color: rgb(255, 255, 255);
+  border: #9c71c6 2px solid;
+  cursor: pointer;
+  transition: width 0.3s ease, border-radius 0.3s ease; /* Added border-radius transition */
+  border-radius: 2px; /* Make the ends rounded */
 }
 
-.info-list {
-  margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: calc(100% - 40px);
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  font-size: 1em;
+.selector.active {
+  background-color: #9c71c6;
+  border-radius: 2px; /* Keep the ends rounded when active */
 }
 
-.info-list li {
-  display: flex;
-  align-items: center;
-  padding: 0;
-  position: relative;
-  gap: 20px;
-}
-
-.list-content {
-  display: flex;
-  justify-content: center; /* New: centers the text */
-  align-items: center; /* New: centers the text vertically */
-  background-color: #f8f1ff;
-  flex-grow: 1; /* New: makes the span fill the remaining space */
-  padding: 10px 20px; /* New: adds some padding around the text */
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 450;
-  color: #9c71c6;
-  border-radius: 5px;
-  transform: scale(1, 0.95);
-}
-/* Three Columns for Large Screens (for screens larger than 1200px) */
-@media (min-width: 1200px) {
-  .column {
-    flex: 0 0 33.33%; /* flex-grow, flex-shrink, flex-basis */
-    max-width: 33.33%;
-  }
-}
-
-/* Two Columns for Medium Screens (for screens between 600px and 1199px) */
-@media (min-width: 600px) and (max-width: 1199px) {
-  body {
-    font-size: 20px;
-  }
-  .column {
-    flex: 0 0 50%;
-    max-width: 50%;
-  }
-
-  .title-container {
-    height: 125px;
-  }
-
-  .title-container h1 {
-    padding: 3px 0 0 0;
-    width: 500px;
-    height: 60px;
-  }
-}
-/* Small devices */
 @media (max-width: 600px) {
-  body {
-    font-size: 16px;
-  }
-  .categories-list {
-    flex-direction: column; /* This will stack the columns vertically */
-  }
-
-  .column {
-    width: 100%;
-  }
-  .title-container {
-    height: 100px;
-  }
-
-  .title-container h1 {
-    padding: 2px 0 0 0;
-    width: 400px;
-    height: 50px;
-  }
-
-  .modal {
-    padding-top: 10px;
-    width: 300px;
-    font-size: 12px;
-  }
-
-  .merchant-name {
-    padding: 5px;
-  }
-
-  .info-list {
-    margin-top: 10px;
-    width: calc(100% - 20px);
-    gap: 10px;
-  }
-
-  .info-list li {
-    gap: 10px;
+  .carousel img {
+    max-height: 180px;
   }
 }
 </style>
