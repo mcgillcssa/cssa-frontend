@@ -131,16 +131,13 @@ body {
   height: auto;
 }
 
-@media (min-width: 1201px) {
+@media screen and (min-width: 1201px) {
   .categories-list {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (min-width: 801px) and (max-width: 1200px) {
-  .categories-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media screen and (min-width: 801px) and (max-width: 1200px) {
   body {
     font-size: 20px;
   }
@@ -155,14 +152,10 @@ body {
 }
 
 /* Small devices */
-@media (max-width: 800px) {
+@media screen and (min-width: 501px) and (max-width: 800px) {
   body {
     font-size: 16px;
   }
-  /* No need for this since by default we set it to one column */
-  /* .categories-list {
-    grid-template-columns: 1fr;
-  } */
   .title-container {
     height: 100px;
   }
@@ -170,6 +163,20 @@ body {
     padding: 2px 0 0 0;
     width: 400px;
     height: 50px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  body {
+    font-size: 12px;
+  }
+  .title-container {
+    height: 75px;
+  }
+  .title-container h1 {
+    padding: 5px 0 0 0;
+    width: 80vw;
+    height: 40px;
   }
 }
 </style>
