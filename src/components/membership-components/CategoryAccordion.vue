@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, watch, onMounted, onUnmounted } from 'vue'
+import { ref, defineProps, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { Down } from '@icon-park/vue-next'
 import BenefitModal from './BenefitModal.vue'
 
@@ -53,29 +53,53 @@ const containerRefs = ref({})
 
 const setContainerRef = (element, categoryName) => {
   containerRefs.value[categoryName] = element
+
+  const imgs = element.querySelectorAll('img')
+  let loadedImagesCount = 0
+
+  imgs.forEach(img => {
+    img.addEventListener('load', () => {
+      loadedImagesCount++
+      if (loadedImagesCount === imgs.length) {
+        setContainerHeight(categoryName)
+      }
+    })
+  })
 }
 
 watch(
   props.benefits,
-  newBenefits => {
+  async newBenefits => {
+    await nextTick()
+
     for (let categoryName in newBenefits) {
       visibleCategories.value[categoryName] = true
+      setContainerHeight(categoryName)
     }
   },
   { deep: true, immediate: true }
 )
 
-watch(
-  containerRefs,
-  newContainerRefs => {
-    for (let categoryName in newContainerRefs) {
-      const container = containerRefs.value[categoryName]
-      const height = container.scrollHeight
-      container.style.maxHeight = `${height}px`
-    }
-  },
-  { deep: true }
-)
+// watch(
+//   containerRefs,
+//   newContainerRefs => {
+//     for (let categoryName in newContainerRefs) {
+//       const container = containerRefs.value[categoryName]
+//       const height = container.scrollHeight
+//       container.style.maxHeight = `${height}px`
+//     }
+//   },
+//   { deep: true }
+// )
+
+onMounted(() => {
+  updateWindowWidth()
+  window.addEventListener('resize', updateWindowWidth)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateWindowWidth)
+})
 
 const updateWindowWidth = () => {
   if (window.innerWidth <= 800) {
@@ -90,14 +114,11 @@ const updateWindowWidth = () => {
   }
 }
 
-onMounted(() => {
-  updateWindowWidth()
-  window.addEventListener('resize', updateWindowWidth)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', updateWindowWidth)
-})
+const setContainerHeight = categoryName => {
+  const container = containerRefs.value[categoryName]
+  const height = container.scrollHeight
+  container.style.maxHeight = `${height}px`
+}
 
 const toggleCategoryVisibility = categoryName => {
   if (!isCollapsible.value) return
