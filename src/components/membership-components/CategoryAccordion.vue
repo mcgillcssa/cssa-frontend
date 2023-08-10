@@ -1,13 +1,18 @@
 <template>
   <div class="benefit-category" v-for="(benefits, categoryName) in benefits" :key="categoryName">
-    <h3 class="category-title" @click.self="toggleCategoryVisibility(categoryName)">
-      {{ categoryName
-      }}<down
+    <h3
+      class="category-title"
+      @click.self="toggleCategoryVisibility(categoryName)"
+      @mouseover="handleMouseOver(categoryName)"
+      @mouseleave="handleMouseLeave(categoryName)"
+    >
+      {{ categoryName }}
+      <down
         class="expand-icon"
         v-show="isCollapsible"
         theme="filled"
         :size="iconSize"
-        fill="#9C71C6"
+        :fill="iconColors[categoryName]"
         :strokeWidth="3"
         strokeLinejoin="miter"
         strokeLinecap="square"
@@ -50,6 +55,7 @@ const iconSize = ref('30')
 const isModalVisible = ref(false)
 const currentBenefit = ref(null)
 const containerRefs = ref({})
+const iconColors = ref({})
 
 const setContainerRef = (element, categoryName) => {
   containerRefs.value[categoryName] = element
@@ -75,6 +81,7 @@ watch(
     for (let categoryName in newBenefits) {
       visibleCategories.value[categoryName] = true
       setContainerHeight(categoryName)
+      iconColors.value[categoryName] = '#9C71C6'
     }
   },
   { deep: true, immediate: true }
@@ -149,6 +156,14 @@ const hideModal = () => {
   isModalVisible.value = false
   currentBenefit.value = null
 }
+
+const handleMouseOver = categoryName => {
+  iconColors.value[categoryName] = '#eaebf6'
+}
+
+const handleMouseLeave = categoryName => {
+  iconColors.value[categoryName] = '#9C71C6'
+}
 </script>
 
 <style scoped>
@@ -173,6 +188,11 @@ const hideModal = () => {
   text-align: center;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.category-title:hover {
+  background-color: #9c71c6;
+  color: #eaebf6;
 }
 
 .expand-icon {
