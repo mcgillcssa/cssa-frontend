@@ -4,29 +4,20 @@
       {{ categoryName
       }}<down
         class="expand-icon"
-        v-show="isCollapsible && !visibleCategories[categoryName]"
+        v-show="isCollapsible"
         theme="filled"
         :size="iconSize"
         fill="#9C71C6"
         :strokeWidth="3"
         strokeLinejoin="miter"
         strokeLinecap="square"
-      />
-      <up
-        class="expand-icon"
-        v-show="isCollapsible && visibleCategories[categoryName]"
-        theme="filled"
-        :size="iconSize"
-        fill="#9C71C6"
-        :strokeWidth="3"
-        strokeLinejoin="miter"
-        strokeLinecap="square"
+        :style="{
+          transform: visibleCategories[categoryName] ? 'rotate(180deg)' : 'rotate(0deg)',
+          transformOrigin: 'center'
+        }"
       />
     </h3>
-    <div
-      class="benefit-images-container"
-      v-show="!isCollapsible || visibleCategories[categoryName]"
-    >
+    <div class="benefit-images-container" :ref="el => setContainerRef(el, categoryName)">
       <img
         v-for="benefit in benefits"
         :key="benefit.merchantName"
@@ -46,7 +37,7 @@
 
 <script setup>
 import { ref, defineProps, watch, onMounted, onUnmounted } from 'vue'
-import { Down, Up } from '@icon-park/vue-next'
+import { Down } from '@icon-park/vue-next'
 import BenefitModal from './BenefitModal.vue'
 
 const props = defineProps({
@@ -55,9 +46,14 @@ const props = defineProps({
 
 const isCollapsible = ref(true)
 const visibleCategories = ref({})
-const iconSize = ref('36')
+const iconSize = ref('30')
 const isModalVisible = ref(false)
 const currentBenefit = ref(null)
+const containerRefs = ref({})
+
+const setContainerRef = (element, categoryName) => {
+  containerRefs.value[categoryName] = element
+}
 
 watch(
   props.benefits,
@@ -69,15 +65,27 @@ watch(
   { deep: true, immediate: true }
 )
 
+watch(
+  containerRefs,
+  newContainerRefs => {
+    for (let categoryName in newContainerRefs) {
+      const container = containerRefs.value[categoryName]
+      const height = container.scrollHeight
+      container.style.maxHeight = `${height}px`
+    }
+  },
+  { deep: true }
+)
+
 const updateWindowWidth = () => {
   if (window.innerWidth <= 800) {
     iconSize.value = '24'
     isCollapsible.value = true
   } else if (window.innerWidth <= 1200) {
     iconSize.value = '28'
-    isCollapsible.value = false
+    isCollapsible.value = true
   } else {
-    iconSize.value = '36'
+    iconSize.value = '30'
     isCollapsible.value = true
   }
 }
@@ -93,10 +101,21 @@ onUnmounted(() => {
 
 const toggleCategoryVisibility = categoryName => {
   if (!isCollapsible.value) return
+
+  const container = containerRefs.value[categoryName]
+  if (!container) return
+
   if (visibleCategories.value[categoryName] === undefined) {
     visibleCategories.value[categoryName] = true
   } else {
     visibleCategories.value[categoryName] = !visibleCategories.value[categoryName]
+  }
+
+  if (visibleCategories.value[categoryName]) {
+    const height = container.scrollHeight
+    container.style.maxHeight = `${height}px`
+  } else {
+    container.style.maxHeight = '0px'
   }
 }
 
@@ -132,13 +151,13 @@ const hideModal = () => {
   font-family: 'Raleway';
   text-align: center;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .expand-icon {
   position: absolute;
-  top: 50%;
   right: 5px;
-  transform: translateY(-50%);
+  transition: transform 0.5s ease-out;
 }
 
 .benefit-images-container {
@@ -146,8 +165,9 @@ const hideModal = () => {
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
-  margin-top: 20px;
   padding: 0 10px 0 10px;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
 }
 
 .benefit-image {
