@@ -1,7 +1,13 @@
 <template>
   <div class="gradient-stripe"></div>
   <div class="page-content">
-    <div class="title-container"><h1>会员卡合作商家</h1></div>
+    <div class="title-container">
+      <div class="title-wrapper">
+        <div class="left-square"></div>
+        <h1 class="title">会员卡合作商家</h1>
+        <div class="right-square"></div>
+      </div>
+    </div>
     <div class="categories-list">
       <div
         class="column"
@@ -15,7 +21,7 @@
   <div class="gradient-stripe"></div>
 </template>
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import axios from 'axios'
 import CategoryAccordion from '../components/membership-components/CategoryAccordion.vue'
 
@@ -52,6 +58,19 @@ onMounted(async () => {
     )
     benefitsByType.value = response.data.benefitsByType
     distributeBenefits()
+
+    await nextTick()
+    requestAnimationFrame(() => {
+      const title = document.querySelector('.title')
+      const leftSquare = document.querySelector('.left-square')
+      const rightSquare = document.querySelector('.right-square')
+      const categoryList = document.querySelector('.categories-list')
+
+      title.classList.add('animate')
+      leftSquare.classList.add('animate')
+      rightSquare.classList.add('animate')
+      categoryList.classList.add('animate')
+    })
   } catch (err) {
     console.error(err)
     alert('Failed to fetch benefits.')
@@ -89,8 +108,12 @@ body {
   margin: 0;
   padding: 0;
 }
-.title-container h1 {
+.title-wrapper {
+  display: inline-block; /* This will make the div only as wide as its contents */
   position: relative;
+}
+
+.title {
   background: #8987cb;
   text-align: center;
   margin: 0 auto;
@@ -102,26 +125,33 @@ body {
   font-weight: 600;
   border-radius: 20px;
   font-size: 2em;
+  opacity: 0;
 }
-.title-container h1::before,
-.title-container h1::after {
-  content: ''; /* this is necessary for the pseudo-element to be shown */
+
+.left-square,
+.right-square {
   width: 10px; /* width of the square */
   height: 10px; /* height of the square */
   background-color: #7a65a3; /* color of the square */
   position: absolute; /* position it absolutely with respect to the h1 element */
   top: 50%; /* center it vertically */
   transform: translateY(-50%); /* perfectly center it vertically */
+  display: inline-block;
 }
-.title-container h1::before {
-  left: -15px; /* position it to the left of the h1 */
+
+.left-square {
+  left: -40vw; /* position it to the left of the h1 */
+  transition: all 0.5s;
 }
-.title-container h1::after {
-  right: -15px; /* position it to the right of the h1 */
+.right-square {
+  right: -40vw; /* position it to the right of the h1 */
+  transition: all 0.5s;
 }
+
 .categories-list {
   display: grid;
   padding: 0 20px 0 20px;
+  opacity: 0;
 }
 .column {
   margin: 0;
@@ -178,5 +208,32 @@ body {
     width: 80vw;
     height: 40px;
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.title.animate {
+  animation: fadeIn 0.5s forwards;
+  animation-delay: 0.5s; /* Start fading in after squares are in position */
+}
+
+.left-square.animate {
+  left: -15px;
+}
+
+.right-square.animate {
+  right: -15px;
+}
+
+.categories-list.animate {
+  animation: fadeIn 1s forwards;
+  animation-delay: 1s; /* Delay so it starts after title fades in */
 }
 </style>
