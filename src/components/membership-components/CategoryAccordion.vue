@@ -87,18 +87,6 @@ watch(
   { deep: true, immediate: true }
 )
 
-// watch(
-//   containerRefs,
-//   newContainerRefs => {
-//     for (let categoryName in newContainerRefs) {
-//       const container = containerRefs.value[categoryName]
-//       const height = container.scrollHeight
-//       container.style.maxHeight = `${height}px`
-//     }
-//   },
-//   { deep: true }
-// )
-
 onMounted(() => {
   updateWindowWidth()
   window.addEventListener('resize', updateWindowWidth)
@@ -158,10 +146,12 @@ const hideModal = () => {
 }
 
 const handleMouseOver = categoryName => {
+  if ('ontouchstart' in window) return
   iconColors.value[categoryName] = '#eaebf6'
 }
 
 const handleMouseLeave = categoryName => {
+  if ('ontouchstart' in window) return
   iconColors.value[categoryName] = '#9C71C6'
 }
 </script>
@@ -193,6 +183,13 @@ const handleMouseLeave = categoryName => {
 .category-title:hover {
   background-color: #9c71c6;
   color: #eaebf6;
+}
+
+@media (hover: none) {
+  .category-title:hover {
+    background-color: #eaebf6;
+    color: #9c71c6;
+  }
 }
 
 .expand-icon {
