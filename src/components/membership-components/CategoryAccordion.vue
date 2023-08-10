@@ -75,7 +75,7 @@ const updateWindowWidth = () => {
     isCollapsible.value = true
   } else if (window.innerWidth <= 1200) {
     iconSize.value = '28'
-    isCollapsible.value = false
+    isCollapsible.value = true
   } else {
     iconSize.value = '36'
     isCollapsible.value = true
