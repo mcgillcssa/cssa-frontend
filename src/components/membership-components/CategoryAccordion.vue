@@ -158,11 +158,53 @@ const handleMouseLeave = categoryName => {
 
 <style scoped>
 .benefit-category {
+  position: relative;
   background: #fff;
+  margin: 15px; /* Increased to accommodate the gradient border */
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.benefit-category {
+  position: relative;
+  border: 2px solid transparent;
+  border-radius: 10px;
   margin: 10px;
   padding: 20px;
-  border: 1px solid #cbbcdb;
-  border-radius: 10px;
+  background-color: transparent; /* Ensure no background on the main div */
+}
+
+.benefit-category::before,
+.benefit-category::after {
+  content: '';
+  position: absolute;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.benefit-category::before {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(
+    90deg,
+    #ffc6b4 0.67%,
+    #ffa7d1 14.09%,
+    #ad87cb 39.63%,
+    #8986ed 68.36%,
+    #8418ea 100%
+  );
+  z-index: -2;
+}
+
+.benefit-category::after {
+  top: 2px; /* Offset by the width of the border */
+  right: 2px;
+  bottom: 2px;
+  left: 2px;
+  background-color: #fff;
 }
 
 .category-title {
