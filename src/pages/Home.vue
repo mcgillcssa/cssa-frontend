@@ -70,17 +70,9 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import NavBar from '../components/NavBar.vue'
-import RecentEvents from '../components/RecentEvents.vue'
-//import BenefitCategories from '../components/membership-components/BenefitCategories.vue'
-
-export default {
-  components: {
-    RecentEvents,
-    NavBar
-  }
-}
+import RecentEvents from '../components/home/RecentEvents.vue'
 </script>
 
 <style>
