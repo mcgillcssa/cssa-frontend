@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from './pages/Home.vue'
-import MembershipBenefitsPage from './pages/MembershipBenefits.vue'
+import MembershipPage from './pages/Membership.vue'
+import BenefitsPage from './pages/Benefits.vue'
+
 const routes = [
   {
     path: '/',
@@ -8,14 +10,20 @@ const routes = [
     component: HomePage
   },
   {
-    path: '/membership-benefits',
-    name: 'Membership Benefits',
-    component: MembershipBenefitsPage,
+    path: '/membership',
+    name: 'Membership',
+    component: MembershipPage,
+    meta: { title: 'McGill CSSA | 会员' }
+  },
+  {
+    path: '/benefits',
+    name: 'Benefits',
+    component: BenefitsPage,
     meta: { title: 'McGill CSSA | 会员福利' }
   },
   {
     path: '/access/qrscan',
-    redirect: '/membership-benefits'
+    redirect: '/benefits'
   }
 ]
 

@@ -1,165 +1,245 @@
-@font-face {
-  font-family: 'Garet';
-  src: url('../../../public/fonts/Garet-Book.ttf');
-}
-
-@font-face {
-  font-family: 'Hertical Smooth';
-  src: url('../../../public/fonts/Hertical\ Sans\ Smooth.ttf');
-}
-
+/* Infinity Font Declarations */
 @font-face {
   font-family: 'Infinity';
-  src: url('../../../public/fonts/Infinity-Regular.otf');
+  src: local('Infinity Regular'),
+    url('../../../public/fonts/Infinity/Infinity-Regular.otf') format('opentype');
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'Infinity';
-  src: url('../../../public/fonts/Infinity-Medium.otf');
-  font-weight: medium;
+  src: local('Infinity Medium'),
+    url('../../../public/fonts/Infinity/Infinity-Medium.otf') format('opentype');
+  font-weight: 500;
 }
 
 @font-face {
   font-family: 'Infinity';
-  src: url('../../../public/fonts/Infinity-Black.otf');
-  font-weight: Black;
+  src: local('Infinity Black'),
+    url('../../../public/fonts/Infinity/Infinity-Black.otf') format('opentype');
+  font-weight: 900;
 }
 
 @font-face {
   font-family: 'Infinity';
-  src: url('../../../public/fonts/Infinity-Thin.otf');
-  font-weight: Thin;
+  src: local('Infinity Thin'),
+    url('../../../public/fonts/Infinity/Infinity-Thin.otf') format('opentype');
+  font-weight: 100;
 }
 
 @font-face {
   font-family: 'Infinity';
-  src: url('../../../public/fonts/Infinity-Light.otf');
-  font-weight: Light;
+  src: local('Infinity Light'),
+    url('../../../public/fonts/Infinity/Infinity-Light.otf') format('opentype');
+  font-weight: 300;
 }
 
+/* Raleway Font Declarations */
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-Thin.ttf');
+  src: local('Raleway Thin'),
+    url('../../../public/fonts/Raleway/Raleway-Thin.ttf') format('truetype');
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-ThinItalic.ttf');
+  src: local('Raleway Thin Italic'),
+    url('../../../public/fonts/Raleway/Raleway-ThinItalic.ttf') format('truetype');
   font-weight: 100;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-ExtraLight.ttf');
+  src: local('Raleway Extra Light'),
+    url('../../../public/fonts/Raleway/Raleway-ExtraLight.ttf') format('truetype');
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-ExtraLightItalic.ttf');
+  src: local('Raleway Extra Light Italic'),
+    url('../../../public/fonts/Raleway/Raleway-ExtraLightItalic.ttf') format('truetype');
   font-weight: 200;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-Light.ttf');
+  src: local('Raleway Light'),
+    url('../../../public/fonts/Raleway/Raleway-Light.ttf') format('truetype');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-LightItalic.ttf');
+  src: local('Raleway Light Italic'),
+    url('../../../public/fonts/Raleway/Raleway-LightItalic.ttf') format('truetype');
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-Regular.ttf');
+  src: local('Raleway Regular'),
+    url('../../../public/fonts/Raleway/Raleway-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-Italic.ttf');
+  src: local('Raleway Italic'),
+    url('../../../public/fonts/Raleway/Raleway-Italic.ttf') format('truetype');
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-Medium.ttf');
+  src: local('Raleway Medium'),
+    url('../../../public/fonts/Raleway/Raleway-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-MediumItalic.ttf');
+  src: local('Raleway Medium Italic'),
+    url('../../../public/fonts/Raleway/Raleway-MediumItalic.ttf') format('truetype');
   font-weight: 500;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-SemiBold.ttf');
+  src: local('Raleway SemiBold'),
+    url('../../../public/fonts/Raleway/Raleway-SemiBold.ttf') format('truetype');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-SemiBoldItalic.ttf');
+  src: local('Raleway SemiBold Italic'),
+    url('../../../public/fonts/Raleway/Raleway-SemiBoldItalic.ttf') format('truetype');
   font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-Bold.ttf');
+  src: local('Raleway Bold'),
+    url('../../../public/fonts/Raleway/Raleway-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-BoldItalic.ttf');
+  src: local('Raleway Bold Italic'),
+    url('../../../public/fonts/Raleway/Raleway-BoldItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-ExtraBold.ttf');
+  src: local('Raleway ExtraBold'),
+    url('../../../public/fonts/Raleway/Raleway-ExtraBold.ttf') format('truetype');
   font-weight: 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-ExtraBoldItalic.ttf');
+  src: local('Raleway ExtraBold Italic'),
+    url('../../../public/fonts/Raleway/Raleway-ExtraBoldItalic.ttf') format('truetype');
   font-weight: 800;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-Black.ttf');
+  src: local('Raleway Black'),
+    url('../../../public/fonts/Raleway/Raleway-Black.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Raleway';
-  src: url('../../../public/fonts/Raleway/Raleway-BlackItalic.ttf');
+  src: local('Raleway Black Italic'),
+    url('../../../public/fonts/Raleway/Raleway-BlackItalic.ttf') format('truetype');
   font-weight: 900;
+  font-style: italic;
+}
+
+/* CircularStd Font Declarations */
+@font-face {
+  font-family: 'CircularStd';
+  src: local('CircularStd Black'),
+    url('../../../public/fonts/CircularStd/CircularStd-Black.otf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CircularStd';
+  src: local('CircularStd Black Italic'),
+    url('../../../public/fonts/CircularStd/CircularStd-BlackItalic.otf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CircularStd';
+  src: local('CircularStd Bold'),
+    url('../../../public/fonts/CircularStd/CircularStd-Bold.otf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CircularStd';
+  src: local('CircularStd Bold Italic'),
+    url('../../../public/fonts/CircularStd/CircularStd-BoldItalic.otf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CircularStd';
+  src: local('CircularStd Book'),
+    url('../../../public/fonts/CircularStd/CircularStd-Book.otf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CircularStd';
+  src: local('CircularStd Book Italic'),
+    url('../../../public/fonts/CircularStd/CircularStd-BookItalic.otf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'CircularStd';
+  src: local('CircularStd Medium'),
+    url('../../../public/fonts/CircularStd/CircularStd-Medium.otf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'CircularStd';
+  src: local('CircularStd Medium Italic'),
+    url('../../../public/fonts/CircularStd/CircularStd-MediumItalic.otf') format('truetype');
+  font-weight: 500;
   font-style: italic;
 }
