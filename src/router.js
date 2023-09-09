@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from './pages/Home.vue'
 import MembershipBenefitsPage from './pages/MembershipBenefits.vue'
+import SponsorPage from '@/pages/SponsorPage.vue'
 const routes = [
   {
     path: '/',
@@ -16,6 +17,12 @@ const routes = [
   {
     path: '/access/qrscan',
     redirect: '/membership-benefits'
+  },
+  {
+    path: '/sponsor',
+    name: 'Sponsor',
+    component: SponsorPage,
+    meta: { title: 'McGill CSSA | 赞助商' }
   }
 ]
 
