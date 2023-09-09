@@ -30,13 +30,12 @@
       <div class="line"></div>
       <div class="circle-end"></div>
     </div>
-    <div class="to-benefits">
+    <router-link class="to-benefits" to="/benefits">
       <div class="text-wrapper">
         <h2 class="button-text">点击查看完整商家名单</h2>
-        <div class="underline"></div>
       </div>
-      <div class="circle"><arrow-right theme="filled" size="75" fill="#967eb8" /></div>
-    </div>
+      <div class="circle"><arrow-right theme="filled" :size="arrowSize" fill="#967eb8" /></div>
+    </router-link>
   </div>
 </template>
 
@@ -48,6 +47,8 @@ import { ArrowDown, ArrowRight } from '@icon-park/vue-next'
 
 const bannerUrl = ref('https://i.imgur.com/9myUD3h.jpg')
 const contentSections = ref([])
+
+let arrowSize = ref(64)
 
 onMounted(() => {
   updateWindowWidth()
@@ -247,6 +248,7 @@ const handleScroll = () => {
   );
 
   margin-bottom: 20px;
+  text-decoration: none;
 }
 
 .text-wrapper {
@@ -266,24 +268,16 @@ const handleScroll = () => {
   text-align: center;
   color: #967eb8;
   letter-spacing: 20px;
-  font-size: 1.8em;
+  font-size: 1.5em;
   text-decoration: none;
 }
 
-.underline {
-  width: 620px; /* This will take the full width of the wrapper. Adjust if needed. */
-  height: 3px;
-  background-color: #967eb8;
-  margin-top: 10px; /* Adjust to space it from the text. */
-  margin-left: -20px;
-}
-
 .circle {
-  width: 120px; /* Adjust to your desired size */
-  height: 120px; /* Adjust to your desired size */
-  border-radius: 50%; /* This will make it round */
-  background-color: #ffffff; /* This will make it white */
-  margin-left: 50px; /* Optional: Add some spacing from the text-wrapper. Adjust as needed */
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  margin-right: 20px;
 
   display: flex;
   justify-content: center; /* Horizontally center */
@@ -299,6 +293,15 @@ const handleScroll = () => {
 @media screen and (min-width: 801px) and (max-width: 1200px) {
   .presentation-description {
     padding: 20px;
+  }
+
+  .underline {
+    width: 550px;
+  }
+
+  .circle {
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -329,6 +332,11 @@ const handleScroll = () => {
   .presentation-description p {
     padding-left: 30px;
     padding-right: 30px;
+  }
+
+  .circle {
+    width: 60px;
+    height: 60px;
   }
 }
 
