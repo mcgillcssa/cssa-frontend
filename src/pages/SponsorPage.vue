@@ -425,7 +425,7 @@ section {
 .page-title {
   text-align: center;
   font-size: 6vh;
-  margin-top: 0vh;
+  margin-top: 5vh;
   margin-bottom: 3vh;
   margin-left: 72vh;
   margin-right: 15vh;

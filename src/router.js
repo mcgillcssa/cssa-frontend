@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from './pages/Home.vue'
 import MembershipPage from './pages/Membership.vue'
 import BenefitsPage from './pages/Benefits.vue'
+import SponsorPage from './pages/SponsorPage.vue'
 const routes = [
   {
     path: '/',
