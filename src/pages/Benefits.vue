@@ -23,7 +23,7 @@
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 import axios from 'axios'
-import CategoryAccordion from '../components/membership-components/CategoryAccordion.vue'
+import CategoryAccordion from '../components/benefits/CategoryAccordion.vue'
 
 const benefitsByType = ref({})
 const column1Benefits = ref({})

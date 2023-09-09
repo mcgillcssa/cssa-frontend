@@ -14,7 +14,7 @@
       </div>
     </div>
 
-    <RecentEvents />
+    <!-- <RecentEvents />
 
     <div class="about-us">
       <div id="about-us-left">
@@ -66,21 +66,13 @@
         </li>
       </ul>
     </div>
-    <div class="footer"></div>
+    <div class="footer"></div> -->
   </div>
 </template>
 
-<script>
+<script setup>
 import NavBar from '../components/NavBar.vue'
-import RecentEvents from '../components/RecentEvents.vue'
-//import BenefitCategories from '../components/membership-components/BenefitCategories.vue'
-
-export default {
-  components: {
-    RecentEvents,
-    NavBar
-  }
-}
+// import RecentEvents from '../components/home/RecentEvents.vue'
 </script>
 
 <style>
@@ -90,12 +82,6 @@ body {
 
 .page {
   overflow: hidden;
-}
-
-.cssa-logo {
-  position: absolute;
-  bottom: 0;
-  right: 0;
 }
 
 .vertical-flex-container {
@@ -164,7 +150,7 @@ body {
   color: transparent;
 }
 
-.about-us {
+/* .about-us {
   position: relative;
   overflow: visible;
   display: flex;
@@ -286,5 +272,5 @@ body {
   .info-description {
     font-size: 1.5em;
   }
-}
+} */
 </style>
