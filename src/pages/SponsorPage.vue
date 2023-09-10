@@ -392,7 +392,7 @@ export default {
   color: transparent;
 }
 .sponsor-page {
-  background: #814147 url('https://i.imgur.com/ZgCeJBq.jpg');
+  background-image: linear-gradient(#ac94c5 ,#f7bfc9), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -412,7 +412,7 @@ export default {
   left: 0;
   width: 27.5%;
   height: 330vh;
-  background-color: #ab3232;
+  background-color: #ac94c5;
 }
 section {
   box-sizing: border-box;
@@ -425,6 +425,7 @@ section {
 .page-title {
   text-align: center;
   font-size: 6vh;
+  padding-top: 10vh;
   margin-top: 5vh;
   margin-bottom: 3vh;
   margin-left: 72vh;
@@ -432,7 +433,7 @@ section {
   color: #ececec;
   box-shadow: #000000;
   font-family: 'Raleway', sans-serif;
-  -webkit-text-stroke: 1.5px #ffffff;
+  -webkit-text-stroke: 3px #ffffff;
   color: transparent;
   user-select: none;
 }
@@ -501,7 +502,7 @@ section {
 }
 
 .sponsor-website:hover {
-  background-color: #814147
+  background-color: #ac94c5
 }
 
 .pagination {
@@ -522,12 +523,12 @@ section {
 }
 
 .pagination button.active {
-  background-color: #e57b7b;
+  background-color: #77539d;
   color: #fff;
 }
 
 .pagination button:hover {
-  background-color: #d2727c
+  background-color: #ac94c5
 }
 .left-arrow:before,
 .right-arrow:before {
