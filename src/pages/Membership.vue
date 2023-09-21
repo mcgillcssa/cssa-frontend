@@ -30,12 +30,14 @@
       <div class="line"></div>
       <div class="circle-end"></div>
     </div>
-    <router-link class="to-benefits" to="/benefits">
-      <div class="text-wrapper">
-        <h2 class="button-text">点击查看完整商家名单</h2>
-      </div>
-      <div class="circle"><arrow-right theme="filled" :size="arrowSize" fill="#967eb8" /></div>
-    </router-link>
+    <div>
+      <router-link class="to-benefits" to="/benefits">
+        <div class="text-wrapper">
+          <h2 class="button-text">点击查看完整商家名单</h2>
+        </div>
+        <div class="circle"><arrow-right theme="filled" :size="arrowSize" fill="#967eb8" /></div>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -67,11 +69,18 @@ const updateWindowWidth = () => {
   const aspectRatio = window.innerWidth / window.innerHeight
 
   if (aspectRatio < 1) {
-    // This means it's portrait
     bannerUrl.value = 'https://i.imgur.com/4Xf94jX.jpg'
   } else {
-    // This means it's landscape or square
     bannerUrl.value = 'https://i.imgur.com/9myUD3h.jpg'
+  }
+  if (window.innerWidth <= 600) {
+    arrowSize.value = 24
+  } else if (window.innerWidth <= 800) {
+    arrowSize.value = 36
+  } else if (window.innerWidth <= 1200) {
+    arrowSize.value = 48
+  } else {
+    arrowSize.value = 64
   }
 }
 
@@ -213,8 +222,8 @@ const handleScroll = () => {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 50px; /* Adjust height as per your preference */
-  margin: 20px 0 20px 0; /* Spacing below the separator. Adjust as needed. */
+  height: 50px;
+  margin: 20px 0 20px 0;
 }
 
 .circle-start,
@@ -242,11 +251,10 @@ const handleScroll = () => {
     90deg,
     #ffc6b4 0.67%,
     #ffa7d1 14.09%,
-    #ad87cb 39.63%,
-    #a78cd0 68.36%,
+    #ad87cb 68.63%,
+    #a78cd0 80.36%,
     #726cad 100%
   );
-
   margin-bottom: 20px;
   text-decoration: none;
 }
@@ -263,12 +271,11 @@ const handleScroll = () => {
 }
 
 .button-text {
-  width: 100%; /* Adjust according to your needs */
   margin: 0;
   text-align: center;
   color: #967eb8;
   letter-spacing: 20px;
-  font-size: 1.5em;
+  font-size: 1.75em;
   text-decoration: none;
 }
 
@@ -290,18 +297,41 @@ const handleScroll = () => {
   }
 }
 
-@media screen and (min-width: 801px) and (max-width: 1200px) {
+@media screen and (min-width: 1001px) and (max-width: 1200px) {
   .presentation-description {
     padding: 20px;
   }
 
-  .underline {
-    width: 550px;
+  .text-wrapper {
+    margin: 0 40px 0 40px;
+    padding: 20px 0;
+    background-color: #ffffff;
+    border-radius: 20px;
   }
 
   .circle {
     width: 100px;
     height: 100px;
+  }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1000px) {
+  .presentation-description {
+    padding: 20px;
+  }
+
+  .text-wrapper {
+    margin: 0 40px 0 40px;
+    padding: 25px 0;
+  }
+
+  .button-text {
+    font-size: 1.5em;
+  }
+
+  .circle {
+    width: 80px;
+    height: 80px;
   }
 }
 
@@ -334,9 +364,49 @@ const handleScroll = () => {
     padding-right: 30px;
   }
 
+  .separator {
+    height: 30px;
+    margin: 10px 0;
+  }
+
+  .to-benefits {
+    height: 100px;
+  }
+
+  .text-wrapper {
+    margin: 0 30px 0 30px;
+    padding: 15px 0;
+  }
+
+  .button-text {
+    font-size: 1.2em;
+    letter-spacing: 15px;
+  }
+
   .circle {
     width: 60px;
     height: 60px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .to-benefits {
+    height: 80px;
+  }
+
+  .text-wrapper {
+    margin: 0 30px 0 30px;
+    padding: 15px 0;
+  }
+
+  .button-text {
+    font-size: 1em;
+    letter-spacing: 10px;
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
   }
 }
 
