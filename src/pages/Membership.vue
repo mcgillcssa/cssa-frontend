@@ -14,14 +14,14 @@
         <img src="https://i.imgur.com/gAU1htm.jpg" alt="Small Card Design" />
         <div class="description-container">
           <p>
-            &lt;Placeholder&gt;McGill University Chinese Students and Scholars Association (CSSA),
-            is the only student community certified by the Chinese Consulate on campus, and it is
-            the only cultural club dedicated mainly to students and scholars from Mainland China.
+            CSSA会员卡是McGill CSSA携手蒙城各大商家, 为大家准备的福利折扣卡!<br />
+            凡是在合作商家店铺消费，出示此卡都可以享受优惠！
           </p>
           <p>
-            麦吉尔大学中国学生学者联合会（McGill
-            CSSA）是一个无政治、无宗教、非营利、而且唯一正式在麦吉尔校方注册的主要面向本科生的官方学生组织。
+            无论百货购物, 还是美发快递看牙医, CSSA会员卡都囊括其中!<br />
+            小到买个奶茶, 大到超市采购, 它都可以帮你获得折扣！
           </p>
+          <p>这种神仙会员卡不值得期待一番吗?</p>
         </div>
       </div>
     </div>
@@ -43,21 +43,16 @@
       <h2>Past Membership Card Design</h2>
     </div>
     <div class="carousel">
-        <div class="slides">
-        </div>
-        <span class="arrow left material-symbols-outlined">
-        </span>
-        <span class="arrow right material-symbols-outlined">
-        </span>
-        <ul>
-        </ul>
+      <div class="slides"></div>
+      <span class="arrow left material-symbols-outlined"> </span>
+      <span class="arrow right material-symbols-outlined"> </span>
+      <ul></ul>
     </div>
   </div>
-
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted} from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import NavBar from '../components/NavBar.vue'
 import { ArrowDown, ArrowRight } from '@icon-park/vue-next'
 
@@ -67,7 +62,7 @@ const contentSections = ref([])
 let arrowSize = ref(64)
 
 // carousel images
-const carouselUrls = ['https://i.imgur.com/9myUD3h.jpg', 'https://i.imgur.com/gAU1htm.jpg'];
+const carouselUrls = ['https://i.imgur.com/9myUD3h.jpg', 'https://i.imgur.com/gAU1htm.jpg']
 
 onMounted(() => {
   updateWindowWidth()
@@ -77,51 +72,50 @@ onMounted(() => {
   window.addEventListener('scroll', handleScroll)
 
   //carousel
-  const slides = document.querySelector('.slides');
-  const leftArrow = document.querySelector('.left');
-  const rightArrow = document.querySelector('.right');
-  const ul = document.querySelector('.carousel ul');
+  const slides = document.querySelector('.slides')
+  const leftArrow = document.querySelector('.left')
+  const rightArrow = document.querySelector('.right')
+  const ul = document.querySelector('.carousel ul')
 
-  var currentIndex = 0;
+  var currentIndex = 0
 
-  console.log(slides);
+  console.log(slides)
   // add slides
-  for (let i in carouselUrls){
-    var slide = document.createElement("div");
-    slide.classList.add("slide");
-    slide.style.backgroundImage = 'url(' + carouselUrls[i] + ')';
-    slides.appendChild(slide);
+  for (let i in carouselUrls) {
+    var slide = document.createElement('div')
+    slide.classList.add('slide')
+    slide.style.backgroundImage = 'url(' + carouselUrls[i] + ')'
+    slides.appendChild(slide)
 
-    var dot = document.createElement("li");
-    ul.appendChild(dot);
+    var dot = document.createElement('li')
+    ul.appendChild(dot)
   }
 
   // set first dot to active
-  ul.children[0].classList.add('selected');
+  ul.children[0].classList.add('selected')
 
-  leftArrow.addEventListener('click', function(){
-    if (currentIndex > 0) currentIndex -= 1;
-    document.querySelector('.carousel .selected').classList.remove('selected');
-    ul.children[currentIndex].classList.add('selected');
-    slides.style.transform = 'translate('+ (currentIndex) * (-25) +'%)';
+  leftArrow.addEventListener('click', function () {
+    if (currentIndex > 0) currentIndex -= 1
+    document.querySelector('.carousel .selected').classList.remove('selected')
+    ul.children[currentIndex].classList.add('selected')
+    slides.style.transform = 'translate(' + currentIndex * -25 + '%)'
   })
 
-  rightArrow.addEventListener('click', function(){
-    if (currentIndex < carouselUrls.length - 1) currentIndex += 1;
-    document.querySelector('.carousel .selected').classList.remove('selected');
-    ul.children[currentIndex].classList.add('selected');
-    slides.style.transform = 'translate('+ (currentIndex) * (-25) +'%)';
+  rightArrow.addEventListener('click', function () {
+    if (currentIndex < carouselUrls.length - 1) currentIndex += 1
+    document.querySelector('.carousel .selected').classList.remove('selected')
+    ul.children[currentIndex].classList.add('selected')
+    slides.style.transform = 'translate(' + currentIndex * -25 + '%)'
   })
 
-  document.querySelectorAll('.carousel ul li').forEach(function(indicator, index){
-    indicator.addEventListener('click', function(){
-      currentIndex = index;
-      document.querySelector('.carousel .selected').classList.remove('selected');
-      indicator.classList.add('selected');
-      slides.style.transform = 'translate('+ (currentIndex) * (-25) +'%)';
-    });
-  });
-
+  document.querySelectorAll('.carousel ul li').forEach(function (indicator, index) {
+    indicator.addEventListener('click', function () {
+      currentIndex = index
+      document.querySelector('.carousel .selected').classList.remove('selected')
+      indicator.classList.add('selected')
+      slides.style.transform = 'translate(' + currentIndex * -25 + '%)'
+    })
+  })
 })
 
 onUnmounted(() => {
@@ -278,7 +272,7 @@ const handleScroll = () => {
   color: #33378c;
   text-align: center;
 
-  font-size: 1.5vw;
+  font-size: 1.4vw;
 }
 
 .separator {
@@ -355,7 +349,7 @@ const handleScroll = () => {
   align-items: center; /* Vertically center */
 }
 
-.carousel{
+.carousel {
   background-color: #ffffff;
   height: 512px;
   margin: 30px 40px 30px 40px;
@@ -366,19 +360,19 @@ const handleScroll = () => {
   position: relative;
 }
 
-.carousel div{
+.carousel div {
   flex-grow: 1;
   text-align: center;
 }
 
-.slides{
+.slides {
   display: flex;
   height: 100%;
   width: 400%;
   transition: all 0.3s;
 }
 
-.slide{
+.slide {
   flex-basis: 100%;
   display: block;
   background-size: 1200px 400px;
@@ -386,29 +380,29 @@ const handleScroll = () => {
   background-position: center;
 }
 
-.arrow{
+.arrow {
   position: absolute;
   top: 40%;
   display: block;
   margin: 30px auto;
   width: 50px;
   height: 50px;
-  border-top: 10px solid #33378C;
-  border-left: 10px solid #33378C;
+  border-top: 10px solid #33378c;
+  border-left: 10px solid #33378c;
   cursor: pointer;
 }
 
-.arrow.left{
-  left:3%;
+.arrow.left {
+  left: 3%;
   transform: rotate(-45deg);
 }
 
-.arrow.right{
-  right:3%;
+.arrow.right {
+  right: 3%;
   transform: rotate(135deg);
 }
 
-.carousel ul{
+.carousel ul {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -416,10 +410,10 @@ const handleScroll = () => {
   list-style: none;
   padding: 0;
   margin: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
 }
 
-.carousel ul li{
+.carousel ul li {
   height: 1vw;
   width: 1vw;
   background-color: #828181;
@@ -428,8 +422,8 @@ const handleScroll = () => {
   cursor: pointer;
 }
 
-.selected{
-  background-color: #FFFFFF !important;
+.selected {
+  background-color: #ffffff !important;
 }
 
 @media screen and (min-width: 1201px) and (max-width: 1600px) {
@@ -460,7 +454,6 @@ const handleScroll = () => {
   .presentation-description {
     padding: 20px;
   }
-
   .text-wrapper {
     margin: 0 40px 0 40px;
     padding: 25px 0;
@@ -505,6 +498,10 @@ const handleScroll = () => {
     padding-right: 30px;
   }
 
+  .description-container {
+    font-size: 2.3vw;
+  }
+
   .separator {
     height: 30px;
     margin: 10px 0;
@@ -535,23 +532,23 @@ const handleScroll = () => {
     width: 100%;
   }
 
-  .slide{
+  .slide {
     background-size: 380px 210px;
   }
 
-  .arrow{
+  .arrow {
     top: 30%;
     height: 20px;
     width: 20px;
-    border-top: 5px solid #33378C;
-    border-left: 5px solid #33378C;
+    border-top: 5px solid #33378c;
+    border-left: 5px solid #33378c;
   }
 
-  .arrow.left{
+  .arrow.left {
     left: 2%;
   }
 
-  .arrow.right{
+  .arrow.right {
     right: 2%;
   }
 }
@@ -576,7 +573,7 @@ const handleScroll = () => {
     height: 40px;
   }
 
-  .slide{
+  .slide {
     background-size: 320px 180px;
   }
 
