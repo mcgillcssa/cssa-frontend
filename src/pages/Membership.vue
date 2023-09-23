@@ -38,12 +38,26 @@
         <div class="circle"><arrow-right theme="filled" :size="arrowSize" fill="#967eb8" /></div>
       </router-link>
     </div>
+    <div class="presentation vertical-flex">
+      <h3>以往会员卡设计</h3>
+      <h2>Past Membership Card Design</h2>
+    </div>
+    <div class="carousel">
+        <div class="slides">
+        </div>
+        <span class="arrow left material-symbols-outlined">
+        </span>
+        <span class="arrow right material-symbols-outlined">
+        </span>
+        <ul>
+        </ul>
+    </div>
   </div>
+
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-
+import { ref, onMounted, onUnmounted} from 'vue'
 import NavBar from '../components/NavBar.vue'
 import { ArrowDown, ArrowRight } from '@icon-park/vue-next'
 
@@ -52,12 +66,62 @@ const contentSections = ref([])
 
 let arrowSize = ref(64)
 
+// carousel images
+const carouselUrls = ['https://i.imgur.com/9myUD3h.jpg', 'https://i.imgur.com/gAU1htm.jpg'];
+
 onMounted(() => {
   updateWindowWidth()
   window.addEventListener('resize', updateWindowWidth)
 
   contentSections.value = document.querySelectorAll('.content-container > div')
   window.addEventListener('scroll', handleScroll)
+
+  //carousel
+  const slides = document.querySelector('.slides');
+  const leftArrow = document.querySelector('.left');
+  const rightArrow = document.querySelector('.right');
+  const ul = document.querySelector('.carousel ul');
+
+  var currentIndex = 0;
+
+  console.log(slides);
+  // add slides
+  for (let i in carouselUrls){
+    var slide = document.createElement("div");
+    slide.classList.add("slide");
+    slide.style.backgroundImage = 'url(' + carouselUrls[i] + ')';
+    slides.appendChild(slide);
+
+    var dot = document.createElement("li");
+    ul.appendChild(dot);
+  }
+
+  // set first dot to active
+  ul.children[0].classList.add('selected');
+
+  leftArrow.addEventListener('click', function(){
+    if (currentIndex > 0) currentIndex -= 1;
+    document.querySelector('.carousel .selected').classList.remove('selected');
+    ul.children[currentIndex].classList.add('selected');
+    slides.style.transform = 'translate('+ (currentIndex) * (-25) +'%)';
+  })
+
+  rightArrow.addEventListener('click', function(){
+    if (currentIndex < carouselUrls.length - 1) currentIndex += 1;
+    document.querySelector('.carousel .selected').classList.remove('selected');
+    ul.children[currentIndex].classList.add('selected');
+    slides.style.transform = 'translate('+ (currentIndex) * (-25) +'%)';
+  })
+
+  document.querySelectorAll('.carousel ul li').forEach(function(indicator, index){
+    indicator.addEventListener('click', function(){
+      currentIndex = index;
+      document.querySelector('.carousel .selected').classList.remove('selected');
+      indicator.classList.add('selected');
+      slides.style.transform = 'translate('+ (currentIndex) * (-25) +'%)';
+    });
+  });
+
 })
 
 onUnmounted(() => {
@@ -291,6 +355,83 @@ const handleScroll = () => {
   align-items: center; /* Vertically center */
 }
 
+.carousel{
+  background-color: #ffffff;
+  height: 512px;
+  margin: 30px 40px 30px 40px;
+  width: 90%;
+  border: 1px solid #cbbcdb;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel div{
+  flex-grow: 1;
+  text-align: center;
+}
+
+.slides{
+  display: flex;
+  height: 100%;
+  width: 400%;
+  transition: all 0.3s;
+}
+
+.slide{
+  flex-basis: 100%;
+  display: block;
+  background-size: 1200px 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.arrow{
+  position: absolute;
+  top: 40%;
+  display: block;
+  margin: 30px auto;
+  width: 50px;
+  height: 50px;
+  border-top: 10px solid #33378C;
+  border-left: 10px solid #33378C;
+  cursor: pointer;
+}
+
+.arrow.left{
+  left:3%;
+  transform: rotate(-45deg);
+}
+
+.arrow.right{
+  right:3%;
+  transform: rotate(135deg);
+}
+
+.carousel ul{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(0,0,0,0.4);
+}
+
+.carousel ul li{
+  height: 1vw;
+  width: 1vw;
+  background-color: #828181;
+  border-radius: 50%;
+  margin: 1vh 3vw;
+  cursor: pointer;
+}
+
+.selected{
+  background-color: #FFFFFF !important;
+}
+
 @media screen and (min-width: 1201px) and (max-width: 1600px) {
   .presentation-description {
     padding: 60px;
@@ -387,6 +528,32 @@ const handleScroll = () => {
     width: 60px;
     height: 60px;
   }
+
+  .carousel {
+    height: 256px;
+    margin: 30px 0 30px 0;
+    width: 100%;
+  }
+
+  .slide{
+    background-size: 380px 210px;
+  }
+
+  .arrow{
+    top: 30%;
+    height: 20px;
+    width: 20px;
+    border-top: 5px solid #33378C;
+    border-left: 5px solid #33378C;
+  }
+
+  .arrow.left{
+    left: 2%;
+  }
+
+  .arrow.right{
+    right: 2%;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -407,6 +574,14 @@ const handleScroll = () => {
   .circle {
     width: 40px;
     height: 40px;
+  }
+
+  .slide{
+    background-size: 320px 180px;
+  }
+
+  .carousel {
+    height: 200px;
   }
 }
 
