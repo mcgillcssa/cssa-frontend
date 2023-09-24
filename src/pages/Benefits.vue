@@ -1,5 +1,5 @@
 <template>
-  <div class="gradient-stripe"></div>
+  <gradient-stripe></gradient-stripe>
   <div class="page-content">
     <div class="title-container">
       <div class="title-wrapper">
@@ -18,11 +18,12 @@
       </div>
     </div>
   </div>
-  <div class="gradient-stripe"></div>
+  <gradient-stripe></gradient-stripe>
 </template>
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 import axios from 'axios'
+import GradientStripe from '../components/GradientStripe.vue'
 import CategoryAccordion from '../components/benefits/CategoryAccordion.vue'
 
 const benefitsByType = ref({})
@@ -81,18 +82,6 @@ onMounted(async () => {
 <style>
 body {
   font-size: 24px;
-}
-.gradient-stripe {
-  width: 100%;
-  height: 24px;
-  background: linear-gradient(
-    90deg,
-    #ffc6b4 0.67%,
-    #ffa7d1 14.09%,
-    #ad87cb 39.63%,
-    #8986ed 68.36%,
-    #4f78c9 100%
-  );
 }
 .page-content {
   min-height: calc(100vh - 48px);
