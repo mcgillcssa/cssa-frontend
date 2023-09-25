@@ -1,9 +1,9 @@
 <template>
-  <nav-bar />
-  <div class="banner vertical-flex" :style="{ 'background-image': 'url(' + bannerUrl + ')' }">
+  <nav-bar/>
+  <div :style="{ 'background-image': 'url(' + bannerUrl + ')' }" class="banner vertical-flex">
     <div class="banner-title"><em>MEMBERSHIP</em></div>
     <div class="arrow-down">
-      <arrow-down theme="filled" size="124" fill="#FFFFFF" strokeLinecap="butt" />
+      <arrow-down fill="#FFFFFF" size="124" strokeLinecap="butt" theme="filled"/>
     </div>
   </div>
   <div class="content-container vertical-flex">
@@ -11,7 +11,7 @@
       <h3>什么是CSSA会员?</h3>
       <h2>What is CSSA Membership?</h2>
       <div class="presentation-description">
-        <img src="https://i.imgur.com/gAU1htm.jpg" alt="Small Card Design" />
+        <img alt="Small Card Design" src="https://i.imgur.com/gAU1htm.jpg"/>
         <div class="description-container">
           <p>
             &lt;Placeholder&gt;McGill University Chinese Students and Scholars Association (CSSA),
@@ -35,7 +35,9 @@
         <div class="text-wrapper">
           <h2 class="button-text">点击查看完整商家名单</h2>
         </div>
-        <div class="circle"><arrow-right theme="filled" :size="arrowSize" fill="#967eb8" /></div>
+        <div class="circle">
+          <arrow-right :size="arrowSize" fill="#967eb8" theme="filled"/>
+        </div>
       </router-link>
     </div>
     <div class="presentation vertical-flex">
@@ -43,23 +45,28 @@
       <h2>Past Membership Card Design</h2>
     </div>
     <div class="carousel">
-        <div class="slides">
+      <div class="slides">
+        <div v-for="(url, index) in carouselUrls" :key="index" :style="'background-image:url(' + url + ')'"
+             class="slide">
         </div>
-        <span class="arrow left material-symbols-outlined">
+      </div>
+      <span class="arrow left material-symbols-outlined">
         </span>
-        <span class="arrow right material-symbols-outlined">
+      <span class="arrow right material-symbols-outlined">
         </span>
-        <ul>
-        </ul>
+      <ul>
+        <li v-for="(url, index) in carouselUrls" :key="index">
+        </li>
+      </ul>
     </div>
   </div>
 
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted} from 'vue'
+import {onMounted, onUnmounted, ref} from 'vue'
 import NavBar from '../components/NavBar.vue'
-import { ArrowDown, ArrowRight } from '@icon-park/vue-next'
+import {ArrowDown, ArrowRight} from '@icon-park/vue-next'
 
 const bannerUrl = ref('https://i.imgur.com/9myUD3h.jpg')
 const contentSections = ref([])
@@ -67,7 +74,7 @@ const contentSections = ref([])
 let arrowSize = ref(64)
 
 // carousel images
-const carouselUrls = ['https://i.imgur.com/9myUD3h.jpg', 'https://i.imgur.com/gAU1htm.jpg'];
+const carouselUrls = ['https://i.imgur.com/9myUD3h.jpg', 'https://i.imgur.com/gAU1htm.jpg', 'https://i.imgur.com/ZgCeJBq.jpg'];
 
 onMounted(() => {
   updateWindowWidth()
@@ -82,43 +89,33 @@ onMounted(() => {
   const rightArrow = document.querySelector('.right');
   const ul = document.querySelector('.carousel ul');
 
+  slides.style.width = carouselUrls.length + '00%';
+
   var currentIndex = 0;
-
-  console.log(slides);
-  // add slides
-  for (let i in carouselUrls){
-    var slide = document.createElement("div");
-    slide.classList.add("slide");
-    slide.style.backgroundImage = 'url(' + carouselUrls[i] + ')';
-    slides.appendChild(slide);
-
-    var dot = document.createElement("li");
-    ul.appendChild(dot);
-  }
 
   // set first dot to active
   ul.children[0].classList.add('selected');
 
-  leftArrow.addEventListener('click', function(){
+  leftArrow.addEventListener('click', function () {
     if (currentIndex > 0) currentIndex -= 1;
     document.querySelector('.carousel .selected').classList.remove('selected');
     ul.children[currentIndex].classList.add('selected');
-    slides.style.transform = 'translate('+ (currentIndex) * (-25) +'%)';
+    slides.style.transform = 'translate(' + (currentIndex) * (-100 / (carouselUrls.length)) + '%)';
   })
 
-  rightArrow.addEventListener('click', function(){
+  rightArrow.addEventListener('click', function () {
     if (currentIndex < carouselUrls.length - 1) currentIndex += 1;
     document.querySelector('.carousel .selected').classList.remove('selected');
     ul.children[currentIndex].classList.add('selected');
-    slides.style.transform = 'translate('+ (currentIndex) * (-25) +'%)';
+    slides.style.transform = 'translate(' + (currentIndex) * (-100 / (carouselUrls.length)) + '%)';
   })
 
-  document.querySelectorAll('.carousel ul li').forEach(function(indicator, index){
-    indicator.addEventListener('click', function(){
+  document.querySelectorAll('.carousel ul li').forEach(function (indicator, index) {
+    indicator.addEventListener('click', function () {
       currentIndex = index;
       document.querySelector('.carousel .selected').classList.remove('selected');
       indicator.classList.add('selected');
-      slides.style.transform = 'translate('+ (currentIndex) * (-25) +'%)';
+      slides.style.transform = 'translate(' + (currentIndex) * (-100 / (carouselUrls.length)) + '%)';
     });
   });
 
@@ -312,12 +309,12 @@ const handleScroll = () => {
   border-radius: 30px;
   align-items: center;
   background-image: linear-gradient(
-    90deg,
-    #ffc6b4 0.67%,
-    #ffa7d1 14.09%,
-    #ad87cb 68.63%,
-    #a78cd0 80.36%,
-    #726cad 100%
+      90deg,
+      #ffc6b4 0.67%,
+      #ffa7d1 14.09%,
+      #ad87cb 68.63%,
+      #a78cd0 80.36%,
+      #726cad 100%
   );
   margin-bottom: 20px;
   text-decoration: none;
@@ -355,7 +352,7 @@ const handleScroll = () => {
   align-items: center; /* Vertically center */
 }
 
-.carousel{
+.carousel {
   background-color: #ffffff;
   height: 512px;
   margin: 30px 40px 30px 40px;
@@ -366,49 +363,48 @@ const handleScroll = () => {
   position: relative;
 }
 
-.carousel div{
+.carousel div {
   flex-grow: 1;
   text-align: center;
 }
 
-.slides{
+.slides {
   display: flex;
   height: 100%;
-  width: 400%;
   transition: all 0.3s;
 }
 
-.slide{
+.slide {
   flex-basis: 100%;
   display: block;
-  background-size: 1200px 400px;
+  background-size: 80vw 20vw;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.arrow{
+.arrow {
   position: absolute;
   top: 40%;
   display: block;
   margin: 30px auto;
-  width: 50px;
-  height: 50px;
-  border-top: 10px solid #33378C;
-  border-left: 10px solid #33378C;
+  width: 3vw;
+  height: 3vw;
+  border-top: 5px solid #33378C;
+  border-left: 5px solid #33378C;
   cursor: pointer;
 }
 
-.arrow.left{
-  left:3%;
+.arrow.left {
+  left: 2%;
   transform: rotate(-45deg);
 }
 
-.arrow.right{
-  right:3%;
+.arrow.right {
+  right: 2%;
   transform: rotate(135deg);
 }
 
-.carousel ul{
+.carousel ul {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -416,10 +412,10 @@ const handleScroll = () => {
   list-style: none;
   padding: 0;
   margin: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
 }
 
-.carousel ul li{
+.carousel ul li {
   height: 1vw;
   width: 1vw;
   background-color: #828181;
@@ -428,7 +424,7 @@ const handleScroll = () => {
   cursor: pointer;
 }
 
-.selected{
+.selected {
   background-color: #FFFFFF !important;
 }
 
@@ -454,6 +450,16 @@ const handleScroll = () => {
     width: 100px;
     height: 100px;
   }
+
+  .carousel {
+    height: 256px;
+    margin: 30px 0 30px 0;
+    width: 100%;
+  }
+
+  .arrow {
+    top: 30%;
+  }
 }
 
 @media screen and (min-width: 801px) and (max-width: 1000px) {
@@ -473,6 +479,16 @@ const handleScroll = () => {
   .circle {
     width: 80px;
     height: 80px;
+  }
+
+  .carousel {
+    height: 256px;
+    margin: 30px 0 30px 0;
+    width: 100%;
+  }
+
+  .arrow {
+    top: 30%;
   }
 }
 
@@ -535,24 +551,12 @@ const handleScroll = () => {
     width: 100%;
   }
 
-  .slide{
-    background-size: 380px 210px;
+  .slide {
+    background-size: 400px 200px;
   }
 
-  .arrow{
+  .arrow {
     top: 30%;
-    height: 20px;
-    width: 20px;
-    border-top: 5px solid #33378C;
-    border-left: 5px solid #33378C;
-  }
-
-  .arrow.left{
-    left: 2%;
-  }
-
-  .arrow.right{
-    right: 2%;
   }
 }
 
@@ -576,12 +580,17 @@ const handleScroll = () => {
     height: 40px;
   }
 
-  .slide{
-    background-size: 320px 180px;
+  .slide {
+    background-size: 340px 170px;
   }
 
   .carousel {
     height: 200px;
+  }
+
+  .arrow {
+    border-top: 3px solid #33378C;
+    border-left: 3px solid #33378C;
   }
 }
 
@@ -604,6 +613,7 @@ const handleScroll = () => {
     opacity: 1;
   }
 }
+
 .content-container > div {
   opacity: 0;
   transform: translateY(20px);
