@@ -1,9 +1,9 @@
 <template>
-  <nav-bar/>
+  <nav-bar />
   <div :style="{ 'background-image': 'url(' + bannerUrl + ')' }" class="banner vertical-flex">
     <div class="banner-title"><em>MEMBERSHIP</em></div>
     <div class="arrow-down">
-      <arrow-down fill="#FFFFFF" size="124" strokeLinecap="butt" theme="filled"/>
+      <arrow-down fill="#FFFFFF" size="124" strokeLinecap="butt" theme="filled" />
     </div>
   </div>
   <div class="content-container vertical-flex">
@@ -11,7 +11,7 @@
       <h3>什么是CSSA会员?</h3>
       <h2>What is CSSA Membership?</h2>
       <div class="presentation-description">
-        <img alt="Small Card Design" src="https://i.imgur.com/gAU1htm.jpg"/>
+        <img alt="Small Card Design" src="https://i.imgur.com/gAU1htm.jpg" />
         <div class="description-container">
           <p>
             CSSA会员卡是McGill CSSA携手蒙城各大商家, <br />为大家准备的福利折扣卡!<br />
@@ -36,7 +36,7 @@
           <h2 class="button-text">点击查看完整商家名单</h2>
         </div>
         <div class="circle">
-          <arrow-right :size="arrowSize" fill="#967eb8" theme="filled"/>
+          <arrow-right :size="arrowSize" fill="#967eb8" theme="filled" />
         </div>
       </router-link>
     </div>
@@ -44,36 +44,20 @@
       <h3>以往会员卡设计</h3>
       <h2>Past Membership Card Design</h2>
     </div>
-    <div class="carousel">
-      <div class="slides">
-        <div v-for="(url, index) in carouselUrls" :key="index" :style="'background-image:url(' + url + ')'"
-             class="slide">
-        </div>
-      </div>
-      <span class="arrow left material-symbols-outlined">
-        </span>
-      <span class="arrow right material-symbols-outlined">
-        </span>
-      <ul>
-        <li v-for="(url, index) in carouselUrls" :key="index">
-        </li>
-      </ul>
-    </div>
+    <card-carousel></card-carousel>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import NavBar from '../components/NavBar.vue'
-import {ArrowDown, ArrowRight} from '@icon-park/vue-next'
+import CardCarousel from '../components/membership/CardCarousel.vue'
+import { ArrowDown, ArrowRight } from '@icon-park/vue-next'
 
 const bannerUrl = ref('https://i.imgur.com/9myUD3h.jpg')
 const contentSections = ref([])
 
 let arrowSize = ref(64)
-
-// carousel images
-const carouselUrls = ['https://i.imgur.com/9myUD3h.jpg', 'https://i.imgur.com/gAU1htm.jpg', 'https://i.imgur.com/ZgCeJBq.jpg'];
 
 onMounted(() => {
   updateWindowWidth()
@@ -81,42 +65,6 @@ onMounted(() => {
 
   contentSections.value = document.querySelectorAll('.content-container > div')
   window.addEventListener('scroll', handleScroll)
-
-  //carousel
-  const slides = document.querySelector('.slides')
-  const leftArrow = document.querySelector('.left')
-  const rightArrow = document.querySelector('.right')
-  const ul = document.querySelector('.carousel ul')
-
-  slides.style.width = carouselUrls.length + '00%';
-
-  var currentIndex = 0;
-
-  // set first dot to active
-  ul.children[0].classList.add('selected')
-
-  leftArrow.addEventListener('click', function () {
-    if (currentIndex > 0) currentIndex -= 1;
-    document.querySelector('.carousel .selected').classList.remove('selected');
-    ul.children[currentIndex].classList.add('selected');
-    slides.style.transform = 'translate(' + (currentIndex) * (-100 / (carouselUrls.length)) + '%)';
-  })
-
-  rightArrow.addEventListener('click', function () {
-    if (currentIndex < carouselUrls.length - 1) currentIndex += 1;
-    document.querySelector('.carousel .selected').classList.remove('selected');
-    ul.children[currentIndex].classList.add('selected');
-    slides.style.transform = 'translate(' + (currentIndex) * (-100 / (carouselUrls.length)) + '%)';
-  })
-
-  document.querySelectorAll('.carousel ul li').forEach(function (indicator, index) {
-    indicator.addEventListener('click', function () {
-      currentIndex = index;
-      document.querySelector('.carousel .selected').classList.remove('selected');
-      indicator.classList.add('selected');
-      slides.style.transform = 'translate(' + (currentIndex) * (-100 / (carouselUrls.length)) + '%)';
-    });
-  });
 })
 
 onUnmounted(() => {
@@ -189,7 +137,7 @@ const handleScroll = () => {
   bottom: 50px;
   left: 50%;
   transform: translateX(-50%);
-  opacity: 0; /* starts as hidden */
+  opacity: 0;
   animation: fadeIn 1s forwards 2s, pulse 3s infinite 2.5s;
 }
 
@@ -307,12 +255,12 @@ const handleScroll = () => {
   border-radius: 30px;
   align-items: center;
   background-image: linear-gradient(
-      90deg,
-      #ffc6b4 0.67%,
-      #ffa7d1 14.09%,
-      #ad87cb 68.63%,
-      #a78cd0 80.36%,
-      #726cad 100%
+    90deg,
+    #ffc6b4 0.67%,
+    #ffa7d1 14.09%,
+    #ad87cb 68.63%,
+    #a78cd0 80.36%,
+    #726cad 100%
   );
   margin-bottom: 20px;
   text-decoration: none;
@@ -350,82 +298,6 @@ const handleScroll = () => {
   align-items: center; /* Vertically center */
 }
 
-.carousel {
-  background-color: #ffffff;
-  height: 512px;
-  margin: 30px 40px 30px 40px;
-  width: 90%;
-  border: 1px solid #cbbcdb;
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-}
-
-.carousel div {
-  flex-grow: 1;
-  text-align: center;
-}
-
-.slides {
-  display: flex;
-  height: 100%;
-  transition: all 0.3s;
-}
-
-.slide {
-  flex-basis: 100%;
-  display: block;
-  background-size: 80vw 20vw;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.arrow {
-  position: absolute;
-  top: 40%;
-  display: block;
-  margin: 30px auto;
-  width: 3vw;
-  height: 3vw;
-  border-top: 5px solid #33378C;
-  border-left: 5px solid #33378C;
-  cursor: pointer;
-}
-
-.arrow.left {
-  left: 2%;
-  transform: rotate(-45deg);
-}
-
-.arrow.right {
-  right: 2%;
-  transform: rotate(135deg);
-}
-
-.carousel ul {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background: rgba(0, 0, 0, 0.4);
-}
-
-.carousel ul li {
-  height: 1vw;
-  width: 1vw;
-  background-color: #828181;
-  border-radius: 50%;
-  margin: 1vh 3vw;
-  cursor: pointer;
-}
-
-.selected {
-  background-color: #FFFFFF !important;
-}
-
 @media screen and (min-width: 1201px) and (max-width: 1600px) {
   .presentation-description {
     padding: 60px;
@@ -448,16 +320,6 @@ const handleScroll = () => {
     width: 100px;
     height: 100px;
   }
-
-  .carousel {
-    height: 256px;
-    margin: 30px 0 30px 0;
-    width: 100%;
-  }
-
-  .arrow {
-    top: 30%;
-  }
 }
 
 @media screen and (min-width: 801px) and (max-width: 1000px) {
@@ -476,16 +338,6 @@ const handleScroll = () => {
   .circle {
     width: 80px;
     height: 80px;
-  }
-
-  .carousel {
-    height: 256px;
-    margin: 30px 0 30px 0;
-    width: 100%;
-  }
-
-  .arrow {
-    top: 30%;
   }
 }
 
@@ -545,28 +397,6 @@ const handleScroll = () => {
     width: 60px;
     height: 60px;
   }
-
-  .carousel {
-    height: 256px;
-    margin: 30px 0 30px 0;
-    width: 100%;
-  }
-
-  .slide {
-    background-size: 400px 200px;
-  }
-
-  .arrow {
-    top: 30%;
-  }
-
-  .arrow.left {
-    left: 2%;
-  }
-
-  .arrow.right {
-    right: 2%;
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -587,19 +417,6 @@ const handleScroll = () => {
   .circle {
     width: 40px;
     height: 40px;
-  }
-
-  .slide {
-    background-size: 340px 170px;
-  }
-
-  .carousel {
-    height: 200px;
-  }
-
-  .arrow {
-    border-top: 3px solid #33378C;
-    border-left: 3px solid #33378C;
   }
 }
 
