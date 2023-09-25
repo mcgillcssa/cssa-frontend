@@ -14,12 +14,12 @@
         <img alt="Small Card Design" src="https://i.imgur.com/gAU1htm.jpg"/>
         <div class="description-container">
           <p>
-            CSSA会员卡是McGill CSSA携手蒙城各大商家, 为大家准备的福利折扣卡!<br />
-            凡是在合作商家店铺消费，出示此卡都可以享受优惠！
+            CSSA会员卡是McGill CSSA携手蒙城各大商家, <br />为大家准备的福利折扣卡!<br />
+            凡是在合作商家店铺消费，<br />出示此卡都可以享受优惠！
           </p>
           <p>
-            无论百货购物, 还是美发快递看牙医, CSSA会员卡都囊括其中!<br />
-            小到买个奶茶, 大到超市采购, 它都可以帮你获得折扣！
+            无论百货购物, 还是美发快递看牙医, <br />CSSA会员卡都囊括其中!<br />
+            小到买个奶茶, 大到超市采购, <br />它都可以帮你获得折扣！
           </p>
           <p>这种神仙会员卡不值得期待一番吗?</p>
         </div>
