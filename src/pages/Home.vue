@@ -2,7 +2,7 @@
   <NavBar />
   <div class="banner-background">
     <img
-      class="banner-title"
+      class="home-title"
       src="https://media.discordapp.net/attachments/887824994602733598/1155642024175878215/image.png"
     />
   </div>
@@ -45,11 +45,18 @@ body {
   height: calc(100vh - 24px);
 }
 
-.banner-title {
-  max-width: 30%;
+.home-title {
+  max-width: 600px;
   position: absolute;
   top: 50%;
-  left: 3%;
+  left: 2%;
   transform: translateY(-50%);
+}
+
+@media screen and (min-width: 1921px) {
+  .home-title {
+    max-width: 800px;
+    left: 3%;
+  }
 }
 </style>

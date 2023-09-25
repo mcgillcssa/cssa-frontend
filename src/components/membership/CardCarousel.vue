@@ -88,7 +88,7 @@ onMounted(() => {
 .slide {
   flex-basis: 100%;
   display: block;
-  background-size: 80vw 20vw;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -100,8 +100,8 @@ onMounted(() => {
   margin: 30px auto;
   width: 3vw;
   height: 3vw;
-  border-top: 5px solid #33378c;
-  border-left: 5px solid #33378c;
+  border-top: 5px solid #967eb8;
+  border-left: 5px solid #967eb8;
   cursor: pointer;
 }
 
@@ -139,22 +139,10 @@ onMounted(() => {
   background-color: #ffffff !important;
 }
 
-@media screen and (min-width: 1001px) and (max-width: 1200px) {
+@media screen and (min-width: 801px) and (max-width: 1200px) {
   .carousel {
     height: 256px;
     margin: 30px 0 30px 0;
-    width: 100%;
-  }
-  .arrow {
-    top: 30%;
-  }
-}
-
-@media screen and (min-width: 801px) and (max-width: 1000px) {
-  .carousel {
-    height: 256px;
-    margin: 30px 0 30px 0;
-    width: 100%;
   }
   .arrow {
     top: 30%;
@@ -165,7 +153,6 @@ onMounted(() => {
   .carousel {
     height: 256px;
     margin: 30px 0 30px 0;
-    width: 100%;
   }
 
   .slide {

@@ -1,7 +1,7 @@
 <template>
   <nav-bar />
   <div :style="{ 'background-image': 'url(' + bannerUrl + ')' }" class="banner vertical-flex">
-    <div class="banner-title"><em>MEMBERSHIP</em></div>
+    <div class="membership-title"><em>MEMBERSHIP</em></div>
     <div class="arrow-down">
       <arrow-down fill="#FFFFFF" size="124" strokeLinecap="butt" theme="filled" />
     </div>
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="separator">
+    <div class="separator first-line-break">
       <div class="circle-start"></div>
       <div class="line"></div>
       <div class="circle-end"></div>
@@ -39,6 +39,11 @@
           <arrow-right :size="arrowSize" fill="#967eb8" theme="filled" />
         </div>
       </router-link>
+    </div>
+    <div class="separator last-line-break">
+      <div class="circle-start"></div>
+      <div class="line"></div>
+      <div class="circle-end"></div>
     </div>
     <div class="presentation vertical-flex">
       <h3>以往会员卡设计</h3>
@@ -120,7 +125,7 @@ const handleScroll = () => {
   background-size: cover;
 }
 
-.banner-title {
+.membership-title {
   margin: 0;
   opacity: 0;
   color: #ffffff;
@@ -166,12 +171,12 @@ const handleScroll = () => {
 
 .content-container {
   align-items: center;
-
+  padding-top: 40px;
   background-color: #eaebf6;
 }
 
 .presentation {
-  margin: 40px 0 0 0;
+  margin: 0;
 
   width: 100%;
   align-items: center;
@@ -225,27 +230,51 @@ const handleScroll = () => {
 }
 
 .separator {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 50px;
-  margin: 20px 0 20px 0;
+  margin: 40px 0;
 }
 
 .circle-start,
 .circle-end {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
-  background-color: #967eb8; /* Color of the circle. You can change it as per your design */
+  background-color: #967eb8;
 }
 
 .line {
   flex-grow: 0.9;
-  height: 2px;
-  background-color: #967eb8; /* Color of the line. You can change it as per your design */
-  margin: 0 20px; /* Spacing between circles and line. Adjust as needed. */
+  height: 4px;
+  margin: 0 20px;
+}
+
+.first-line-break .line {
+  background: linear-gradient(
+    to right,
+    #967eb8 0%,
+    #967eb8 19%,
+    transparent 19%,
+    transparent 21%,
+    #967eb8 21%,
+    #967eb8 100%
+  );
+}
+
+.last-line-break .line {
+  background: linear-gradient(
+    to right,
+    #967eb8 0%,
+    #967eb8 79%,
+    transparent 79%,
+    transparent 81%,
+    #967eb8 81%,
+    #967eb8 100%
+  );
 }
 
 .to-benefits {
@@ -262,7 +291,6 @@ const handleScroll = () => {
     #a78cd0 80.36%,
     #726cad 100%
   );
-  margin-bottom: 20px;
   text-decoration: none;
 }
 
@@ -320,6 +348,22 @@ const handleScroll = () => {
     width: 100px;
     height: 100px;
   }
+
+  .separator {
+    margin: 20px 0;
+  }
+
+  .line {
+    height: 2px;
+  }
+
+  .circle-start,
+  .circle-end {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #967eb8;
+  }
 }
 
 @media screen and (min-width: 801px) and (max-width: 1000px) {
@@ -338,6 +382,22 @@ const handleScroll = () => {
   .circle {
     width: 80px;
     height: 80px;
+  }
+
+  .separator {
+    margin: 20px 0;
+  }
+
+  .line {
+    height: 2px;
+  }
+
+  .circle-start,
+  .circle-end {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #967eb8;
   }
 }
 
@@ -377,6 +437,22 @@ const handleScroll = () => {
   .separator {
     height: 30px;
     margin: 10px 0;
+  }
+
+  .separator {
+    margin: 20px 0;
+  }
+
+  .line {
+    height: 2px;
+  }
+
+  .circle-start,
+  .circle-end {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #967eb8;
   }
 
   .to-benefits {
