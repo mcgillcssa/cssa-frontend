@@ -14,14 +14,14 @@
         <img alt="Small Card Design" src="https://i.imgur.com/gAU1htm.jpg"/>
         <div class="description-container">
           <p>
-            &lt;Placeholder&gt;McGill University Chinese Students and Scholars Association (CSSA),
-            is the only student community certified by the Chinese Consulate on campus, and it is
-            the only cultural club dedicated mainly to students and scholars from Mainland China.
+            CSSA会员卡是McGill CSSA携手蒙城各大商家, 为大家准备的福利折扣卡!<br />
+            凡是在合作商家店铺消费，出示此卡都可以享受优惠！
           </p>
           <p>
-            麦吉尔大学中国学生学者联合会（McGill
-            CSSA）是一个无政治、无宗教、非营利、而且唯一正式在麦吉尔校方注册的主要面向本科生的官方学生组织。
+            无论百货购物, 还是美发快递看牙医, CSSA会员卡都囊括其中!<br />
+            小到买个奶茶, 大到超市采购, 它都可以帮你获得折扣！
           </p>
+          <p>这种神仙会员卡不值得期待一番吗?</p>
         </div>
       </div>
     </div>
@@ -60,11 +60,10 @@
       </ul>
     </div>
   </div>
-
 </template>
 
 <script setup>
-import {onMounted, onUnmounted, ref} from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import NavBar from '../components/NavBar.vue'
 import {ArrowDown, ArrowRight} from '@icon-park/vue-next'
 
@@ -84,17 +83,17 @@ onMounted(() => {
   window.addEventListener('scroll', handleScroll)
 
   //carousel
-  const slides = document.querySelector('.slides');
-  const leftArrow = document.querySelector('.left');
-  const rightArrow = document.querySelector('.right');
-  const ul = document.querySelector('.carousel ul');
+  const slides = document.querySelector('.slides')
+  const leftArrow = document.querySelector('.left')
+  const rightArrow = document.querySelector('.right')
+  const ul = document.querySelector('.carousel ul')
 
   slides.style.width = carouselUrls.length + '00%';
 
   var currentIndex = 0;
 
   // set first dot to active
-  ul.children[0].classList.add('selected');
+  ul.children[0].classList.add('selected')
 
   leftArrow.addEventListener('click', function () {
     if (currentIndex > 0) currentIndex -= 1;
@@ -118,7 +117,6 @@ onMounted(() => {
       slides.style.transform = 'translate(' + (currentIndex) * (-100 / (carouselUrls.length)) + '%)';
     });
   });
-
 })
 
 onUnmounted(() => {
@@ -275,7 +273,7 @@ const handleScroll = () => {
   color: #33378c;
   text-align: center;
 
-  font-size: 1.5vw;
+  font-size: 1.4vw;
 }
 
 .separator {
@@ -466,7 +464,6 @@ const handleScroll = () => {
   .presentation-description {
     padding: 20px;
   }
-
   .text-wrapper {
     margin: 0 40px 0 40px;
     padding: 25px 0;
@@ -521,6 +518,10 @@ const handleScroll = () => {
     padding-right: 30px;
   }
 
+  .description-container {
+    font-size: 2.3vw;
+  }
+
   .separator {
     height: 30px;
     margin: 10px 0;
@@ -557,6 +558,14 @@ const handleScroll = () => {
 
   .arrow {
     top: 30%;
+  }
+
+  .arrow.left {
+    left: 2%;
+  }
+
+  .arrow.right {
+    right: 2%;
   }
 }
 
