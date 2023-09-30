@@ -6,21 +6,19 @@
       src="https://media.discordapp.net/attachments/887824994602733598/1155642024175878215/image.png"
     />
   </div>
-  <gradient-stripe></gradient-stripe>
+  <gradient-stripe />
+  <recent-events />
 </template>
 
 <script setup>
 import NavBar from '../components/NavBar.vue'
 import GradientStripe from '../components/GradientStripe.vue'
+import RecentEvents from '../components/home/RecentEvents.vue'
 </script>
 
 <style>
 body {
   margin: 0;
-}
-
-.page {
-  overflow: hidden;
 }
 
 .vertical-flex-container {

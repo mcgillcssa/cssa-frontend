@@ -198,7 +198,7 @@ const handleScroll = () => {
 
 .presentation-description {
   margin: 30px 40px 0 40px;
-  padding: 100px;
+  padding: 40px;
 
   display: flex;
   width: 85%;
@@ -324,12 +324,6 @@ const handleScroll = () => {
   display: flex;
   justify-content: center; /* Horizontally center */
   align-items: center; /* Vertically center */
-}
-
-@media screen and (min-width: 1201px) and (max-width: 1600px) {
-  .presentation-description {
-    padding: 60px;
-  }
 }
 
 @media screen and (min-width: 1001px) and (max-width: 1200px) {
