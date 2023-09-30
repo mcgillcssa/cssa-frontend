@@ -7,7 +7,10 @@
     />
   </div>
   <gradient-stripe />
-  <card-viewer />
+  <div class="card-presentation">
+    <card-viewer />
+    <h2>THIS IS A TITLE</h2>
+  </div>
 </template>
 
 <script setup>
@@ -19,6 +22,7 @@ import CardViewer from '../components/home/CardViewer.vue'
 <style>
 body {
   margin: 0;
+  background-color: #eaebf6;
 }
 
 .page {
@@ -55,15 +59,14 @@ body {
   transform: translateY(-50%);
 }
 
+.card-presentation {
+  display: flex;
+}
+
 @media screen and (min-width: 1921px) {
   .home-title {
     max-width: 800px;
     left: 3%;
   }
-}
-
-#three-container {
-  width: 100vw !important;
-  height: 400px !important;
 }
 </style>

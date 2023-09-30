@@ -3,17 +3,32 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, nextTick } from 'vue'
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
-onMounted(() => {
-  // Set up Three.js scene, camera, and renderer
+onMounted(async () => {
+  await nextTick()
+
+  const canvasElement = document.getElementById('canvas')
+  const rect = canvasElement.getBoundingClientRect()
+
   const scene = new THREE.Scene()
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+  const camera = new THREE.PerspectiveCamera(75, rect.width / rect.height, 0.1, 1000)
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
-  renderer.setSize(window.innerWidth / 2, window.innerHeight / 2)
-  document.getElementById('canvas').appendChild(renderer.domElement)
+  renderer.setSize(rect.width, rect.height)
+  canvasElement.appendChild(renderer.domElement)
+
+  const controls = new OrbitControls(camera, renderer.domElement)
+  controls.enableZoom = false
+  controls.enablePan = false
+  controls.enableRotate = true
+  controls.rotateSpeed = 0.5
+  controls.minAzimuthAngle = -Infinity
+  controls.maxAzimuthAngle = Infinity
+  controls.minPolarAngle = Math.PI / 2 // Set vertical rotation limits to horizontal rotation
+  controls.maxPolarAngle = Math.PI / 2
 
   const loader = new GLTFLoader()
   loader.load('../../assets/3d/CSSA_card.glb', gltf => {
@@ -22,8 +37,8 @@ onMounted(() => {
     scene.add(model)
 
     // Rotate the model diagonally
-    model.rotation.x = Math.PI / 4 // 45 degrees
-    model.rotation.y = Math.PI / 4 // 45 degrees
+    model.rotation.x = Math.PI / 3 // 45 degrees
+    model.rotation.y = Math.PI / 6 // 45 degrees
   })
 
   // Position the camera
@@ -41,15 +56,7 @@ onMounted(() => {
   // Animation function
   function animate() {
     requestAnimationFrame(animate)
-
-    // Rotate the model around its center
-    scene.traverse(object => {
-      if (object.isMesh) {
-        object.rotation.x += 0.01 // Rotate diagonally around X-axis
-        object.rotation.y += 0.01 // Rotate diagonally around Y-axis
-      }
-    })
-
+    controls.update()
     renderer.render(scene, camera)
   }
 
@@ -59,7 +66,7 @@ onMounted(() => {
 
 <style scoped>
 div {
-  height: 100px;
-  width: 100px;
+  height: 500px;
+  width: 500px;
 }
 </style>
