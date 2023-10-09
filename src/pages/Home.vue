@@ -4,7 +4,7 @@
     <img
       class="home-title"
       src="https://media.discordapp.net/attachments/887824994602733598/1155642024175878215/image.png"
-    />
+      />
   </div>
   <gradient-stripe></gradient-stripe>
 </template>
@@ -56,6 +56,13 @@ body {
 @media screen and (min-width: 1921px) {
   .home-title {
     max-width: 800px;
+    left: 3%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .home-title {
+    max-width: 80vw;
     left: 3%;
   }
 }
