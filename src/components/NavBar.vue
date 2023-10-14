@@ -167,6 +167,7 @@ const toggleDropdown = () => {
   margin-right: 50px;
   color: #fff;
   font-family: 'CircularStd';
+  z-index: 9;
 }
 .navbar-menu li {
   opacity: 0;
