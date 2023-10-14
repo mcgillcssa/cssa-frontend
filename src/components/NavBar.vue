@@ -21,6 +21,7 @@
         <b>CSSA</b>
       </span>
     </router-link>
+    <div :class="{ mask: isDropdownOpen }"></div>
     <ul class="navbar-menu" v-if="!isSmallScreen">
       <li>Events</li>
       <li>
@@ -52,11 +53,22 @@
     </div>
   </div>
   <ul class="dropdown" :class="{ open: isDropdownOpen }">
-    <li v-if="isDropdownOpen">Events</li>
-    <li v-if="isDropdownOpen">
-      <router-link class="link-element" to="/membership">Membership</router-link>
+    <li v-if="isDropdownOpen">EVENTS
+      <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#4F3875"/>
+      </svg>
     </li>
-    <li v-if="isDropdownOpen">Sponsorship</li>
+    <li v-if="isDropdownOpen">
+      <router-link class="link-element" to="/membership">MEMBERSHIP</router-link>
+      <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#4F3875"/>
+      </svg>
+    </li>
+    <li v-if="isDropdownOpen">SPONSORS
+      <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#4F3875"/>
+      </svg>
+    </li>
   </ul>
 </template>
 
@@ -109,7 +121,6 @@ const toggleDropdown = () => {
   box-sizing: border-box;
   height: 100px;
   width: 100%;
-  z-index: 11;
 
   display: flex;
   align-items: center;
@@ -119,7 +130,7 @@ const toggleDropdown = () => {
 .home-link {
   margin-left: 15px;
   height: 100%;
-  z-index: 11;
+  z-index: 9;
 
   display: flex;
 
@@ -188,7 +199,7 @@ const toggleDropdown = () => {
   gap: 5px;
 
   cursor: pointer;
-  z-index: 11;
+  z-index: 12;
 
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   animation: slideInFromTopFadeIn 0.6s forwards;
@@ -233,22 +244,36 @@ const toggleDropdown = () => {
   margin: 0 0 -5px 0;
 }
 
+.mask{
+  margin: 0;
+  position: fixed;
+  width: 100vw;
+  height: 200vh;
+  background-color: rgba(79,56,117,0.3);
+  z-index: 10;
+}
+
 .dropdown {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: 10;
+  z-index: 11;
 
   margin: 0;
   padding: 0 0 0 20px;
+  left: 30%;
 
   list-style: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 8vh;
 
-  background-color: #fff;
+  background-color: #F5ECFF;
+
+  border-left-width: 10px;
+  border-left-style: solid;
+  border-image: linear-gradient(to bottom, #FFC6B4, #FFA7D1, #AD87CB, #8986ED, #4F78C9) 1;
 
   transform: translateX(100%); /* Start the dropdown off-screen */
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
@@ -259,11 +284,15 @@ const toggleDropdown = () => {
 }
 
 .dropdown li {
-  font-family: 'CircularStd';
-  font-size: 64px;
+  font-size: 8vw;
   font-weight: 700;
-  color: #33378c;
-  letter-spacing: -3px;
+  font-style: italic;
+  text-indent: 5%;
+  color: #4F3875;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-right: 45%;
 
   opacity: 0;
   transform: translateY(30px);
