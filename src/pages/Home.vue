@@ -6,12 +6,14 @@
       src="https://media.discordapp.net/attachments/887824994602733598/1155642024175878215/image.png"
       />
   </div>
-  <gradient-stripe></gradient-stripe>
+  <gradient-stripe/>
+  <Footer />
 </template>
 
 <script setup>
 import NavBar from '../components/NavBar.vue'
 import GradientStripe from '../components/GradientStripe.vue'
+import Footer from '../components/Footer.vue'
 </script>
 
 <style>
