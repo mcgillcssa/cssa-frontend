@@ -81,24 +81,14 @@ export default {
   max-height: inherit;
   margin-bottom: 0px;
   margin-top: 0px;
-  margin-right: 70px;
-  margin-left: 70px;
+  margin-right: 2vw;
+  margin-left: 6.5vw;
   position: relative;
-  /*grid-template-rows: 1fr 1fr 1fr 1fr; */
 }
 
 .left-box {
-  bottom: 10px;
-  left: 10px;
   display: grid;
   grid-area: icon;
-  grid-template-areas:
-  'i1 i2 i3'
-  'i4 i5 i6';
-  /* grid-template-columns: repeat(3, 33%); */
-  /* grid-column-gap: 20px; */
-  /* justify-content: space-evenly; */
-  /* width:cal((100% - 1px) /3); */
 }
 
 .separator {
@@ -109,7 +99,7 @@ export default {
 .right-box {
   display: grid;
   grid-area: tag;
-  font-size: 30px;
+  font-size: clamp(15px, 10px + 1.25vw, 35px);
   grid-template-areas: 't1 t2 t3';
   justify-content: space-evenly;
 }
@@ -121,27 +111,23 @@ export default {
   margin-block-start: 0px;
   margin-block-end: 2em;
   color: #ffffff;
-  /* padding: 0px; */
 }
 
 .social-icons {
-  display: flex;
-  flex-flow: wrap;
+  display: grid;
   color: #7f6293;
-  font-size: 18px;
-  /* gap: 0px 70px; */
-  /* padding: 40px 100px 25px; */
-  /* left: 5%; */
-  /* position: relative; */
+  font-size: 1vw;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: space-evenly;
 }
 
 .icon-background  {
   display: inline-block;
   border-radius: 50%;
-  width: 75px;
-  height: 75px;
+  width: 4vw;
+  height: 4vw;
   text-align: center;
-  line-height: 100px;
+  line-height: 5.5vw;
   background: #ffffff;
   margin: 5px;
 }
@@ -152,12 +138,12 @@ export default {
   grid-area: cp;
   place-content: flex-start flex-end;
   justify-self: end;
+  font-size: 1.25vw;
 }
 
 .follow-us {
-  /* text-edge: cap; */
   display: flex;
-  font-size: 55px;
+  font-size: clamp(25px, 15px + 2vw, 65px);
   line-height: 20px;
   grid-area: follow;
   justify-content: space-between;
@@ -173,7 +159,28 @@ export default {
 a:visited {
   color: #7f6293;
 }
+
 a:link {
   text-decoration: none;
+}
+
+@media screen and (min-width: 1921px){
+  .follow-us {
+    font-size: 3.5vw;
+  }
+
+  .separator {
+    height: 220px;
+  }
+}
+
+@media screen and (max-width: 700px){
+  .follow-us {
+    font-size: 3.5vw;
+  }
+
+  .right-box {
+    font-size: 2vw;
+  }
 }
 </style>
