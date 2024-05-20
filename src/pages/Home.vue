@@ -3,20 +3,26 @@
   <div class="banner-background">
     <img
       class="home-title"
-      src="https://media.discordapp.net/attachments/887824994602733598/1155642024175878215/image.png"
-      />
+      src="https://i.imgur.com/e75ru0y.png"
+    />
   </div>
-  <gradient-stripe></gradient-stripe>
+  <gradient-stripe />
+  <div class="card-presentation">
+    <card-viewer />
+    <h2>THIS IS A TITLE</h2>
+  </div>
 </template>
 
 <script setup>
 import NavBar from '../components/NavBar.vue'
 import GradientStripe from '../components/GradientStripe.vue'
+import CardViewer from '../components/home/CardViewer.vue'
 </script>
 
 <style>
 body {
   margin: 0;
+  background-color: #eaebf6;
 }
 
 .page {
@@ -53,16 +59,13 @@ body {
   transform: translateY(-50%);
 }
 
+.card-presentation {
+  display: flex;
+}
+
 @media screen and (min-width: 1921px) {
   .home-title {
     max-width: 800px;
-    left: 3%;
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .home-title {
-    max-width: 80vw;
     left: 3%;
   }
 }
