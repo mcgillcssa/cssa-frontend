@@ -69,4 +69,11 @@ body {
     left: 3%;
   }
 }
+
+@media screen and (max-width: 700px) {
+  .home-title {
+    max-width: 80vw;
+    left: 3%;
+  }
+}
 </style>
