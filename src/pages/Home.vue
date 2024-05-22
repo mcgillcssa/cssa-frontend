@@ -8,15 +8,15 @@
   </div>
   <gradient-stripe />
   <div class="card-presentation">
-    <!-- <card-viewer /> -->
-    <!-- <h2>THIS IS A TITLE</h2> -->
+    <card-viewer />
+    <h2>THIS IS A TITLE</h2>
   </div>
 </template>
 
 <script setup>
 import NavBar from '../components/NavBar.vue'
 import GradientStripe from '../components/GradientStripe.vue'
-// import CardViewer from '../components/home/CardViewer.vue'
+import CardViewer from '../components/home/CardViewer.vue'
 </script>
 
 <style>
