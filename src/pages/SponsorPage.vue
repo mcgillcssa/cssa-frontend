@@ -123,148 +123,17 @@
 
 </template>
 
-
-
-<script setup>
-import { onMounted } from 'vue'
-import axios from 'axios'
-onMounted(async () => {
-  try {
-    const response = await axios.get(
-      `${process.env.VUE_APP_BACKEND_URL}/api/sponsors/`
-    )
-    console.log(response.data)
-  } catch (err) {
-    console.error(err)
-    alert('Failed to fetch.')
-  }
-})
-
-</script>
-
 <script>
+import axios from 'axios'
 import NavBar from '../components/NavBar.vue'
+
 export default {
   components: {
     NavBar,
   },
   data() {
     return {
-      de_sponsors: [
-        {
-          id: 1,
-          name: '茶语缘',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'
-        },
-        {
-          id: 2,
-          name: '留学达人',
-          description:
-            '“留学达人”留学服务，我们是一家专业的留学服务机构，致力于为全球' +
-            '学生提供高质量、综合性的留学服务。我们提供全方位的留学服务，包括留学咨询、院' +
-            '校申请、签证申请、语言培训、文化适应培训等。我们的团队由留学专家、教育顾问、' +
-            '签证顾问等多个领域的专业人士组成，拥有丰富的留学经验和专业知识。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'
-        },
-        {
-          id: 3,
-          name: '银峰银行',
-          description:
-            '“银峰银行”，我们是一家致力于为客户提供全方位金融服务' +
-            '的银行品牌。作为一家专业、高效、创新的银行，我们以客户为中心，注重客户' +
-            '体验和服务品质。“银峰银行”提供各种金融服务，包括个人储蓄、信用贷款、财富管' +
-            '理、投资理财等。我们的产品针对不同客户需求，提供灵活的选择，以满足客户的不同' +
-            '需求。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'
-        },
-        {
-          id: 4,
-          name: '饕餮食府',
-          description:
-            '“饕餮食府”餐厅品牌，我们是一家专业的餐厅品牌，致力于为客户提供高品' +
-            '质、创意美食和愉悦的用餐体验。我们的菜品涵盖中西合璧的美食文化，融合了传统和现代' +
-            '的烹饪技艺，为客户带来无尽的口感享受。我们的菜品种类丰富，包括烤鸭、红烧肉、海鲜、' +
-            '意大利面、披萨等多种菜系，满足客户不同口味的需求。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'
-        }
-        // Add more sponsors as needed
-      ],
-      d_sponsors: [
-        {id: 1,
-          name: 'D1',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},
-        {id: 2,
-          name: 'D2',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},
-          {id: 3,
-          name: 'D3',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},  
-          {id: 4,
-          name: 'D4',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'}
-        ],
-      g_sponsors: [
-        {id: 1,
-          name: 'G1',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},
-        {id: 2,
-          name: 'G2',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},
-          {id: 3,
-          name: 'G3',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},  
-          {id: 4,
-          name: 'G4',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'}
-        ],
+      de_sponsors: [], // Initially empty, will be filled with fetched data
       itemsPerPage: 2,
       currentPage_de: 0,
       currentPage_d: 0,
@@ -275,31 +144,39 @@ export default {
     }
   },
   mounted() {
-    this.calculatePages()
+    this.fetchSponsors(); // Fetch sponsors when component mounts
+    this.calculatePages(); // This might need to be moved or called again after data is fetched
   },
   methods: {
-    calculatePages() {
-      this.dc_pages = []
-      this.d_pages = []
-      this.g_pages = []
-      for (let i = 0; i < this.de_sponsors.length; i += this.itemsPerPage) {
-        this.de_pages.push(this.de_sponsors.slice(i, i + this.itemsPerPage))
-      }
-      for (let i = 0; i < this.d_sponsors.length; i += this.itemsPerPage) {
-        this.d_pages.push(this.d_sponsors.slice(i, i + this.itemsPerPage))
-      }
-      for (let i = 0; i < this.g_sponsors.length; i += this.itemsPerPage) {
-        this.g_pages.push(this.g_sponsors.slice(i, i + this.itemsPerPage))
+    async fetchSponsors() {
+      try {
+        const response = await axios.get(`https://cssa-backend-72d78fe25eb2.herokuapp.com/api/sponsors/`);
+        this.de_sponsors = response.data; // Populate de_sponsors with fetched data
+        console.log(response)
+        this.calculatePages(); // Recalculate pages after data is fetched
+      } catch (err) {
+        console.error('Failed to fetch sponsors:', err);
+        alert('Failed to fetch sponsors.');
       }
     },
+    calculatePages() {
+      // Clear previous pages
+      this.de_pages = [];
+      this.d_pages = [];
+      this.g_pages = [];
+      // Populate pages based on the current data
+      for (let i = 0; i < this.de_sponsors.length; i += this.itemsPerPage) {
+        this.de_pages.push(this.de_sponsors.slice(i, i + this.itemsPerPage));
+      }
+      // Similarly, populate d_pages and g_pages if needed
+    },
     changePageDE(index) {
-      this.currentPage_de = index
+      this.currentPage_de = index;
     },
     previousPageDE() {
       if (this.currentPage_de > 0) {
-        this.currentPage_de--
+        this.currentPage_de--;
       }
-      console.log("previous called")
     },
     nextPageDE() {
       if (this.currentPage_de < this.de_pages.length - 1) {
@@ -333,37 +210,7 @@ export default {
         this.currentPage_g++
       }
     },
-    handleWheel() {//event
-      // const sponsorListDE = this.$refs.sponsorListDE[0];
-      // const sponsorListD = this.$refs.sponsorListD[0];
-      // const sponsorListG = this.$refs.sponsorListG[0];
-      // const deltaX = event.deltaX;
-      //const deltaY = event.deltaY;
-      // console.log(deltaX);
-      // if (sponsorListDE) {
-      //   if (deltaX > 0) {
-      //         this.nextPageDE()
-      //       } else{
-      //         this.previousPageDE()
-      //       }
-      // event.preventDefault();  
-      // }
-      // if (sponsorListD) {
-      //   if (deltaX > 0) {
-      //         this.nextPageD()
-      //       } else{
-      //         this.previousPageD()
-      //       }
-      // event.preventDefault();
-      // }
-      // if (sponsorListG) {
-      //   if (deltaX > 0) {
-      //         this.nextPageG()
-      //       } else{
-      //         this.previousPageG()
-      //       }
-      // event.preventDefault();
-      // }
+    handleWheel() {
     }
   }
 }
