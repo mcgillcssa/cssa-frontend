@@ -150,7 +150,7 @@ export default {
   methods: {
     async fetchSponsors() {
       try {
-        const response = await axios.get(`https://cssa-backend-72d78fe25eb2.herokuapp.com/api/sponsors/`);
+        const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/sponsors/`);
         this.de_sponsors = response.data; // Populate de_sponsors with fetched data
         console.log(response)
         this.calculatePages(); // Recalculate pages after data is fetched
