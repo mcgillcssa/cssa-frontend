@@ -123,9 +123,27 @@
 
 </template>
 
+
+
+<script setup>
+import { onMounted } from 'vue'
+import axios from 'axios'
+onMounted(async () => {
+  try {
+    const response = await axios.get(
+      `${process.env.VUE_APP_BACKEND_URL}/api/sponsors/`
+    )
+    console.log(response.data)
+  } catch (err) {
+    console.error(err)
+    alert('Failed to fetch.')
+  }
+})
+
+</script>
+
 <script>
 import NavBar from '../components/NavBar.vue'
-
 export default {
   components: {
     NavBar,
