@@ -11,12 +11,14 @@
     <!-- <card-viewer /> -->
     <!-- <h2>THIS IS A TITLE</h2> -->
   </div>
+  <AboutUs />
 </template>
 
 <script setup>
 import NavBar from '../components/NavBar.vue'
 import GradientStripe from '../components/GradientStripe.vue'
 // import CardViewer from '../components/home/CardViewer.vue'
+import AboutUs from '../components/home/AboutUs.vue'
 </script>
 
 <style>
