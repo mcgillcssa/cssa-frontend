@@ -29,24 +29,26 @@ export default {
 <style scoped>
 .about-us-container {
     position: relative;
-    padding: 2vw;
     display: flex;
     justify-content: center;
     background-color: #EAEBF6;
     min-height: 30vh;
+    width: 100%;
+    margin: 5vh auto;
 }
 
 .about-us-section {
     display: flex;
     /* flex-direction: column; */
     background-color: white;
-    border-radius: 30px;
+    justify-content: center;
+    border-radius: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 1200px;
-    margin:auto;
+    width: 90vw;
     padding-top: 0%;
     padding-bottom: 0%;
+    padding-right: 0;
+    padding-left: 0;
     border: 1px solid #CBBCDB;
 }
 
@@ -81,7 +83,7 @@ export default {
 .group-photo {
     width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     opacity: 0.8;
     position: relative;

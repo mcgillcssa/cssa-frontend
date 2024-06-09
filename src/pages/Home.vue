@@ -7,11 +7,15 @@
     />
   </div>
   <gradient-stripe />
+  <AboutUs />
+  <div class="section-break">
+    <div class="mask"></div>
+  </div>
+  <Presentation />
   <div class="card-presentation">
     <!-- <card-viewer /> -->
     <!-- <h2>THIS IS A TITLE</h2> -->
   </div>
-  <AboutUs />
 </template>
 
 <script setup>
@@ -19,6 +23,7 @@ import NavBar from '../components/NavBar.vue'
 import GradientStripe from '../components/GradientStripe.vue'
 // import CardViewer from '../components/home/CardViewer.vue'
 import AboutUs from '../components/home/AboutUs.vue'
+import Presentation from '../components/home/Presentation.vue'
 </script>
 
 <style>
@@ -59,6 +64,28 @@ body {
   top: 50%;
   left: 2%;
   transform: translateY(-50%);
+}
+
+.section-break {
+  position: relative;
+  height: 1.2vw;
+  background: linear-gradient(to right, #4f78c9, #8986ed, #ad87cb, #ffa7d1, #ffc6b4);
+  width: 80%;
+  margin: 10px auto;
+  border-radius: 20px;
+  overflow: hidden;
+
+}
+
+.mask {
+  position: absolute;
+  width: calc(100% - 0.6vw);
+  height: calc(100% - 0.6vw);
+  background-color: #ffffff;
+  border-radius: 15px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .card-presentation {
