@@ -37,7 +37,7 @@ export default {
     background-color: #EAEBF6;
     min-height: 30vh;
     width: 100%;
-    margin: 5vh auto;
+    margin: 0 0 2vw 0;
 }
 
 .presentation {
@@ -45,7 +45,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   background-image: linear-gradient(to right, #EAEBF6 25%, #d0c4ed 60%, #E2D8EC 100%);
-  margin: 4vh auto;
+  /* margin: 4vh auto; */
   border-radius: 40px;
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
   width: 90vw;

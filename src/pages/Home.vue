@@ -16,6 +16,7 @@
     <!-- <card-viewer /> -->
     <!-- <h2>THIS IS A TITLE</h2> -->
   </div>
+  <gradient-stripe />
 </template>
 
 <script setup>
@@ -71,7 +72,7 @@ body {
   height: 1.2vw;
   background: linear-gradient(to right, #4f78c9, #8986ed, #ad87cb, #ffa7d1, #ffc6b4);
   width: 80%;
-  margin: 10px auto;
+  margin: 5vw auto;
   border-radius: 20px;
   overflow: hidden;
 

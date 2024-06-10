@@ -34,7 +34,7 @@ export default {
     background-color: #EAEBF6;
     min-height: 30vh;
     width: 100%;
-    margin: 5vh auto;
+    margin: 2vw 0 0 0;
 }
 
 .about-us-section {
@@ -54,7 +54,7 @@ export default {
 
 .left-column, .right-column {
     flex: 1;
-    padding: 1vw;
+    padding: 1.5vw;
 }
 
 .left-column {
@@ -137,45 +137,97 @@ export default {
 .text-content p {
     text-align: justify;
     font: Raleway;
-    font-size: 1.8vw;
+    font-size: 1.6vw;
     font-weight: 500;
     color: #33378C;
     justify-content: center;
 }
 
-@media (max-width: 1024px) {
-  .about-us-section {
-    flex-direction: column;
-  }
+@media (min-width: 1024px) {
 
   .left-column, .right-column {
-    padding: 3vw;
+    padding: 1.2vw;
   }
 
   .overlay-text {
-    font-size: 0.2vw;
+    font-size: 3vw; /* Adjusted to a readable size */
+    color: #EAEBF6; /* Ensuring the color makes the text visible */
+    z-index: 3; /* Ensuring it is above other elements */
   }
 
   .ellipse {
-    width: 2vw;
-    height: 2vw;
+    width: 20vw;  /* Adjusted to a larger size */
+    height: 20vw; /* Adjusted to a larger size */
+    opacity: 0.5; /* Making sure it's visible */
   }
 
   .text-content p {
-    text-align: left;
+    text-align: justify;
     font-size: 2vw;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
+  .about-us-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+.about-us-section {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding: 10px;
+  }
+
+.group-photo-container {
+
+    width: 90%;
+    height: 90%;
+}
+
+.left-column {
+    width: 100%;
+    padding: 2vw 2vw 2vw 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+.right-column {
+    width: 100%;
+    padding: 0vw 4vw 0vw 4vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.group-photo {
+    width: 90%;
+    height: 90%;
+    border-radius: 30px;
+}
+
   .ellipse {
-      width: 50vw;
-      height: 50vw;
+      width: 40vw;
+      height: 40vw;
   }
 
   .overlay-text {
-    font-size: 8vw;
+    font-size: 4vw;
   }
+
+  .text-content p {
+    text-align: center;
+    justify-content: center;
+    padding: 1vw;
+    font-size: 3.5vw;
+}
 }
 
 </style>
