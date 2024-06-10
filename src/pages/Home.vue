@@ -7,11 +7,14 @@
     />
   </div>
   <gradient-stripe></gradient-stripe>
+  <RecentEvents></RecentEvents>
+
 </template>
 
 <script setup>
 import NavBar from '../components/NavBar.vue'
 import GradientStripe from '../components/GradientStripe.vue'
+import RecentEvents from '../components/home/RecentEvents.vue'
 </script>
 
 <style>

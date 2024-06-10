@@ -1,54 +1,94 @@
 <template>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <div class="recent-events">
     <div class="recent-events-title">
       <div class="zhs-title">近期活动</div>
       <div class="en-title">RECENT EVENTS</div>
-    </div>
-    <div id="carousel">
-      <div v-for="(item, index) in items" :key="index" class="carousel-item">
-        <div class="carousel-item-content">
-          <div class="event-heading">
-            <div style="event-heading-info">
-              <span class="event-date">{{ formatDate(item.eventStartDate) }}</span>
-              <h3 class="event-name">{{ item.eventName }}</h3>
-            </div>
-          </div>
-          <p class="event-description">{{ item.eventDescription }}</p>
+    </div> 
+    <div class="wrapper">
+      <!--<fa class="i" :icon="['fas', 'arrow-left']" style="color: #ffa7d1;"/>-->
+      <i id="left" class="fa-solid fa-arrow-left"></i>
+      <div class="carousel" id="carousel-id">
+        <div v-for="(item, index) in items" :key="index" class="carousel-item">
+          <img class="event-image" :src="item.eventImageUrl" alt="Slide image" draggable="false"/>
         </div>
-        <img class="event-image" :src="item.eventImageUrl" alt="Slide image" />
       </div>
+      <!--<fa class="i" :icon="['fas', 'arrow-right']" style="color: #ffa7d1;"/>-->
+      <i id="right" class="fa-solid fa-arrow-right"></i>
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 import axios from 'axios'
-export default {
-  data() {
-    return {
-      items: []
-    }
-  },
+import {ref, onMounted} from 'vue'
 
-  methods: {
-    formatDate(dateString) {
-      const date = new Date(dateString)
-      const month = (date.getMonth() + 1).toString().padStart(2, '0')
-      const day = date.getDate().toString().padStart(2, '0')
-      return `${month}${day}`
-    }
-  },
+const items = ref({})
 
-  async created() {
-    try {
-      const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/events/upcoming/4`)
-      this.items = response.data.events
-      console.log(response.data.events)
-    } catch (err) {
-      console.error(err)
-    }
+const moveCarousel = () => {
+  const carousel = document.querySelector(".carousel");
+  const arrowButtons = document.querySelectorAll(".wrapper i");
+  const firstItemWidth = document.querySelector(".carousel-item").offsetWidth;
+
+  let isDragging = false;
+
+  arrowButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      carousel.scrollLeft += button.id === "left" ? -firstItemWidth : firstItemWidth;
+    });
+  });
+
+  const dragStart = () => {
+    isDragging = true;
+    carousel.classList.add("dragging");
   }
+  const dragging = (e) => {
+    if(!isDragging) return;
+    carousel.scrollLeft = e.pageX
+  }
+
+  // const dragStop = () => {
+  //   isDragging = false;
+  //  // carousel.classList.remove("dragging");
+  // }
+
+  carousel.addEventListener("mousemove", dragStart); 
+  carousel.addEventListener("mousemove", dragging); 
+  //document.addEventListener("mouseup", dragStop);
+
 }
+  
+/*
+const formatDate = (dateString) => {
+  const date = new Date(dateString)
+  const month = (date.getMonth() + 1).toString().padStart(2, '0')
+  const day = date.getDate().toString().padStart(2, '0')
+  return `${month}${day}`
+} */
+
+onMounted (async () => {
+  try {
+    const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/events/upcoming/4`)
+    items.value = response.data.events
+    moveCarousel()
+    console.log(response.data.events)
+    var root = document.querySelector(':root')
+    if (this.items.lenth < 5){
+      for (let i = 1; i < 5; i++){
+        if (i == this.items.length){
+          root.style.setProperty('--itemslen', i)
+        }
+      }
+    }
+    else {
+      root.style.setProperty('--itemslen', this.items.length)
+      root.style.setProperty('--extraspace', 9)
+    }
+
+  } catch (err) {
+    console.error(err)
+  }
+})
 </script>
 
 <style scoped>
@@ -56,14 +96,22 @@ body {
   margin: 0;
 }
 
+:root {
+  --itemslen: 1;
+  --extraspace: 0;
+  --extraspacepx: calc( var(--extraspace) * 1px);
+}
+
 .recent-events {
-  position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  width: auto;
   height: auto;
-  background: #fff;
-  padding: 20px;
+  min-height: 100vh;
+  padding: 0 35px;
+  background: #EAEBF6;
 }
 
 .recent-events-title {
@@ -79,11 +127,12 @@ body {
 .recent-events-title .zhs-title {
   font-family: 'Raleway';
   font-style: normal;
-  font-weight: 400;
-  font-size: 10em;
+  font-weight: 700;
+  font-size: 8em;
   letter-spacing: 0.175em;
   line-height: 0.8em;
-  color: #ff6c6c;
+  color: #33378C;
+;
 }
 
 .recent-events-title .en-title {
@@ -93,34 +142,98 @@ body {
   font-size: 1.75em;
   line-height: 0.8em;
   font-size: 8vw;
+  color: #988FCE;
 }
 
-#carousel {
+.carousel {
   position: relative;
   width: 100%;
-  height: auto;
+  height: 400px;
+  background: #fff;
+  border-radius: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: #988FCE;
+  border-style: solid;
+}
+
+.wrapper {
+  max-width: 1100px;
+  width: 100%;
+  position: relative;
+}
+ 
+.wrapper i {
+  height: 50px;
+  width: 50px;
+  background: #fff;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 50%;
+  border-width: 10px;
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.23);
+}
+
+i {
+  z-index: 9999;
+  
+}
+
+.wrapper i:first-child {
+  left: -22px;
+
+}
+
+.wrapper i:last-child {
+  right: -22px;
+}
+
+.carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 3));
+  overflow: hidden;
 }
 
 .carousel-item {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
-  padding: 1rem;
+  padding: 0.4rem;
   margin: 0 auto;
+  transition: transform 0.3s;
 }
 
+.carousel.dragging.carousel-item {
+  cursor: grab;
+  user-select: none;
+}
+
+
+.carousel-item:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+} 
+/*
 .carousel-item:nth-child(even) {
   flex-direction: row-reverse;
 }
+*/ 
 
 .carousel-item-content {
   width: 60%;
 }
 
 .event-image {
-  width: 40%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 350px;
+  max-height: 100%;
 }
+
 @media (max-width: 1200px) {
   :deep(.event-name) {
     font-size: 40px; /* change to fixed size */
@@ -154,8 +267,12 @@ body {
     width: 100%;
   }
 
-  :deep(.recent-events-title .zhs-title),
-  :deep(.recent-events-title .en-title),
+  :deep(.recent-events-title .zhs-title) {
+    font-size: 1.55rem;
+  }
+  :deep(.recent-events-title .en-title) {
+    font-size: 2.55rem;
+  }
   :deep(.event-heading h3) {
     font-size: 2rem;
   }
@@ -190,7 +307,7 @@ body {
   .carousel-item {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Add this */
+    align-items: center; 
     padding: 1rem;
     margin: 0 auto;
   }
@@ -201,4 +318,23 @@ body {
     padding-right: 5rem;
   }
 }
+
+@media screen and (max-width: 1000px) {
+
+  .wrapper #carousel-id {
+    grid-auto-columns: calc(100% / 2);
+  }
+
+}
+
+@media screen and (max-width: 700px) {
+
+.wrapper #carousel-id {
+  grid-auto-columns: 100%;
+}
+
+}
+
+
+
 </style>
