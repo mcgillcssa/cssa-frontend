@@ -45,11 +45,11 @@ export default {
   justify-content: space-between;
   align-items: center;
   background-image: linear-gradient(to right, #EAEBF6 25%, #d0c4ed 60%, #E2D8EC 100%);
-  /* margin: 4vh auto; */
   border-radius: 40px;
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
   width: 90vw;
   justify-content: center;
+  padding: 20px 0; /* Added padding for consistent spacing */
 }
 
 .presentation-column {
@@ -71,6 +71,7 @@ export default {
   height: 1px;
   background-color: #7A65A3;
   margin: 1rem 1rem;
+  margin: 1rem auto; /* Centered horizontally */
 }
 
 .number {
@@ -80,6 +81,7 @@ export default {
   font-weight: 700;
   align-items: center;
   margin: 1vw 0;
+  text-align: center; /* Center text */
 }
 
 .text {
@@ -88,34 +90,84 @@ export default {
   color: #7A65A3;
   text-align: center;
   padding-bottom: 3vh;
-  margin: 1vw 0;
+  margin: 0 0;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+
+  .presentation {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    width: 90vw;
+    padding: 2vw 0 4vw 0;
+  }
+
+  .presentation-column {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+  }
+
+  .icon {
+    width: 12vw;
+    height: auto;
+    padding-top: 3vh;
+    align-items: center;
+  }
+
+  .section-break-small {
+    width: 5px;
+    height: 85%;
+    /* margin: 3vw 0vw 0 6vw; */
+    align-items: center;
+    margin: 10px auto;
+  }
+
   .number {
-    font-weight: 500;
-    font-size: 3vw;
+    width: 100%;
+    font-size: 4.5vw;
+    text-align: right;
+    /* margin: 2vw 2vw 2ve 0vw; */
+    margin: 10px auto;
   }
 
   .text {
-    font-size: 1.8vw;
-  }
-}
-
-@media (min-width: 601px) and (max-width: 960px) {
-  .number {
-    font-weight: 600;
-    font-size: 4vw;
-  }
-
-  .text {
-    font-size: 2vw;
-  }
-}
-
-@media (min-width: 961px) {
-  .number {
+    width: 100%;
+    font-size: 2.5vw;
     font-weight: 700;
+    text-align: left;
+    margin: 2vw 4vw 2vw 4vw;
   }
+}
+
+@media (min-width: 1024px) {
+
+  .icon {
+  width: 10vw;
+  height: auto;
+  padding-top: 5vh;
+}
+
+.section-break-small {
+  width: 80%;
+  height: 2px;
+  margin: 1rem 1rem;
+}
+
+.number {
+  font-size: calc(2rem + 2vw);
+  font-weight: 750;
+}
+
+.text {
+  font: Raleway;
+  font-size: calc(1rem + 1vw);
+  padding-bottom: 3vh;
+  font-weight: 500;
+}
+
 }
 </style>

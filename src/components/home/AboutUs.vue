@@ -45,6 +45,7 @@ export default {
     border-radius: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 90vw;
+    height: auto;
     padding-top: 0%;
     padding-bottom: 0%;
     padding-right: 0;
@@ -150,15 +151,15 @@ export default {
   }
 
   .overlay-text {
-    font-size: 3vw; /* Adjusted to a readable size */
-    color: #EAEBF6; /* Ensuring the color makes the text visible */
-    z-index: 3; /* Ensuring it is above other elements */
+    font-size: 3vw;
+    color: #EAEBF6;
+    z-index: 3;
   }
 
   .ellipse {
-    width: 20vw;  /* Adjusted to a larger size */
-    height: 20vw; /* Adjusted to a larger size */
-    opacity: 0.5; /* Making sure it's visible */
+    width: 20vw;
+    height: 20vw;
+    opacity: 0.5;
   }
 
   .text-content p {
@@ -167,18 +168,18 @@ export default {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .about-us-container {
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 0;
+    padding: 2vw 0 0 0;
     margin: 0;
   }
 
 .about-us-section {
     flex-direction: column;
-    width: 100%;
+    width: 85%;
     align-items: center;
     padding: 10px;
   }
