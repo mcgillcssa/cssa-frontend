@@ -164,7 +164,7 @@ export default {
 
   .text-content p {
     text-align: justify;
-    font-size: 2vw;
+    font-size: 1.8vw;
   }
 }
 
@@ -227,7 +227,7 @@ export default {
     text-align: center;
     justify-content: center;
     padding: 1vw;
-    font-size: 3.5vw;
+    font-size: 3vw;
 }
 }
 

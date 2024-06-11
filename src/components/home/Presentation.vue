@@ -195,7 +195,7 @@ export default {
 @media (min-width: 1024px) {
 
   .icon {
-  width: 10vw;
+  width: 8vw;
   height: auto;
   padding-top: 5vh;
 }
@@ -207,7 +207,7 @@ export default {
 }
 
 .number {
-  font-size: calc(2rem + 1.5vw);
+  font-size: calc(2rem + 1vw);
   font-weight: 750;
 }
 

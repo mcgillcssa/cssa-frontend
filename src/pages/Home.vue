@@ -20,7 +20,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, nextTick } from 'vue';
+import { onMounted, onUnmounted, nextTick, ref } from 'vue';
 import NavBar from '../components/NavBar.vue'
 import GradientStripe from '../components/GradientStripe.vue'
 import AboutUs from '../components/home/AboutUs.vue'
@@ -28,33 +28,39 @@ import Presentation from '../components/home/Presentation.vue'
 // import CardViewer from '../components/home/CardViewer.vue'
 
 let observer;
+const hasFaded = ref({ background: false, aboutUs: false, presentation: false });
 
 onMounted(async () => {
-  await nextTick(); // 确保组件已渲染
+  await nextTick();
   const options = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.8
+    threshold: 0.1
   };
 
   observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const targetCenter = entry.target.offsetTop + entry.target.offsetHeight / 2;
-        const windowCenter = window.innerHeight / 2;
-        window.scrollTo({
-          top: targetCenter - windowCenter,
-          behavior: 'smooth'
-        });
+        const id = entry.target.getAttribute('id');
+        if (id && !hasFaded.value[id]) {
+          entry.target.classList.add("visible");
+          hasFaded.value[id] = true;
+        }
       }
     });
   }, options);
 
-  const aboutUs = document.getElementById('about-us');
-  const presentation = document.getElementById('presentation');
+  const elements = [
+    document.querySelector('.banner-background'),
+    document.getElementById('about-us'),
+    document.getElementById('presentation')
+  ];
 
-  if (aboutUs) observer.observe(aboutUs);
-  if (presentation) observer.observe(presentation);
+  elements.forEach(el => {
+    if (el) {
+      observer.observe(el);
+    }
+  });
 });
 
 onUnmounted(() => {
@@ -126,6 +132,15 @@ body {
 
 .card-presentation {
   display: flex;
+}
+
+#about-us, #presentation {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.banner-background.visible, #about-us.visible, #presentation.visible {
+  opacity: 1;
 }
 
 @media screen and (min-width: 1921px) {
