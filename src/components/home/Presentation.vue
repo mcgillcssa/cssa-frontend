@@ -1,32 +1,74 @@
 <template>
-    <div class="presentation-container">
-      <div class="presentation">
-        <div class="presentation-column">
-            <img src="https://i.imgur.com/uj6eEYS.png" alt="Icon 1" class="icon"/>
-            <div class="section-break-small"></div>
-            <p class="number">16000</p>
-            <p class="text">WECHAT FOLLOWERS</p>
-        </div>
-        <div class="presentation-column">
-            <img src="https://i.imgur.com/51lBXnQ.png" alt="Icon 2" class="icon"/>
-            <div class="section-break-small"></div>
-            <p class="number">283</p>
-            <p class="text">EVENTS</p>
-        </div>
-        <div class="presentation-column">
-            <img src="https://i.imgur.com/lTFcj7w.png" alt="Icon 3" class="icon"/>
-            <div class="section-break-small"></div>
-            <p class="number">1408</p>
-            <p class="text">MEMBERSHIP</p>
-        </div>
+  <div class="presentation-container">
+    <div class="presentation" ref="presentation">
+      <div class="presentation-column" v-for="(item, index) in data" :key="index">
+        <img :src="item.icon" :alt="`Icon ${index + 1}`" class="icon"/>
+        <div class="section-break-small"></div>
+        <p class="number">{{ displayedNumbers[index] }}</p>
+        <p class="text">{{ item.text }}</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-    name: 'Presentation'
-}
+  name: 'Presentation',
+  props: {
+    animationDuration: {
+      type: Number,
+      default: 2000 //duration in milliseconds
+    }
+  },
+  data() {
+    return {
+      data: [
+        { icon: "https://i.imgur.com/uj6eEYS.png", number: 16000, text: "WECHAT FOLLOWERS" },
+        { icon: "https://i.imgur.com/51lBXnQ.png", number: 283, text: "EVENTS" },
+        { icon: "https://i.imgur.com/lTFcj7w.png", number: 1408, text: "MEMBERSHIP" }
+      ],
+      displayedNumbers: [0, 0, 0],
+      observer: null
+    };
+  },
+  mounted() {
+    this.observer = new IntersectionObserver(this.handleIntersection, {
+      threshold: 0.1
+    });
+    this.observer.observe(this.$refs.presentation);
+  },
+  methods: {
+    handleIntersection(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          this.animateNumbers();
+          this.observer.unobserve(this.$refs.presentation);
+        }
+      });
+    },
+    animateNumbers() {
+      this.data.forEach((item, index) => {
+        this.animateValue(index, 0, item.number, this.animationDuration);
+      });
+    },
+    animateValue(index, start, end, duration) {
+      const range = end - start;
+      let startTime = null;
+
+      const step = (timestamp) => {
+        if (!startTime) startTime = timestamp;
+        const progress = timestamp - startTime;
+        const value = Math.min(Math.floor((progress / duration) * range + start), end);
+        this.displayedNumbers[index] = value;
+        if (progress < duration) {
+          requestAnimationFrame(step);
+        }
+      };
+
+      requestAnimationFrame(step);
+    }
+  }
+};
 </script>
 
 <style>
