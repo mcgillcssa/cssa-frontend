@@ -28,7 +28,7 @@ import Presentation from '../components/home/Presentation.vue'
 // import CardViewer from '../components/home/CardViewer.vue'
 
 let observer;
-const hasFaded = ref({ background: false, aboutUs: false, presentation: false });
+const hasFaded = ref({ background: false, aboutUs: false, presentation: false, sectionBreak: false });
 
 onMounted(async () => {
   await nextTick();
@@ -39,21 +39,20 @@ onMounted(async () => {
   };
 
   observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        if (id && !hasFaded.value[id]) {
-          entry.target.classList.add("visible");
-          hasFaded.value[id] = true;
-        }
-      }
-    });
-  }, options);
+  entries.forEach(entry => {
+    const id = entry.target.getAttribute('id') || (entry.target.classList.contains('section-break') ? 'sectionBreak' : undefined);
+    if (entry.isIntersecting && !hasFaded.value[id]) {
+      entry.target.classList.add("visible");
+      hasFaded.value[id] = true;
+    }
+  });
+}, options);
 
   const elements = [
     document.querySelector('.banner-background'),
     document.getElementById('about-us'),
-    document.getElementById('presentation')
+    document.getElementById('presentation'),
+    document.querySelector('.section-break')
   ];
 
   elements.forEach(el => {
@@ -116,6 +115,8 @@ body {
   margin: 5vw auto;
   border-radius: 20px;
   overflow: hidden;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
 
 }
 
@@ -141,6 +142,21 @@ body {
 
 .banner-background.visible, #about-us.visible, #presentation.visible {
   opacity: 1;
+}
+
+@keyframes horizontalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.section-break.visible {
+  animation: horizontalFadeIn 0.7s ease forwards;
 }
 
 @media screen and (min-width: 1921px) {
