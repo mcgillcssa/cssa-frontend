@@ -7,11 +7,11 @@
     />
   </div>
   <gradient-stripe />
-  <AboutUs />
+  <AboutUs id="about-us" />
   <div class="section-break">
     <div class="mask"></div>
   </div>
-  <Presentation />
+  <Presentation id="presentation" />
   <div class="card-presentation">
     <!-- <card-viewer /> -->
     <!-- <h2>THIS IS A TITLE</h2> -->
@@ -20,11 +20,46 @@
 </template>
 
 <script setup>
+import { onMounted, onUnmounted, nextTick } from 'vue';
 import NavBar from '../components/NavBar.vue'
 import GradientStripe from '../components/GradientStripe.vue'
-// import CardViewer from '../components/home/CardViewer.vue'
 import AboutUs from '../components/home/AboutUs.vue'
 import Presentation from '../components/home/Presentation.vue'
+// import CardViewer from '../components/home/CardViewer.vue'
+
+let observer;
+
+onMounted(async () => {
+  await nextTick(); // 确保组件已渲染
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.8
+  };
+
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const targetCenter = entry.target.offsetTop + entry.target.offsetHeight / 2;
+        const windowCenter = window.innerHeight / 2;
+        window.scrollTo({
+          top: targetCenter - windowCenter,
+          behavior: 'smooth'
+        });
+      }
+    });
+  }, options);
+
+  const aboutUs = document.getElementById('about-us');
+  const presentation = document.getElementById('presentation');
+
+  if (aboutUs) observer.observe(aboutUs);
+  if (presentation) observer.observe(presentation);
+});
+
+onUnmounted(() => {
+  observer.disconnect();
+});
 </script>
 
 <style>
