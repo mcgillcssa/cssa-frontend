@@ -32,12 +32,12 @@ export default {
 <style>
 .presentation-container {
   position: relative;
-    display: flex;
-    justify-content: center;
-    background-color: #EAEBF6;
-    min-height: 30vh;
-    width: 100%;
-    margin: 0 0 2vw 0;
+  display: flex;
+  justify-content: center;
+  background-color: #EAEBF6;
+  min-height: 30vh;
+  width: 100%;
+  margin: 0 0 2vw 0;
 }
 
 .presentation {
@@ -49,7 +49,6 @@ export default {
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
   width: 90vw;
   justify-content: center;
-  padding: 20px 0; /* Added padding for consistent spacing */
 }
 
 .presentation-column {
@@ -58,6 +57,7 @@ export default {
   flex-direction: column;
   align-items: center;
   padding: 0px;
+  text-align: center;
 }
 
 .icon {
@@ -71,7 +71,6 @@ export default {
   height: 1px;
   background-color: #7A65A3;
   margin: 1rem 1rem;
-  margin: 1rem auto; /* Centered horizontally */
 }
 
 .number {
@@ -80,8 +79,7 @@ export default {
   font: Raleway;
   font-weight: 700;
   align-items: center;
-  margin: 1vw 0;
-  text-align: center; /* Center text */
+  margin: 1rem 0;
 }
 
 .text {
@@ -90,6 +88,8 @@ export default {
   color: #7A65A3;
   text-align: center;
   padding-bottom: 3vh;
+  justify-content: center;
+  align-items: center;
   margin: 0 0;
 }
 
@@ -98,48 +98,54 @@ export default {
   .presentation {
     flex-direction: column;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     width: 90vw;
-    padding: 2vw 0 4vw 0;
+    padding: 2vw 0 2vw 0;
   }
 
   .presentation-column {
-    width: 100%;
+    width: 65%;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     padding: 0px;
+    text-align: center;
   }
 
   .icon {
-    width: 12vw;
+    width: 10vw;
     height: auto;
-    padding-top: 3vh;
     align-items: center;
+    justify-content: center;
   }
 
   .section-break-small {
-    width: 5px;
-    height: 85%;
-    /* margin: 3vw 0vw 0 6vw; */
+    width: 3px;
+    height: 15vw;
+    margin: 1vw 8vw 1vw 8vw;
     align-items: center;
-    margin: 10px auto;
+    justify-content: center;
   }
 
   .number {
-    width: 100%;
-    font-size: 4.5vw;
-    text-align: right;
-    /* margin: 2vw 2vw 2ve 0vw; */
-    margin: 10px auto;
+    width: 100vw;
+    font-size: 4vw;
+    text-align: left;
+    margin: 0 0 0 0;
+    justify-content: center;
   }
 
   .text {
-    width: 100%;
+    width: 100vw;
     font-size: 2.5vw;
-    font-weight: 700;
-    text-align: left;
-    margin: 2vw 4vw 2vw 4vw;
+    font-weight: 550;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0 0;
+    padding-bottom: 0;
   }
 }
 
@@ -158,7 +164,7 @@ export default {
 }
 
 .number {
-  font-size: calc(2rem + 2vw);
+  font-size: calc(2rem + 1.5vw);
   font-weight: 750;
 }
 
