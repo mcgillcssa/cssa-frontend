@@ -119,6 +119,7 @@ export default {
     height: auto;
     align-items: center;
     justify-content: center;
+    padding-top: 0;
   }
 
   .section-break-small {
