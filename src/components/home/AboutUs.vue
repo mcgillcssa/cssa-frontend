@@ -68,15 +68,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 .about-us-section {
     display: flex;
-    /* flex-direction: column; */
     background-color: white;
     justify-content: center;
     border-radius: 40px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 90vw;
     height: auto;
-    padding-top: 0%;
-    padding-bottom: 0%;
+    padding-top: 0;
+    padding-bottom: 0;
     padding-right: 0;
     padding-left: 0;
     border: 1px solid #CBBCDB;
@@ -202,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function() {
     margin-bottom: 10px;
 }
 
-@media (min-width: 1024px) {
+@media screen and (min-width: 1024px) {
 
   .left-column, .right-column {
     padding: 1.2vw;
@@ -226,7 +225,16 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 }
 
-@media (max-width: 700px) {
+@media screen and (min-width: 700px) and (max-width: 1024px) {
+  .about-us-section {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 90vw;
+    height: auto;
+}
+}
+
+@media screen and (max-width: 700px) {
   .about-us-container {
     display: flex;
     justify-content: center;

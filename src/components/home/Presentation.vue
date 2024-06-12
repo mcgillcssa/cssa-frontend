@@ -135,7 +135,7 @@ export default {
   margin: 0 0;
 }
 
-@media (max-width: 700px) {
+@media screen and (max-width: 700px) {
 
   .presentation {
     flex-direction: column;
@@ -192,7 +192,7 @@ export default {
   }
 }
 
-@media (min-width: 1024px) {
+@media screen and (min-width: 1024px) {
 
   .icon {
   width: 8vw;
