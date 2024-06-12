@@ -1,30 +1,59 @@
 <template>
-    <div class="about-us-container">
-      <div class="about-us-section">
-        <div class="left-column">
-          <div class="image-container">
-            <img src="https://i.imgur.com/xfAdEm5.jpg" alt="Group Photo" class="group-photo">
-            <div class="ellipse"></div>
-            <div class="overlay-text">
-              <span>ABOUT</span><br>
-              <span>US</span>
-            </div>
-          </div>
-        </div>
-        <div class="right-column">
-          <div class="text-content">
-            <p>McGill University Chinese Students and Scholars Association (CSSA), is the only student community certified by the Chinese Consulate on campus, and it is the only cultural club dedicated mainly to students and scholars from Mainland China.</p>
-            <p>这是麦吉尔大学中国学生学者联谊会 (McGill CSSA) 是一个正式认证、官方承、非营利，并且唯一正式受自治校方允许的主要面向本科生的官方学生组织。</p>
+  <div class="about-us-container">
+    <div class="about-us-section">
+      <div class="left-column">
+        <div class="image-container">
+          <img src="https://i.imgur.com/xfAdEm5.jpg" alt="Group Photo" class="group-photo">
+          <div class="ellipse"></div>
+          <div class="overlay-text">
+            <span>ABOUT</span><br>
+            <span>US</span>
           </div>
         </div>
       </div>
+      <div class="right-column">
+        <div class="text-content">
+          <p>McGill University Chinese Students and Scholars Association (CSSA), is the only student community certified by the Chinese Consulate on campus, and it is the only cultural club dedicated mainly to students and scholars from Mainland China.</p>
+          <p>这是麦吉尔大学中国学生学者联谊会 (McGill CSSA) 是一个正式认证、官方承、非营利，并且唯一正式受自治校方允许的主要面向本科生的官方学生组织。</p>
+        </div>
+      </div>
     </div>
-  </template>
+  </div>
+</template>
+
 <script>
 export default {
     name: 'AboutUs'
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, {
+    threshold: 0.1,  // Adjust this value based on when you want the element to trigger visibility
+    rootMargin: '0px'  // This can be adjusted if you want the event to fire slightly before the element comes into view
+  });
+
+  // Select elements that should have the fade-in effect
+  const elements = document.querySelectorAll('.text-content');
+  elements.forEach(element => {
+    observer.observe(element);
+  });
+
+  // Optionally, immediately check if any elements are in view on load, especially useful for elements in viewport on page refresh
+  elements.forEach(element => {
+    if (element.getBoundingClientRect().top <= window.innerHeight) {
+      element.classList.add('is-visible');
+    }
+  });
+});
+
 </script>
+
 
 <style scoped>
 .about-us-container {
@@ -85,7 +114,7 @@ export default {
     width: 100%;
     height: auto;
     border-radius: 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.3);
     opacity: 0.8;
     position: relative;
     z-index: 0;
@@ -125,23 +154,52 @@ export default {
   justify-content: center;
 }
 
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+    transform-origin: center bottom;
+  }
+  25% {
+    transform: scale(1.05) translateY(-5px);
+  }
+  50% {
+    transform: scale(1.1) translateY(-10px);
+  }
+  75% {
+    transform: scale(1.05) translateY(-5px);
+  }
+}
+
+.is-visible {
+    animation: bounce 0.6s ease-out;
+    opacity: 1;
+
+}
+
 .text-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    opacity: 0;
+
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+    transition-delay: 0.5s;
 }
 
-.text-content h1 {
-    margin-bottom: 10px;
+.text-content.is-visible {
+    opacity: 1;
 }
 
 .text-content p {
     text-align: justify;
-    font: Raleway;
+    font-family: Raleway;
     font-size: 1.6vw;
     font-weight: 500;
     color: #33378C;
-    justify-content: center;
+}
+
+.text-content h1 {
+    margin-bottom: 10px;
 }
 
 @media (min-width: 1024px) {
@@ -227,7 +285,7 @@ export default {
     text-align: center;
     justify-content: center;
     padding: 1vw;
-    font-size: 3vw;
+    font-size: 2.8vw;
 }
 }
 
