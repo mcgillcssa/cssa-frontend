@@ -34,17 +34,15 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   }, {
-    threshold: 0.1,  // Adjust this value based on when you want the element to trigger visibility
-    rootMargin: '0px'  // This can be adjusted if you want the event to fire slightly before the element comes into view
+    threshold: 0.1,
+    rootMargin: '0px'
   });
 
-  // Select elements that should have the fade-in effect
   const elements = document.querySelectorAll('.text-content');
   elements.forEach(element => {
     observer.observe(element);
   });
 
-  // Optionally, immediately check if any elements are in view on load, especially useful for elements in viewport on page refresh
   elements.forEach(element => {
     if (element.getBoundingClientRect().top <= window.innerHeight) {
       element.classList.add('is-visible');

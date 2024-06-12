@@ -7,11 +7,11 @@
     />
   </div>
   <gradient-stripe />
-  <AboutUs id="about-us" />
-  <div class="section-break">
+  <AboutUs id="about-us" ref="aboutUsRef" />
+  <div class="section-break" ref="sectionBreakRef">
     <div class="mask"></div>
   </div>
-  <Presentation id="presentation" />
+  <Presentation id="presentation" ref="presentationRef" />
   <div class="card-presentation">
     <!-- <card-viewer /> -->
     <!-- <h2>THIS IS A TITLE</h2> -->
@@ -20,50 +20,45 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, nextTick, ref } from 'vue';
-import NavBar from '../components/NavBar.vue'
-import GradientStripe from '../components/GradientStripe.vue'
-import AboutUs from '../components/home/AboutUs.vue'
-import Presentation from '../components/home/Presentation.vue'
+import { onMounted, ref } from 'vue';
+import NavBar from '../components/NavBar.vue';
+import GradientStripe from '../components/GradientStripe.vue';
+import AboutUs from '../components/home/AboutUs.vue';
+import Presentation from '../components/home/Presentation.vue';
 // import CardViewer from '../components/home/CardViewer.vue'
 
-let observer;
-const hasFaded = ref({ background: false, aboutUs: false, presentation: false, sectionBreak: false });
+const aboutUsRef = ref(null);
+const presentationRef = ref(null);
+const sectionBreakRef = ref(null);
 
-onMounted(async () => {
-  await nextTick();
+onMounted(() => {
   const options = {
     root: null,
-    rootMargin: '0px',
     threshold: 0.1
   };
 
-  observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    const id = entry.target.getAttribute('id') || (entry.target.classList.contains('section-break') ? 'sectionBreak' : undefined);
-    if (entry.isIntersecting && !hasFaded.value[id]) {
-      entry.target.classList.add("visible");
-      hasFaded.value[id] = true;
-    }
-  });
-}, options);
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        if (entry.target.classList.contains('section-break')) {
+          entry.target.classList.add('slide-in-right');
+        } else {
+          entry.target.classList.add('fade-in');
+        }
+        observer.unobserve(entry.target);
+      }
+    });
+  }, options);
 
-  const elements = [
-    document.querySelector('.banner-background'),
-    document.getElementById('about-us'),
-    document.getElementById('presentation'),
-    document.querySelector('.section-break')
-  ];
-
-  elements.forEach(el => {
-    if (el) {
-      observer.observe(el);
-    }
-  });
-});
-
-onUnmounted(() => {
-  observer.disconnect();
+  if (aboutUsRef.value) {
+    observer.observe(aboutUsRef.value.$el);
+  }
+  if (presentationRef.value) {
+    observer.observe(presentationRef.value.$el);
+  }
+  if (sectionBreakRef.value) {
+    observer.observe(sectionBreakRef.value);
+  }
 });
 </script>
 
@@ -71,6 +66,10 @@ onUnmounted(() => {
 body {
   margin: 0;
   background-color: #eaebf6;
+}
+
+.navbar {
+z-index: 1;
 }
 
 .page {
@@ -97,6 +96,7 @@ body {
   background-blend-mode: multiply;
   width: 100%;
   height: calc(100vh - 24px);
+  z-index: 0;
 }
 
 .home-title {
@@ -114,10 +114,6 @@ body {
   width: 80%;
   margin: 5vw auto;
   border-radius: 20px;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 2s ease-in-out;
-
 }
 
 .mask {
@@ -131,32 +127,38 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.card-presentation {
-  display: flex;
+.fade-in {
+  animation: fadeInAnimation 1s;
 }
 
-#about-us, #presentation {
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-
-.banner-background.visible, #about-us.visible, #presentation.visible {
-  opacity: 1;
-}
-
-@keyframes horizontalFadeIn {
+@keyframes fadeInAnimation {
   from {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translatey(20px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translatey(0);
   }
 }
 
-.section-break.visible {
-  animation: horizontalFadeIn 0.7s ease forwards;
+.slide-in-right {
+    animation: slideInRightAnimation 0.5s forwards;
+  }
+
+  @keyframes slideInRightAnimation {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+.card-presentation {
+  display: flex;
 }
 
 @media screen and (min-width: 1921px) {
