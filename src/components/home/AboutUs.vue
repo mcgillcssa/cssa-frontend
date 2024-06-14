@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
     rootMargin: '0px'
   });
 
-  const elements = document.querySelectorAll('.text-content');
+  const elements = document.querySelectorAll('.text-content, overlay-text');
   elements.forEach(element => {
     observer.observe(element);
   });
@@ -52,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 </script>
 
-
 <style scoped>
 .about-us-container {
     position: relative;
@@ -61,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
     background-color: #EAEBF6;
     min-height: 30vh;
     width: 100%;
-    margin: 2vw 0 0 0;
+    margin: 4vw 0 0 0;
 }
 
 .about-us-section {
@@ -125,9 +124,9 @@ document.addEventListener("DOMContentLoaded", function() {
     height: 20vw;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: linear-gradient(to top, #EDD0E8 12%, #9887DF, #6E80DC); /* outer circle with gradient */
+    background: linear-gradient(to top, #EDD0E8 12%, #9887DF, #6E80DC);
     overflow: hidden;
-    mask-image: radial-gradient(circle, transparent 60%, black 35%); /*  transparent inner circle */
+    mask-image: radial-gradient(circle, transparent 60%, black 35%);
     opacity: 0.5;
 }
 
@@ -142,6 +141,19 @@ document.addEventListener("DOMContentLoaded", function() {
   text-align: center;
   font: Raleway;
   z-index: 3;
+  animation: jumpIn 1.5s ease-out;
+  animation-delay: 0.8s;
+}
+
+@keyframes jumpIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -160%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .right-column {
@@ -237,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function() {
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 2vw 0 0 0;
+    padding: 4vw 0 0 0;
     margin: 0;
   }
 

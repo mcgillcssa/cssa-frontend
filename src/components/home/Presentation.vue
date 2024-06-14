@@ -5,7 +5,7 @@
         <img :src="item.icon" :alt="`Icon ${index + 1}`" class="icon"/>
         <div class="section-break-small"></div>
         <p class="number">{{ displayedNumbers[index] }}</p>
-        <p class="text">{{ item.text }}</p>
+        <p class="text" ref="textElements" :style="{opacity: 0}">{{ item.text }}</p>
       </div>
     </div>
   </div>
@@ -17,7 +17,7 @@ export default {
   props: {
     animationDuration: {
       type: Number,
-      default: 2000 //duration in milliseconds
+      default: 2000 // Duration in milliseconds
     }
   },
   data() {
@@ -25,7 +25,7 @@ export default {
       data: [
         { icon: "https://i.imgur.com/uj6eEYS.png", number: 16000, text: "WECHAT FOLLOWERS" },
         { icon: "https://i.imgur.com/51lBXnQ.png", number: 283, text: "EVENTS" },
-        { icon: "https://i.imgur.com/lTFcj7w.png", number: 1408, text: "MEMBERSHIP" }
+        { icon: "https://i.imgur.com/lTFcj7w.png", number: 1408, text: "MEMBERSHIPS" }
       ],
       displayedNumbers: [0, 0, 0],
       observer: null
@@ -48,13 +48,15 @@ export default {
     },
     animateNumbers() {
       this.data.forEach((item, index) => {
-        this.animateValue(index, 0, item.number, this.animationDuration);
+        setTimeout(() => {
+          this.animateValue(index, 0, item.number, this.animationDuration);
+          this.$refs.textElements[index].style.opacity = 1;
+        }, index * 800);
       });
     },
     animateValue(index, start, end, duration) {
       const range = end - start;
       let startTime = null;
-
       const step = (timestamp) => {
         if (!startTime) startTime = timestamp;
         const progress = timestamp - startTime;
@@ -64,7 +66,6 @@ export default {
           requestAnimationFrame(step);
         }
       };
-
       requestAnimationFrame(step);
     }
   }
@@ -79,7 +80,7 @@ export default {
   background-color: #EAEBF6;
   min-height: 30vh;
   width: 100%;
-  margin: 0 0 2vw 0;
+  margin: 2vw 0 4vw 0;
 }
 
 .presentation {
@@ -133,7 +134,10 @@ export default {
   justify-content: center;
   align-items: center;
   margin: 0 0;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
 }
+
 
 @media screen and (max-width: 700px) {
 
@@ -143,7 +147,7 @@ export default {
     justify-content: center;
     align-items: center;
     width: 90vw;
-    padding: 2vw 0 2vw 0;
+    padding: 4vw 0 4vw 0;
   }
 
   .presentation-column {

@@ -1,12 +1,10 @@
 <template>
   <NavBar />
   <div class="banner-background">
-    <img
-      class="home-title"
-      src="https://i.imgur.com/e75ru0y.png"
-    />
+    <div class="background-image"></div>
+    <img class="home-title" src="https://i.imgur.com/e75ru0y.png" />
   </div>
-  <gradient-stripe />
+  <gradient-stripe/>
   <AboutUs id="about-us" ref="aboutUsRef" />
   <div class="section-break" ref="sectionBreakRef">
     <div class="mask"></div>
@@ -16,11 +14,11 @@
     <!-- <card-viewer /> -->
     <!-- <h2>THIS IS A TITLE</h2> -->
   </div>
-  <gradient-stripe />
+  <gradient-stripe/>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, onUnmounted, ref } from 'vue';
 import NavBar from '../components/NavBar.vue';
 import GradientStripe from '../components/GradientStripe.vue';
 import AboutUs from '../components/home/AboutUs.vue';
@@ -31,7 +29,30 @@ const aboutUsRef = ref(null);
 const presentationRef = ref(null);
 const sectionBreakRef = ref(null);
 
+const handleScroll = () => {
+  const bannerBackground = document.querySelector('.background-image');
+  const homeTitle = document.querySelector('.home-title');
+  const scrollY = window.scrollY;
+
+  const scale = 1 + scrollY / 1000;
+  const opacity = 1 - scrollY / 500;
+  const translateY = scrollY * (-0.8);
+
+  const radius = Math.max(0, 100 - scrollY / 6);
+  const xPosition = 30;
+  const yPosition = 30;
+
+  const clipPathValue = `circle(${radius}% at ${xPosition}% ${yPosition}%)`;
+
+  bannerBackground.style.transform = `scale(${scale})`;
+  bannerBackground.style.clipPath = clipPathValue;
+  homeTitle.style.opacity = opacity;
+  homeTitle.style.transform = `translateY(-50%) translateZ(0) translateY(${translateY}px)`;
+};
+
 onMounted(() => {
+  window.addEventListener('scroll', handleScroll);
+
   const options = {
     root: null,
     threshold: 0.1
@@ -40,8 +61,8 @@ onMounted(() => {
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        if (entry.target.classList.contains('section-break')) {
-          entry.target.classList.add('slide-in-right');
+        if (entry.target === sectionBreakRef.value) {
+          entry.target.classList.add('fade-in-top-to-bottom');
         } else {
           entry.target.classList.add('fade-in');
         }
@@ -59,6 +80,10 @@ onMounted(() => {
   if (sectionBreakRef.value) {
     observer.observe(sectionBreakRef.value);
   }
+});
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll);
 });
 </script>
 
@@ -82,7 +107,15 @@ z-index: 1;
 
 .banner-background {
   position: relative;
+  width: 100%;
+  height: calc(100vh - 24px);
+  z-index: 0;
+  overflow: hidden;
+  background-color: #E2D8EC;
 
+}
+
+.background-image {
   background-image: linear-gradient(
       122.63deg,
       #ffc6b4 0.67%,
@@ -94,9 +127,12 @@ z-index: 1;
     url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-blend-mode: multiply;
+  position: absolute;
   width: 100%;
-  height: calc(100vh - 24px);
-  z-index: 0;
+  height: 100%;
+  z-index: -1;
+  transition: transform 0.1s ease, clip-path 0.1s ease;
+  clip-path: circle(200% at 50% 50%);
 }
 
 .home-title {
@@ -105,6 +141,8 @@ z-index: 1;
   top: 50%;
   left: 2%;
   transform: translateY(-50%);
+  z-index: 1;
+  transition: opacity 0.2s ease, transform 0.5s ease;
 }
 
 .section-break {
@@ -142,20 +180,20 @@ z-index: 1;
   }
 }
 
-.slide-in-right {
-    animation: slideInRightAnimation 0.5s forwards;
+@keyframes fadeInTopToBottom {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  @keyframes slideInRightAnimation {
-    from {
-      opacity: 0;
-      transform: translateX(100%);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
+.fade-in-top-to-bottom {
+  animation: fadeInTopToBottom 1s;
+}
 
 .card-presentation {
   display: flex;
