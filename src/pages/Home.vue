@@ -4,7 +4,7 @@
     <div class="background-image"></div>
     <img class="home-title" src="https://i.imgur.com/e75ru0y.png" />
   </div>
-  <gradient-stripe/>
+  <!-- <gradient-stripe/> -->
   <AboutUs id="about-us" ref="aboutUsRef" />
   <div class="section-break" ref="sectionBreakRef">
     <div class="mask"></div>
@@ -108,10 +108,10 @@ z-index: 1;
 .banner-background {
   position: relative;
   width: 100%;
-  height: calc(100vh - 24px);
+  height: calc(100vh);
   z-index: 0;
   overflow: hidden;
-  background-color: #E2D8EC;
+  background: linear-gradient(to bottom, #f6f5ea 60%, #eaebf6 100%);
 
 }
 
@@ -207,6 +207,11 @@ z-index: 1;
 }
 
 @media screen and (max-width: 700px) {
+  .banner-background {
+  background: linear-gradient(to bottom, #f6eaf1 50%, #f6f5ea 70%, #eaebf6 100%);
+
+}
+
   .home-title {
     max-width: 80vw;
     left: 3%;

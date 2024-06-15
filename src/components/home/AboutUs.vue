@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
     background-color: #EAEBF6;
     min-height: 30vh;
     width: 100%;
-    margin: 4vw 0 0 0;
+    margin: 2vw 0 0 0;
 }
 
 .about-us-section {
@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function() {
     display: flex;
     justify-content: center;
     width: 100%;
-    padding: 4vw 0 0 0;
+    padding: 2vw 0 0 0;
     margin: 0;
   }
 
