@@ -15,7 +15,10 @@
   <div class="section-break1" ref="sectionBreakRef">
     <div class="mask"></div>
   </div>
-  <h2>THIS IS A TITLE</h2>
+  <h3>
+    <span class="vip-title-cn">2023 - 2024 会员卡</span><br>
+    <span class="vip-title-en">2023 - 2024 VIP CARD</span>
+  </h3>
     <card-viewer />
   <gradient-stripe/>
 </template>
@@ -198,10 +201,6 @@ z-index: 1;
   animation: fadeInTopToBottom 1s;
 }
 
-.card-presentation {
-  display: flex;
-}
-
 .section-break1 {
   position: relative;
   height: 1.2vw;
@@ -209,6 +208,38 @@ z-index: 1;
   width: 80%;
   margin: 5vw auto;
   border-radius: 20px;
+}
+
+h3 {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #DFDAF1;
+  padding: 1vw 0;
+}
+
+h3 br {
+  margin-bottom: 0px;
+}
+
+.vip-title-cn {
+  color: #33378C;
+  font-family: 'Raleway';
+  font-size: 2vw;
+  display: block;
+}
+
+.vip-title-en {
+  color: #988FCE;
+  font-family: 'Raleway';
+  font-weight: bold;
+  font-size: 2.5vw;
+  display: block;
+  margin-top: -2vw;
+}
+
+.card-presentation {
+  display: flex;
 }
 
 @media screen and (min-width: 1921px) {
