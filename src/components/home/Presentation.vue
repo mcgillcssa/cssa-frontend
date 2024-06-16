@@ -50,7 +50,11 @@ export default {
       this.data.forEach((item, index) => {
         setTimeout(() => {
           this.animateValue(index, 0, item.number, this.animationDuration);
-          this.$refs.textElements[index].style.opacity = 1;
+          this.$nextTick(() => {
+            if (this.$refs.textElements && this.$refs.textElements[index]) {
+              this.$refs.textElements[index].style.opacity = 1;
+            }
+          });
         }, index * 800);
       });
     },
@@ -59,11 +63,13 @@ export default {
       let startTime = null;
       const step = (timestamp) => {
         if (!startTime) startTime = timestamp;
-        const progress = timestamp - startTime;
-        const value = Math.min(Math.floor((progress / duration) * range + start), end);
+        const progress = Math.min(timestamp - startTime, duration);
+        const value = Math.floor((progress / duration) * range + start);
         this.displayedNumbers[index] = value;
         if (progress < duration) {
           requestAnimationFrame(step);
+        } else {
+          this.displayedNumbers[index] = end;
         }
       };
       requestAnimationFrame(step);
@@ -80,7 +86,7 @@ export default {
   background-color: #EAEBF6;
   min-height: 30vh;
   width: 100%;
-  margin: 2vw 0 4vw 0;
+  margin: 2vw 0 2vw 0;
 }
 
 .presentation {
@@ -147,7 +153,7 @@ export default {
     justify-content: center;
     align-items: center;
     width: 90vw;
-    padding: 4vw 0 4vw 0;
+    padding: 2vw 0 2vw 0;
   }
 
   .presentation-column {

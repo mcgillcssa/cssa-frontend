@@ -1,72 +1,228 @@
 <template>
-  <div id="canvas"></div>
+  <div class="card-container">
+    <div class="card-section">
+      <div class="left-column">
+        <img src="https://i.imgur.com/qm7PupF.jpg"/>
+        <p class="invitation-text">WANT TO GET ONE?</p>
+      </div>
+      <div class="right-column">
+        <h1 class="header">什么是会员卡?</h1>
+        <div class="line">
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <p class="body-text">
+          CSSA会员卡<br>
+          是McGill CSSA携手蒙城各大商家，<br>
+          为大家准备的福利折扣卡！<br>
+          凡是在合作商家店铺消费<br>
+          出示此卡，都可以享受优惠！
+        </p>
+        <div>
+          <router-link class="to-membership" to="/membership">
+            <div class="text-wrapper">
+              <h2 class="button-text">SEE MEMBERSHIP PAGE</h2>
+            </div>
+            <div class="circle-wrapper">
+              <div class="circle">
+                <arrow-right :size="arrowSize" fill="#967eb8" theme="filled" />
+              </div>
+            </div>
+        </router-link>
+    </div>
+      </div>
+    </div>
+  </div>
 </template>
 
-<script setup>
-import { onMounted, nextTick } from 'vue'
-import * as THREE from 'three'
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+<script>
+import { ref } from 'vue';
+import { ArrowRight } from '@icon-park/vue-next';
 
-onMounted(async () => {
-  await nextTick()
-
-  const canvasElement = document.getElementById('canvas')
-  const rect = canvasElement.getBoundingClientRect()
-
-  const scene = new THREE.Scene()
-  const camera = new THREE.PerspectiveCamera(75, rect.width / rect.height, 0.1, 1000)
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
-  renderer.setSize(rect.width, rect.height)
-  canvasElement.appendChild(renderer.domElement)
-
-  const controls = new OrbitControls(camera, renderer.domElement)
-  controls.enableZoom = false
-  controls.enablePan = false
-  controls.enableRotate = true
-  controls.rotateSpeed = 0.5
-  controls.minAzimuthAngle = -Infinity
-  controls.maxAzimuthAngle = Infinity
-  controls.minPolarAngle = Math.PI / 2 // Set vertical rotation limits to horizontal rotation
-  controls.maxPolarAngle = Math.PI / 2
-
-  const loader = new GLTFLoader()
-  loader.load('../../assets/3d/CSSA_card.glb', gltf => {
-    const model = gltf.scene
-
-    scene.add(model)
-
-    // Rotate the model diagonally
-    model.rotation.x = Math.PI / 3 // 45 degrees
-    model.rotation.y = Math.PI / 6 // 45 degrees
-  })
-
-  // Position the camera
-  camera.position.z = 2
-
-  // Add a flat ambient light
-  const ambientLight = new THREE.AmbientLight(0xffffff, 2) // Color, Intensity
-  scene.add(ambientLight)
-
-  // Add a light source
-  const light = new THREE.PointLight(0xffffff, 1)
-  light.position.set(0, 0, 5)
-  scene.add(light)
-
-  // Animation function
-  function animate() {
-    requestAnimationFrame(animate)
-    controls.update()
-    renderer.render(scene, camera)
+export default {
+  name: 'CardViewer',
+  components: {
+    ArrowRight
+  },
+  setup() {
+    const arrowSize = ref(64);
+    return {
+      arrowSize
+    };
   }
-
-  animate()
-})
+}
 </script>
 
 <style scoped>
-div {
-  height: 500px;
-  width: 500px;
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #EAEBF6;
+  /* min-height: 70vh; */
+  width: 100%;
+  margin: 2vw 0;
+}
+
+.card-section {
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  border-radius: 40px;
+  box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
+  width: 90vw;
+  height: auto;
+  border: 1px solid #CBBCDB;
+}
+
+.left-column {
+  padding: 2vw 0 2vw 2vw;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-column img {
+  width: 65%;
+  height: auto;
+  padding: 0;
+}
+
+.invitation-text {
+  font-family: 'Raleway';
+  font-weight: 700;
+  color: #7A65A3;
+  font-style: italic;
+  font-size: 2vw;
+  text-align: center;
+  padding: 0 0 (-2)vw 0;
+}
+
+.right-column {
+  width: 150%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2vw 2vw 2vw 0;
+}
+
+.header {
+  font: 'Raleway';
+  font-weight: 700;
+  color: #33378C;
+  font-size: 2.5vw;
+  text-align: center;
+  padding: auto;
+}
+
+.line {
+  width: 18vw;
+  height: 2px;
+  background-color: #33378C;
+  position: relative;
+  margin: 0 auto 0vw auto;
+}
+
+.dot {
+  position: absolute;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  background-color: #33378C;
+  border-radius: 50%;
+}
+
+.dot:first-child {
+  left: 0;
+}
+
+.dot:last-child {
+  right: 0;
+}
+
+.body-text {
+  font: 'Raleway';
+  font-size: 2vw;
+  color: #7A65A3;
+  font-weight: 700;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+.to-membership {
+  display: flex;
+  width: 45vw;
+  height: auto;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(
+    90deg,
+    #ffc6b4 0.67%,
+    #ffa7d1 14.09%,
+    #ad87cb 68.63%,
+    #a78cd0 80.36%,
+    #726cad 100%
+  );
+  text-decoration: none;
+  padding: 2vw;
+}
+
+.text-wrapper{
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  margin-right: 2vw;
+  border-radius: 20px;
+  height: 85px;
+  width: 350px;
+}
+
+.circle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+}
+
+.circle {
+  flex: 0 0 auto;
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.arrow-right {
+  color: #967eb8;
+  font-size: 3vw;
+}
+
+.button-text {
+  color: #967eb8;
+  letter-spacing: 0.2vw;
+  font-size: 1em;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+}
+
+.button-text::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -7px;
+  height: 2px;
+  background-color: #967eb8;
 }
 </style>

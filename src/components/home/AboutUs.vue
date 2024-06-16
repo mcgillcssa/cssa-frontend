@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
   font-size: 3.5vw;
   font-weight: 900;
   text-align: center;
-  font: Raleway;
+  font-family:'Raleway';
   z-index: 3;
   animation: jumpIn 1.5s ease-out;
   animation-delay: 0.8s;
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 .text-content p {
     text-align: justify;
-    font-family: Raleway;
+    font-family: 'Raleway';
     font-size: 1.6vw;
     font-weight: 500;
     color: #33378C;

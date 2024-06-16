@@ -9,11 +9,14 @@
   <div class="section-break" ref="sectionBreakRef">
     <div class="mask"></div>
   </div>
-  <Presentation id="presentation" ref="presentationRef" />
-  <div class="card-presentation">
-    <!-- <card-viewer /> -->
-    <!-- <h2>THIS IS A TITLE</h2> -->
+    <Presentation id="presentation" ref="presentationRef" />
+    <div class="card-presentation">
   </div>
+  <div class="section-break1" ref="sectionBreakRef">
+    <div class="mask"></div>
+  </div>
+  <h2>THIS IS A TITLE</h2>
+    <card-viewer />
   <gradient-stripe/>
 </template>
 
@@ -23,7 +26,7 @@ import NavBar from '../components/NavBar.vue';
 import GradientStripe from '../components/GradientStripe.vue';
 import AboutUs from '../components/home/AboutUs.vue';
 import Presentation from '../components/home/Presentation.vue';
-// import CardViewer from '../components/home/CardViewer.vue'
+import CardViewer from '../components/home/CardViewer.vue'
 
 const aboutUsRef = ref(null);
 const presentationRef = ref(null);
@@ -38,7 +41,7 @@ const handleScroll = () => {
   const opacity = 1 - scrollY / 500;
   const translateY = scrollY * (-0.8);
 
-  const radius = Math.max(0, 100 - scrollY / 6);
+  const radius = Math.max(0, 100 - scrollY / 7);
   const xPosition = 30;
   const yPosition = 30;
 
@@ -197,6 +200,15 @@ z-index: 1;
 
 .card-presentation {
   display: flex;
+}
+
+.section-break1 {
+  position: relative;
+  height: 1.2vw;
+  background: linear-gradient(to left, #4f78c9, #8986ed, #ad87cb, #ffa7d1, #ffc6b4);
+  width: 80%;
+  margin: 5vw auto;
+  border-radius: 20px;
 }
 
 @media screen and (min-width: 1921px) {
