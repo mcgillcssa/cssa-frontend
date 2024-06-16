@@ -9,7 +9,7 @@
   <div class="section-break" ref="sectionBreakRef">
     <div class="mask"></div>
   </div>
-    <Presentation id="presentation" ref="presentationRef" />
+    <Information id="information" ref="informationRef" />
     <div class="card-presentation">
   </div>
   <div class="section-break1" ref="sectionBreakRef">
@@ -25,11 +25,11 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import NavBar from '../components/NavBar.vue';
 import GradientStripe from '../components/GradientStripe.vue';
 import AboutUs from '../components/home/AboutUs.vue';
-import Presentation from '../components/home/Presentation.vue';
+import Information from '../components/home/Information.vue';
 import CardViewer from '../components/home/CardViewer.vue'
 
 const aboutUsRef = ref(null);
-const presentationRef = ref(null);
+const informationRef = ref(null);
 const sectionBreakRef = ref(null);
 
 const handleScroll = () => {
@@ -77,8 +77,8 @@ onMounted(() => {
   if (aboutUsRef.value) {
     observer.observe(aboutUsRef.value.$el);
   }
-  if (presentationRef.value) {
-    observer.observe(presentationRef.value.$el);
+  if (informationRef.value) {
+    observer.observe(informationRef.value.$el);
   }
   if (sectionBreakRef.value) {
     observer.observe(sectionBreakRef.value);

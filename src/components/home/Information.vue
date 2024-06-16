@@ -1,7 +1,7 @@
 <template>
-  <div class="presentation-container">
-    <div class="presentation" ref="presentation">
-      <div class="presentation-column" v-for="(item, index) in data" :key="index">
+  <div class="information-container">
+    <div class="information" ref="information">
+      <div class="information-column" v-for="(item, index) in data" :key="index">
         <img :src="item.icon" :alt="`Icon ${index + 1}`" class="icon"/>
         <div class="section-break-small"></div>
         <p class="number">{{ displayedNumbers[index] }}</p>
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'Presentation',
+  name: 'Information',
   props: {
     animationDuration: {
       type: Number,
@@ -35,14 +35,14 @@ export default {
     this.observer = new IntersectionObserver(this.handleIntersection, {
       threshold: 0.1
     });
-    this.observer.observe(this.$refs.presentation);
+    this.observer.observe(this.$refs.information);
   },
   methods: {
     handleIntersection(entries) {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           this.animateNumbers();
-          this.observer.unobserve(this.$refs.presentation);
+          this.observer.unobserve(this.$refs.information);
         }
       });
     },
@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style>
-.presentation-container {
+.information-container {
   position: relative;
   display: flex;
   justify-content: center;
@@ -89,7 +89,7 @@ export default {
   margin: 2vw 0 2vw 0;
 }
 
-.presentation {
+.information {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -100,7 +100,7 @@ export default {
   justify-content: center;
 }
 
-.presentation-column {
+.information-column {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -147,7 +147,7 @@ export default {
 
 @media screen and (max-width: 700px) {
 
-  .presentation {
+  .information {
     flex-direction: column;
     display: flex;
     justify-content: center;
@@ -156,7 +156,7 @@ export default {
     padding: 2vw 0 2vw 0;
   }
 
-  .presentation-column {
+  .information-column {
     width: 65%;
     display: flex;
     flex-direction: row;
