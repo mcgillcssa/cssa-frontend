@@ -6,16 +6,16 @@
   </div>
     <AboutUs id="about-us" ref="aboutUsRef" />
     <div class="section-break" ref="sectionBreakRef">
-    <div class="mask"></div>
-  </div>
+      <div class="mask"></div>
+    </div>
     <Information id="information" ref="informationRef" />
   <div class="section-break1" ref="sectionBreak1Ref">
     <div class="mask"></div>
   </div>
-  <h3 ref="h3Ref">
+  <h4 ref="vipHeaderRef">
     <span class="vip-title-cn">2023 - 2024 会员卡</span><br>
     <span class="vip-title-en">2023 - 2024 VIP CARD</span>
-  </h3>
+  </h4>
     <card-viewer id="card-viewer" ref="cardViewerRef"/>
   <gradient-stripe/>
 </template>
@@ -32,7 +32,7 @@ const aboutUsRef = ref(null);
 const informationRef = ref(null);
 const sectionBreakRef = ref(null);
 const sectionBreak1Ref = ref(null);
-const h3Ref = ref(null);
+const vipHeaderRef = ref(null);
 
 const calculateRadius = (scrollY) => {
   const screenWidth = window.innerWidth;
@@ -91,7 +91,7 @@ onMounted(() => {
   if (informationRef.value) observer.observe(informationRef.value.$el);
   if (sectionBreakRef.value) observer.observe(sectionBreakRef.value);
   if (sectionBreak1Ref.value) observer.observe(sectionBreak1Ref.value);
-  if (h3Ref.value) observer.observe(h3Ref.value);
+  if (vipHeaderRef.value) observer.observe(vipHeaderRef.value);
 });
 
 onUnmounted(() => {
@@ -201,7 +201,7 @@ z-index: 1;
   border-radius: 20px;
 }
 
-h3 {
+h4 {
   text-align: center;
   width: 100%;
   margin: 0 auto;
@@ -209,7 +209,7 @@ h3 {
   padding: 1vw 0;
 }
 
-h3 br {
+h4 br {
   margin-bottom: 0px;
 }
 

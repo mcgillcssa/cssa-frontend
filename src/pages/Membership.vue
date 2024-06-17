@@ -65,6 +65,7 @@ const contentSections = ref([])
 let arrowSize = ref(64)
 
 onMounted(() => {
+  window.scrollTo(0, 0);
   updateWindowWidth()
   window.addEventListener('resize', updateWindowWidth)
 
