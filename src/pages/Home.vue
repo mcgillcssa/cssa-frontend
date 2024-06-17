@@ -34,6 +34,21 @@ const sectionBreakRef = ref(null);
 const sectionBreak1Ref = ref(null);
 const h3Ref = ref(null);
 
+const calculateRadius = (scrollY) => {
+  const screenWidth = window.innerWidth;
+  let baseRadius = 100;
+
+  if (screenWidth > 1200) {
+    baseRadius -= scrollY / 20;
+  } else if (screenWidth > 700 && screenWidth < 1200) {
+    baseRadius -= scrollY / 10;
+  } else {
+    baseRadius -= scrollY / 13;
+  }
+
+  return Math.max(0, baseRadius);
+};
+
 const handleScroll = () => {
   const bannerBackground = document.querySelector('.background-image');
   const homeTitle = document.querySelector('.home-title');
@@ -43,7 +58,7 @@ const handleScroll = () => {
   const opacity = 1 - scrollY / 500;
   const translateY = scrollY * (-0.8);
 
-  const radius = Math.max(0, 100 - scrollY / 7);
+  const radius = calculateRadius(scrollY);
   const xPosition = 30;
   const yPosition = 30;
 
