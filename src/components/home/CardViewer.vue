@@ -1,6 +1,6 @@
 <template>
   <div class="card-container">
-    <div class="card-section">
+    <div ref="cardSection" class="card-section" :class="{ 'fade-in': isIntersecting }">
       <div class="left-column">
         <img src="https://i.imgur.com/qm7PupF.jpg"/>
         <p class="invitation-text">WANT TO GET ONE?</p>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { ArrowRight } from '@icon-park/vue-next';
 
 export default {
@@ -46,8 +46,35 @@ export default {
   },
   setup() {
     const arrowSize = ref(64);
+    const cardSection = ref(null);
+    const isIntersecting = ref(false);
+    let observer;
+
+    onMounted(() => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            isIntersecting.value = true;
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      if (cardSection.value) {
+        observer.observe(cardSection.value);
+      }
+    });
+
+    onUnmounted(() => {
+      if (cardSection.value) {
+        observer.disconnect();
+      }
+    });
+
     return {
-      arrowSize
+      arrowSize,
+      cardSection,
+      isIntersecting
     };
   }
 }
@@ -73,6 +100,21 @@ export default {
   width: 90vw;
   height: auto;
   border: 1px solid #CBBCDB;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .left-column {

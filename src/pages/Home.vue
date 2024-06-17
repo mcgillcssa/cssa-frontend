@@ -4,22 +4,19 @@
     <div class="background-image"></div>
     <img class="home-title" src="https://i.imgur.com/e75ru0y.png" />
   </div>
-  <!-- <gradient-stripe/> -->
-  <AboutUs id="about-us" ref="aboutUsRef" />
-  <div class="section-break" ref="sectionBreakRef">
+    <AboutUs id="about-us" ref="aboutUsRef" />
+    <div class="section-break" ref="sectionBreakRef">
     <div class="mask"></div>
   </div>
     <Information id="information" ref="informationRef" />
-    <div class="card-presentation">
-  </div>
-  <div class="section-break1" ref="sectionBreakRef">
+  <div class="section-break1" ref="sectionBreak1Ref">
     <div class="mask"></div>
   </div>
-  <h3>
+  <h3 ref="h3Ref">
     <span class="vip-title-cn">2023 - 2024 会员卡</span><br>
     <span class="vip-title-en">2023 - 2024 VIP CARD</span>
   </h3>
-    <card-viewer />
+    <card-viewer id="card-viewer" ref="cardViewerRef"/>
   <gradient-stripe/>
 </template>
 
@@ -34,6 +31,8 @@ import CardViewer from '../components/home/CardViewer.vue'
 const aboutUsRef = ref(null);
 const informationRef = ref(null);
 const sectionBreakRef = ref(null);
+const sectionBreak1Ref = ref(null);
+const h3Ref = ref(null);
 
 const handleScroll = () => {
   const bannerBackground = document.querySelector('.background-image');
@@ -67,25 +66,17 @@ onMounted(() => {
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        if (entry.target === sectionBreakRef.value) {
-          entry.target.classList.add('fade-in-top-to-bottom');
-        } else {
-          entry.target.classList.add('fade-in');
-        }
+        entry.target.classList.add('fade-in');
         observer.unobserve(entry.target);
       }
     });
   }, options);
 
-  if (aboutUsRef.value) {
-    observer.observe(aboutUsRef.value.$el);
-  }
-  if (informationRef.value) {
-    observer.observe(informationRef.value.$el);
-  }
-  if (sectionBreakRef.value) {
-    observer.observe(sectionBreakRef.value);
-  }
+  if (aboutUsRef.value) observer.observe(aboutUsRef.value.$el);
+  if (informationRef.value) observer.observe(informationRef.value.$el);
+  if (sectionBreakRef.value) observer.observe(sectionBreakRef.value);
+  if (sectionBreak1Ref.value) observer.observe(sectionBreak1Ref.value);
+  if (h3Ref.value) observer.observe(h3Ref.value);
 });
 
 onUnmounted(() => {
@@ -184,21 +175,6 @@ z-index: 1;
     opacity: 1;
     transform: translatey(0);
   }
-}
-
-@keyframes fadeInTopToBottom {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in-top-to-bottom {
-  animation: fadeInTopToBottom 1s;
 }
 
 .section-break1 {
