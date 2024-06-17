@@ -71,11 +71,9 @@ document.addEventListener("DOMContentLoaded", function() {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 90vw;
     height: auto;
-    padding-top: 0;
-    padding-bottom: 0;
-    padding-right: 0;
-    padding-left: 0;
+    padding: 2vw;
     border: 1px solid #CBBCDB;
+    box-sizing: border-box;
 }
 
 .left-column, .right-column {
@@ -255,7 +253,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 .about-us-section {
     flex-direction: column;
-    width: 85%;
     align-items: center;
     padding: 10px;
   }
