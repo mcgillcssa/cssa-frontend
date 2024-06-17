@@ -3,23 +3,23 @@
     <div ref="cardSection" class="card-section" :class="{ 'fade-in': isIntersecting }">
       <div class="left-column">
         <img src="https://i.imgur.com/qm7PupF.jpg"/>
-        <p class="invitation-text">WANT TO GET ONE?</p>
+        <p class="invitation-text" :class="{ 'fade-in': isIntersecting }">WANT TO GET ONE?</p>
       </div>
       <div class="right-column">
-        <h1 class="header">什么是会员卡?</h1>
+        <h1 class="header" :class="{ 'fade-in': isIntersecting }">什么是会员卡?</h1>
         <div class="line">
           <span class="dot"></span>
           <span class="dot"></span>
         </div>
-        <p class="body-text">
-          CSSA会员卡<br>
-          是McGill CSSA携手蒙城各大商家，<br>
-          为大家准备的福利折扣卡！<br>
-          凡是在合作商家店铺消费<br>
-          出示此卡，都可以享受优惠！
-        </p>
+          <p class="body-text" :class="{ 'fade-in': isIntersecting }">
+            CSSA会员卡<br>
+            是McGill CSSA携手蒙城各大商家，<br>
+            为大家准备的福利折扣卡！<br>
+            凡是在合作商家店铺消费<br>
+            出示此卡，都可以享受优惠！
+          </p>
         <div>
-          <router-link class="to-membership" to="/membership">
+          <router-link class="to-membership" to="/membership" :class="{ 'fade-in': isIntersecting }">
             <div class="text-wrapper">
               <h2 class="button-text">SEE MEMBERSHIP PAGE</h2>
             </div>
@@ -91,7 +91,6 @@ export default {
     };
   }
 }
-
 </script>
 
 <style scoped>
@@ -281,8 +280,40 @@ export default {
   background-color: #967eb8;
 }
 
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media screen and (min-width: 1921px) {
-  .card-container .right-column .to-membership .text-wrapper .button-text::after {
+  .left-column img {
+  width: 55%;
+}
+
+.header {
+  font-size: 2vw;
+}
+
+.line {
+  width: 15vw;
+  height: 3px;
+}
+
+.body-text {
+  font-size: 1.8vw;
+}
+
+.card-container .right-column .to-membership .text-wrapper .button-text::after {
     bottom: -7px;
     height: 2.8px;
   }
