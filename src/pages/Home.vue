@@ -229,6 +229,14 @@ h3 br {
   .banner-background {
   background: linear-gradient(to bottom, #f6eaf1 50%, #f6f5ea 70%, #eaebf6 100%);
 
+  h3 {
+  padding: 0.5vw 0;
+}
+
+  .vip-title-en{
+  margin-top: -3vw;
+}
+
 }
 
   .home-title {
