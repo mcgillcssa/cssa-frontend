@@ -98,6 +98,7 @@ export default {
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
   width: 90vw;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .information-column {

@@ -2,7 +2,10 @@
   <div class="card-container">
     <div ref="cardSection" class="card-section" :class="{ 'fade-in': isIntersecting }">
       <div class="left-column">
-        <img src="https://i.imgur.com/qm7PupF.jpg"/>
+        <div class="flip-card" ref="flipCard">
+          <img src="https://i.imgur.com/qm7PupF.jpg" class="front-image"/>
+          <img src="https://i.imgur.com/QYn3qD9.png" class="back-image"/>
+        </div>
         <p class="invitation-text" :class="{ 'fade-in': isIntersecting }">WANT TO GET ONE?</p>
       </div>
       <div class="right-column">
@@ -11,13 +14,13 @@
           <span class="dot"></span>
           <span class="dot"></span>
         </div>
-          <p class="body-text" :class="{ 'fade-in': isIntersecting }">
-            CSSA会员卡<br>
-            是McGill CSSA携手蒙城各大商家，<br>
-            为大家准备的福利折扣卡！<br>
-            凡是在合作商家店铺消费<br>
-            出示此卡，都可以享受优惠！
-          </p>
+        <p class="body-text" :class="{ 'fade-in': isIntersecting }">
+          CSSA会员卡<br>
+          是McGill CSSA携手蒙城各大商家，<br>
+          为大家准备的福利折扣卡！<br>
+          凡是在合作商家店铺消费<br>
+          出示此卡，都可以享受优惠！
+        </p>
         <div>
           <router-link class="to-membership" to="/membership" :class="{ 'fade-in': isIntersecting }">
             <div class="text-wrapper">
@@ -28,15 +31,15 @@
                 <arrow-right :size="arrowSize" fill="#967eb8" theme="filled" />
               </div>
             </div>
-        </router-link>
-    </div>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted, watchEffect } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { ArrowRight } from '@icon-park/vue-next';
 
 export default {
@@ -47,6 +50,7 @@ export default {
   setup() {
     const arrowSize = ref(64);
     const cardSection = ref(null);
+    const flipCard = ref(null);
     const isIntersecting = ref(false);
     let observer;
 
@@ -64,18 +68,9 @@ export default {
         observer.observe(cardSection.value);
       }
 
-      watchEffect(() => {
-        const width = window.innerWidth;
-        if (width < 600) {
-          arrowSize.value = 32;
-        } else if (width > 600 && width < 700) {
-          arrowSize.value = 35;
-        } else if (width > 700 && width < 1024) {
-          arrowSize.value = 55;
-        } else {
-          arrowSize.value = 64;
-        }
-      });
+      if (flipCard.value) {
+        flipCard.value.style.animation = 'flipCard 3s infinite';
+      }
     });
 
     onUnmounted(() => {
@@ -112,6 +107,7 @@ export default {
   width: 90vw;
   height: auto;
   border: 1px solid #CBBCDB;
+  perspective: 1000px;
 }
 
 .fade-in {
@@ -135,13 +131,72 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  position: relative;
+  -webkit-perspective: 5000px;
+  perspective: 5000px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
-.left-column img {
-  width: 65%;
+.flip-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 60%;
   height: auto;
-  padding: 0;
+  -webkit-animation: flipCard 8s infinite;
+  animation: flipCard 8s infinite;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.front-image, .back-image {
+  display: -webkit-box;
+  width: 100%;
+  height: auto;
+  transition: transform 3s;
+  -webkit-transition: transform 3s;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  border-radius: 2vw;
+  margin-bottom: -35vw;
+}
+
+.back-image {
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+@-webkit-keyframes flipCard {
+  0% {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+  }
+  50% {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes flipCard {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
 }
 
 .invitation-text {
@@ -152,6 +207,8 @@ export default {
   font-size: 2vw;
   text-align: center;
   padding: 0 0 (-2)vw 0;
+  position: absolute;
+  bottom: 0;
 }
 
 .right-column {
