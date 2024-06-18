@@ -39,7 +39,7 @@ const calculateRadius = (scrollY) => {
   let baseRadius = 100;
 
   if (screenWidth > 1200) {
-    baseRadius -= scrollY / 20;
+    baseRadius -= scrollY / 10;
   } else if (screenWidth > 700 && screenWidth < 1200) {
     baseRadius -= scrollY / 10;
   } else {

@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watchEffect } from 'vue';
 import { ArrowRight } from '@icon-park/vue-next';
 
 export default {
@@ -67,6 +67,19 @@ export default {
       if (cardSection.value) {
         observer.observe(cardSection.value);
       }
+
+      watchEffect(() => {
+        const width = window.innerWidth;
+        if (width < 600) {
+          arrowSize.value = 32;
+        } else if (width > 600 && width < 700) {
+          arrowSize.value = 35;
+        } else if (width > 700 && width < 1024) {
+          arrowSize.value = 55;
+        } else {
+          arrowSize.value = 64;
+        }
+      });
 
       if (flipCard.value) {
         flipCard.value.style.animation = 'flipCard 3s infinite';
@@ -107,7 +120,6 @@ export default {
   width: 90vw;
   height: auto;
   border: 1px solid #CBBCDB;
-  perspective: 1000px;
 }
 
 .fade-in {
@@ -148,8 +160,6 @@ export default {
   height: auto;
   -webkit-animation: flipCard 8s infinite;
   animation: flipCard 8s infinite;
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
@@ -353,10 +363,18 @@ export default {
 }
 
 @media screen and (min-width: 1921px) {
-  .left-column img {
-  width: 55%;
+  .left-column {
+  -webkit-perspective: 1200px;
+  perspective: 1200px;
 }
 
+.flip-card {
+  width: 45%;
+}
+
+.front-image, .back-image {
+  margin-bottom: -26vw;
+}
 .header {
   font-size: 2vw;
 }
@@ -376,7 +394,46 @@ export default {
   }
 }
 
+@media screen and (max-width: 1921px) {
+  .left-column {
+  -webkit-perspective: 2000px;
+  perspective: 2000px;
+}
+
+.flip-card {
+  width: 50%;
+}
+
+.front-image, .back-image {
+  margin-bottom: -30vw;
+}
+}
+
+@media screen and (max-width: 1600px) {
+.flip-card {
+  width: 55%;
+}
+
+.front-image, .back-image {
+  margin-bottom: -32vw;
+}
+}
+
+@media screen and (max-width: 1200px) {
+.flip-card {
+  width: 55%;
+}
+
+.front-image, .back-image {
+  margin-bottom: -36vw;
+}
+}
+
 @media screen and (max-width: 850px) {
+.front-image, .back-image {
+  margin-bottom: -38vw;
+}
+
   .button-text {
   letter-spacing: 0vw;
   font-size: 2.4vw;
@@ -386,27 +443,45 @@ export default {
 @media screen and (max-width: 700px) {
 .card-section {
   flex-direction: column;
+  justify-content: center;
+  border-radius: 40px;
+  width: 90vw;
+  height: 115vw;
+  margin-bottom: 2vw;
+  box-sizing: border-box;
+  padding: 2vw;
 }
 
 .left-column {
-  padding: 4vw 0 0 0;
+  height: 40vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  transform: translateY(6vw);
+  padding:0;
 }
 
-.left-column img {
-  width: 50%;
-  height: auto;
-  padding: 0;
+.front-image, .back-image {
+  width: 60%;
+  margin-bottom: 20vw;
 }
 
 .invitation-text {
   font-size: 3vw;
   margin-top: -0.5vw;
+  position: absolute;
+  padding-top: 2vw;
+  bottom: 0;
 }
 
 .right-column {
   width: 100%;
   flex-direction: column;
-  padding: 0 0 4vw 0;
+  align-items: center;
+  bottom: 0;
+  transform: translateY(6vw);
 }
 
 .header {
