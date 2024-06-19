@@ -396,8 +396,8 @@ export default {
 
 @media screen and (max-width: 1921px) {
   .left-column {
-  -webkit-perspective: 2000px;
-  perspective: 2000px;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
 }
 
 .flip-card {
@@ -411,11 +411,11 @@ export default {
 
 @media screen and (max-width: 1600px) {
 .flip-card {
-  width: 55%;
+  width: 52%;
 }
 
 .front-image, .back-image {
-  margin-bottom: -32vw;
+  margin-bottom: -30vw;
 }
 }
 
@@ -425,7 +425,7 @@ export default {
 }
 
 .front-image, .back-image {
-  margin-bottom: -36vw;
+  margin-bottom: -33vw;
 }
 }
 
