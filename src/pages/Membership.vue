@@ -210,6 +210,7 @@ const handleScroll = () => {
   background-color: #ffffff;
   border: 1px solid #cbbcdb;
   border-radius: 30px;
+  box-sizing: border-box;
 }
 
 .presentation-description img {
@@ -413,6 +414,7 @@ const handleScroll = () => {
 
   .presentation-description {
     padding: 30px;
+    width: 90%
   }
 
   .presentation-description {
@@ -477,6 +479,10 @@ const handleScroll = () => {
 }
 
 @media screen and (max-width: 600px) {
+  .presentation-description {
+    width: 90%;
+  }
+
   .to-benefits {
     height: 80px;
   }
