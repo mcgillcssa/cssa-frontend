@@ -1,35 +1,32 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <!--Follow us and Icons-->
       <div class="follow-us">
         <p class="all-text" id="follow">FOLLOW US!</p>
       </div>
       <div class="left-box">
         <div class="social-icons">
-          <a href="https://www.facebook.com/McGillCSSA/" class="icon-background"
-            ><fa :icon="['fab', 'facebook']" size="3x"
-          /></a>
-          <a href="https://www.youtube.com/@mcgillcssa" class="icon-background"
-            ><fa :icon="['fab', 'youtube']" size="3x"
-          /></a>
-          <a href="https://www.instagram.com/mcgill.cssa" class="icon-background"
-            ><fa :icon="['fab', 'instagram']" size="3x"
-          /></a>
-          <a href="" class="icon-background"
-          ><fa :icon="['fab', 'weixin']" size="3x"
-            /></a>
-          <a href="https://space.bilibili.com/405502104?spm_id_from=333.337.search-card.all.click" class="icon-background"
-            ><fa :icon="['fab', 'bilibili']" size="3x"
-          /></a>-
+          <a href="https://www.facebook.com/McGillCSSA/" class="icon-background">
+            <fa :icon="['fab', 'facebook']" size="3x"/>
+          </a>
+          <a href="https://www.youtube.com/@mcgillcssa" class="icon-background">
+            <fa :icon="['fab', 'youtube']" size="3x"/>
+          </a>
+          <a href="https://www.instagram.com/mcgill.cssa" class="icon-background">
+            <fa :icon="['fab', 'instagram']" size="3x"/>
+          </a>
+          <a href="" class="icon-background">
+            <fa :icon="['fab', 'weixin']" size="3x"/>
+          </a>
+          <a href="https://space.bilibili.com/405502104?spm_id_from=333.337.search-card.all.click" class="icon-background">
+            <fa :icon="['fab', 'bilibili']" size="3x"/>
+          </a>
         </div>
       </div>
-      <!--vertical line-->
       <div class="separator"></div>
-      <!--other pages-->
       <div class="right-box">
         <div class="rcol1">
-          <router-link to="/"><p class="all-text">About Us</p></router-link>
+          <router-link to="/home"><p class="all-text">About Us</p></router-link>
           <router-link to="/Membership"><p class="all-text">Membership</p></router-link>
         </div>
         <div class="rcol2">
@@ -39,7 +36,6 @@
           <router-link to="/Sponsor"><p class="all-text">Sponsor</p></router-link>
         </div>
       </div>
-      <!--copyright-->
       <div class="copyright">
         <p id="copy">&copy; {{ currentYear }} CSSA</p>
       </div>
@@ -48,6 +44,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'web-Footer',
 
@@ -83,41 +80,26 @@ export default {
   margin-top: 0px;
   margin-right: 2vw;
   margin-left: 6.5vw;
+  padding: 0vw;
   position: relative;
 }
 
-.left-box {
-  display: grid;
-  grid-area: icon;
+.follow-us {
+  display: flex;
+  font-weight: bold;
+  font-size: clamp(25px, 15px + 2vw, 65px);
+  line-height: 20px;
+  grid-area: follow;
+  justify-content: space-between;
+  align-content: space-between;
+  padding: 0;
+  margin-top: -1vw;
+  margin-bottom: -1.5vw;
 }
 
-.separator {
-  border-left: 2.0px solid rgb(255, 255, 255);
-  grid-area: line;
-}
-
-.right-box {
-  display: grid;
-  grid-area: tag;
-  font-size: clamp(15px, 10px + 1.25vw, 35px);
-  grid-template-areas: 't1 t2 t3';
-  justify-content: space-evenly;
-  transition: transform 0.6s ease;
-}
-
-.rcol1, .rcol2, .rcol3 {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-  align-items: center;
-  gap: 1.2vw;
-}
-
-.rcol1 > *, .rcol2 > *, .rcol3 > * {
-  transition: transform 0.6s ease;
-}
-
-.rcol1 > :hover, .rcol2 > :hover, .rcol3 > :hover {
-  transform: scale(1.15);
+#follow {
+  margin-block-start: 1em;
+  margin-block-end: 1em;
 }
 
 .all-text {
@@ -129,25 +111,32 @@ export default {
   color: #ffffff;
 }
 
+.left-box {
+  display: grid;
+  grid-area: icon;
+  padding: 0;
+  margin: 0;
+}
+
 .social-icons {
   display: grid;
   color: #7A65A3;
   font-size: 1vw;
   grid-template-columns: repeat(3, 1fr);
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  gap: 1.2vw;
+  gap: 0;
 }
 
 .icon-background  {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 50%;
-  width: 4.2vw;
-  height: 4.2vw;
-  text-align: center;
-  line-height: 5.6vw;
+  width: 4.5em;
+  height: 4.5em;
   background: #ffffff;
-  margin: 5px;
+  margin: 1em;
   position: relative;
   overflow: hidden;
   transition: color 0.6s ease;
@@ -189,34 +178,51 @@ export default {
   }
 }
 
+a:link, a:visited, a:hover, a:active a:focus {
+  text-decoration: none;
+  color: #7A65A3;
+}
+
+.separator {
+  border-left: 2.0px solid rgb(255, 255, 255);
+  grid-area: line;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.right-box {
+  display: grid;
+  grid-area: tag;
+  font-size: clamp(15px, 10px + 1.25vw, 35px);
+  grid-template-areas: 't1 t2 t3';
+  justify-content: space-evenly;
+  transition: transform 0.6s ease;
+}
+
+.rcol1, .rcol2, .rcol3 {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+  gap: 0;
+}
+
+.rcol1 > *, .rcol2 > *, .rcol3 > * {
+  transition: transform 0.6s ease;
+}
+
+.rcol1 > :hover, .rcol2 > :hover, .rcol3 > :hover {
+  transform: scale(1.15);
+}
+
 .copyright {
   display: flex;
   color: rgb(255, 255, 255);
   grid-area: cp;
   place-content: flex-start flex-end;
   justify-self: end;
-  font-size: 1.25vw;
-}
-
-.follow-us {
-  display: flex;
-  font-weight: bold;
-  font-size: clamp(25px, 15px + 2vw, 65px);
-  line-height: 20px;
-  grid-area: follow;
-  justify-content: space-between;
-  align-content: space-between;
-  padding: 0%;
-}
-
-#follow {
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-}
-
-a:link, a:visited, a:hover, a:active a:focus {
-  text-decoration: none;
-  color: #7A65A3;
+  font-size: 1.5vw;
+  padding: 0;
+  margin-top: -3vw;
 }
 
 @media screen and (min-width: 1921px){
@@ -234,6 +240,8 @@ a:link, a:visited, a:hover, a:active a:focus {
     font-size: 4vw;
     padding:0;
     gap: 0;
+    margin-bottom: -2vw;;
+    margin-left: 4vw;
   }
 
   .container{
@@ -260,21 +268,19 @@ a:link, a:visited, a:hover, a:active a:focus {
   justify-content: start;
   align-items: center;
   justify-self: center;
-  padding: 0vw;
-  gap: 1vw;
-  font-size: 1.4vw;
+  padding: 0vw 2vw 0 2vw;
+  gap: 3vw;
+  font-size: 1.5vw;
 }
 
 .icon-background {
-  width: 5.2vw;
-  height: 5.2vw;
   text-align: center;
-  line-height: 7.5vw;
 }
 
   .right-box {
     grid-area: tag;
     grid-template-columns:auto;
+    margin-top: -1.5vw;
   }
 
 .rcol1 {
@@ -296,6 +302,15 @@ a:link, a:visited, a:hover, a:active a:focus {
     border-left: none;
     border-top: 1.75px solid rgb(255, 255, 255);
     padding: 0vw;
+    width: 100%;
+    margin-top: 1.2vw;
   }
+
+  .copyright {
+  font-size: 2.2vw;
+  display: flex;
+  justify-self: center;
+  margin-top: -4.5vw;
+}
 }
 </style>
