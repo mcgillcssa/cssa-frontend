@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" @update-sponsors="updateSponsors">
     <NavBar class="nav-bar"/>
     <div class="title-text-1 title-text">
             <p>Sponsors</p>
@@ -123,17 +123,60 @@
 
 </template>
 
-<script>
-import axios from 'axios'
-import NavBar from '../components/NavBar.vue'
 
+
+<script setup>
+import { onMounted } from 'vue'
+import axios from 'axios'
+import { sponsorState } from '../states/sponsorState'; // Adjust path as necessary
+
+onMounted(async () => {
+  try {
+    const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/sponsors/`);
+    if (!Array.isArray(response.data)) {
+      throw new Error('Expected an array of sponsors');
+    }
+    response.data.forEach(sponsor => {
+      const formattedSponsor = {
+        id: 1,
+        name: sponsor.sponsorName,
+        description: sponsor.coopDuration + " " + sponsor.sponsorClass + " sponsor",
+        logo: sponsor.sponsorImageUrl,
+        website: sponsor.sponsorWebsiteUrl
+      };
+      console.log(formattedSponsor);
+
+      switch (sponsor.sponsorClass.toUpperCase()) {
+        case 'DIAMOND':
+          sponsorState.de_sponsors.push(formattedSponsor);
+          break;
+        case 'SILVER':
+          sponsorState.d_sponsors.push(formattedSponsor);
+          break;
+        case 'GOLD':
+          sponsorState.g_sponsors.push(formattedSponsor);
+          break;
+      }
+    });
+    console.log(sponsorState);
+  } catch (err) {
+    console.error(err)
+    alert('Failed to fetch.')
+  }
+});
+</script>
+
+<script>
+import NavBar from '../components/NavBar.vue'
 export default {
   components: {
     NavBar,
   },
   data() {
     return {
-      de_sponsors: [], // Initially empty, will be filled with fetched data
+      de_sponsors: sponsorState.de_sponsors, 
+      d_sponsors: sponsorState.d_sponsors,
+      g_sponsors: sponsorState.g_sponsors, 
       itemsPerPage: 2,
       currentPage_de: 0,
       currentPage_d: 0,
@@ -144,39 +187,33 @@ export default {
     }
   },
   mounted() {
-    this.fetchSponsors(); // Fetch sponsors when component mounts
-    this.calculatePages(); // This might need to be moved or called again after data is fetched
+    this.calculatePages();
   },
   methods: {
-    async fetchSponsors() {
-      try {
-        const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/sponsors/`);
-        this.de_sponsors = response.data; // Populate de_sponsors with fetched data
-        console.log(response)
-        this.calculatePages(); // Recalculate pages after data is fetched
-      } catch (err) {
-        console.error('Failed to fetch sponsors:', err);
-        alert('Failed to fetch sponsors.');
-      }
+    updateSponsors(sponsors) {
+      this.de_sponsors = sponsors.diamond;
+      this.d_sponsors = sponsors.silver;
+      this.g_sponsors = sponsors.gold;
     },
     calculatePages() {
-      // Clear previous pages
-      this.de_pages = [];
-      this.d_pages = [];
-      this.g_pages = [];
-      // Populate pages based on the current data
       for (let i = 0; i < this.de_sponsors.length; i += this.itemsPerPage) {
-        this.de_pages.push(this.de_sponsors.slice(i, i + this.itemsPerPage));
+        this.de_pages.push(this.de_sponsors.slice(i, i + this.itemsPerPage))
       }
-      // Similarly, populate d_pages and g_pages if needed
+      for (let i = 0; i < this.d_sponsors.length; i += this.itemsPerPage) {
+        this.d_pages.push(this.d_sponsors.slice(i, i + this.itemsPerPage))
+      }
+      for (let i = 0; i < this.g_sponsors.length; i += this.itemsPerPage) {
+        this.g_pages.push(this.g_sponsors.slice(i, i + this.itemsPerPage))
+      }
     },
     changePageDE(index) {
-      this.currentPage_de = index;
+      this.currentPage_de = index
     },
     previousPageDE() {
       if (this.currentPage_de > 0) {
-        this.currentPage_de--;
+        this.currentPage_de--
       }
+      console.log("previous called")
     },
     nextPageDE() {
       if (this.currentPage_de < this.de_pages.length - 1) {
@@ -210,7 +247,37 @@ export default {
         this.currentPage_g++
       }
     },
-    handleWheel() {
+    handleWheel() {//event
+      // const sponsorListDE = this.$refs.sponsorListDE[0];
+      // const sponsorListD = this.$refs.sponsorListD[0];
+      // const sponsorListG = this.$refs.sponsorListG[0];
+      // const deltaX = event.deltaX;
+      //const deltaY = event.deltaY;
+      // console.log(deltaX);
+      // if (sponsorListDE) {
+      //   if (deltaX > 0) {
+      //         this.nextPageDE()
+      //       } else{
+      //         this.previousPageDE()
+      //       }
+      // event.preventDefault();  
+      // }
+      // if (sponsorListD) {
+      //   if (deltaX > 0) {
+      //         this.nextPageD()
+      //       } else{
+      //         this.previousPageD()
+      //       }
+      // event.preventDefault();
+      // }
+      // if (sponsorListG) {
+      //   if (deltaX > 0) {
+      //         this.nextPageG()
+      //       } else{
+      //         this.previousPageG()
+      //       }
+      // event.preventDefault();
+      // }
     }
   }
 }
@@ -554,5 +621,4 @@ section {
 }
   /* Add additional mobile-specific styles as needed */
 }
-
 </style>
