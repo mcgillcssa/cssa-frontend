@@ -19,7 +19,6 @@
             <h2 class="sponsor-name">{{ sponsor.name }}</h2>
           </div>
           <p class="sponsor-description">{{ sponsor.description }}</p>
-          <a :href="sponsor.website" class="sponsor-website">➤</a>
         </div>
       </div>
     </div>
@@ -54,7 +53,6 @@
             <h2 class="sponsor-name">{{ sponsor.name }}</h2>
           </div>
           <p class="sponsor-description">{{ sponsor.description }}</p>
-          <a :href="sponsor.website" class="sponsor-website">➤</a>
         </div>
       </div>
     </div>
@@ -75,7 +73,6 @@
       </button>
     </div>
     </section>
-    <!-- section 2 -->
 
     <section class="section">
       <!-- section 3 -->
@@ -90,7 +87,6 @@
             <h2 class="sponsor-name">{{ sponsor.name }}</h2>
           </div>
           <p class="sponsor-description">{{ sponsor.description }}</p>
-          <a :href="sponsor.website" class="sponsor-website">➤</a>
         </div>
       </div>
     </div>
@@ -114,43 +110,43 @@
 
 
   </div>
-  
   <div>
     <Footer class="footer">
     </Footer>
   </div>
 </div>
-
 </template>
 
-
-
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted} from 'vue'
 import axios from 'axios'
-import { sponsorState } from '../states/sponsorState'; // Adjust path as necessary
+import { sponsorState } from '../states/sponsorState';
+
+const sponsorUrl = process.env.VUE_APP_BACKEND_URL + '/api/sponsors/';
 
 onMounted(async () => {
   try {
-    const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/sponsors/`);
+    const response = await axios.get(sponsorUrl);
     if (!Array.isArray(response.data)) {
       throw new Error('Expected an array of sponsors');
     }
+    sponsorState.de_sponsors = [];
+    sponsorState.d_sponsors = [];
+    sponsorState.g_sponsors = [];
+
     response.data.forEach(sponsor => {
       const formattedSponsor = {
-        id: 1,
+        id: sponsor.id,
         name: sponsor.sponsorName,
-        description: sponsor.coopDuration + " " + sponsor.sponsorClass + " sponsor",
-        logo: sponsor.sponsorImageUrl,
-        website: sponsor.sponsorWebsiteUrl
+        description: sponsor.sponsorDescription,
+        logo: sponsor.sponsorImageUrl
       };
-      console.log(formattedSponsor);
 
       switch (sponsor.sponsorClass.toUpperCase()) {
-        case 'DIAMOND':
+        case 'DIAMOND_EXCLUSIVE':
           sponsorState.de_sponsors.push(formattedSponsor);
           break;
-        case 'SILVER':
+        case 'DIAMOND':
           sponsorState.d_sponsors.push(formattedSponsor);
           break;
         case 'GOLD':
@@ -158,10 +154,9 @@ onMounted(async () => {
           break;
       }
     });
-    console.log(sponsorState);
   } catch (err) {
-    console.error(err)
-    alert('Failed to fetch.')
+    console.error('Failed to fetch sponsors:', err);
+    alert('Failed to fetch sponsors.');
   }
 });
 </script>
@@ -174,9 +169,9 @@ export default {
   },
   data() {
     return {
-      de_sponsors: sponsorState.de_sponsors, 
+      de_sponsors: sponsorState.de_sponsors,
       d_sponsors: sponsorState.d_sponsors,
-      g_sponsors: sponsorState.g_sponsors, 
+      g_sponsors: sponsorState.g_sponsors,
       itemsPerPage: 2,
       currentPage_de: 0,
       currentPage_d: 0,
@@ -287,10 +282,12 @@ export default {
 body {
   overflow-x: hidden;
 }
+
 .nav-bar {
   width: 100%;
   z-index: 100;
 }
+
 .title-text {
   margin-left: 3vw;
   position: relative;
@@ -308,6 +305,7 @@ body {
   -webkit-text-stroke: 2px #ffffff;
   color: transparent;
 }
+
 .title-text-1 {
   z-index: 2;
   position: absolute;
@@ -328,6 +326,7 @@ body {
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
+
 .sponsor-page::before {
   content: '';
   position: absolute;
@@ -337,6 +336,7 @@ body {
   height: 330vh;
   background-color: #ac94c5;
 }
+
 section {
   box-sizing: border-box;
   scroll-snap-align: end;
@@ -366,12 +366,13 @@ section {
   flex-wrap: wrap;
   justify-content: center;
 }
+
 .sponsor-total {
   width: 30vh;
   display: flex;
-  flex-direction: column; /* Stack children vertically */
-  align-items: center; /* Center children horizontally */
-  justify-content: center; /* Center children vertically, if needed */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .sponsor-card {
@@ -388,18 +389,19 @@ section {
   opacity: 0.9;
   display: table;
   border-radius: 20px;
-  max-width: 100%; /* Ensures the card is not wider than its container */
-  box-sizing: border-box; /* Includes padding and border in the element's total width */
+  max-width: 100%;
+  box-sizing: border-box;
 }
+
 .sponsor-logo {
   width: 12vh;
   position: center;
   margin-top: 3vh;
   user-select: none;
-  border-radius: 50%; /* Makes the image round */
-  box-shadow: 0 0 25px #ac94c5; /* Adds an ambient border/shadow */
-  display: block; /* To ensure box-shadow is properly displayed */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
+  border-radius: 50%;
+  box-shadow: 0 0 25px #ac94c5;
+  display: block;
+  object-fit: cover;
 }
 
 .sponsor-name {
@@ -496,9 +498,10 @@ section {
 @media (max-width: 1024px) {
   html, body {
     width: 100%;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    margin: 0; /* Remove any default margin */
+    overflow-x: hidden;
+    margin: 0;
   }
+
   .nav-bar {
     position: absolute;
     top: 0;
@@ -506,6 +509,7 @@ section {
     width: 100%;
     z-index: 100;
   }
+
   .container {
     max-width: 100%;
     overflow-x: hidden;
@@ -517,20 +521,24 @@ section {
   }
 
   .title-text {
-    font-size: 4vw; /* Smaller font size for mobile */
+    font-size: 4vw;
   }
+
   .title-text p {
   -webkit-text-stroke: 0px;
   color: transparent;
 }
+
 .title-text-1 {
   z-index: 10;
   top: 30%;
 }
+
 .title-wrapper {
   width: 100%;
   margin-top: 2em;
 }
+
   .sponsor-page {
   background-image: linear-gradient(#ac94c5 ,#f7bfc9), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
@@ -545,6 +553,7 @@ section {
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
+
   .sponsor-page::before{
     content: '';
     position: absolute;
@@ -553,6 +562,7 @@ section {
     width: 0%;
     height: 0;
   }
+
   .title-text-1.title-text {
     font-size: 5vh; /* Increase font size */
     text-align: center; /* Center text */
@@ -561,13 +571,16 @@ section {
     top: 6vh;
     transform: translateX(-50%); /* Adjust for exact centering */
   }
+
   .section{
     height: 100%;
     color: white;
   }
+
   .sponsor-description{
     display: none;
   }
+
   .page-title {
     margin-left: 0; /* Adjust margins for mobile */
     margin-right:0;
@@ -583,6 +596,7 @@ section {
     height: 50px; /* Or min-height if you want it to be flexible */
     line-height: 50px; /* Should match the height for vertical centering */
   }
+
   .page-title::after {
   content: '';
   position: absolute;
@@ -591,34 +605,37 @@ section {
   right: 0;
   bottom: 0;
   z-index: -1; /* Place the pseudo-element behind the text */
-  
+
   /* Apply the gradient to the pseudo-element, which matches the text's box model */
   background: linear-gradient(to right, #ac94c5 ,#f7bfc9);
-  
+
   /* Set the margin to match the padding of the .page-title element */
   margin: 1em;
-  
+
   /* If you have border-radius on the .page-title, match it here */
   border-radius: inherit;
 }
+
   .sponsor-card {
     width: 20vw; /* Use more of the screen width for each card */
     margin-left: 2vw; /* Center the cards with smaller margins */
     margin-right: 2vw;
   }
+
   .pagination {
     margin-left: 2vh; /* Adjust pagination position for mobile */
     margin-right: 2vh;
   }
+
   .title-text p {
   -webkit-text-stroke: 2px #ffffff;
   color: transparent;
 }
+
   .title-text-1 {
   z-index: 2;
   position: absolute;
   top: 30%;
 }
-  /* Add additional mobile-specific styles as needed */
 }
 </style>
