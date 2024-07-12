@@ -15,7 +15,9 @@
       <div v-for="(page, index) in de_pages" :key="index" v-show="currentPage_de === index">
         <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
           <div class="sponsor-total">
-            <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
+            <div class="logo-background">
+              <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
+            </div>
             <h2 class="sponsor-name">{{ sponsor.name }}</h2>
           </div>
           <p class="sponsor-description">{{ sponsor.description }}</p>
@@ -49,7 +51,9 @@
       <div v-for="(page, index) in d_pages" :key="index" v-show="currentPage_d === index">
         <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
           <div class="sponsor-total">
-            <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
+            <div class="logo-background">
+              <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
+            </div>
             <h2 class="sponsor-name">{{ sponsor.name }}</h2>
           </div>
           <p class="sponsor-description">{{ sponsor.description }}</p>
@@ -83,7 +87,9 @@
       <div v-for="(page, index) in g_pages" :key="index" v-show="currentPage_g === index">
         <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
           <div class="sponsor-total">
-            <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
+            <div class="logo-background">
+              <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
+            </div>
             <h2 class="sponsor-name">{{ sponsor.name }}</h2>
           </div>
           <p class="sponsor-description">{{ sponsor.description }}</p>
@@ -107,7 +113,6 @@
       </button>
     </div>
     </section>
-
 
   </div>
   <div>
@@ -286,6 +291,7 @@ body {
 .nav-bar {
   width: 100%;
   z-index: 100;
+  position: relative;
 }
 
 .title-text {
@@ -392,14 +398,23 @@ section {
   max-width: 100%;
   box-sizing: border-box;
 }
+.logo-background {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(to right, #4f78c9, #8986ed, #ad87cb, #ffa7d1, #ffc6b4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3vh;
+    border-radius: 50%;
+    padding: 0.8vw;
+}
 
 .sponsor-logo {
   width: 12vh;
   position: center;
-  margin-top: 3vh;
   user-select: none;
   border-radius: 50%;
-  box-shadow: 0 0 25px #ac94c5;
   display: block;
   object-fit: cover;
 }
