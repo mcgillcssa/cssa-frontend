@@ -8,11 +8,13 @@
   height: 24px;
   background: linear-gradient(
     90deg,
-    #ffc6b4 0.67%,
-    #ffa7d1 25.09%,
-    #ad87cb 50.63%,
-    #8986ed 84.36%,
-    #4f78c9 100%
+    #FFEE8F 10.28%,
+    #E3FBCF 20.63%,
+    #BBF0FA 42.36%,
+    #ABD9FF 56.45%,
+    #5DABF3 70.52%,
+    #448FD6 84.88%,
+    #3262BA 100%
   );
 }
 </style>
