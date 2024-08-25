@@ -534,4 +534,35 @@ export default {
   bottom: -5px;
   height: 1.5px;
 }
+
+@media screen and (min-width: 2500px) {
+  .left-column {
+  -webkit-perspective: 2000px;
+  perspective: 2000px;
+}
+
+.flip-card {
+  width: 42%;
+}
+
+.front-image, .back-image {
+  margin-bottom: -24vw;
+}
+}
+
+@media screen and (min-width: 4600px) {
+  .left-column {
+  -webkit-perspective: 2000px;
+  perspective: 2000px;
+}
+
+.flip-card {
+  width: 40%;
+}
+
+.front-image, .back-image {
+  margin-bottom: -24vw;
+}
+}
+
 </style>

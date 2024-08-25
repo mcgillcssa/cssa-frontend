@@ -238,6 +238,10 @@ h4 br {
     max-width: 800px;
     left: 3%;
   }
+
+  .vip-title-en {
+  margin-top: -1.5vw;
+  }
 }
 
 @media screen and (max-width: 700px) {
