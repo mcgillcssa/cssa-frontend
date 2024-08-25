@@ -85,7 +85,7 @@ body {
 }
 .page-content {
   min-height: calc(100vh - 48px);
-  background-color: #eaebf6;
+  background-color: #E3F4FF;
 }
 .title-container {
   width: 100%;
@@ -93,7 +93,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #eaebf6;
+  background: #E3F4FF;
   margin: 0;
   padding: 0;
 }
@@ -103,7 +103,7 @@ body {
 }
 
 .title {
-  background: #8987cb;
+  background: #3F83CE;
   text-align: center;
   margin: 0 auto;
   padding: 5px 0 0 0;
@@ -119,12 +119,12 @@ body {
 
 .left-square,
 .right-square {
-  width: 10px; /* width of the square */
-  height: 10px; /* height of the square */
-  background-color: #7a65a3; /* color of the square */
-  position: absolute; /* position it absolutely with respect to the h1 element */
-  top: 50%; /* center it vertically */
-  transform: translateY(-50%); /* perfectly center it vertically */
+  width: 10px;
+  height: 10px;
+  background-color: #1A4F87;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   display: inline-block;
 }
 
