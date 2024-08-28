@@ -199,10 +199,10 @@ const handleScroll = () => {
 
 .presentation-description {
   margin: 30px 40px 0 40px;
-  padding: 100px;
+  padding: 4vw;
 
   display: flex;
-  width: 85%;
+  width: 90vw;
   flex-wrap: nowrap;
 
   gap: 50px;
@@ -414,7 +414,7 @@ const handleScroll = () => {
 
   .presentation-description {
     padding: 30px;
-    width: 90%
+    width: 90%;
   }
 
   .presentation-description {

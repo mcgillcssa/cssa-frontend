@@ -147,8 +147,7 @@ export default {
 }
 
 .modal::-webkit-scrollbar-thumb {
-  /* background-color: rgba(0, 0, 0, 1); */
-  background: #3F83CE;
+  background-color: rgba(63, 131, 206, 1);
   border-radius: 100px;
 }
 
@@ -158,7 +157,7 @@ export default {
 
 .modal {
   scrollbar-width: thin;
-  scrollbar-color: #3F83CE transparent;
+  scrollbar-color: rgba(63, 131, 206, 1) transparent;
 }
 
 .modal-top-container {
