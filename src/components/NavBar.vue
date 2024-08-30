@@ -26,7 +26,8 @@
       <li>
         <router-link class="link-element" to="/membership">Membership</router-link>
       </li>
-      <li>Sponsorship</li>
+      <li><router-link class="link-element" to="/Sponsor">Sponsorship</router-link>
+      </li>
     </ul>
     <div
       class="menu-icon"
@@ -56,7 +57,9 @@
     <li v-if="isDropdownOpen">
       <router-link class="link-element" to="/membership">Membership</router-link>
     </li>
-    <li v-if="isDropdownOpen">Sponsorship</li>
+    <li v-if="isDropdownOpen">
+      <router-link class="link-element" to="/Sponsor">Sponsorship</router-link>
+    </li>
   </ul>
 </template>
 
