@@ -247,38 +247,6 @@ export default {
         this.currentPage_g++
       }
     },
-    handleWheel() {//event
-      // const sponsorListDE = this.$refs.sponsorListDE[0];
-      // const sponsorListD = this.$refs.sponsorListD[0];
-      // const sponsorListG = this.$refs.sponsorListG[0];
-      // const deltaX = event.deltaX;
-      //const deltaY = event.deltaY;
-      // console.log(deltaX);
-      // if (sponsorListDE) {
-      //   if (deltaX > 0) {
-      //         this.nextPageDE()
-      //       } else{
-      //         this.previousPageDE()
-      //       }
-      // event.preventDefault();  
-      // }
-      // if (sponsorListD) {
-      //   if (deltaX > 0) {
-      //         this.nextPageD()
-      //       } else{
-      //         this.previousPageD()
-      //       }
-      // event.preventDefault();
-      // }
-      // if (sponsorListG) {
-      //   if (deltaX > 0) {
-      //         this.nextPageG()
-      //       } else{
-      //         this.previousPageG()
-      //       }
-      // event.preventDefault();
-      // }
-    }
   }
 }
 </script>
@@ -319,7 +287,7 @@ body {
 }
 
 .sponsor-page {
-  background-image: linear-gradient(#ac94c5 ,#f7bfc9), url('https://i.imgur.com/ZgCeJBq.jpg');
+  background-image: linear-gradient( #3364BB ,#E3F4FF), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -340,7 +308,7 @@ body {
   left: 0;
   width: 27.5%;
   height: 330vh;
-  background-color: #ac94c5;
+  background-color: #3364BB;
 }
 
 section {
@@ -398,10 +366,17 @@ section {
   max-width: 100%;
   box-sizing: border-box;
 }
+
 .logo-background {
     width: 80px;
     height: 80px;
-    background: linear-gradient(to right, #4f78c9, #8986ed, #ad87cb, #ffa7d1, #ffc6b4);
+    background: linear-gradient(to right,     #FFEE8F 10.28%,
+    #E3FBCF 20.63%,
+    #BBF0FA 42.36%,
+    #ABD9FF 56.45%,
+    #5DABF3 70.52%,
+    #448FD6 84.88%,
+    #3262BA 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -422,7 +397,7 @@ section {
 .sponsor-name {
   font-size: 2.2vh;
   margin-bottom: 1vh;
-  color: #777;
+  color: #1E3D79;
   user-select: none;
 }
 
@@ -430,7 +405,7 @@ section {
   font-size: 2vh;
   width: 70vh;
   font-weight: bold;
-  color: #777;
+  color: #1E3D79;
   display: table-cell;
   vertical-align: middle;
   text-align: left;
@@ -465,20 +440,23 @@ section {
 .pagination button {
   padding: 8px 12px;
   margin: 0 5px;
-  background-color: #f5f5f5;
+  background-color: #E3F4FF;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  color:#1E3D79;
 }
 
 .pagination button.active {
-  background-color: #77539d;
-  color: #fff;
+  background-color: #1E3D79;
+  color: #E3F4FF;
 }
 
 .pagination button:hover {
-  background-color: #ac94c5
+  background-color: #1E3D79;
+  color: #E3F4FF;
 }
+
 .left-arrow:before,
 .right-arrow:before {
   display: inline-block;
@@ -488,17 +466,26 @@ section {
 }
 
 .left-arrow:before {
-  border-right: 7px solid #555;
+  border-right: 7px solid #3364BB;
 }
 
 .right-arrow:before {
-  border-left: 7px solid #555;
+  border-left: 7px solid #3364BB;
+}
+
+.pagination button:hover .left-arrow:before {
+  border-right: 7px solid #E3F4FF;
+}
+
+.pagination button:hover .right-arrow:before {
+  border-left: 7px solid #E3F4FF;
 }
 
 .left-arrow,
 .right-arrow {
   width: 20px;
   height: 20px;
+  color:#E3F4FF;
 }
 
 .left-arrow {
@@ -555,7 +542,7 @@ section {
 }
 
   .sponsor-page {
-  background-image: linear-gradient(#ac94c5 ,#f7bfc9), url('https://i.imgur.com/ZgCeJBq.jpg');
+  background-image: linear-gradient( #3364BB ,#E3F4FF), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -579,12 +566,12 @@ section {
   }
 
   .title-text-1.title-text {
-    font-size: 5vh; /* Increase font size */
-    text-align: center; /* Center text */
-    width: 100%; /* Use full width to aid in centering */
-    left: 50%; /* Center the div horizontally */
+    font-size: 5vh;
+    text-align: center;
+    width: 100%;
+    left: 50%;
     top: 6vh;
-    transform: translateX(-50%); /* Adjust for exact centering */
+    transform: translateX(-50%);
   }
 
   .section{
@@ -597,19 +584,19 @@ section {
   }
 
   .page-title {
-    margin-left: 0; /* Adjust margins for mobile */
+    margin-left: 0;
     margin-right:0;
     margin-bottom: 0vh;
     margin-top: 14vh;
-    font-size: 3vh; /* Larger font size for better readability */
-    -webkit-text-stroke: 0px; /* Disable text stroke for mobile */
-    color: #77539d;
+    font-size: 3vh;
+    -webkit-text-stroke: 0px;
+    color: #1E3D79;
     font-style: italic;
     position: relative;
     padding: 1em;
     text-align: center;
-    height: 50px; /* Or min-height if you want it to be flexible */
-    line-height: 50px; /* Should match the height for vertical centering */
+    height: 50px;
+    line-height: 50px;
   }
 
   .page-title::after {
@@ -619,26 +606,20 @@ section {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: -1; /* Place the pseudo-element behind the text */
-
-  /* Apply the gradient to the pseudo-element, which matches the text's box model */
-  background: linear-gradient(to right, #ac94c5 ,#f7bfc9);
-
-  /* Set the margin to match the padding of the .page-title element */
+  z-index: -1;
+  background: linear-gradient(to right, rgba(51, 100, 187, 0.6), rgba(227, 244, 255, 0.8));
   margin: 1em;
-
-  /* If you have border-radius on the .page-title, match it here */
   border-radius: inherit;
 }
 
   .sponsor-card {
-    width: 20vw; /* Use more of the screen width for each card */
-    margin-left: 2vw; /* Center the cards with smaller margins */
+    width: 20vw;
+    margin-left: 2vw;
     margin-right: 2vw;
   }
 
   .pagination {
-    margin-left: 2vh; /* Adjust pagination position for mobile */
+    margin-left: 2vh;
     margin-right: 2vh;
   }
 
