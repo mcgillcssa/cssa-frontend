@@ -21,6 +21,9 @@
           <a href="https://space.bilibili.com/405502104?spm_id_from=333.337.search-card.all.click" class="icon-background">
             <fa :icon="['fab', 'bilibili']" size="3x"/>
           </a>
+          <a href="https://www.xiaohongshu.com/user/profile/5c0a27d00000000006009dcc" class="icon-background">
+            <fa :icon="['fab', 'readme']" size="3x"/>
+          </a>
         </div>
       </div>
       <div class="separator"></div>
@@ -62,7 +65,7 @@ export default {
 }
 
 .footer {
-  background-color: #7A65A3;
+  background-color: #3364BB;
   color: #ffffff;
 }
 
@@ -120,7 +123,7 @@ export default {
 
 .social-icons {
   display: grid;
-  color: #7A65A3;
+  color: #3364BB;
   font-size: 1vw;
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
@@ -151,7 +154,7 @@ export default {
   left: 50%;
   width: 100%;
   height: 100%;
-  background-color: #8871b7;
+  background-color: #3364BB;
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0.6s ease;
@@ -180,7 +183,7 @@ export default {
 
 a:link, a:visited, a:hover, a:active a:focus {
   text-decoration: none;
-  color: #7A65A3;
+  color: #3364BB;
 }
 
 .separator {
@@ -264,7 +267,7 @@ a:link, a:visited, a:hover, a:active a:focus {
 }
 
 .social-icons {
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   justify-content: start;
   align-items: center;
   justify-self: center;

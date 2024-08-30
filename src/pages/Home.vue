@@ -3,11 +3,11 @@
   <div class="banner-background">
     <img
       class="home-title"
-      src="https://media.discordapp.net/attachments/887824994602733598/1155642024175878215/image.png"
+      src="hhttps://i.imgur.com/e75ru0y.png"
       />
   </div>
   <gradient-stripe/>
-  <Footer />
+  <Footer></Footer>
 </template>
 
 <script setup>

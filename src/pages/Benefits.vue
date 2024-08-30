@@ -19,12 +19,15 @@
     </div>
   </div>
   <gradient-stripe></gradient-stripe>
+  <Footer></Footer>
 </template>
+
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 import axios from 'axios'
 import GradientStripe from '../components/GradientStripe.vue'
 import CategoryAccordion from '../components/benefits/CategoryAccordion.vue'
+import Footer from '../components/Footer.vue'
 
 const benefitsByType = ref({})
 const column1Benefits = ref({})

@@ -51,6 +51,7 @@
     </div>
     <card-carousel></card-carousel>
   </div>
+  <Footer></Footer>
 </template>
 
 <script setup>
@@ -58,6 +59,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import NavBar from '../components/NavBar.vue'
 import CardCarousel from '../components/membership/CardCarousel.vue'
 import { ArrowDown, ArrowRight } from '@icon-park/vue-next'
+import Footer from '../components/Footer.vue'
 
 const bannerUrl = ref('https://i.imgur.com/9myUD3h.jpg')
 const contentSections = ref([])
