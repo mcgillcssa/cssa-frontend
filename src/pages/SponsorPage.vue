@@ -1,13 +1,17 @@
 <template>
-  <div>
-  <div class="sponsor-page">
-    <section>
+  <div class="container">
+    <NavBar class="nav-bar"/>
     <div class="title-text-1 title-text">
             <p>Sponsors</p>
     </div>
-      <NavBar />
-      <h1 class="page-title">Diamond Exclusive</h1>
-      <div class="sponsor-list" ref="sponsorList" @wheel="handleWheel">
+
+  <div class="sponsor-page">
+      <section class="section">
+      <!-- section 1 -->
+      <div class="title-wrapper">
+        <h1 class="page-title">Diamond Exclusive</h1>
+      </div>
+      <div class="sponsor-list" :ref="'sponsorListDE'" @wheel="handleWheel" v-for="(page, index) in de_pages" :key="'de-' + index" v-show="currentPage_de === index">
       <div v-for="(page, index) in de_pages" :key="index" v-show="currentPage_de === index">
         <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
           <div class="sponsor-total">
@@ -37,13 +41,12 @@
     </div>
     </section>
 
-    <section>
-      <div class="title-text-2 title-text">
-            <p>Sponsors</p>
+    <section class="section">
+      <!-- section 2 -->
+      <div class="title-wrapper">
+        <h1 class="page-title">Diamond</h1>
       </div>
-      <NavBar />
-      <h1 class="page-title">Diamond</h1>
-      <div class="sponsor-list" ref="sponsorList" @wheel="handleWheel">
+      <div class="sponsor-list" :ref="'sponsorListD'" @wheel="handleWheel" v-for="(page, index) in d_pages" :key="'d-' + index" v-show="currentPage_d === index">
       <div v-for="(page, index) in d_pages" :key="index" v-show="currentPage_d === index">
         <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
           <div class="sponsor-total">
@@ -55,7 +58,6 @@
         </div>
       </div>
     </div>
-
     <div class="pagination">
       <button @click="previousPageD" :disabled="currentPage_d === 0">
         <i class="arrow-icon left-arrow"></i>
@@ -73,14 +75,14 @@
       </button>
     </div>
     </section>
+    <!-- section 2 -->
 
-    <section>
-      <div class="title-text-3 title-text">
-            <p>Sponsors</p>
+    <section class="section">
+      <!-- section 3 -->
+      <div class="title-wrapper">
+        <h1 class="page-title">Gold</h1>
       </div>
-      <NavBar />
-      <h1 class="page-title">Gold</h1>
-      <div class="sponsor-list" ref="sponsorList" @wheel="handleWheel">
+      <div class="sponsor-list" :ref="'sponsorListG'" @wheel="handleWheel" v-for="(page, index) in g_pages" :key="'g-' + index" v-show="currentPage_g === index">
       <div v-for="(page, index) in g_pages" :key="index" v-show="currentPage_g === index">
         <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
           <div class="sponsor-total">
@@ -109,6 +111,8 @@
       </button>
     </div>
     </section>
+
+
   </div>
   
   <div>
@@ -120,6 +124,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import NavBar from '../components/NavBar.vue'
 
 export default {
@@ -128,123 +133,8 @@ export default {
   },
   data() {
     return {
-      de_sponsors: [
-        {
-          id: 1,
-          name: '茶语缘',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'
-        },
-        {
-          id: 2,
-          name: '留学达人',
-          description:
-            '“留学达人”留学服务，我们是一家专业的留学服务机构，致力于为全球' +
-            '学生提供高质量、综合性的留学服务。我们提供全方位的留学服务，包括留学咨询、院' +
-            '校申请、签证申请、语言培训、文化适应培训等。我们的团队由留学专家、教育顾问、' +
-            '签证顾问等多个领域的专业人士组成，拥有丰富的留学经验和专业知识。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'
-        },
-        {
-          id: 3,
-          name: '银峰银行',
-          description:
-            '“银峰银行”，我们是一家致力于为客户提供全方位金融服务' +
-            '的银行品牌。作为一家专业、高效、创新的银行，我们以客户为中心，注重客户' +
-            '体验和服务品质。“银峰银行”提供各种金融服务，包括个人储蓄、信用贷款、财富管' +
-            '理、投资理财等。我们的产品针对不同客户需求，提供灵活的选择，以满足客户的不同' +
-            '需求。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'
-        },
-        {
-          id: 4,
-          name: '饕餮食府',
-          description:
-            '“饕餮食府”餐厅品牌，我们是一家专业的餐厅品牌，致力于为客户提供高品' +
-            '质、创意美食和愉悦的用餐体验。我们的菜品涵盖中西合璧的美食文化，融合了传统和现代' +
-            '的烹饪技艺，为客户带来无尽的口感享受。我们的菜品种类丰富，包括烤鸭、红烧肉、海鲜、' +
-            '意大利面、披萨等多种菜系，满足客户不同口味的需求。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'
-        }
-        // Add more sponsors as needed
-      ],
-      d_sponsors: [
-        {id: 1,
-          name: 'D1',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},
-        {id: 2,
-          name: 'D2',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},
-          {id: 3,
-          name: 'D3',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},  
-          {id: 4,
-          name: 'D4',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'}
-        ],
-      g_sponsors: [
-        {id: 1,
-          name: 'G1',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},
-        {id: 2,
-          name: 'G2',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},
-          {id: 3,
-          name: 'G3',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'},  
-          {id: 4,
-          name: 'G4',
-          description:
-            '“茶语缘”奶茶品牌，我们是一家致力于提供高品质、多样化奶茶的品牌。' +
-            '我们的品牌一直秉承“品质至上，服务第一”的理念，不断努力提高自己的品质和服务水平。' +
-            '我们的目标是成为全球最受欢迎的奶茶品牌之一，让更多的人能够品尝到我们的美味。',
-          logo: require('@/assets/logo.png'),
-          website: 'https://www.mcgill.ca/'}
-        ],
+      de_sponsors: [], // Initially empty, will be filled with fetched data
       itemsPerPage: 2,
-      currentPage: 0,
       currentPage_de: 0,
       currentPage_d: 0,
       currentPage_g: 0,
@@ -254,35 +144,45 @@ export default {
     }
   },
   mounted() {
-    this.calculatePages()
+    this.fetchSponsors(); // Fetch sponsors when component mounts
+    this.calculatePages(); // This might need to be moved or called again after data is fetched
   },
   methods: {
-    calculatePages() {
-      this.dc_pages = []
-      this.d_pages = []
-      this.g_pages = []
-      for (let i = 0; i < this.de_sponsors.length; i += this.itemsPerPage) {
-        this.de_pages.push(this.de_sponsors.slice(i, i + this.itemsPerPage))
-      }
-      for (let i = 0; i < this.d_sponsors.length; i += this.itemsPerPage) {
-        this.d_pages.push(this.d_sponsors.slice(i, i + this.itemsPerPage))
-      }
-      for (let i = 0; i < this.g_sponsors.length; i += this.itemsPerPage) {
-        this.g_pages.push(this.g_sponsors.slice(i, i + this.itemsPerPage))
+    async fetchSponsors() {
+      try {
+        const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/sponsors/`);
+        this.de_sponsors = response.data; // Populate de_sponsors with fetched data
+        console.log(response)
+        this.calculatePages(); // Recalculate pages after data is fetched
+      } catch (err) {
+        console.error('Failed to fetch sponsors:', err);
+        alert('Failed to fetch sponsors.');
       }
     },
+    calculatePages() {
+      // Clear previous pages
+      this.de_pages = [];
+      this.d_pages = [];
+      this.g_pages = [];
+      // Populate pages based on the current data
+      for (let i = 0; i < this.de_sponsors.length; i += this.itemsPerPage) {
+        this.de_pages.push(this.de_sponsors.slice(i, i + this.itemsPerPage));
+      }
+      // Similarly, populate d_pages and g_pages if needed
+    },
     changePageDE(index) {
-      this.currentPage_de = index
+      this.currentPage_de = index;
     },
     previousPageDE() {
       if (this.currentPage_de > 0) {
-        this.currentPage_de--
+        this.currentPage_de--;
       }
     },
     nextPageDE() {
       if (this.currentPage_de < this.de_pages.length - 1) {
         this.currentPage_de++
       }
+      console.log("next called")
     },
     changePageD(index) {
       this.currentPage_d = index
@@ -310,35 +210,22 @@ export default {
         this.currentPage_g++
       }
     },
-    handleWheel(event) {
-      const sponsorList = this.$refs.sponsorList
-      const deltaX = event.deltaX
-      const deltaY = event.deltaY
-
-      const rect = sponsorList.getBoundingClientRect()
-      const x = event.clientX - rect.left
-      const y = event.clientY - rect.top
-
-      const isCursorOverSponsorList =
-        x >= 0 && x <= sponsorList.clientWidth && y >= 0 && y <= sponsorList.clientHeight
-
-      if (isCursorOverSponsorList) {
-        if (deltaX > 0 && deltaY < 5 && deltaY > -5) {
-          this.nextPage()
-        } else if (deltaX < 0 && deltaY < 5 && deltaY > -5) {
-          this.previousPage()
-        }
-
-        // Prevent horizontal scrolling when the cursor is over the sponsor-list
-      }
+    handleWheel() {
     }
   }
 }
 </script>
 
 <style scoped>
+body {
+  overflow-x: hidden;
+}
+.nav-bar {
+  width: 100%;
+  z-index: 100;
+}
 .title-text {
-  margin-left: 4vw;
+  margin-left: 3vw;
   position: relative;
   font-size: 5vw;
   line-height: 6vw;
@@ -349,15 +236,7 @@ export default {
   color: #ffffff;
   letter-spacing: -3px;
 }
-.title-text::before {
-  content: '';
-  position: absolute;
-  left: -2vw;
-  top: 0;
-  width: 4px;
-  height: 100%;
-  background-color: #ffffff;
-}
+
 .title-text p {
   -webkit-text-stroke: 2px #ffffff;
   color: transparent;
@@ -367,37 +246,14 @@ export default {
   position: absolute;
   top: 30%;
 }
-.title-text-2 {
-  z-index: 2;
-  position: absolute;
-  top: 130%;
-}
-.title-text-3 {
-  z-index: 2;
-  position: absolute;
-  top: 230%;
-}
 
-.title-text-3::before {
-  content: '';
-  position: absolute;
-  left: -2vw;
-  top: 0;
-  width: 4px;
-  height: 100%;
-  background-color: #ffffff;
-}
-.title-text-3 p {
-  -webkit-text-stroke: 2px #ffffff;
-  color: transparent;
-}
 .sponsor-page {
   background-image: linear-gradient(#ac94c5 ,#f7bfc9), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-blend-mode: overlay;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -425,8 +281,8 @@ section {
 .page-title {
   text-align: center;
   font-size: 6vh;
-  padding-top: 10vh;
-  margin-top: 5vh;
+  padding-top: 12vh;
+  margin-top: 6vh;
   margin-bottom: 3vh;
   margin-left: 72vh;
   margin-right: 15vh;
@@ -444,7 +300,11 @@ section {
   justify-content: center;
 }
 .sponsor-total {
-  display: table-cell;
+  width: 30vh;
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center children horizontally */
+  justify-content: center; /* Center children vertically, if needed */
 }
 
 .sponsor-card {
@@ -461,13 +321,18 @@ section {
   opacity: 0.9;
   display: table;
   border-radius: 20px;
+  max-width: 100%; /* Ensures the card is not wider than its container */
+  box-sizing: border-box; /* Includes padding and border in the element's total width */
 }
 .sponsor-logo {
-  max-width: 9vh;
+  width: 12vh;
+  position: center;
   margin-top: 3vh;
-  margin-left: 1vh;
-  margin-right: 1vh;
   user-select: none;
+  border-radius: 50%; /* Makes the image round */
+  box-shadow: 0 0 25px #ac94c5; /* Adds an ambient border/shadow */
+  display: block; /* To ensure box-shadow is properly displayed */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
 }
 
 .sponsor-name {
@@ -479,7 +344,7 @@ section {
 
 .sponsor-description {
   font-size: 2vh;
-  width: 75vh;
+  width: 70vh;
   font-weight: bold;
   color: #777;
   display: table-cell;
@@ -560,4 +425,134 @@ section {
 .right-arrow {
   margin-left: 5px;
 }
+
+@media (max-width: 1024px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    margin: 0; /* Remove any default margin */
+  }
+  .nav-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  .container {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .title-text {
+    font-size: 4vw; /* Smaller font size for mobile */
+  }
+  .title-text p {
+  -webkit-text-stroke: 0px;
+  color: transparent;
+}
+.title-text-1 {
+  z-index: 10;
+  top: 30%;
+}
+.title-wrapper {
+  width: 100%;
+  margin-top: 2em;
+}
+  .sponsor-page {
+  background-image: linear-gradient(#ac94c5 ,#f7bfc9), url('https://i.imgur.com/ZgCeJBq.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+  .sponsor-page::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 0;
+  }
+  .title-text-1.title-text {
+    font-size: 5vh; /* Increase font size */
+    text-align: center; /* Center text */
+    width: 100%; /* Use full width to aid in centering */
+    left: 50%; /* Center the div horizontally */
+    top: 6vh;
+    transform: translateX(-50%); /* Adjust for exact centering */
+  }
+  .section{
+    height: 100%;
+    color: white;
+  }
+  .sponsor-description{
+    display: none;
+  }
+  .page-title {
+    margin-left: 0; /* Adjust margins for mobile */
+    margin-right:0;
+    margin-bottom: 0vh;
+    margin-top: 14vh;
+    font-size: 3vh; /* Larger font size for better readability */
+    -webkit-text-stroke: 0px; /* Disable text stroke for mobile */
+    color: #77539d;
+    font-style: italic;
+    position: relative;
+    padding: 1em;
+    text-align: center;
+    height: 50px; /* Or min-height if you want it to be flexible */
+    line-height: 50px; /* Should match the height for vertical centering */
+  }
+  .page-title::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1; /* Place the pseudo-element behind the text */
+  
+  /* Apply the gradient to the pseudo-element, which matches the text's box model */
+  background: linear-gradient(to right, #ac94c5 ,#f7bfc9);
+  
+  /* Set the margin to match the padding of the .page-title element */
+  margin: 1em;
+  
+  /* If you have border-radius on the .page-title, match it here */
+  border-radius: inherit;
+}
+  .sponsor-card {
+    width: 20vw; /* Use more of the screen width for each card */
+    margin-left: 2vw; /* Center the cards with smaller margins */
+    margin-right: 2vw;
+  }
+  .pagination {
+    margin-left: 2vh; /* Adjust pagination position for mobile */
+    margin-right: 2vh;
+  }
+  .title-text p {
+  -webkit-text-stroke: 2px #ffffff;
+  color: transparent;
+}
+  .title-text-1 {
+  z-index: 2;
+  position: absolute;
+  top: 30%;
+}
+  /* Add additional mobile-specific styles as needed */
+}
+
 </style>

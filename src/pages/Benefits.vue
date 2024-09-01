@@ -20,6 +20,7 @@
   </div>
   <gradient-stripe></gradient-stripe>
 </template>
+
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 import axios from 'axios'
