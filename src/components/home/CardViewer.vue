@@ -3,8 +3,8 @@
     <div ref="cardSection" class="card-section" :class="{ 'fade-in': isIntersecting }">
       <div class="left-column">
         <div class="flip-card" ref="flipCard">
-          <img src="https://i.imgur.com/qm7PupF.jpg" class="front-image"/>
-          <img src="https://i.imgur.com/QYn3qD9.png" class="back-image"/>
+          <img src="https://i.imgur.com/N8t8pC2.png" class="front-image"/>
+          <img src="https://i.imgur.com/Agkzcd0.png" class="back-image"/>
         </div>
         <p class="invitation-text" :class="{ 'fade-in': isIntersecting }">WANT TO GET ONE?</p>
       </div>
@@ -166,7 +166,7 @@ export default {
 
 .front-image, .back-image {
   display: -webkit-box;
-  width: 100%;
+  width: 160%;
   height: auto;
   transition: transform 3s;
   -webkit-transition: transform 3s;
@@ -216,7 +216,7 @@ export default {
   font-style: italic;
   font-size: 2vw;
   text-align: center;
-  padding: 0 0 (-2)vw 0;
+  padding: 0 0 27px 0;
   position: absolute;
   bottom: 0;
 }
@@ -466,7 +466,7 @@ export default {
 }
 
 .front-image, .back-image {
-  width: 60%;
+  width: 110%;
   margin-bottom: 20vw;
 }
 
@@ -476,6 +476,7 @@ export default {
   position: absolute;
   padding-top: 2vw;
   bottom: 0;
+  padding: unset;
 }
 
 .right-column {
