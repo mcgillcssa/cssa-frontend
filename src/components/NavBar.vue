@@ -105,11 +105,11 @@ const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value
 
   if (isDropdownOpen.value) {
-    barColor.value = '#1A4F87'
-    document.body.style.overflow = 'hidden'
+    barColor.value = '#ffffff';
+    document.body.style.overflow = '';
   } else {
-    barColor.value = '#ffffff'
-    document.body.style.overflow = ''
+    barColor.value = '#1A4F87';
+    document.body.style.overflow = 'hidden';
   }
 }
 </script>
