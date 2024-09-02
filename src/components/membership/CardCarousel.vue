@@ -20,7 +20,7 @@
 import { ref, onMounted } from 'vue'
 
 // carousel images
-const carouselUrls = ref(['https://i.imgur.com/Cqv3xm6.png'])
+const carouselUrls = ref(['https://i.imgur.com/Cqv3xm6.png','https://i.imgur.com/9myUD3h.jpg'])
 
 onMounted(() => {
   //carousel
@@ -100,8 +100,8 @@ onMounted(() => {
   margin: 30px auto;
   width: 3vw;
   height: 3vw;
-  border-top: 5px solid #967eb8;
-  border-left: 5px solid #967eb8;
+  border-top: 5px solid #7ea3b8;
+  border-left: 5px solid #7ea3b8;
   cursor: pointer;
 }
 

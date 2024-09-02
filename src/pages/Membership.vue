@@ -364,7 +364,7 @@ const handleScroll = () => {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #967eb8;
+    background-color: #7ea3b8;
   }
 }
 
@@ -399,7 +399,7 @@ const handleScroll = () => {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #967eb8;
+    background-color: #7ea3b8;
   }
 }
 
@@ -455,7 +455,7 @@ const handleScroll = () => {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #967eb8;
+    background-color: #7ea3b8;
   }
 
   .to-benefits {
