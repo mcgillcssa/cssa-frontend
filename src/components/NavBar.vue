@@ -23,11 +23,18 @@
     </router-link>
     <div :class="{ mask: isDropdownOpen }"></div>
     <ul class="navbar-menu" v-if="!isSmallScreen">
-      <li>Events</li>
-      <li>
+      <li class="menu-item">
+        <div class="overlay"></div>
+        Events
+      </li>
+      <li class="menu-item">
+        <div class="overlay"></div>
         <router-link class="link-element" to="/membership">Membership</router-link>
       </li>
-      <li>Sponsorship</li>
+      <li class="menu-item">
+        <div class="overlay"></div>
+        Sponsorship
+      </li>
     </ul>
     <div
       class="menu-icon"
@@ -169,9 +176,48 @@ const toggleDropdown = () => {
   font-family: 'CircularStd';
   z-index: 9;
 }
+
 .navbar-menu li {
   opacity: 0;
   transform: translateY(-50px);
+  position: relative;
+  padding: 10px 20px;
+}
+
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.menu-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 79, 135, 0.6);
+  border-radius: 40px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease, border-radius 0.4s ease;
+  transform: scale(1);
+}
+
+.menu-item:hover .overlay {
+  opacity: 1;
+  transform: scale(1.05);
+  border-radius: 40px;
+}
+
+.menu-item:hover {
+  color: #fff;
+}
+
+.menu-item .link-element {
+  position: relative;
+  z-index: 2;
 }
 
 .navbar-menu li:nth-child(1) {
