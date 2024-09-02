@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #1A4F87;
+  color: #def5fa;
   font-size: 3.5vw;
   font-weight: 900;
   text-align: center;
@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   .overlay-text {
     font-size: 3vw;
-    color: #EAEBF6;
+    color: #def5fa;
     z-index: 3;
   }
 
