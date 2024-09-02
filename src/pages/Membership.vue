@@ -51,12 +51,14 @@
     </div>
     <card-carousel></card-carousel>
   </div>
+  <gradient-stripe/>
 </template>
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import NavBar from '../components/NavBar.vue'
 import CardCarousel from '../components/membership/CardCarousel.vue'
+import GradientStripe from '@/components/GradientStripe.vue'
 import { ArrowDown, ArrowRight } from '@icon-park/vue-next'
 
 const bannerUrl = ref('https://i.imgur.com/x3IJjj2.jpg')

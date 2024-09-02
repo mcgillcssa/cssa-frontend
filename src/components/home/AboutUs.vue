@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
     position: relative;
     display: flex;
     justify-content: center;
-    background-color: #EAEBF6;
+    background-color: #E3F4FF;
     min-height: 30vh;
     width: 100%;
     margin: 2vw 0 0 0;
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
     width: 90vw;
     height: auto;
     padding: 2vw;
-    border: 1px solid #CBBCDB;
+    border: 1px solid #5291B9;
     box-sizing: border-box;
 }
 
@@ -122,9 +122,15 @@ document.addEventListener("DOMContentLoaded", function() {
     height: 20vw;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: linear-gradient(to top, #EDD0E8 12%, #9887DF, #6E80DC);
+    background: linear-gradient(
+      0deg, 
+      #72E7EB 0%, 
+      #65D2F0 28.5%, 
+      #5CB0F6 66.66%, 
+      #1978D0 100%)
+    ;
     overflow: hidden;
-    mask-image: radial-gradient(circle, transparent 60%, black 35%);
+    mask-image: radial-gradient(circle, black 35%);
     opacity: 0.5;
 }
 
@@ -133,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #EAEBF6;
+  color: #def5fa;
   font-size: 3.5vw;
   font-weight: 900;
   text-align: center;
@@ -202,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function() {
     font-family: 'Raleway';
     font-size: 1.6vw;
     font-weight: 500;
-    color: #33378C;
+    color: #1A4F87;
 }
 
 .text-content h1 {
@@ -217,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   .overlay-text {
     font-size: 3vw;
-    color: #EAEBF6;
+    color: #def5fa;
     z-index: 3;
   }
 

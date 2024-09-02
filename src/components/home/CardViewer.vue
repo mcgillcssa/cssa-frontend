@@ -3,8 +3,8 @@
     <div ref="cardSection" class="card-section" :class="{ 'fade-in': isIntersecting }">
       <div class="left-column">
         <div class="flip-card" ref="flipCard">
-          <img src="https://i.imgur.com/qm7PupF.jpg" class="front-image"/>
-          <img src="https://i.imgur.com/QYn3qD9.png" class="back-image"/>
+          <img src="https://i.imgur.com/N8t8pC2.png" class="front-image"/>
+          <img src="https://i.imgur.com/Agkzcd0.png" class="back-image"/>
         </div>
         <p class="invitation-text" :class="{ 'fade-in': isIntersecting }">WANT TO GET ONE?</p>
       </div>
@@ -28,7 +28,7 @@
             </div>
             <div class="circle-wrapper">
               <div class="circle">
-                <arrow-right :size="arrowSize" fill="#967eb8" theme="filled" />
+                <arrow-right :size="arrowSize" fill="#1A4F87" theme="filled" />
               </div>
             </div>
           </router-link>
@@ -106,7 +106,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #EAEBF6;
+  background-color: #E3F4FF;
   width: 100%;
   margin: 4vw 0;
 }
@@ -119,7 +119,7 @@ export default {
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
   width: 90vw;
   height: auto;
-  border: 1px solid #CBBCDB;
+  border: 1px solid #5291B9;
 }
 
 .fade-in {
@@ -166,7 +166,7 @@ export default {
 
 .front-image, .back-image {
   display: -webkit-box;
-  width: 100%;
+  width: 160%;
   height: auto;
   transition: transform 3s;
   -webkit-transition: transform 3s;
@@ -212,11 +212,11 @@ export default {
 .invitation-text {
   font-family: 'Raleway';
   font-weight: 700;
-  color: #7A65A3;
+  color: #1A4F87;
   font-style: italic;
   font-size: 2vw;
   text-align: center;
-  padding: 0 0 (-2)vw 0;
+  padding: 0 0 27px 0;
   position: absolute;
   bottom: 0;
 }
@@ -233,7 +233,7 @@ export default {
 .header {
   font: 'Raleway';
   font-weight: 700;
-  color: #33378C;
+  color: #1A4F87;
   font-size: 2.5vw;
   text-align: center;
   padding: auto;
@@ -242,7 +242,7 @@ export default {
 .line {
   width: 18vw;
   height: 2px;
-  background-color: #33378C;
+  background-color: #1A4F87;
   position: relative;
   margin: 0 auto 0vw auto;
 }
@@ -252,7 +252,7 @@ export default {
   top: -4px;
   width: 10px;
   height: 10px;
-  background-color: #33378C;
+  background-color: #1A4F87;
   border-radius: 50%;
 }
 
@@ -267,7 +267,7 @@ export default {
 .body-text {
   font: 'Raleway';
   font-size: 2vw;
-  color: #7A65A3;
+  color: #5291B9;
   font-weight: 700;
   text-align: center;
   white-space: pre-wrap;
@@ -281,13 +281,15 @@ export default {
   align-items: center;
   justify-content: center;
   background-image: linear-gradient(
-    90deg,
-    #ffc6b4 0.67%,
-    #ffa7d1 14.09%,
-    #ad87cb 68.63%,
-    #a78cd0 80.36%,
-    #726cad 100%
-  );
+    to right, 
+    #FFEE8F 0.67%, 
+    #E3FBCF 16.5%, 
+    #BBF0FA 30%, 
+    #ABD9FF 44.5%, 
+    #5DABF3 62%, 
+    #448FD6 81.5%, 
+    #3262BA 99.99%
+    );
   text-decoration: none;
   padding: 2vw;
 }
@@ -324,12 +326,12 @@ export default {
 }
 
 .arrow-right {
-  color: #967eb8;
+  color: #1A4F87;
   font-size: 3vw;
 }
 
 .button-text {
-  color: #967eb8;
+  color: #1A4F87;
   letter-spacing: 0.2vw;
   font-size: 1em;
   text-decoration: none;
@@ -344,7 +346,7 @@ export default {
   right: 0;
   bottom: -7px;
   height: 2px;
-  background-color: #967eb8;
+  background-color: #1A4F87;
 }
 
 .fade-in {
@@ -464,7 +466,7 @@ export default {
 }
 
 .front-image, .back-image {
-  width: 60%;
+  width: 110%;
   margin-bottom: 20vw;
 }
 
@@ -474,6 +476,7 @@ export default {
   position: absolute;
   padding-top: 2vw;
   bottom: 0;
+  padding: unset;
 }
 
 .right-column {

@@ -23,9 +23,9 @@ export default {
   data() {
     return {
       data: [
-        { icon: "https://i.imgur.com/uj6eEYS.png", number: 16000, text: "WECHAT FOLLOWERS" },
-        { icon: "https://i.imgur.com/51lBXnQ.png", number: 283, text: "EVENTS" },
-        { icon: "https://i.imgur.com/lTFcj7w.png", number: 1408, text: "MEMBERSHIPS" }
+        { icon: "https://i.imgur.com/eZbuCtB.png", number: 16000, text: "WECHAT FOLLOWERS" },
+        { icon: "https://i.imgur.com/AHy7xwc.png", number: 283, text: "EVENTS" },
+        { icon: "https://i.imgur.com/5RHnKbG.png", number: 1408, text: "MEMBERSHIPS" }
       ],
       displayedNumbers: [0, 0, 0],
       observer: null
@@ -83,7 +83,7 @@ export default {
   position: relative;
   display: flex;
   justify-content: center;
-  background-color: #EAEBF6;
+  background-color: #E3F4FF;
   min-height: 30vh;
   width: 100%;
   margin: 2vw 0 2vw 0;
@@ -93,12 +93,13 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-image: linear-gradient(to right, #EAEBF6 25%, #d0c4ed 60%, #E2D8EC 100%);
+  background: linear-gradient(90deg, #DBF1FF 0%, #BAD8FF 50.5%, #DBF1FF 100%);
   border-radius: 40px;
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
   width: 90vw;
   justify-content: center;
   box-sizing: border-box;
+  /* border: 1px solid #5291B9; */
 }
 
 .information-column {
@@ -119,13 +120,13 @@ export default {
 .section-break-small {
   width: 80%;
   height: 1px;
-  background-color: #7A65A3;
+  background-color: #1A4F87;
   margin: 1rem 1rem;
 }
 
 .number {
   font-size: calc(2rem + 1vw);
-  color: #7A65A3;
+  color: #1A4F87;
   font: Raleway;
   font-weight: 700;
   align-items: center;
@@ -135,7 +136,7 @@ export default {
 .text {
   font: Raleway;
   font-size: calc(1rem + 0.5vw);
-  color: #7A65A3;
+  color: #1A4F87;
   text-align: center;
   padding-bottom: 3vh;
   justify-content: center;
