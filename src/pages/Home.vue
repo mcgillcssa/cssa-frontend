@@ -4,11 +4,11 @@
     <div class="background-image"></div>
     <img class="home-title" src="https://i.imgur.com/e75ru0y.png" />
   </div>
-    <AboutUs id="about-us" ref="aboutUsRef" />
-    <div class="section-break" ref="sectionBreakRef">
-      <div class="mask"></div>
-    </div>
-    <Information id="information" ref="informationRef" />
+  <AboutUs id="about-us" ref="aboutUsRef" />
+  <div class="section-break" ref="sectionBreakRef">
+    <div class="mask"></div>
+  </div>
+  <Information id="information" ref="informationRef" />
   <div class="section-break1" ref="sectionBreak1Ref">
     <div class="mask"></div>
   </div>
@@ -102,7 +102,7 @@ onUnmounted(() => {
 <style>
 body {
   margin: 0;
-  background-color: #eaebf6;
+  background-color: #E3F4FF;
 }
 
 .navbar {
@@ -123,20 +123,19 @@ z-index: 1;
   height: calc(100vh);
   z-index: 0;
   overflow: hidden;
-  background: linear-gradient(to bottom, #f6f5ea 60%, #eaebf6 100%);
+  background: linear-gradient(to bottom, #f6f5ea 60%, #E3F4FF 100%);
 
 }
 
 .background-image {
   background-image: linear-gradient(
-      122.63deg,
-      #ffc6b4 0.67%,
-      #ffa7d1 25.09%,
-      #ad87cb 50.63%,
-      #8986ed 84.36%,
-      #4f78c9 100%
-    ),
-    url('https://i.imgur.com/ZgCeJBq.jpg');
+    90deg, 
+    rgba(114, 231, 235, 0.41) 0%,
+    rgba(101, 210, 240, 0.41) 28.5%, 
+    rgba(92, 176, 246, 0.41) 66.66%, 
+    rgba(25, 120, 208, 0.41) 100%),
+    url('https://i.imgur.com/ZgCeJBq.jpg'
+    );
   background-size: cover;
   background-blend-mode: multiply;
   position: absolute;
@@ -160,7 +159,16 @@ z-index: 1;
 .section-break {
   position: relative;
   height: 1.2vw;
-  background: linear-gradient(to right, #4f78c9, #8986ed, #ad87cb, #ffa7d1, #ffc6b4);
+  background: linear-gradient(
+    90deg, 
+    #FFEE8F 0.67%, 
+    #E3FBCF 16.5%, 
+    #BBF0FA 30%, 
+    #ABD9FF 44.5%, 
+    #5DABF3 62%, 
+    #448FD6 81.5%, 
+    #3262BA 99.99%
+    );
   width: 80%;
   margin: 5vw auto;
   border-radius: 20px;
@@ -195,7 +203,16 @@ z-index: 1;
 .section-break1 {
   position: relative;
   height: 1.2vw;
-  background: linear-gradient(to left, #4f78c9, #8986ed, #ad87cb, #ffa7d1, #ffc6b4);
+  background: linear-gradient(
+    to left, 
+    #FFEE8F 0.67%, 
+    #E3FBCF 16.5%, 
+    #BBF0FA 30%, 
+    #ABD9FF 44.5%, 
+    #5DABF3 62%, 
+    #448FD6 81.5%, 
+    #3262BA 99.99%
+    );
   width: 80%;
   margin: 5vw auto;
   border-radius: 20px;
@@ -205,7 +222,7 @@ h4 {
   text-align: center;
   width: 100%;
   margin: 0 auto;
-  background-color: #DFDAF1;
+  background-color: #BBDEF5;
   padding: 1vw 0;
 }
 
@@ -214,14 +231,14 @@ h4 br {
 }
 
 .vip-title-cn {
-  color: #33378C;
+  color: #1A4F87;
   font-family: 'Raleway';
   font-size: 2vw;
   display: block;
 }
 
 .vip-title-en {
-  color: #988FCE;
+  color: #5291B9;
   font-family: 'Raleway';
   font-weight: bold;
   font-size: 2.5vw;

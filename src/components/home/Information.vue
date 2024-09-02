@@ -83,7 +83,7 @@ export default {
   position: relative;
   display: flex;
   justify-content: center;
-  background-color: #EAEBF6;
+  background-color: #E3F4FF;
   min-height: 30vh;
   width: 100%;
   margin: 2vw 0 2vw 0;
@@ -93,12 +93,13 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-image: linear-gradient(to right, #EAEBF6 25%, #d0c4ed 60%, #E2D8EC 100%);
+  background: linear-gradient(90deg, #d4ebf7 0%, #93d3fb 50.5%, #d4ebf7 100%);
   border-radius: 40px;
   box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
   width: 90vw;
   justify-content: center;
   box-sizing: border-box;
+  /* border: 1px solid #5291B9; */
 }
 
 .information-column {
@@ -119,13 +120,13 @@ export default {
 .section-break-small {
   width: 80%;
   height: 1px;
-  background-color: #7A65A3;
+  background-color: #3262BA;
   margin: 1rem 1rem;
 }
 
 .number {
   font-size: calc(2rem + 1vw);
-  color: #7A65A3;
+  color: #3262BA;
   font: Raleway;
   font-weight: 700;
   align-items: center;
@@ -135,7 +136,7 @@ export default {
 .text {
   font: Raleway;
   font-size: calc(1rem + 0.5vw);
-  color: #7A65A3;
+  color: #3262BA;
   text-align: center;
   padding-bottom: 3vh;
   justify-content: center;
