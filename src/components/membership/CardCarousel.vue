@@ -68,8 +68,8 @@ onMounted(() => {
   height: 512px;
   margin: 30px 40px 30px 40px;
   width: 90%;
-  border: 1px solid #cbbcdb;
-  border-radius: 10px;
+  border: 1px solid #5291B9;
+  border-radius: 30px;
   overflow: hidden;
   position: relative;
 }

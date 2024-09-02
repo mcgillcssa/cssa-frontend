@@ -187,8 +187,8 @@ const handleScroll = () => {
 
 .presentation h3 {
   margin: 0;
-  font-size: 1.5vw;
-  color: #8facce;
+  font-size: 2vw;
+  color: #1c529a;
 }
 
 .presentation h2 {
