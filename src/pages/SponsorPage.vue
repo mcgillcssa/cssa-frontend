@@ -122,87 +122,69 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed} from 'vue';
 import axios from 'axios';
+import { useStore } from 'vuex';
 import NavBar from '../components/NavBar.vue';
-import { sponsorState } from '../states/sponsorState';
-import { useAttrs } from 'vue';
 import gradientstripe from '../components/GradientStripe.vue';
 
+const store = useStore();
 const sponsorUrl = process.env.VUE_APP_BACKEND_URL + '/api/sponsors/';
-
-const attrs = useAttrs();
-
-const de_sponsors = ref(sponsorState.de_sponsors);
-const d_sponsors = ref(sponsorState.d_sponsors);
-const g_sponsors = ref(sponsorState.g_sponsors);
 
 const itemsPerPage = 2;
 const currentPage_de = ref(0);
 const currentPage_d = ref(0);
 const currentPage_g = ref(0);
 
+// Access Vuex state and getters
+const de_sponsors = computed(() => store.getters.getDeSponsors);
+const d_sponsors = computed(() => store.getters.getDSponsors);
+const g_sponsors = computed(() => store.getters.getGSponsors);
+
 const de_pages = computed(() => chunkArray(de_sponsors.value, itemsPerPage));
 const d_pages = computed(() => chunkArray(d_sponsors.value, itemsPerPage));
 const g_pages = computed(() => chunkArray(g_sponsors.value, itemsPerPage));
 
-const handleWheel = (event) => {
-  const delta = Math.sign(event.deltaY);
-  if (event.currentTarget === de_pages.value) {
-    if (delta > 0) {
-      nextPageDE();
-    } else {
-      previousPageDE();
-    }
-  } else if (event.currentTarget === d_pages.value) {
-    if (delta > 0) {
-      nextPageD();
-    } else {
-      previousPageD();
-    }
-  } else if (event.currentTarget === g_pages.value) {
-    if (delta > 0) {
-      nextPageG();
-    } else {
-      previousPageG();
-    }
-  }
-};
+onMounted(() => {
+  axios.get(sponsorUrl)
+    .then(response => {
+      if (!Array.isArray(response.data)) {
+        throw new Error('Expected an array of sponsors');
+      }
 
-onMounted(async () => {
-  try {
-    const response = await axios.get(sponsorUrl);
-    if (!Array.isArray(response.data)) {
-      throw new Error('Expected an array of sponsors');
-    }
-    sponsorState.de_sponsors = [];
-    sponsorState.d_sponsors = [];
-    sponsorState.g_sponsors = [];
-
-    response.data.forEach(sponsor => {
-      const formattedSponsor = {
-        id: sponsor.sponsorName,
-        name: sponsor.sponsorName,
-        description: sponsor.sponsorDescription,
-        logo: sponsor.sponsorImageUrl
+      const sponsors = {
+        de_sponsors: [],
+        d_sponsors: [],
+        g_sponsors: [],
       };
 
-      switch (sponsor.sponsorClass.toUpperCase()) {
-        case 'DIAMOND_EXCLUSIVE':
-          sponsorState.de_sponsors.push(formattedSponsor);
-          break;
-        case 'DIAMOND':
-          sponsorState.d_sponsors.push(formattedSponsor);
-          break;
-        case 'GOLD':
-          sponsorState.g_sponsors.push(formattedSponsor);
-          break;
-      }
+      response.data.forEach(sponsor => {
+        const formattedSponsor = {
+          id: sponsor.sponsorName,
+          name: sponsor.sponsorName,
+          description: sponsor.sponsorDescription,
+          logo: sponsor.sponsorImageUrl
+        };
+
+        switch (sponsor.sponsorClass.toUpperCase()) {
+          case 'DIAMOND_EXCLUSIVE':
+            sponsors.de_sponsors.push(formattedSponsor);
+            break;
+          case 'DIAMOND':
+            sponsors.d_sponsors.push(formattedSponsor);
+            break;
+          case 'GOLD':
+            sponsors.g_sponsors.push(formattedSponsor);
+            break;
+        }
+      });
+
+      store.commit('setSponsors', sponsors);
+    })
+    .catch(err => {
+      console.error('Failed to fetch sponsors:', err);
+      alert('Failed to fetch sponsors.');
     });
-  } catch (err) {
-    console.error('Failed to fetch sponsors:', err);
-    alert('Failed to fetch sponsors.');
-  }
 });
 
 function chunkArray(array, size) {
@@ -213,6 +195,7 @@ function chunkArray(array, size) {
   return result;
 }
 
+// Pagination functions
 function changePageDE(index) {
   currentPage_de.value = index;
 }
@@ -259,12 +242,6 @@ function nextPageG() {
   if (currentPage_g.value < g_pages.value.length - 1) {
     currentPage_g.value++;
   }
-}
-
-function updateSponsors(sponsors) {
-  de_sponsors.value = sponsors.diamond_exclusive;
-  d_sponsors.value = sponsors.diamond;
-  g_sponsors.value = sponsors.gold;
 }
 </script>
 
