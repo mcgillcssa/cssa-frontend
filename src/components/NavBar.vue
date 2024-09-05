@@ -33,7 +33,7 @@
       </li>
       <li class="menu-item">
         <div class="overlay"></div>
-        Sponsorship
+        <router-link class="link-element" to="/Sponsor">Sponsorship</router-link>
       </li>
     </ul>
     <div
@@ -71,7 +71,8 @@
         <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#1A4F87"/>
       </svg>
     </li>
-    <li v-if="isDropdownOpen">SPONSORS
+    <li v-if="isDropdownOpen">
+      <router-link class="link-element" to="/Sponsor">SPONSORS</router-link>
       <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#1A4F87"/>
       </svg>
