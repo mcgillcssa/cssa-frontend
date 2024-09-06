@@ -1,7 +1,7 @@
 <template>
   <NavBar />
   <div class="banner-background">
-    <div class="background-image"></div>
+    <div class="home-background-image"></div>
     <img class="home-title" src="https://i.imgur.com/e75ru0y.png" />
   </div>
   <AboutUs id="about-us" ref="aboutUsRef" />
@@ -52,7 +52,7 @@ const calculateRadius = (scrollY) => {
 };
 
 const handleScroll = () => {
-  const bannerBackground = document.querySelector('.background-image');
+  const bannerBackground = document.querySelector('.home-background-image');
   const homeTitle = document.querySelector('.home-title');
   const scrollY = window.scrollY;
 
@@ -129,7 +129,7 @@ z-index: 1;
 
 }
 
-.background-image {
+.home-background-image {
   background-image: linear-gradient(
     90deg, 
     rgba(114, 231, 235, 0.41) 0%,

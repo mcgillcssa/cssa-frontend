@@ -1,6 +1,6 @@
 <template>
   <nav-bar />
-  <div :style="{ 'background-image': 'url(' + bannerUrl + ')' }" class="membership-banner vertical-flex">
+  <div :style="bannerStyle" class="membership-banner vertical-flex">
     <div class="membership-title"><em>MEMBERSHIP</em></div>
     <div class="arrow-down">
       <arrow-down fill="#FFFFFF" size="124" strokeLinecap="butt" theme="filled" />
@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import NavBar from '../components/NavBar.vue'
 import CardCarousel from '../components/membership/CardCarousel.vue'
 import GradientStripe from '@/components/GradientStripe.vue'
@@ -66,10 +66,18 @@ import Footer from '../components/Footer.vue'
 const bannerUrl = ref('https://i.imgur.com/x3IJjj2.jpg')
 const contentSections = ref([])
 
+const bannerStyle = computed(() => ({
+  backgroundImage: `url(${bannerUrl.value})`,
+  backgroundAttachment: 'fixed',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover'
+}))
+
 let arrowSize = ref(64)
 
 onMounted(() => {
-  // window.scrollTo(0, 0);
+  window.scrollTo(0, 0);
   updateWindowWidth()
   window.addEventListener('resize', updateWindowWidth)
 
@@ -128,6 +136,8 @@ const handleScroll = () => {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
 }
 
 .membership-title {
@@ -408,6 +418,21 @@ const handleScroll = () => {
 }
 
 @media screen and (max-width: 800px) {
+  .membership-banner {
+  min-height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
   .presentation h3 {
     font-size: 1em;
   }
@@ -483,6 +508,21 @@ const handleScroll = () => {
 }
 
 @media screen and (max-width: 600px) {
+  .membership-banner {
+  min-height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
   .presentation-description {
     width: 90%;
   }
