@@ -2,7 +2,7 @@
   <div class="about-us-container">
     <div class="about-us-section">
       <div class="left-column">
-        <div class="image-container">
+        <div class="about-us-image-container">
           <img src="https://i.imgur.com/xfAdEm5.jpg" alt="Group Photo" class="group-photo">
           <div class="ellipse"></div>
           <div class="overlay-text">
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
     justify-content: center;
 }
 
-.image-container {
+.about-us-image-container {
     position: relative;
     width: 100%;
     display: flex;

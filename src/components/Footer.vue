@@ -26,7 +26,7 @@
           </a>
         </div>
       </div>
-      <div class="separator"></div>
+      <div class="footer-separator"></div>
       <div class="right-box">
         <div class="rcol1">
           <a href="https://mp.weixin.qq.com/s/Qi_su6jtGOjAKyHV2TSudg"><p class="all-text">About Us</p></a>
@@ -186,7 +186,7 @@ a:link, a:visited, a:hover, a:active a:focus {
   color: #3364BB;
 }
 
-.separator {
+.footer-separator {
   border-left: 2.0px solid rgb(255, 255, 255);
   grid-area: line;
   padding-left: 2vw;
@@ -233,7 +233,7 @@ a:link, a:visited, a:hover, a:active a:focus {
     font-size: 3.5vw;
   }
 
-  .separator {
+  .footer-separator {
     height: 220px;
   }
 }
@@ -283,25 +283,25 @@ a:link, a:visited, a:hover, a:active a:focus {
   .right-box {
     grid-area: tag;
     grid-template-columns:auto;
-    margin-top: -1.5vw;
+    margin-top: -1vw;
+    font-size: clamp(5px, 10px + 1.25vw, 20px);
   }
 
-.rcol1 {
-  justify-self: center;
-  align-self: center;
-}
+  .rcol1, .rcol2, .rcol3 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+  }
 
-.rcol2 {
-  justify-self: center;
-  align-self: center;
-}
+  .rcol1 > *, .rcol2 > *, .rcol3 > * {
+    margin: 0;
+    padding: 0;
+  }
 
-.rcol3 {
-  justify-self: center;
-  align-self: center;
-}
-
-  .separator{
+  .footer-separator{
     border-left: none;
     border-top: 1.75px solid rgb(255, 255, 255);
     padding: 0vw;

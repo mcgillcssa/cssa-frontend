@@ -314,7 +314,7 @@ const handleClickOutside = (event) => {
 
 .dropdown {
   position: fixed;
-  width: 100vw;
+  width: 110vw;
   height: 100vh;
   z-index: 11;
 

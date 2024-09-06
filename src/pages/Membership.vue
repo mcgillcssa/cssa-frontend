@@ -1,6 +1,6 @@
 <template>
   <nav-bar />
-  <div :style="{ 'background-image': 'url(' + bannerUrl + ')' }" class="banner vertical-flex">
+  <div :style="{ 'background-image': 'url(' + bannerUrl + ')' }" class="membership-banner vertical-flex">
     <div class="membership-title"><em>MEMBERSHIP</em></div>
     <div class="arrow-down">
       <arrow-down fill="#FFFFFF" size="124" strokeLinecap="butt" theme="filled" />
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="separator first-line-break">
+    <div class="membership-separator first-line-break">
       <div class="circle-start"></div>
       <div class="line"></div>
       <div class="circle-end"></div>
@@ -40,7 +40,7 @@
         </div>
       </router-link>
     </div>
-    <div class="separator last-line-break">
+    <div class="membership-separator last-line-break">
       <div class="circle-start"></div>
       <div class="line"></div>
       <div class="circle-end"></div>
@@ -117,7 +117,7 @@ const handleScroll = () => {
   flex-direction: column;
 }
 
-.banner {
+.membership-banner {
   min-height: 100vh;
   width: 100%;
   justify-content: center;
@@ -235,7 +235,7 @@ const handleScroll = () => {
   font-size: 1.4vw;
 }
 
-.separator {
+.membership-separator {
   position: relative;
   display: flex;
   align-items: center;
@@ -390,7 +390,7 @@ const handleScroll = () => {
     height: 80px;
   }
 
-  .separator {
+  .membership-separator {
     margin: 20px 0;
   }
 
@@ -441,12 +441,12 @@ const handleScroll = () => {
     font-size: 2.3vw;
   }
 
-  .separator {
+  .membership-separator {
     height: 30px;
     margin: 10px 0;
   }
 
-  .separator {
+  .membership-separator {
     margin: 20px 0;
   }
 

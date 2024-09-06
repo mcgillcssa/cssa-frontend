@@ -1,5 +1,5 @@
 <template>
-  <div class="container" @update-sponsors="updateSponsors">
+  <div class="sponsor-container" @update-sponsors="updateSponsors">
     <div v-bind="attrs" class="nav-bar">
       <NavBar/>
     </div>
@@ -10,15 +10,16 @@
     <div class="sponsor-page">
 
       <!-- Section 1: Diamond Exclusive -->
-      <section class="section">
+      <section class="sponsor-section">
         <div class="title-wrapper">
-          <h1 class="page-title">Diamond Exclusive</h1>
+          <div class="s-gradient-background"></div>
+          <h1 class="s-page-title">Diamond Exclusive</h1>
         </div>
         <div class="sponsor-list" ref="sponsorListDE" @wheel="handleWheel">
           <div v-for="(page, index) in de_pages" :key="'de-' + index" v-show="currentPage_de === index">
             <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
               <div class="sponsor-total">
-                <div class="logo-background">
+                <div class="s-logo-background">
                   <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
                 </div>
                 <h2 class="sponsor-name">{{ sponsor.name }}</h2>
@@ -46,15 +47,16 @@
       </section>
 
       <!-- Section 2: Diamond -->
-      <section class="section">
+      <section class="sponsor-section">
         <div class="title-wrapper">
-          <h1 class="page-title">Diamond</h1>
+          <div class="s-gradient-background"></div>
+          <h1 class="s-page-title">Diamond</h1>
         </div>
         <div class="sponsor-list" ref="sponsorListD" @wheel="handleWheel">
           <div v-for="(page, index) in d_pages" :key="'d-' + index" v-show="currentPage_d === index">
             <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
               <div class="sponsor-total">
-                <div class="logo-background">
+                <div class="s-logo-background">
                   <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
                 </div>
                 <h2 class="sponsor-name">{{ sponsor.name }}</h2>
@@ -82,15 +84,16 @@
       </section>
 
       <!-- Section 3: Gold -->
-      <section class="section">
+      <section class="sponsor-section">
         <div class="title-wrapper">
-          <h1 class="page-title">Gold</h1>
+          <div class="s-gradient-background"></div>
+          <h1 class="s-page-title">Gold</h1>
         </div>
         <div class="sponsor-list" ref="sponsorListG" @wheel="handleWheel">
           <div v-for="(page, index) in g_pages" :key="'g-' + index" v-show="currentPage_g === index">
             <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
               <div class="sponsor-total">
-                <div class="logo-background">
+                <div class="s-logo-background">
                   <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
                 </div>
                 <h2 class="sponsor-name">{{ sponsor.name }}</h2>
@@ -301,7 +304,7 @@ body {
   background-color: #3364BB;
 }
 
-section {
+.sponsor-section {
   box-sizing: border-box;
   scroll-snap-align: end;
   height: 100%;
@@ -309,6 +312,7 @@ section {
   color: white;
   overflow: hidden;
   position: relative;
+  margin-bottom: 2rem;
 }
 
 .title-wrapper {
@@ -317,7 +321,7 @@ section {
   margin-bottom: 0.2vh;
 }
 
-.page-title {
+.s-page-title {
   text-align: center;
   font-size: 3vw;
   padding-top: 8vh;
@@ -362,7 +366,7 @@ section {
   height: 100%;
 }
 
-.logo-background {
+.s-logo-background {
     width: calc(8vw + 0.8vw);
     height: calc(8vw + 0.8vw);
     background: linear-gradient(to right,
@@ -531,7 +535,7 @@ section {
     text-shadow: 4px 6px 8px rgba(30, 61, 121, 0.8);
   }
 
-  .container {
+  .sponsor-container {
     max-width: 100%;
     overflow-x: hidden;
     position: fixed;
@@ -565,35 +569,25 @@ section {
     height: 25vh;
   }
 
+  .sponsor-section {
+  margin-bottom: 2rem;
+}
+
   .title-wrapper {
   width: 100%;
   margin-top: 2em;
   left: 0%;
   transform: translateX(0%);
   margin-bottom: 0.2vh;
+  position: relative;
   }
 
-  .page-title {
-    margin-top: 22vh;
-    font-size: 5vw;
-    -webkit-text-stroke: 0px;
-    color: #ffff;
-    font-style: normal;
-    position: relative;
-    padding: 1em;
-    height: 8vw;
-    line-height: 8vw;
-    text-shadow: 0px 0px 0px #000000;
-  }
-
-  .page-title::after {
-  content: '';
+  .s-gradient-background {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: -1;
   background: linear-gradient(to left,
     rgba(255, 238, 143, 0.6) 10.28%,
     rgba(227, 251, 207, 0.6) 20.63%,
@@ -602,12 +596,29 @@ section {
     rgba(93, 171, 243, 0.6) 70.52%,
     rgba(68, 143, 214, 0.6) 84.88%,
     rgba(50, 98, 186, 0.6) 100%
-);
-  margin: 1em;
-  border-radius: inherit;
+  );
+  z-index: -1;
+  position: absolute;
+  height: 7vw;
+  margin-top: 26vh;
   border-radius: 20px;
   width: 90vw;
+  left: 50%;
+  transform: translateX(-50%);
 }
+
+  .s-page-title {
+    margin-top: 22vh;
+    font-size: 5vw;
+    -webkit-text-stroke: 0px;
+    color: #ffff;
+    font-style: normal;
+    position: relative;
+    padding: 1em;
+    height: 7vh;
+    line-height: 7vh;
+    text-shadow: 0px 0px 0px #000000;
+  }
 
   .sponsor-list {
   display: flex;
@@ -634,7 +645,7 @@ section {
   width: 80%;
 }
 
-  .logo-background {
+  .s-logo-background {
     margin-top: 2vw;
 }
 
