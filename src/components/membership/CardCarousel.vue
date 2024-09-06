@@ -123,13 +123,13 @@ onMounted(() => {
   list-style: none;
   padding: 0;
   margin: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(51, 100, 187, 0.4);
 }
 
 .carousel ul li {
   height: 1vw;
   width: 1vw;
-  background-color: #828181;
+  background-color: #E3F4FF;
   border-radius: 50%;
   margin: 1vh 3vw;
   cursor: pointer;
@@ -156,7 +156,7 @@ onMounted(() => {
   }
 
   .slide {
-    background-size: 400px 200px;
+    background-size: 105% auto;
   }
 
   .arrow {
@@ -174,7 +174,7 @@ onMounted(() => {
 
 @media screen and (max-width: 600px) {
   .slide {
-    background-size: 340px 170px;
+    background-size: 120% auto;
   }
 
   .carousel {

@@ -84,7 +84,7 @@ const updateWindowWidth = () => {
   const aspectRatio = window.innerWidth / window.innerHeight
 
   if (aspectRatio < 1) {
-    bannerUrl.value = 'https://i.imgur.com/l8V1BZx.png'
+    bannerUrl.value = 'https://i.imgur.com/SRk5nUk.jpg'
   } else {
     bannerUrl.value = 'https://i.imgur.com/x3IJjj2.jpg'
   }
