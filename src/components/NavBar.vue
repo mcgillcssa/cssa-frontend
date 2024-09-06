@@ -21,12 +21,20 @@
         <b>CSSA</b>
       </span>
     </router-link>
+    <div :class="{ mask: isDropdownOpen }"></div>
     <ul class="navbar-menu" v-if="!isSmallScreen">
-      <li>Events</li>
-      <li>
+      <li class="menu-item">
+        <div class="overlay"></div>
+        Events
+      </li>
+      <li class="menu-item">
+        <div class="overlay"></div>
         <router-link class="link-element" to="/membership">Membership</router-link>
       </li>
-      <li>Sponsorship</li>
+      <li class="menu-item">
+        <div class="overlay"></div>
+        <router-link class="link-element" to="/Sponsor">Sponsorship</router-link>
+      </li>
     </ul>
     <div
       class="menu-icon"
@@ -51,12 +59,24 @@
       ></div>
     </div>
   </div>
-  <ul class="dropdown" :class="{ open: isDropdownOpen }">
-    <li v-if="isDropdownOpen">Events</li>
-    <li v-if="isDropdownOpen">
-      <router-link class="link-element" to="/membership">Membership</router-link>
+  <ul class="dropdown" :class="{ open: isDropdownOpen }" ref="dropdownMenu">
+    <li v-if="isDropdownOpen">EVENTS
+      <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#1A4F87"/>
+      </svg>
     </li>
-    <li v-if="isDropdownOpen">Sponsorship</li>
+    <li v-if="isDropdownOpen">
+      <router-link class="link-element" to="/membership">MEMBERSHIP</router-link>
+      <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#1A4F87"/>
+      </svg>
+    </li>
+    <li v-if="isDropdownOpen">
+      <router-link class="link-element" to="/Sponsor">SPONSORS</router-link>
+      <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#1A4F87"/>
+      </svg>
+    </li>
   </ul>
 </template>
 
@@ -68,14 +88,17 @@ const logoSrc = ref('https://i.imgur.com/ZFcXCeq.png')
 const barColor = ref('#ffffff')
 const isDropdownOpen = ref(false)
 const isSmallScreen = ref(false)
+const dropdownMenu = ref(null)
 
 onMounted(() => {
   updateWindowWidth()
   window.addEventListener('resize', updateWindowWidth)
+  document.addEventListener('click', handleClickOutside)
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', updateWindowWidth)
+  document.removeEventListener('click', handleClickOutside)
 })
 
 const updateWindowWidth = () => {
@@ -93,11 +116,19 @@ const toggleDropdown = () => {
   isDropdownOpen.value = !isDropdownOpen.value
 
   if (isDropdownOpen.value) {
-    barColor.value = '#33378c'
-    document.body.style.overflow = 'hidden'
+    barColor.value = '#ffffff';
+    document.body.style.overflow = '';
   } else {
-    barColor.value = '#ffffff'
-    document.body.style.overflow = ''
+    barColor.value = '#1A4F87';
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+const handleClickOutside = (event) => {
+  if (dropdownMenu.value && !dropdownMenu.value.contains(event.target) && !event.target.closest('.menu-icon')) {
+    isDropdownOpen.value = false
+    barColor.value = '#ffffff';
+    document.body.style.overflow = '';
   }
 }
 </script>
@@ -109,7 +140,6 @@ const toggleDropdown = () => {
   box-sizing: border-box;
   height: 100px;
   width: 100%;
-  z-index: 11;
 
   display: flex;
   align-items: center;
@@ -119,7 +149,7 @@ const toggleDropdown = () => {
 .home-link {
   margin-left: 15px;
   height: 100%;
-  z-index: 11;
+  z-index: 9;
 
   display: flex;
 
@@ -156,10 +186,50 @@ const toggleDropdown = () => {
   margin-right: 50px;
   color: #fff;
   font-family: 'CircularStd';
+  z-index: 9;
 }
+
 .navbar-menu li {
   opacity: 0;
   transform: translateY(-50px);
+  position: relative;
+  padding: 10px 20px;
+}
+
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.menu-item .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(26, 79, 135, 0.6);
+  border-radius: 40px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease, border-radius 0.4s ease;
+  transform: scale(1);
+}
+
+.menu-item:hover .overlay {
+  opacity: 1;
+  transform: scale(1.05);
+  border-radius: 40px;
+}
+
+.menu-item:hover {
+  color: #fff;
+}
+
+.menu-item .link-element {
+  position: relative;
+  z-index: 2;
 }
 
 .navbar-menu li:nth-child(1) {
@@ -188,7 +258,7 @@ const toggleDropdown = () => {
   gap: 5px;
 
   cursor: pointer;
-  z-index: 11;
+  z-index: 12;
 
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   animation: slideInFromTopFadeIn 0.6s forwards;
@@ -233,23 +303,42 @@ const toggleDropdown = () => {
   margin: 0 0 -5px 0;
 }
 
+.mask{
+  margin: 0;
+  position: fixed;
+  width: 100vw;
+  height: 200vh;
+  background-color: rgba(227, 244, 255, 0.3);
+  z-index: 10;
+}
+
 .dropdown {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  z-index: 10;
+  z-index: 11;
 
   margin: 0;
   padding: 0 0 0 20px;
+  left: 30%;
 
   list-style: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 8vh;
 
-  background-color: #fff;
+  background-color: #E3F4FF;
 
+  border-left-width: 10px;
+  border-left-style: solid;
+  border-image: linear-gradient(to bottom,     #FFEE8F 10.28%,
+    #E3FBCF 20.63%,
+    #BBF0FA 42.36%,
+    #ABD9FF 56.45%,
+    #5DABF3 70.52%,
+    #448FD6 84.88%,
+    #3262BA 100%) 1;
   transform: translateX(100%); /* Start the dropdown off-screen */
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
 }
@@ -259,11 +348,15 @@ const toggleDropdown = () => {
 }
 
 .dropdown li {
-  font-family: 'CircularStd';
-  font-size: 64px;
+  font-size: 8vw;
   font-weight: 700;
-  color: #33378c;
-  letter-spacing: -3px;
+  font-style: italic;
+  text-indent: 5%;
+  color: #1A4F87;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-right: 45%;
 
   opacity: 0;
   transform: translateY(30px);

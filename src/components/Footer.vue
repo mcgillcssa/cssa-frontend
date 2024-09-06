@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div class="container">
+    <div class="footer-container">
       <div class="follow-us">
         <p class="all-text" id="follow">FOLLOW US!</p>
       </div>
@@ -15,7 +15,7 @@
           <a href="https://www.instagram.com/mcgill.cssa" class="icon-background">
             <fa :icon="['fab', 'instagram']" size="3x"/>
           </a>
-          <a href="" class="icon-background">
+          <a href="https://mp.weixin.qq.com/s/yoD-Ozd4EMK0Fy07NbZaHg" class="icon-background">
             <fa :icon="['fab', 'weixin']" size="3x"/>
           </a>
           <a href="https://space.bilibili.com/405502104?spm_id_from=333.337.search-card.all.click" class="icon-background">
@@ -29,7 +29,7 @@
       <div class="separator"></div>
       <div class="right-box">
         <div class="rcol1">
-          <router-link to="/home"><p class="all-text">About Us</p></router-link>
+          <a href="https://mp.weixin.qq.com/s/Qi_su6jtGOjAKyHV2TSudg"><p class="all-text">About Us</p></a>
           <router-link to="/Membership"><p class="all-text">Membership</p></router-link>
         </div>
         <div class="rcol2">
@@ -69,7 +69,7 @@ export default {
   color: #ffffff;
 }
 
-.container {
+.footer-container {
   display: grid;
   grid-template-columns: 1fr 1px 2fr;
   grid-template-areas:
@@ -247,7 +247,7 @@ a:link, a:visited, a:hover, a:active a:focus {
     margin-left: 4vw;
   }
 
-  .container{
+  .footer-container{
     grid-template-columns: 1fr;
     grid-template-areas:
     'follow'
