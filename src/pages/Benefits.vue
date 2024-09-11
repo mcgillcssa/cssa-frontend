@@ -276,7 +276,7 @@ body {
 
 .to-membership-card-form {
   display: flex;
-  width: 90vw;
+  width: 85vw;
   height: auto;
   border-radius: 20px;
   align-items: center;
