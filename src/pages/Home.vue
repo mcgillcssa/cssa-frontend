@@ -265,7 +265,6 @@ h4 br {
 
 @media screen and (max-width: 700px) {
   .banner-background {
-    .banner-background {
   background: linear-gradient(to bottom, #f6f5ea 60%, #E3F4FF 100%);
 }
 
@@ -276,9 +275,8 @@ h4 br {
   .vip-title-en{
   margin-top: -3vw;
 }
-}
 
-  .home-title {
+.home-title {
     max-width: 80vw;
     left: 3%;
   }

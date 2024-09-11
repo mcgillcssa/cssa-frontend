@@ -512,7 +512,7 @@ body {
 }
 
 @media (max-width: 600px) {
-  html, body {
+  body {
     width: 100%;
     overflow-x: hidden;
     margin: 0;
