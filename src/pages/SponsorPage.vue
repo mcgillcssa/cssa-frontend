@@ -11,7 +11,7 @@
 
       <!-- Section 1: Diamond Exclusive -->
       <section class="sponsor-section">
-        <div class="title-wrapper">
+        <div class="s-title-w">
           <div class="s-gradient-background"></div>
           <h1 class="s-page-title">Diamond Exclusive</h1>
         </div>
@@ -48,7 +48,7 @@
 
       <!-- Section 2: Diamond -->
       <section class="sponsor-section">
-        <div class="title-wrapper">
+        <div class="s-title-w">
           <div class="s-gradient-background"></div>
           <h1 class="s-page-title">Diamond</h1>
         </div>
@@ -85,7 +85,7 @@
 
       <!-- Section 3: Gold -->
       <section class="sponsor-section">
-        <div class="title-wrapper">
+        <div class="s-title-w">
           <div class="s-gradient-background"></div>
           <h1 class="s-page-title">Gold</h1>
         </div>
@@ -315,10 +315,11 @@ body {
   margin-bottom: 2rem;
 }
 
-.title-wrapper {
+.s-title-w {
   left: 63.75%;
   transform: translateX(-50%);
   margin-bottom: 0.2vh;
+  position: relative;
 }
 
 .s-page-title {
@@ -329,6 +330,7 @@ body {
   font-family: 'Raleway', sans-serif;
   text-shadow: 2px 4px 6px #000000;
   user-select: none;
+  position: relative;
 }
 
 .sponsor-list {
@@ -573,7 +575,7 @@ body {
   margin-bottom: 2rem;
 }
 
-  .title-wrapper {
+  .s-title-w {
   width: 100%;
   margin-top: 2em;
   left: 0%;
@@ -583,7 +585,7 @@ body {
   }
 
   .s-gradient-background {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -599,8 +601,8 @@ body {
   );
   z-index: -1;
   position: absolute;
-  height: 7vw;
-  margin-top: 26vh;
+  height: 6vh;
+  margin-top: 2.1em;
   border-radius: 20px;
   width: 90vw;
   left: 50%;
@@ -608,7 +610,7 @@ body {
 }
 
   .s-page-title {
-    margin-top: 22vh;
+    margin-top: 24vh;
     font-size: 5vw;
     -webkit-text-stroke: 0px;
     color: #ffff;
@@ -628,6 +630,7 @@ body {
   left: 0%;
   transform: translateX(0%);
   width: 100%;
+  margin-top: 4vh;
 }
 
   .sponsor-card {
