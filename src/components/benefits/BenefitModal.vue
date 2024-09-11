@@ -140,6 +140,7 @@ export default {
   overflow-y: auto;
   margin: 5% auto;
   flex-shrink: 0;
+  z-index: 10000;
 }
 
 .modal::-webkit-scrollbar {

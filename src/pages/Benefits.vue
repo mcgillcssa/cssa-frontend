@@ -25,7 +25,7 @@
     </div>
   <div>
     <a
-    ref="formSection"
+      ref="formSection"
       class="to-membership-card-form"
       href="https://docs.google.com/forms/d/e/1FAIpQLSfUENPuXO-JNhb2nKPcZW6hhytXsdGfCV8vYv5Q8zDBC-JHqg/viewform"
       target="_blank"
@@ -234,6 +234,7 @@ body {
   width: 100%;
   height: 50px;
   margin: 40px 0;
+  z-index: -1;
 }
 
 .circle-start,
@@ -297,6 +298,7 @@ body {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  z-index: -1;
 }
 
 .form-text-wrapper{
@@ -448,6 +450,10 @@ body {
   .title-container {
     height: 75px;
   }
+
+  .b-title-wrapper {
+    margin-top: 10px;
+}
 
 .title{
   font-size: 5vw;

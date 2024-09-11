@@ -263,4 +263,14 @@ const handleMouseLeave = categoryName => {
     font-size: 20px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .benefit-category {
+    font-size: 20px;
+  }
+
+  .category-title {
+  padding-right: 30px;
+}
+}
 </style>

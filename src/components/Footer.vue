@@ -67,6 +67,7 @@ export default {
 .footer {
   background-color: #3364BB;
   color: #ffffff;
+  z-index: -100;
 }
 
 .footer-container {
@@ -85,6 +86,7 @@ export default {
   margin-left: 6.5vw;
   padding: 0vw;
   position: relative;
+  z-index: 0;
 }
 
 .follow-us {
