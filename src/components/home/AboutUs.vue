@@ -5,14 +5,14 @@
         <div class="about-us-image-container">
           <img src="https://i.imgur.com/xfAdEm5.jpg" alt="Group Photo" class="group-photo">
           <div class="ellipse"></div>
-          <div class="overlay-text">
+          <div class="about-us-overlay-text">
             <span>ABOUT</span><br>
             <span>US</span>
           </div>
         </div>
       </div>
       <div class="right-column">
-        <div class="text-content">
+        <div class="about-us-text-content">
           <p>McGill University Chinese Students and Scholars Association (CSSA), is the only student community certified by the Chinese Consulate on campus, and it is the only cultural club dedicated mainly to students and scholars from Mainland China.</p>
           <p>这是麦吉尔大学中国学生学者联谊会 (McGill CSSA) 是一个正式认证、官方承、非营利，并且唯一正式受自治校方允许的主要面向本科生的官方学生组织。</p>
         </div>
@@ -23,33 +23,26 @@
 
 <script>
 export default {
-    name: 'AboutUs'
-}
+  name: 'AboutUs',
+  mounted() {
 
-document.addEventListener("DOMContentLoaded", function() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-      }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px'
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px'
-  });
 
-  const elements = document.querySelectorAll('.text-content, overlay-text');
-  elements.forEach(element => {
-    observer.observe(element);
-  });
-
-  elements.forEach(element => {
-    if (element.getBoundingClientRect().top <= window.innerHeight) {
-      element.classList.add('is-visible');
-    }
-  });
-});
-
+    const elements = document.querySelectorAll('.about-us-text-content, .about-us-overlay-text');
+    elements.forEach(element => {
+      observer.observe(element);
+    });
+  }
+}
 </script>
 
 <style scoped>
@@ -134,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function() {
     opacity: 0.5;
 }
 
-.overlay-text {
+.about-us-overlay-text {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -145,14 +138,13 @@ document.addEventListener("DOMContentLoaded", function() {
   text-align: center;
   font-family:'Raleway';
   z-index: 3;
-  animation: jumpIn 1.5s ease-out;
-  animation-delay: 0.8s;
+  animation: fadeInFromTop 1.5s ease-out forwards;
 }
 
-@keyframes jumpIn {
+@keyframes fadeInFromTop {
   0% {
     opacity: 0;
-    transform: translate(-50%, -160%);
+    transform: translate(-50%, -150%);
   }
   100% {
     opacity: 1;
@@ -183,13 +175,13 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 }
 
-.is-visible {
+.about-us-overlay-text .is-visible {
     animation: bounce 0.6s ease-out;
     opacity: 1;
 
 }
 
-.text-content {
+.about-us-text-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -199,11 +191,11 @@ document.addEventListener("DOMContentLoaded", function() {
     transition-delay: 0.5s;
 }
 
-.text-content.is-visible {
+.about-us-text-content.is-visible {
     opacity: 1;
 }
 
-.text-content p {
+.about-us-text-content p {
     text-align: justify;
     font-family: 'Raleway';
     font-size: 1.6vw;
@@ -211,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
     color: #1A4F87;
 }
 
-.text-content h1 {
+.about-us-text-content h1 {
     margin-bottom: 10px;
 }
 
@@ -221,7 +213,7 @@ document.addEventListener("DOMContentLoaded", function() {
     padding: 1.2vw;
   }
 
-  .overlay-text {
+  .about-us-overlay-text {
     font-size: 3vw;
     color: #def5fa;
     z-index: 3;
@@ -233,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
     opacity: 0.5;
   }
 
-  .text-content p {
+  .about-us-text-content p {
     text-align: justify;
     font-size: 1.8vw;
   }
@@ -298,11 +290,11 @@ document.addEventListener("DOMContentLoaded", function() {
       height: 40vw;
   }
 
-  .overlay-text {
+  .about-us-overlay-text {
     font-size: 4vw;
   }
 
-  .text-content p {
+  .about-us-text-content p {
     text-align: center;
     justify-content: center;
     padding: 1vw;
