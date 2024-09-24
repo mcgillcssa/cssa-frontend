@@ -1,6 +1,6 @@
 <template>
   <nav-bar />
-  <div :style="{ 'background-image': 'url(' + bannerUrl + ')' }" class="banner vertical-flex">
+  <div :style="bannerStyle" class="membership-banner vertical-flex">
     <div class="membership-title"><em>MEMBERSHIP</em></div>
     <div class="arrow-down">
       <arrow-down fill="#FFFFFF" size="124" strokeLinecap="butt" theme="filled" />
@@ -11,7 +11,7 @@
       <h3>什么是CSSA会员?</h3>
       <h2>What is CSSA Membership?</h2>
       <div class="presentation-description">
-        <img alt="Small Card Design" src="https://i.imgur.com/gAU1htm.jpg" />
+        <img alt="Small Card Design" src="https://i.imgur.com/jkSJenF.png" />
         <div class="description-container">
           <p>
             CSSA会员卡是McGill CSSA携手蒙城各大商家, <br />为大家准备的福利折扣卡!<br />
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="separator first-line-break">
+    <div class="membership-separator first-line-break">
       <div class="circle-start"></div>
       <div class="line"></div>
       <div class="circle-end"></div>
@@ -36,11 +36,11 @@
           <h2 class="button-text">点击查看完整商家名单</h2>
         </div>
         <div class="circle">
-          <arrow-right :size="arrowSize" fill="#967eb8" theme="filled" />
+          <arrow-right :size="arrowSize" fill="#3961a7" theme="filled" />
         </div>
       </router-link>
     </div>
-    <div class="separator last-line-break">
+    <div class="membership-separator last-line-break">
       <div class="circle-start"></div>
       <div class="line"></div>
       <div class="circle-end"></div>
@@ -51,20 +51,33 @@
     </div>
     <card-carousel></card-carousel>
   </div>
+  <gradient-stripe/>
+  <Footer></Footer>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import NavBar from '../components/NavBar.vue'
 import CardCarousel from '../components/membership/CardCarousel.vue'
+import GradientStripe from '@/components/GradientStripe.vue'
 import { ArrowDown, ArrowRight } from '@icon-park/vue-next'
+import Footer from '../components/Footer.vue'
 
-const bannerUrl = ref('https://i.imgur.com/9myUD3h.jpg')
+const bannerUrl = ref('https://i.imgur.com/x3IJjj2.jpg')
 const contentSections = ref([])
+
+const bannerStyle = computed(() => ({
+  backgroundImage: `url(${bannerUrl.value})`,
+  backgroundAttachment: 'fixed',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover'
+}))
 
 let arrowSize = ref(64)
 
 onMounted(() => {
+  window.scrollTo(0, 0);
   updateWindowWidth()
   window.addEventListener('resize', updateWindowWidth)
 
@@ -81,9 +94,9 @@ const updateWindowWidth = () => {
   const aspectRatio = window.innerWidth / window.innerHeight
 
   if (aspectRatio < 1) {
-    bannerUrl.value = 'https://i.imgur.com/4Xf94jX.jpg'
+    bannerUrl.value = 'https://i.imgur.com/SRk5nUk.jpg'
   } else {
-    bannerUrl.value = 'https://i.imgur.com/9myUD3h.jpg'
+    bannerUrl.value = 'https://i.imgur.com/x3IJjj2.jpg'
   }
   if (window.innerWidth <= 600) {
     arrowSize.value = 24
@@ -112,7 +125,7 @@ const handleScroll = () => {
   flex-direction: column;
 }
 
-.banner {
+.membership-banner {
   min-height: 100vh;
   width: 100%;
   justify-content: center;
@@ -123,6 +136,8 @@ const handleScroll = () => {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
 }
 
 .membership-title {
@@ -133,7 +148,7 @@ const handleScroll = () => {
   font-size: 12vw;
   font-family: 'Infinity';
   text-align: center;
-  text-shadow: 2px 2px 5px #634791;
+  text-shadow: 2px 2px 5px #1448a1;
   animation: fadeInUp 1s forwards 0.5s;
 }
 
@@ -172,7 +187,7 @@ const handleScroll = () => {
 .content-container {
   align-items: center;
   padding-top: 40px;
-  background-color: #eaebf6;
+  background-color: #ddebf8;
 }
 
 .presentation {
@@ -186,29 +201,30 @@ const handleScroll = () => {
 
 .presentation h3 {
   margin: 0;
-  font-size: 1.5vw;
-  color: #33378c;
+  font-size: 2vw;
+  color: #1c529a;
 }
 
 .presentation h2 {
   margin: 0;
   font-size: 3vw;
-  color: #988fce;
+  color: #1c529a;
 }
 
 .presentation-description {
   margin: 30px 40px 0 40px;
-  padding: 100px;
+  padding: 4vw;
 
   display: flex;
-  width: 85%;
+  width: 90vw;
   flex-wrap: nowrap;
 
   gap: 50px;
 
   background-color: #ffffff;
-  border: 1px solid #cbbcdb;
+  border: 1px solid #99c0e9;
   border-radius: 30px;
+  box-sizing: border-box;
 }
 
 .presentation-description img {
@@ -223,13 +239,13 @@ const handleScroll = () => {
   flex: 1;
   justify-content: center;
   font-family: 'Infinity';
-  color: #33378c;
+  color: #33688c;
   text-align: center;
 
   font-size: 1.4vw;
 }
 
-.separator {
+.membership-separator {
   position: relative;
   display: flex;
   align-items: center;
@@ -244,7 +260,7 @@ const handleScroll = () => {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: #967eb8;
+  background-color: #7ea3b8;
 }
 
 .line {
@@ -256,24 +272,24 @@ const handleScroll = () => {
 .first-line-break .line {
   background: linear-gradient(
     to right,
-    #967eb8 0%,
-    #967eb8 19%,
+    #7ea3b8 0%,
+    #7ea3b8 19%,
     transparent 19%,
     transparent 21%,
-    #967eb8 21%,
-    #967eb8 100%
+    #7ea3b8 21%,
+    #7ea3b8 100%
   );
 }
 
 .last-line-break .line {
   background: linear-gradient(
     to right,
-    #967eb8 0%,
-    #967eb8 79%,
+    #7ea3b8 0%,
+    #7ea3b8 79%,
     transparent 79%,
     transparent 81%,
-    #967eb8 81%,
-    #967eb8 100%
+    #7ea3b8 81%,
+    #7ea3b8 100%
   );
 }
 
@@ -285,11 +301,11 @@ const handleScroll = () => {
   align-items: center;
   background-image: linear-gradient(
     90deg,
-    #ffc6b4 0.67%,
-    #ffa7d1 14.09%,
-    #ad87cb 68.63%,
-    #a78cd0 80.36%,
-    #726cad 100%
+    #faf29b 0.67%,
+    #93e994 14.09%,
+    #93e9ca 20.01%,
+    #90d3ef 80.36%,
+    #6496c3 100%
   );
   text-decoration: none;
 }
@@ -308,7 +324,7 @@ const handleScroll = () => {
 .button-text {
   margin: 0;
   text-align: center;
-  color: #967eb8;
+  color: #3961a7;
   letter-spacing: 20px;
   font-size: 1.75em;
   text-decoration: none;
@@ -362,7 +378,7 @@ const handleScroll = () => {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #967eb8;
+    background-color: #7ea3b8;
   }
 }
 
@@ -384,7 +400,7 @@ const handleScroll = () => {
     height: 80px;
   }
 
-  .separator {
+  .membership-separator {
     margin: 20px 0;
   }
 
@@ -397,11 +413,26 @@ const handleScroll = () => {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #967eb8;
+    background-color: #7ea3b8;
   }
 }
 
 @media screen and (max-width: 800px) {
+  .membership-banner {
+  min-height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
   .presentation h3 {
     font-size: 1em;
   }
@@ -412,6 +443,7 @@ const handleScroll = () => {
 
   .presentation-description {
     padding: 30px;
+    width: 90%;
   }
 
   .presentation-description {
@@ -434,12 +466,12 @@ const handleScroll = () => {
     font-size: 2.3vw;
   }
 
-  .separator {
+  .membership-separator {
     height: 30px;
     margin: 10px 0;
   }
 
-  .separator {
+  .membership-separator {
     margin: 20px 0;
   }
 
@@ -452,7 +484,7 @@ const handleScroll = () => {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #967eb8;
+    background-color: #7ea3b8;
   }
 
   .to-benefits {
@@ -476,6 +508,25 @@ const handleScroll = () => {
 }
 
 @media screen and (max-width: 600px) {
+  .membership-banner {
+  min-height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+  .presentation-description {
+    width: 90%;
+  }
+
   .to-benefits {
     height: 80px;
   }

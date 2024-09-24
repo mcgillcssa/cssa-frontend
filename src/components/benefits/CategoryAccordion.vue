@@ -81,7 +81,7 @@ watch(
     for (let categoryName in newBenefits) {
       visibleCategories.value[categoryName] = true
       setContainerHeight(categoryName)
-      iconColors.value[categoryName] = '#9C71C6'
+      iconColors.value[categoryName] = '#3F83CE'
     }
   },
   { deep: true, immediate: true }
@@ -147,12 +147,12 @@ const hideModal = () => {
 
 const handleMouseOver = categoryName => {
   if ('ontouchstart' in window) return
-  iconColors.value[categoryName] = '#eaebf6'
+  iconColors.value[categoryName] = '#E3F4FF'
 }
 
 const handleMouseLeave = categoryName => {
   if ('ontouchstart' in window) return
-  iconColors.value[categoryName] = '#9C71C6'
+  iconColors.value[categoryName] = '#3F83CE'
 }
 </script>
 
@@ -188,14 +188,7 @@ const handleMouseLeave = categoryName => {
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: linear-gradient(
-    90deg,
-    #ffc6b4 0.67%,
-    #ffa7d1 14.09%,
-    #ad87cb 39.63%,
-    #8986ed 68.36%,
-    #8418ea 100%
-  );
+  border: 1px solid #3F83CE;
   z-index: -2;
 }
 
@@ -211,9 +204,9 @@ const handleMouseLeave = categoryName => {
   position: relative;
   margin: 0;
   padding: 10px;
-  background: #eaebf6;
-  color: #9c71c6;
-  border: 1px solid #cbbcdb;
+  background: #E3F4FF;
+  color: #3F83CE;
+  border: 1px solid #3F83CE;
   font-size: 1em;
   font-weight: bold;
   font-family: 'Raleway';
@@ -223,14 +216,14 @@ const handleMouseLeave = categoryName => {
 }
 
 .category-title:hover {
-  background-color: #9c71c6;
-  color: #eaebf6;
+  background-color: #3F83CE;
+  color: #E3F4FF;
 }
 
 @media (hover: none) {
   .category-title:hover {
-    background-color: #eaebf6;
-    color: #9c71c6;
+    background-color: #E3F4FF;
+    color: #3F83CE;
   }
 }
 
@@ -256,6 +249,7 @@ const handleMouseLeave = categoryName => {
   display: block;
   margin: 10px 0 10px 0;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 @media screen and (min-width: 801px) and (max-width: 1200px) {
@@ -268,5 +262,15 @@ const handleMouseLeave = categoryName => {
   .benefit-category {
     font-size: 20px;
   }
+}
+
+@media screen and (max-width: 600px) {
+  .benefit-category {
+    font-size: 20px;
+  }
+
+  .category-title {
+  padding-right: 30px;
+}
 }
 </style>

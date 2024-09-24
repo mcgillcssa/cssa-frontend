@@ -20,7 +20,7 @@
 import { ref, onMounted } from 'vue'
 
 // carousel images
-const carouselUrls = ref(['https://i.imgur.com/Cqv3xm6.png'])
+const carouselUrls = ref(['https://i.imgur.com/Cqv3xm6.png','https://i.imgur.com/9myUD3h.jpg'])
 
 onMounted(() => {
   //carousel
@@ -68,8 +68,8 @@ onMounted(() => {
   height: 512px;
   margin: 30px 40px 30px 40px;
   width: 90%;
-  border: 1px solid #cbbcdb;
-  border-radius: 10px;
+  border: 1px solid #5291B9;
+  border-radius: 30px;
   overflow: hidden;
   position: relative;
 }
@@ -100,8 +100,8 @@ onMounted(() => {
   margin: 30px auto;
   width: 3vw;
   height: 3vw;
-  border-top: 5px solid #967eb8;
-  border-left: 5px solid #967eb8;
+  border-top: 5px solid #7ea3b8;
+  border-left: 5px solid #7ea3b8;
   cursor: pointer;
 }
 
@@ -123,13 +123,13 @@ onMounted(() => {
   list-style: none;
   padding: 0;
   margin: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(51, 100, 187, 0.4);
 }
 
 .carousel ul li {
   height: 1vw;
   width: 1vw;
-  background-color: #828181;
+  background-color: #E3F4FF;
   border-radius: 50%;
   margin: 1vh 3vw;
   cursor: pointer;
@@ -156,7 +156,7 @@ onMounted(() => {
   }
 
   .slide {
-    background-size: 400px 200px;
+    background-size: 105% auto;
   }
 
   .arrow {
@@ -174,7 +174,7 @@ onMounted(() => {
 
 @media screen and (max-width: 600px) {
   .slide {
-    background-size: 340px 170px;
+    background-size: 120% auto;
   }
 
   .carousel {

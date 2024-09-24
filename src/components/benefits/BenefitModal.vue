@@ -13,7 +13,7 @@
           <local
             theme="filled"
             :size="iconSize"
-            fill="#9C71C6"
+            fill="#3F83CE"
             strokeLinejoin="miter"
             strokeLinecap="square"
           />
@@ -23,7 +23,7 @@
           <phone-call
             theme="filled"
             :size="iconSize"
-            fill="#9C71C6"
+            fill="#3F83CE"
             :strokeWidth="3"
             strokeLinejoin="miter"
             strokeLinecap="square"
@@ -34,7 +34,7 @@
           <alarm-clock
             theme="filled"
             :size="iconSize"
-            fill="#9C71C6"
+            fill="#3F83CE"
             :strokeWidth="3"
             strokeLinejoin="miter"
             strokeLinecap="square"
@@ -45,7 +45,7 @@
           <coupon
             theme="filled"
             :size="iconSize"
-            fill="#9C71C6"
+            fill="#3F83CE"
             :strokeWidth="3"
             strokeLinejoin="miter"
             strokeLinecap="square"
@@ -56,7 +56,7 @@
           <buy
             theme="filled"
             :size="iconSize"
-            fill="#9C71C6"
+            fill="#3F83CE"
             :strokeWidth="3"
             strokeLinejoin="miter"
             strokeLinecap="square"
@@ -140,6 +140,7 @@ export default {
   overflow-y: auto;
   margin: 5% auto;
   flex-shrink: 0;
+  z-index: 10000;
 }
 
 .modal::-webkit-scrollbar {
@@ -147,8 +148,8 @@ export default {
 }
 
 .modal::-webkit-scrollbar-thumb {
-  background-color: rgba(156, 113, 198, 0.5);
-  border-radius: 4px;
+  background-color: rgba(63, 131, 206, 1);
+  border-radius: 100px;
 }
 
 .modal::-webkit-scrollbar-track {
@@ -157,14 +158,14 @@ export default {
 
 .modal {
   scrollbar-width: thin;
-  scrollbar-color: rgba(156, 113, 198, 0.5) transparent;
+  scrollbar-color: rgba(63, 131, 206, 1) transparent;
 }
 
 .modal-top-container {
   margin: auto;
   position: relative;
   font-size: 1em;
-  background-color: #9c71c6;
+  background-color: #3F83CE;
   width: 100%;
 }
 
@@ -202,12 +203,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f8f1ff;
+  background-color: #E3F4FF;
   flex-grow: 1;
   padding: 10px 20px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 450;
-  color: #9c71c6;
+  color: #3F83CE;
   border-radius: 5px;
   transform: scale(1, 0.95);
 }

@@ -1,217 +1,249 @@
 <template>
-  <div class="container">
-    <NavBar class="nav-bar"/>
+  <div class="sponsor-container" @update-sponsors="updateSponsors">
+    <div v-bind="attrs" class="nav-bar">
+      <NavBar/>
+    </div>
     <div class="title-text-1 title-text">
-            <p>Sponsors</p>
+      <p>Sponsors</p>
     </div>
 
-  <div class="sponsor-page">
-      <section class="section">
-      <!-- section 1 -->
-      <div class="title-wrapper">
-        <h1 class="page-title">Diamond Exclusive</h1>
-      </div>
-      <div class="sponsor-list" :ref="'sponsorListDE'" @wheel="handleWheel" v-for="(page, index) in de_pages" :key="'de-' + index" v-show="currentPage_de === index">
-      <div v-for="(page, index) in de_pages" :key="index" v-show="currentPage_de === index">
-        <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
-          <div class="sponsor-total">
-            <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
-            <h2 class="sponsor-name">{{ sponsor.name }}</h2>
-          </div>
-          <p class="sponsor-description">{{ sponsor.description }}</p>
-          <a :href="sponsor.website" class="sponsor-website">➤</a>
+    <div class="sponsor-page">
+
+      <!-- Section 1: Diamond Exclusive -->
+      <section class="sponsor-section">
+        <div class="s-title-w">
+          <div class="s-gradient-background"></div>
+          <h1 class="s-page-title">Diamond Exclusive</h1>
         </div>
-      </div>
-    </div>
-    <div class="pagination">
-      <button @click="previousPageDE" :disabled="currentPage_de === 0">
-        <i class="arrow-icon left-arrow"></i>
-      </button>
-      <button
-        v-for="(_, index) in de_pages"
-        :key="index"
-        @click="changePageDE(index)"
-        :class="{ active: currentPage_de === index }"
-      >
-        {{ index + 1 }}
-      </button>
-      <button @click="nextPageDE" :disabled="currentPage_de === de_pages.length - 1">
-        <i class="arrow-icon right-arrow"></i>
-      </button>
-    </div>
-    </section>
-
-    <section class="section">
-      <!-- section 2 -->
-      <div class="title-wrapper">
-        <h1 class="page-title">Diamond</h1>
-      </div>
-      <div class="sponsor-list" :ref="'sponsorListD'" @wheel="handleWheel" v-for="(page, index) in d_pages" :key="'d-' + index" v-show="currentPage_d === index">
-      <div v-for="(page, index) in d_pages" :key="index" v-show="currentPage_d === index">
-        <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
-          <div class="sponsor-total">
-            <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
-            <h2 class="sponsor-name">{{ sponsor.name }}</h2>
+        <div class="sponsor-list" ref="sponsorListDE" @wheel="handleWheel">
+          <div v-for="(page, index) in de_pages" :key="'de-' + index" v-show="currentPage_de === index">
+            <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
+              <div class="sponsor-total">
+                <div class="s-logo-background">
+                  <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
+                </div>
+                <h2 class="sponsor-name">{{ sponsor.name }}</h2>
+              </div>
+              <p class="sponsor-description">{{ sponsor.description }}</p>
+            </div>
           </div>
-          <p class="sponsor-description">{{ sponsor.description }}</p>
-          <a :href="sponsor.website" class="sponsor-website">➤</a>
         </div>
-      </div>
-    </div>
-    <div class="pagination">
-      <button @click="previousPageD" :disabled="currentPage_d === 0">
-        <i class="arrow-icon left-arrow"></i>
-      </button>
-      <button
-        v-for="(_, index) in d_pages"
-        :key="index"
-        @click="changePageD(index)"
-        :class="{ active: currentPage_d === index }"
-      >
-        {{ index + 1 }}
-      </button>
-      <button @click="nextPageD" :disabled="currentPage_d === d_pages.length - 1">
-        <i class="arrow-icon right-arrow"></i>
-      </button>
-    </div>
-    </section>
-    <!-- section 2 -->
-
-    <section class="section">
-      <!-- section 3 -->
-      <div class="title-wrapper">
-        <h1 class="page-title">Gold</h1>
-      </div>
-      <div class="sponsor-list" :ref="'sponsorListG'" @wheel="handleWheel" v-for="(page, index) in g_pages" :key="'g-' + index" v-show="currentPage_g === index">
-      <div v-for="(page, index) in g_pages" :key="index" v-show="currentPage_g === index">
-        <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
-          <div class="sponsor-total">
-            <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
-            <h2 class="sponsor-name">{{ sponsor.name }}</h2>
+          <div class="pagination">
+            <button @click="previousPageDE" :disabled="currentPage_de === 0">
+              <i class="arrow-icon left-arrow"></i>
+            </button>
+            <button
+              v-for="(_, index) in de_pages"
+              :key="index"
+              @click="changePageDE(index)"
+              :class="{ active: currentPage_de === index }"
+            >
+              {{ index + 1 }}
+            </button>
+            <button @click="nextPageDE" :disabled="currentPage_de === de_pages.length - 1">
+              <i class="arrow-icon right-arrow"></i>
+            </button>
           </div>
-          <p class="sponsor-description">{{ sponsor.description }}</p>
-          <a :href="sponsor.website" class="sponsor-website">➤</a>
+      </section>
+
+      <!-- Section 2: Diamond -->
+      <section class="sponsor-section">
+        <div class="s-title-w">
+          <div class="s-gradient-background"></div>
+          <h1 class="s-page-title">Diamond</h1>
         </div>
-      </div>
-    </div>
-    <div class="pagination">
-      <button @click="previousPageG" :disabled="currentPage_g === 0">
-        <i class="arrow-icon left-arrow"></i>
-      </button>
-      <button
-        v-for="(_, index) in g_pages"
-        :key="index"
-        @click="changePageG(index)"
-        :class="{ active: currentPage_g === index }"
-      >
-        {{ index + 1 }}
-      </button>
-      <button @click="nextPageG" :disabled="currentPage_g === g_pages.length - 1">
-        <i class="arrow-icon right-arrow"></i>
-      </button>
-    </div>
-    </section>
+        <div class="sponsor-list" ref="sponsorListD" @wheel="handleWheel">
+          <div v-for="(page, index) in d_pages" :key="'d-' + index" v-show="currentPage_d === index">
+            <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
+              <div class="sponsor-total">
+                <div class="s-logo-background">
+                  <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
+                </div>
+                <h2 class="sponsor-name">{{ sponsor.name }}</h2>
+              </div>
+              <p class="sponsor-description">{{ sponsor.description }}</p>
+            </div>
+          </div>
+        </div>
+          <div class="pagination">
+            <button @click="previousPageD" :disabled="currentPage_d === 0">
+              <i class="arrow-icon left-arrow"></i>
+            </button>
+            <button
+              v-for="(_, index) in d_pages"
+              :key="index"
+              @click="changePageD(index)"
+              :class="{ active: currentPage_d === index }"
+            >
+              {{ index + 1 }}
+            </button>
+            <button @click="nextPageD" :disabled="currentPage_d === d_pages.length - 1">
+              <i class="arrow-icon right-arrow"></i>
+            </button>
+          </div>
+      </section>
 
-
+      <!-- Section 3: Gold -->
+      <section class="sponsor-section">
+        <div class="s-title-w">
+          <div class="s-gradient-background"></div>
+          <h1 class="s-page-title">Gold</h1>
+        </div>
+        <div class="sponsor-list" ref="sponsorListG" @wheel="handleWheel">
+          <div v-for="(page, index) in g_pages" :key="'g-' + index" v-show="currentPage_g === index">
+            <div v-for="sponsor in page" :key="sponsor.id" class="sponsor-card">
+              <div class="sponsor-total">
+                <div class="s-logo-background">
+                  <img :src="sponsor.logo" :alt="sponsor.name" class="sponsor-logo" />
+                </div>
+                <h2 class="sponsor-name">{{ sponsor.name }}</h2>
+              </div>
+              <p class="sponsor-description">{{ sponsor.description }}</p>
+            </div>
+          </div>
+        </div>
+          <div class="pagination">
+            <button @click="previousPageG" :disabled="currentPage_g === 0">
+              <i class="arrow-icon left-arrow"></i>
+            </button>
+            <button
+              v-for="(_, index) in g_pages"
+              :key="index"
+              @click="changePageG(index)"
+              :class="{ active: currentPage_g === index }"
+            >
+              {{ index + 1 }}
+            </button>
+            <button @click="nextPageG" :disabled="currentPage_g === g_pages.length - 1">
+              <i class="arrow-icon right-arrow"></i>
+            </button>
+          </div>
+      </section>
+    </div>
+    <gradientstripe></gradientstripe>
   </div>
-  
-  <div>
-    <Footer class="footer">
-    </Footer>
-  </div>
-</div>
-
 </template>
 
-<script>
-import axios from 'axios'
-import NavBar from '../components/NavBar.vue'
+<script setup>
+import { ref, onMounted, computed} from 'vue';
+import axios from 'axios';
+import { useStore } from 'vuex';
+import NavBar from '../components/NavBar.vue';
+import gradientstripe from '../components/GradientStripe.vue';
 
-export default {
-  components: {
-    NavBar,
-  },
-  data() {
-    return {
-      de_sponsors: [], // Initially empty, will be filled with fetched data
-      itemsPerPage: 2,
-      currentPage_de: 0,
-      currentPage_d: 0,
-      currentPage_g: 0,
-      de_pages: [],
-      d_pages: [],
-      g_pages: []
-    }
-  },
-  mounted() {
-    this.fetchSponsors(); // Fetch sponsors when component mounts
-    this.calculatePages(); // This might need to be moved or called again after data is fetched
-  },
-  methods: {
-    async fetchSponsors() {
-      try {
-        const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/sponsors/`);
-        this.de_sponsors = response.data; // Populate de_sponsors with fetched data
-        console.log(response)
-        this.calculatePages(); // Recalculate pages after data is fetched
-      } catch (err) {
-        console.error('Failed to fetch sponsors:', err);
-        alert('Failed to fetch sponsors.');
+const store = useStore();
+const sponsorUrl = process.env.VUE_APP_BACKEND_URL + '/api/sponsors/';
+
+const itemsPerPage = 2;
+const currentPage_de = ref(0);
+const currentPage_d = ref(0);
+const currentPage_g = ref(0);
+
+// Access Vuex state and getters
+const de_sponsors = computed(() => store.getters.getDeSponsors);
+const d_sponsors = computed(() => store.getters.getDSponsors);
+const g_sponsors = computed(() => store.getters.getGSponsors);
+
+const de_pages = computed(() => chunkArray(de_sponsors.value, itemsPerPage));
+const d_pages = computed(() => chunkArray(d_sponsors.value, itemsPerPage));
+const g_pages = computed(() => chunkArray(g_sponsors.value, itemsPerPage));
+
+onMounted(() => {
+  axios.get(sponsorUrl)
+    .then(response => {
+      if (!Array.isArray(response.data)) {
+        throw new Error('Expected an array of sponsors');
       }
-    },
-    calculatePages() {
-      // Clear previous pages
-      this.de_pages = [];
-      this.d_pages = [];
-      this.g_pages = [];
-      // Populate pages based on the current data
-      for (let i = 0; i < this.de_sponsors.length; i += this.itemsPerPage) {
-        this.de_pages.push(this.de_sponsors.slice(i, i + this.itemsPerPage));
-      }
-      // Similarly, populate d_pages and g_pages if needed
-    },
-    changePageDE(index) {
-      this.currentPage_de = index;
-    },
-    previousPageDE() {
-      if (this.currentPage_de > 0) {
-        this.currentPage_de--;
-      }
-    },
-    nextPageDE() {
-      if (this.currentPage_de < this.de_pages.length - 1) {
-        this.currentPage_de++
-      }
-      console.log("next called")
-    },
-    changePageD(index) {
-      this.currentPage_d = index
-    },
-    previousPageD() {
-      if (this.currentPage_d > 0) {
-        this.currentPage_d--
-      }
-    },
-    nextPageD() {
-      if (this.currentPage_d < this.d_pages.length - 1) {
-        this.currentPage_d++
-      }
-    },
-    changePageG(index) {
-      this.currentPage_g = index
-    },
-    previousPageG() {
-      if (this.currentPage_g > 0) {
-        this.currentPage_g--
-      }
-    },
-    nextPageG() {
-      if (this.currentPage_g < this.g_pages.length - 1) {
-        this.currentPage_g++
-      }
-    },
-    handleWheel() {
-    }
+
+      const sponsors = {
+        de_sponsors: [],
+        d_sponsors: [],
+        g_sponsors: [],
+      };
+
+      response.data.forEach(sponsor => {
+        const formattedSponsor = {
+          id: sponsor.sponsorName,
+          name: sponsor.sponsorName,
+          description: sponsor.sponsorDescription,
+          logo: sponsor.sponsorImageUrl
+        };
+
+        switch (sponsor.sponsorClass.toUpperCase()) {
+          case 'DIAMOND_EXCLUSIVE':
+            sponsors.de_sponsors.push(formattedSponsor);
+            break;
+          case 'DIAMOND':
+            sponsors.d_sponsors.push(formattedSponsor);
+            break;
+          case 'GOLD':
+            sponsors.g_sponsors.push(formattedSponsor);
+            break;
+        }
+      });
+
+      store.commit('setSponsors', sponsors);
+    })
+    .catch(err => {
+      console.error('Failed to fetch sponsors:', err);
+      alert('Failed to fetch sponsors.');
+    });
+});
+
+function chunkArray(array, size) {
+  const result = [];
+  for (let i = 0; i < array.length; i += size) {
+    result.push(array.slice(i, i + size));
+  }
+  return result;
+}
+
+// Pagination functions
+function changePageDE(index) {
+  currentPage_de.value = index;
+}
+
+function previousPageDE() {
+  if (currentPage_de.value > 0) {
+    currentPage_de.value--;
+  }
+}
+
+function nextPageDE() {
+  if (currentPage_de.value < de_pages.value.length - 1) {
+    currentPage_de.value++;
+  }
+}
+
+function changePageD(index) {
+  currentPage_d.value = index;
+}
+
+function previousPageD() {
+  if (currentPage_d.value > 0) {
+    currentPage_d.value--;
+  }
+}
+
+function nextPageD() {
+  if (currentPage_d.value < d_pages.value.length - 1) {
+    currentPage_d.value++;
+  }
+}
+
+function changePageG(index) {
+  currentPage_g.value = index;
+}
+
+function previousPageG() {
+  if (currentPage_g.value > 0) {
+    currentPage_g.value--;
+  }
+}
+
+function nextPageG() {
+  if (currentPage_g.value < g_pages.value.length - 1) {
+    currentPage_g.value++;
   }
 }
 </script>
@@ -220,12 +252,15 @@ export default {
 body {
   overflow-x: hidden;
 }
+
 .nav-bar {
   width: 100%;
   z-index: 100;
+  position: relative;
 }
+
 .title-text {
-  margin-left: 3vw;
+  margin-left: 4.5vw;
   position: relative;
   font-size: 5vw;
   line-height: 6vw;
@@ -234,21 +269,18 @@ body {
   font-family: 'Raleway', sans-serif;
   font-weight: bold;
   color: #ffffff;
-  letter-spacing: -3px;
+  letter-spacing: -0.2vw;
 }
 
-.title-text p {
-  -webkit-text-stroke: 2px #ffffff;
-  color: transparent;
-}
 .title-text-1 {
   z-index: 2;
   position: absolute;
   top: 30%;
+  font-style: italic;
 }
 
 .sponsor-page {
-  background-image: linear-gradient(#ac94c5 ,#f7bfc9), url('https://i.imgur.com/ZgCeJBq.jpg');
+  background-image: linear-gradient( #3364BB ,#E3F4FF), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -261,6 +293,7 @@ body {
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
+
 .sponsor-page::before {
   content: '';
   position: absolute;
@@ -268,89 +301,120 @@ body {
   left: 0;
   width: 27.5%;
   height: 330vh;
-  background-color: #ac94c5;
+  background-color: #3364BB;
 }
-section {
+
+.sponsor-section {
   box-sizing: border-box;
   scroll-snap-align: end;
   height: 100%;
+  width: 100vw;
   color: white;
-
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 2rem;
 }
 
-.page-title {
+.s-title-w {
+  left: 63.75%;
+  transform: translateX(-50%);
+  margin-bottom: 0.2vh;
+  position: relative;
+}
+
+.s-page-title {
   text-align: center;
-  font-size: 6vh;
-  padding-top: 12vh;
-  margin-top: 6vh;
-  margin-bottom: 3vh;
-  margin-left: 72vh;
-  margin-right: 15vh;
+  font-size: 3vw;
+  padding-top: 8vh;
   color: #ececec;
-  box-shadow: #000000;
   font-family: 'Raleway', sans-serif;
-  -webkit-text-stroke: 3px #ffffff;
-  color: transparent;
+  text-shadow: 2px 4px 6px #000000;
   user-select: none;
+  position: relative;
 }
 
 .sponsor-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-.sponsor-total {
-  width: 30vh;
-  display: flex;
-  flex-direction: column; /* Stack children vertically */
-  align-items: center; /* Center children horizontally */
-  justify-content: center; /* Center children vertically, if needed */
+  position: absolute;
+  left: 63.75%;
+  transform: translateX(-50%);
+  margin-bottom: 0.2vh;
 }
 
 .sponsor-card {
   width: 55vw;
-  height: 23vh;
-  padding: 20px;
-  margin: 10px;
-  margin-left: 72vh;
-  margin-right: 15vh;
-  margin-bottom: 3vh;
+  height: auto;
+  padding: 2vw;
+  margin: 1.2vw;
+  margin-top: -0.5vw;
   text-align: center;
   background-color: #f5f5f5;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
   opacity: 0.9;
   display: table;
   border-radius: 20px;
-  max-width: 100%; /* Ensures the card is not wider than its container */
-  box-sizing: border-box; /* Includes padding and border in the element's total width */
+  max-width: 100%;
+  box-sizing: border-box;
 }
+
+.sponsor-total {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.s-logo-background {
+    width: calc(8vw + 0.8vw);
+    height: calc(8vw + 0.8vw);
+    background: linear-gradient(to right,
+    #FFEE8F 10.28%,
+    #E3FBCF 20.63%,
+    #BBF0FA 42.36%,
+    #ABD9FF 56.45%,
+    #5DABF3 70.52%,
+    #448FD6 84.88%,
+    #3262BA 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    border-radius: 50%;
+    padding: 0;
+}
+
 .sponsor-logo {
-  width: 12vh;
+  width: 8vw;
+  height: 8vw;
   position: center;
-  margin-top: 3vh;
   user-select: none;
-  border-radius: 50%; /* Makes the image round */
-  box-shadow: 0 0 25px #ac94c5; /* Adds an ambient border/shadow */
-  display: block; /* To ensure box-shadow is properly displayed */
-  object-fit: cover; /* Ensures the image covers the area without distortion */
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
 }
 
 .sponsor-name {
-  font-size: 2.2vh;
-  margin-bottom: 1vh;
-  color: #777;
+  font-size: 1.5vw;
+  margin-top: 1vh;
+  color: #1E3D79;
   user-select: none;
 }
 
 .sponsor-description {
-  font-size: 2vh;
-  width: 70vh;
+  font-size: 1.2vw;
+  width: 90%;
   font-weight: bold;
-  color: #777;
+  color: #1E3D79;
   display: table-cell;
   vertical-align: middle;
-  text-align: left;
-  border: 20px transparent solid;
+  text-align: justify;
+  padding: 1vw;
 }
 
 .sponsor-website {
@@ -372,66 +436,88 @@ section {
 
 .pagination {
   display: flex;
+  position: absolute;
+  left: 63.75%;
+  transform: translateX(-50%);
   justify-content: center;
-  margin-top: 5vh;
-  margin-left: 72vh;
-  margin-right: 15vh;
+  justify-content: center;
+  width: 100%;
+  bottom: 4vh;
 }
 
 .pagination button {
-  padding: 8px 12px;
-  margin: 0 5px;
-  background-color: #f5f5f5;
+  padding: 0.8vw 1vw;
+  margin: 0 0.5vw;
+  background-color: #E3F4FF;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  color:#1E3D79;
+  font-size: 1vw;
 }
 
 .pagination button.active {
-  background-color: #77539d;
-  color: #fff;
+  background-color: #1E3D79;
+  color: #E3F4FF;
 }
 
 .pagination button:hover {
-  background-color: #ac94c5
+  background-color: #1E3D79;
+  color: #E3F4FF;
 }
+
 .left-arrow:before,
 .right-arrow:before {
   display: inline-block;
   content: '';
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
+  border-top: 0.4vw solid transparent;
+  border-bottom: 0.4vw solid transparent;
 }
 
 .left-arrow:before {
-  border-right: 7px solid #555;
+  border-right: 0.8vw solid #3364BB;
 }
 
 .right-arrow:before {
-  border-left: 7px solid #555;
+  border-left: 0.8vw solid #3364BB;
+}
+
+.pagination button:hover .left-arrow:before {
+  border-right: 0.8vw solid #E3F4FF;
+}
+
+.pagination button:hover .right-arrow:before {
+  border-left: 0.8vw solid #E3F4FF;
 }
 
 .left-arrow,
 .right-arrow {
-  width: 20px;
-  height: 20px;
+  width: 0.8vw;
+  height: 0.8vw;
+  color:#E3F4FF;
 }
 
 .left-arrow {
   transform: rotate(180deg);
-  margin-right: 5px;
+  margin-right: 0.8vw;
 }
 
 .right-arrow {
-  margin-left: 5px;
+  margin-left: 0.8vw;
 }
 
-@media (max-width: 1024px) {
-  html, body {
+.gradientstripe {
+  position: absolute;
+  z-index: 100000;
+}
+
+@media (max-width: 600px) {
+  body {
     width: 100%;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    margin: 0; /* Remove any default margin */
+    overflow-x: hidden;
+    margin: 0;
   }
+
   .nav-bar {
     position: absolute;
     top: 0;
@@ -439,7 +525,19 @@ section {
     width: 100%;
     z-index: 100;
   }
-  .container {
+
+  .title-text-1.title-text {
+    font-size: 8vh;
+    text-align: center;
+    width: 100%;
+    left: 50%;
+    top: 9vh;
+    transform: translateX(-50%);
+    margin-left: 0;
+    text-shadow: 4px 6px 8px rgba(30, 61, 121, 0.8);
+  }
+
+  .sponsor-container {
     max-width: 100%;
     overflow-x: hidden;
     position: fixed;
@@ -449,23 +547,8 @@ section {
     height: 100vh;
   }
 
-  .title-text {
-    font-size: 4vw; /* Smaller font size for mobile */
-  }
-  .title-text p {
-  -webkit-text-stroke: 0px;
-  color: transparent;
-}
-.title-text-1 {
-  z-index: 10;
-  top: 30%;
-}
-.title-wrapper {
-  width: 100%;
-  margin-top: 2em;
-}
   .sponsor-page {
-  background-image: linear-gradient(#ac94c5 ,#f7bfc9), url('https://i.imgur.com/ZgCeJBq.jpg');
+  background-image: linear-gradient( #3364BB ,#E3F4FF), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -478,81 +561,110 @@ section {
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
+
   .sponsor-page::before{
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    width: 0%;
-    height: 0;
+    width: 100vw;
+    height: 25vh;
   }
-  .title-text-1.title-text {
-    font-size: 5vh; /* Increase font size */
-    text-align: center; /* Center text */
-    width: 100%; /* Use full width to aid in centering */
-    left: 50%; /* Center the div horizontally */
-    top: 6vh;
-    transform: translateX(-50%); /* Adjust for exact centering */
+
+  .sponsor-section {
+  margin-bottom: 2rem;
+}
+
+  .s-title-w {
+  width: 100%;
+  margin-top: 2em;
+  left: 0%;
+  transform: translateX(0%);
+  margin-bottom: 0.2vh;
+  position: relative;
   }
-  .section{
-    height: 100%;
-    color: white;
-  }
-  .sponsor-description{
-    display: none;
-  }
-  .page-title {
-    margin-left: 0; /* Adjust margins for mobile */
-    margin-right:0;
-    margin-bottom: 0vh;
-    margin-top: 14vh;
-    font-size: 3vh; /* Larger font size for better readability */
-    -webkit-text-stroke: 0px; /* Disable text stroke for mobile */
-    color: #77539d;
-    font-style: italic;
-    position: relative;
-    padding: 1em;
-    text-align: center;
-    height: 50px; /* Or min-height if you want it to be flexible */
-    line-height: 50px; /* Should match the height for vertical centering */
-  }
-  .page-title::after {
-  content: '';
-  position: absolute;
+
+  .s-gradient-background {
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: -1; /* Place the pseudo-element behind the text */
-  
-  /* Apply the gradient to the pseudo-element, which matches the text's box model */
-  background: linear-gradient(to right, #ac94c5 ,#f7bfc9);
-  
-  /* Set the margin to match the padding of the .page-title element */
-  margin: 1em;
-  
-  /* If you have border-radius on the .page-title, match it here */
-  border-radius: inherit;
-}
-  .sponsor-card {
-    width: 20vw; /* Use more of the screen width for each card */
-    margin-left: 2vw; /* Center the cards with smaller margins */
-    margin-right: 2vw;
-  }
-  .pagination {
-    margin-left: 2vh; /* Adjust pagination position for mobile */
-    margin-right: 2vh;
-  }
-  .title-text p {
-  -webkit-text-stroke: 2px #ffffff;
-  color: transparent;
-}
-  .title-text-1 {
-  z-index: 2;
+  background: linear-gradient(to left,
+    rgba(255, 238, 143, 0.6) 10.28%,
+    rgba(227, 251, 207, 0.6) 20.63%,
+    rgba(187, 240, 250, 0.6) 42.36%,
+    rgba(171, 217, 255, 0.6) 56.45%,
+    rgba(93, 171, 243, 0.6) 70.52%,
+    rgba(68, 143, 214, 0.6) 84.88%,
+    rgba(50, 98, 186, 0.6) 100%
+  );
+  z-index: -1;
   position: absolute;
-  top: 30%;
-}
-  /* Add additional mobile-specific styles as needed */
+  height: 6vh;
+  margin-top: 2.1em;
+  border-radius: 20px;
+  width: 90vw;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
+  .s-page-title {
+    margin-top: 24vh;
+    font-size: 5vw;
+    -webkit-text-stroke: 0px;
+    color: #ffff;
+    font-style: normal;
+    position: relative;
+    padding: 1em;
+    height: 7vh;
+    line-height: 7vh;
+    text-shadow: 0px 0px 0px #000000;
+  }
+
+  .sponsor-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: absolute;
+  left: 0%;
+  transform: translateX(0%);
+  width: 100%;
+  margin-top: 4vh;
+}
+
+  .sponsor-card {
+    width: 90vw;
+    padding: auto;
+    text-align: center;
+    justify-self: center;;
+    display: table;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 4vw;
+  }
+
+  .sponsor-total {
+  width: 80%;
+}
+
+  .s-logo-background {
+    margin-top: 2vw;
+}
+
+.sponsor-name {
+  font-size: 2.5vw;
+}
+
+.sponsor-description {
+  font-size: 2vw;
+  width: 80%;
+  padding-right: 2vw;
+}
+
+  .pagination {
+  left: 0%;
+  transform: translateX(0%);
+}
+}
 </style>
