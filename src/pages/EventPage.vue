@@ -6,7 +6,7 @@
           <arrow-down fill="#FFFFFF" size="124" strokeLinecap="butt" theme="filled" />
       </div>
     </div>
-    <div class="event-year-list">
+    <!-- <div class="event-year-list">
       <div
         class=""
         v-for="(value, index) in [column1Benefits, column2Benefits, column3Benefits]"
@@ -15,7 +15,7 @@
         <event-accordion :events="events" />
       </div>
       
-    </div>
+    </div> -->
 
 </template>
   
@@ -24,9 +24,9 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import NavBar from '../components/NavBar.vue'
 import { ArrowDown} from '@icon-park/vue-next'
 
-const bannerUrl = ref('https://i.imgur.com/9myUD3h.jpg')
+const bannerUrl = ref('https://i.imgur.com/x3IJjj2.jpg')
 const contentSections = ref([])
-const eventsByYear = ref({})
+// const eventsByYear = ref({})
 
 let arrowSize = ref(64)
 
@@ -38,17 +38,17 @@ onMounted(async () => {
   contentSections.value = document.querySelectorAll('.content-container > div')
   window.addEventListener('scroll', handleScroll)
 
-  try {
-    const response = await axios.get(
-      `${process.env.VUE_APP_BACKEND_URL}/api/events/all`
-    )
-    eventsByYear.value = response.data.eventsByYear
-    await nextTick()
+  // try {
+  //   const response = await axios.get(
+  //     `${process.env.VUE_APP_BACKEND_URL}/api/events/all`
+  //   )
+  //   eventsByYear.value = response.data.eventsByYear
+  //   await nextTick()
 
-  } catch (err) {
-    console.error(err)
-    alert('Failed to fetch events.')
-  }
+  // } catch (err) {
+  //   console.error(err)
+  //   alert('Failed to fetch events.')
+  // }
 })
 
 onUnmounted(() => {
@@ -60,9 +60,9 @@ const updateWindowWidth = () => {
   const aspectRatio = window.innerWidth / window.innerHeight
 
   if (aspectRatio < 1) {
-    bannerUrl.value = 'https://i.imgur.com/4Xf94jX.jpg'
+    bannerUrl.value = 'https://i.imgur.com/SRk5nUk.jpg'
   } else {
-    bannerUrl.value = 'https://i.imgur.com/9myUD3h.jpg'
+    bannerUrl.value = 'https://i.imgur.com/x3IJjj2.jpg'
   }
   if (window.innerWidth <= 600) {
     arrowSize.value = 24
