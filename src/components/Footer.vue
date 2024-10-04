@@ -6,22 +6,22 @@
       </div>
       <div class="left-box">
         <div class="social-icons">
-          <a href="https://www.facebook.com/McGillCSSA/" class="icon-background">
+          <a href="https://www.facebook.com/McGillCSSA/" class="icon-background" target="_blank" rel="noopener noreferrer">
             <fa :icon="['fab', 'facebook']" size="3x"/>
           </a>
-          <a href="https://www.youtube.com/@mcgillcssa" class="icon-background">
+          <a href="https://www.youtube.com/@mcgillcssa" class="icon-background" target="_blank" rel="noopener noreferrer">
             <fa :icon="['fab', 'youtube']" size="3x"/>
           </a>
-          <a href="https://www.instagram.com/mcgill.cssa" class="icon-background">
+          <a href="https://www.instagram.com/mcgill.cssa" class="icon-background" target="_blank" rel="noopener noreferrer">
             <fa :icon="['fab', 'instagram']" size="3x"/>
           </a>
-          <a href="https://mp.weixin.qq.com/s/yoD-Ozd4EMK0Fy07NbZaHg" class="icon-background">
+          <a href="https://mp.weixin.qq.com/s/yoD-Ozd4EMK0Fy07NbZaHg" class="icon-background" target="_blank" rel="noopener noreferrer">
             <fa :icon="['fab', 'weixin']" size="3x"/>
           </a>
-          <a href="https://space.bilibili.com/405502104?spm_id_from=333.337.search-card.all.click" class="icon-background">
+          <a href="https://space.bilibili.com/405502104?spm_id_from=333.337.search-card.all.click" class="icon-background" target="_blank" rel="noopener noreferrer">
             <fa :icon="['fab', 'bilibili']" size="3x"/>
           </a>
-          <a href="https://www.xiaohongshu.com/user/profile/5c0a27d00000000006009dcc" class="icon-background">
+          <a href="https://www.xiaohongshu.com/user/profile/5c0a27d00000000006009dcc" class="icon-background" target="_blank" rel="noopener noreferrer">
             <fa :icon="['fab', 'readme']" size="3x"/>
           </a>
         </div>
@@ -29,10 +29,13 @@
       <div class="footer-separator"></div>
       <div class="right-box">
         <div class="rcol1">
-          <a href="https://mp.weixin.qq.com/s/Qi_su6jtGOjAKyHV2TSudg"><p class="all-text">About Us</p></a>
-          <router-link to="/Membership"><p class="all-text">Membership</p></router-link>
+          <router-link to="/"><p class="all-text">Home</p></router-link>
+          <a href="https://mp.weixin.qq.com/s/Qi_su6jtGOjAKyHV2TSudg" target="_blank" rel="noopener noreferrer">
+            <p class="all-text">About Us</p>
+          </a>
         </div>
         <div class="rcol2">
+          <router-link to="/Membership"><p class="all-text">Membership</p></router-link>
           <router-link to="/"><p class="all-text">Event</p></router-link>
         </div>
         <div class="rcol3">

@@ -4,7 +4,7 @@
       <div class="left-column">
         <div class="about-us-image-container">
           <img src="https://i.imgur.com/xfAdEm5.jpg" alt="Group Photo" class="group-photo">
-          <div class="ellipse"></div>
+          <div class="about-us-ellipse"></div>
           <div class="about-us-overlay-text">
             <span>ABOUT</span><br>
             <span>US</span>
@@ -107,7 +107,7 @@ export default {
     z-index: 0;
 }
 
-.ellipse {
+.about-us-ellipse {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -219,7 +219,7 @@ export default {
     z-index: 3;
   }
 
-  .ellipse {
+  .about-us-ellipse {
     width: 20vw;
     height: 20vw;
     opacity: 0.5;
@@ -285,7 +285,7 @@ export default {
     border-radius: 30px;
 }
 
-  .ellipse {
+  .about-us-ellipse {
       width: 40vw;
       height: 40vw;
   }
