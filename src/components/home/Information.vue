@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       data: [
-        { icon: "https://i.imgur.com/eZbuCtB.png", number: 16000, text: "WECHAT FOLLOWERS" },
+        { icon: "https://i.imgur.com/eZbuCtB.png", number: 19877, text: "WECHAT FOLLOWERS" },
         { icon: "https://i.imgur.com/AHy7xwc.png", number: 283, text: "EVENTS" },
         { icon: "https://i.imgur.com/5RHnKbG.png", number: 1408, text: "MEMBERSHIPS" }
       ],
