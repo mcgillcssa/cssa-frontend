@@ -2,7 +2,10 @@
   <router-view> </router-view>
 </template>
 
-<script></script>
+<script>
+import '@icon-park/vue-next/styles/index.css'
+export default {}
+</script>
 
 <style>
 @media only screen and (max-width: 720px) {
@@ -20,10 +23,12 @@
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Raleway', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: left;
   color: #2c3e50;
+  margin-left: 0px;
 }
 
 body{
