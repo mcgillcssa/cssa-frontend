@@ -231,4 +231,104 @@ export default {
 .events-list {
   padding: 16px;
 }
+
+@media (max-width: 600px) {
+  .nav-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  .title-text-1.title-text {
+    font-size: 8vh;
+    text-align: center;
+    width: 100%;
+    left: 50%;
+    top: 9vh;
+    transform: translateX(-50%);
+    margin-left: 0;
+    text-shadow: 4px 6px 8px rgba(30, 61, 121, 0.8);
+  }
+
+  .event-container {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .event-page {
+    background-image: linear-gradient(#3364BB, #E3F4FF), url('https://i.imgur.com/ZgCeJBq.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+  }
+
+  .event-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 25vh;
+  }
+
+  .event-page::after {
+    content: '';
+    position: absolute;
+    top: 25vh;
+    left: 0;
+    width: 100vw;
+    height: 9px;
+    background: linear-gradient(
+        to right,
+        #FFEE8F 0.67%,
+        #E3FBCF 16.5%,
+        #BBF0FA 30%,
+        #ABD9FF 44.5%,
+        #5DABF3 62%,
+        #448FD6 81.5%,
+        #3262BA 99.99%
+    );
+    animation: pulseStripe 3s ease-in-out infinite;
+    z-index: 1;
+  }
+
+  .event-layout {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .event-right {
+    margin-left: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 20vh;
+  }
+
+  .year-wrapper {
+    margin-bottom: 12px;
+  }
+
+  .year-header h2 {
+    font-size: 5vw;
+  }
+
+  .events-list {
+    padding: 12px;
+  }
+}
 </style>
