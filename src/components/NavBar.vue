@@ -25,7 +25,7 @@
     <ul class="navbar-menu" v-if="!isSmallScreen">
       <li class="menu-item">
         <div class="overlay"></div>
-        Events
+        <router-link class="link-element" to="/events">Events</router-link>
       </li>
       <li class="menu-item">
         <div class="overlay"></div>
