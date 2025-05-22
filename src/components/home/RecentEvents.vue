@@ -110,15 +110,11 @@ export default {
   //slideshow
   this.startSlideShow()
 
-
   }
 }
 </script>
 
 <style scoped>
-body {
-  margin: 0;
-}
 
 .recent-events {
   position: relative;
@@ -130,65 +126,7 @@ body {
   padding: 20px;
   align-items: center;
 }
-/*
-.recent-events-title {
-  width: 100%;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 2vw;
-}
 
-.recent-events-title .zhs-title {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 10em;
-  letter-spacing: 0.175em;
-  line-height: 0.8em;
-  color: #1A4F87;
-}
-
-.recent-events-title .en-title {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 800;
-  font-size: 1.75em;
-  line-height: 0.8em;
-  font-size: 8vw;
-  color: #5291B9;
-} */
-
-/* #carousel {
-  position: relative;
-  width: 100%;
-  height: auto;
-}
-
-.carousel-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 1rem;
-  margin: 0 auto;
-}
-
-.carousel-item:nth-child(even) {
-  flex-direction: row-reverse;
-}
-
-.carousel-item-content {
-  width: 60%;
-}
-
-.event-image {
-  width: 40%;
-  max-width: 800px;
-} */
-
-/* new styles */
 /* 白色框 */
 .carousel-container {
   background-color: white;
@@ -230,8 +168,6 @@ body {
 }
 
 .event-image {
-  max-width: 100%;
-  max-height: 100%;
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -340,11 +276,6 @@ body {
   }
   .carousel-item {
     padding: 25px;  
-  }
-
-  .event-image {
-    max-width: 100%; 
-    max-height: 100%;
   }
   .carousel-control {
     padding: 13px 20px;
