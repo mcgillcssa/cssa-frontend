@@ -1,15 +1,15 @@
 <template>
   <div class="recent-events">
-    <!-- <div class="recent-events-title">
-      <div class="zhs-title">近期活动</div>
-      <div class="en-title">RECENT EVENTS</div>
-    </div> -->
 
-    <!-- New div for carousel -->
-    <div class="carousel-container">
+    <div class="carousel-container"
+      @touchstart="touchStart"
+      @touchmove="touchMove"
+      @touchend="touchEnd">
+
+      <!-- prev button -->
       <button class="carousel-control prev" @click="prev">&#10094;</button>
-      
-      <!-- slide transition -->
+
+      <!-- Carousel items -->
       <transition-group name="slide" tag="div" class="carousel">
         <div v-for="(item, index) in items" 
              :key="index" 
@@ -20,6 +20,7 @@
         </div>
       </transition-group>
 
+      <!-- next button -->
       <button class="carousel-control next" @click="next">&#10095;</button>
       
       <!-- bottom dots indicating image order -->
@@ -43,6 +44,9 @@ export default {
       currentIndex: 0,
       timer: null,
       direction: 'right',
+      touchStartX: 0,
+      touchEndX: 0,
+      minSwipeDistance: 50,
     }
   },
 
@@ -79,6 +83,34 @@ export default {
       if (this.timer) {
         clearInterval(this.timer)
       }
+    },
+    
+    // Touch event handlers
+    touchStart(event) {
+      this.touchStartX = event.touches[0].clientX
+    },
+
+    touchMove(event) {
+      this.touchEndX = event.touches[0].clientX
+    },
+
+    touchEnd() {
+      const swipeDistance = this.touchEndX - this.touchStartX
+      
+      // Check if swipe was long enough
+      if (Math.abs(swipeDistance) > this.minSwipeDistance) {
+        if (swipeDistance > 0) {
+          // Swipe right - go to previous
+          this.prev()
+        } else {
+          // Swipe left - go to next
+          this.next()
+        }
+      }
+      
+      // Reset values
+      this.touchStartX = 0
+      this.touchEndX = 0
     }
   },
 
