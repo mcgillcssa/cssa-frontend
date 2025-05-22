@@ -17,6 +17,14 @@
     <span class="vip-title-en">2023 - 2024 VIP CARD</span>
   </h4>
     <card-viewer id="card-viewer" ref="cardViewerRef"/>
+
+  <!--RecentEvents-->
+  <h4 ref="recentEventsHeaderRef">
+    <span class="vip-title-cn">近期活动</span><br>
+    <span class="vip-title-en">RECENT EVENTS</span>
+  </h4>
+    <RecentEvents id="recent-events" ref="recentEventsRef"/> 
+
   <gradient-stripe/>
 <Footer></Footer>
 </template>
@@ -30,11 +38,14 @@ import Information from '../components/home/Information.vue';
 import CardViewer from '../components/home/CardViewer.vue'
 import Footer from '../components/Footer.vue';
 
+import RecentEvents from '../components/home/RecentEvents.vue';
+
 const aboutUsRef = ref(null);
 const informationRef = ref(null);
 const sectionBreakRef = ref(null);
 const sectionBreak1Ref = ref(null);
 const vipHeaderRef = ref(null);
+const recentEventsHeaderRef = ref(null); //recent events header
 
 const calculateRadius = (scrollY) => {
   const screenWidth = window.innerWidth;
@@ -95,6 +106,7 @@ onMounted(() => {
   if (sectionBreakRef.value) observer.observe(sectionBreakRef.value);
   if (sectionBreak1Ref.value) observer.observe(sectionBreak1Ref.value);
   if (vipHeaderRef.value) observer.observe(vipHeaderRef.value);
+  if (recentEventsHeaderRef.value) observer.observe(recentEventsHeaderRef.value);
 });
 
 onUnmounted(() => {
@@ -281,5 +293,37 @@ h4 br {
     max-width: 80vw;
     left: 3%;
   }
+
+/* Recent Events */
+.events-title-cn {
+  color: #1A4F87;
+  font-family: 'Raleway';
+  font-size: 2vw;
+  display: block;
 }
+
+.events-title-en {
+  color: #5291B9;
+  font-family: 'Raleway';
+  font-weight: bold;
+  font-size: 2.5vw;
+  display: block;
+  margin-top: -2vw;
+}
+
+/* Add responsive styles */
+@media screen and (min-width: 1921px) {
+  .events-title-en {
+    margin-top: -1.5vw;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .events-title-en {
+    margin-top: -3vw;
+  }
+
+}
+}
+
 </style>
