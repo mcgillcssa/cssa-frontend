@@ -36,7 +36,7 @@
 </template>
 
 <script>
-//import axios from 'axios' //Backend
+import axios from 'axios' //Backend
 export default {
   data() {
     return {
@@ -116,29 +116,29 @@ export default {
 
   async created() {
     //连接后端
-    // try {
-    //   const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/events/upcoming/4`)
-    //   this.items = response.data.events
-    //   console.log(response.data.events)
-    // } catch (err) {
-    //   console.error(err)
-    // }
+    try {
+      const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/events/upcoming/4`)
+      this.items = response.data.events
+      console.log(response.data.events)
+    } catch (err) {
+      console.error(err)
+    }
 
-    //testing
-    this.items = [
-    {
-      eventImageUrl: "https://i.imgur.com/xcLQH4B.jpeg"
-    },
-    {
-      eventImageUrl: "https://i.imgur.com/YaWacqM.png"
-    },
-    {
-      eventImageUrl: "https://i.imgur.com/SttwfZp.png"
-    },
-    {
-      eventImageUrl: "https://i.imgur.com/4VFA7Pe.png"
-    },
-  ]
+  //   //testing
+  //   this.items = [
+  //   {
+  //     eventImageUrl: "https://i.imgur.com/xcLQH4B.jpeg"
+  //   },
+  //   {
+  //     eventImageUrl: "https://i.imgur.com/YaWacqM.png"
+  //   },
+  //   {
+  //     eventImageUrl: "https://i.imgur.com/SttwfZp.png"
+  //   },
+  //   {
+  //     eventImageUrl: "https://i.imgur.com/4VFA7Pe.png"
+  //   },
+  // ]
   //slideshow
   this.startSlideShow()
 
