@@ -10,20 +10,30 @@
       <div class="event-layout">
         <div class="event-right">
           <div
-            class="year-wrapper"
-            v-for="yearSection in eventByYear"
-            :key="yearSection.year"
+              class="event-block"
+              v-for="(yearSection, index) in eventByYear"
+              :key="yearSection.year"
           >
-            <div class="year-header" @click="yearSection.open = !yearSection.open">
-              <h2>{{ yearSection.year }}</h2>
-              <span :class="yearSection.open ? 'arrow-up' : 'arrow-down'"></span>
+            <div class="year-wrapper">
+              <div class="year-header" @click="yearSection.open = !yearSection.open">
+                <h2>{{ yearSection.year }}</h2>
+                <span :class="yearSection.open ? 'arrow-down' : 'arrow-up'"></span>
+              </div>
+              <div v-show="yearSection.open" class="events-list">
+                <EventCard
+                    v-for="e in yearSection.events"
+                    :key="e.id"
+                    :event="e"
+                />
+              </div>
             </div>
-            <div v-show="yearSection.open" class="events-list">
-              <EventCard
-                v-for="e in yearSection.events"
-                :key="e.id"
-                :event="e"
-              />
+            <!-- Only show break section if not the last item -->
+            <div
+                v-if="index < eventByYear.length - 1"
+                class="section-break"
+                ref="sectionBreakRef"
+            >
+              <div class="mask"></div>
             </div>
           </div>
         </div>
@@ -43,38 +53,6 @@ export default {
   data() {
     return {
       eventByYear: []
-      // eventByYear: [
-      //   {
-      //     year: 2023,
-      //     open: true,
-      //     events: [
-      //       {
-      //         id: 1,
-      //         eventName: "测试活动",
-      //         eventDescription: "这是描述",
-      //         eventImageUrl: "https://imgur.com/a/3W7qaZE",
-      //         eventStartDate: "2025-05-10",
-      //         eventEndDate: "2025-05-11",
-      //         eventLocation: "线上"
-      //       }
-      //     ]
-      //   },
-      //   {
-      //     year: 2022,
-      //     open: true,
-      //     events: [
-      //       {
-      //         id: 2,
-      //         eventName: "测试活动",
-      //         eventDescription: "这是描述",
-      //         eventImageUrl: "https://imgur.com/a/oWYizIN",
-      //         eventStartDate: "2025-05-10",
-      //         eventEndDate: "2025-05-11",
-      //         eventLocation: "线上"
-      //       }
-      //     ]
-      //   }
-      // ]
     };
   },
   async mounted() {
@@ -82,18 +60,29 @@ export default {
       const res = await axios.get("http://localhost:8080/api/events/all");
       const events = res.data.events || [];
       const map = new Map();
+
       for (const event of events) {
         const year = event.eventStartDate.substring(0, 4);
         if (!map.has(year)) map.set(year, []);
         map.get(year).push(event);
       }
+
       this.eventByYear = Array.from(map.entries())
-        .sort((a, b) => b[0] - a[0])
-        .map(([year, evts]) => ({
-          year: Number(year),
-          events: evts,
-          open: false
-        }));
+          .sort((a, b) => b[0] - a[0]) // Sort years descending (newest first)
+          .map(([year, evts]) => ({
+            year: Number(year),
+            events: evts.sort((a, b) => {
+              // Sort events within each year by date
+              // For ascending order (oldest first within year):
+              return new Date(b.eventStartDate) - new Date(a.eventStartDate);
+
+              // For descending order (newest first within year), use:
+              // return new Date(b.eventStartDate) - new Date(a.eventStartDate);
+            }),
+            open: false
+          }));
+
+      console.log(res.data.events);
     } catch (e) {
       console.error(e);
     }
@@ -109,6 +98,10 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.event-block{
+  margin-bottom: 5px;
 }
 
 .nav-bar {
@@ -188,6 +181,25 @@ export default {
   50% { opacity: 1; }
 }
 
+.section-break {
+  position: relative;
+  height: 1vw;
+  background: linear-gradient(
+      90deg,
+      #FFEE8F 0.67%,
+      #E3FBCF 16.5%,
+      #BBF0FA 30%,
+      #ABD9FF 44.5%,
+      #5DABF3 62%,
+      #448FD6 81.5%,
+      #3262BA 99.99%
+  );
+  width: 80%;
+  border-radius: 20px;
+  margin: 5px 6vw 12px 6vw;
+
+}
+
 .event-layout {
   display: flex;
   flex-direction: row;
@@ -209,6 +221,7 @@ export default {
   margin-bottom: 16px;
   background: #F9F7FB;
 }
+
 .year-header {
   display: flex;
   justify-content: space-between;
@@ -219,6 +232,7 @@ export default {
 .year-header h2 {
   margin: 0;
   color: #68428B;
+  font-size: 4vw;
 }
 .arrow-up::before {
   content: "▲";
@@ -317,14 +331,6 @@ export default {
     padding-left: 12px;
     padding-right: 12px;
     padding-top: 20vh;
-  }
-
-  .year-wrapper {
-    margin-bottom: 12px;
-  }
-
-  .year-header h2 {
-    font-size: 5vw;
   }
 
   .events-list {
