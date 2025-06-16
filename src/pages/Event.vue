@@ -7,34 +7,33 @@
       <p>Events</p>
     </div>
     <div class="event-page">
-      <div class="event-layout">
-        <div class="event-right">
+      <div class="background-stripe"></div>
+      <div class="event-right">
+        <div
+            class="event-block"
+            v-for="(yearSection, index) in eventByYear"
+            :key="yearSection.year"
+        >
+          <div class="year-wrapper">
+            <div class="year-header" @click="yearSection.open = !yearSection.open">
+              <h2>{{ yearSection.year }}</h2>
+              <span :class="yearSection.open ? 'arrow-down' : 'arrow-up'"></span>
+            </div>
+            <div v-show="yearSection.open" class="events-list">
+              <EventCard
+                  v-for="e in yearSection.events"
+                  :key="e.id"
+                  :event="e"
+              />
+            </div>
+          </div>
+          <!-- Only show break section if not the last item -->
           <div
-              class="event-block"
-              v-for="(yearSection, index) in eventByYear"
-              :key="yearSection.year"
+              v-if="index < eventByYear.length - 1"
+              class="section-break"
+              ref="sectionBreakRef"
           >
-            <div class="year-wrapper">
-              <div class="year-header" @click="yearSection.open = !yearSection.open">
-                <h2>{{ yearSection.year }}</h2>
-                <span :class="yearSection.open ? 'arrow-down' : 'arrow-up'"></span>
-              </div>
-              <div v-show="yearSection.open" class="events-list">
-                <EventCard
-                    v-for="e in yearSection.events"
-                    :key="e.id"
-                    :event="e"
-                />
-              </div>
-            </div>
-            <!-- Only show break section if not the last item -->
-            <div
-                v-if="index < eventByYear.length - 1"
-                class="section-break"
-                ref="sectionBreakRef"
-            >
-              <div class="mask"></div>
-            </div>
+            <div class="mask"></div>
           </div>
         </div>
       </div>
@@ -57,7 +56,9 @@ export default {
   },
   async mounted() {
     try {
-      const res = await axios.get("http://localhost:8080/api/events/all");
+      const eventUrl = process.env.VUE_APP_BACKEND_URL + "/api/events/all";
+      console.log(eventUrl);
+      const res = await axios.get(eventUrl);
       const events = res.data.events || [];
       const map = new Map();
 
@@ -134,52 +135,62 @@ export default {
   background-image: linear-gradient(#3364BB, #E3F4FF), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  //background-repeat: no-repeat;
   background-blend-mode: overlay;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
 
-.event-page::before {
-  content: '';
-  position: absolute;
+.background-stripe {
+  position: fixed;
   top: 0;
   left: 0;
   width: 23%;
-  height: 330vh;
-  background-color: #3364BB;
+  height: 100vh;
+  background-color: rgba(191, 213, 250, 0.65);
+  z-index: 0;
 }
+/*
+//.event-page::before {
+//  position: absolute;
+//  top: 0;
+//  bottom: 0;
+//  left: 0;
+//  width: 23%;
+//  background-color: rgba(172, 200, 255, 0.49);
+//  z-index: 0;
+//}
 
-.event-page::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 22.5%;
-  width: 9px;
-  height: 200vh;
-  background: linear-gradient(
-      to bottom,
-      #FFEE8F 0.67%,
-      #E3FBCF 16.5%,
-      #BBF0FA 30%,
-      #ABD9FF 44.5%,
-      #5DABF3 62%,
-      #448FD6 81.5%,
-      #3262BA 99.99%
-  );
-  animation: pulseStripe 3s ease-in-out infinite;
-  z-index: 1;
-}
+//.event-page::after {
+//  position: absolute;
+//  top: 0;
+//  left: 22.5%;
+//  width: 9px;
+//  height: 100%;
+//  background: linear-gradient(
+//      to bottom,
+//      #FFEE8F 0.67%,
+//      #E3FBCF 16.5%,
+//      #BBF0FA 30%,
+//      #ABD9FF 44.5%,
+//      #5DABF3 62%,
+//      #448FD6 81.5%,
+//      #3262BA 99.99%
+//  );
+//  animation: pulseStripe 3s ease-in-out infinite;
+//  z-index: 1;
+//}
 
 @keyframes pulseStripe {
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
 }
+*/
 
 .section-break {
   position: relative;

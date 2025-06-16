@@ -19,13 +19,15 @@
           <label class="meta-label">Location</label>
           <div class="meta-content">{{ event.eventLocation }}</div>
         </div>
-        <router-link
-          v-if="event.eventLinkUrl"
-          :to="event.eventLinkUrl"
-          class="card-action"
+        <a
+            v-if="event.eventLinkUrl"
+            :href="event.eventLinkUrl"
+            target="_blank"
+            rel="noopener"
+            class="card-action"
         >
           ▶
-        </router-link>
+        </a>
       </div>
     </div>
   </div>
@@ -59,8 +61,8 @@ export default {
 }
 
 .card-image img {
-  width: 140px;
-  height: 140px;
+  width: 180px;
+  height: 250px;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -71,7 +73,7 @@ export default {
 }
 
 .card-title {
-  font-size: 1.8em;
+  font-size: 1.4em;
   font-weight: 600;
   color: #3d256b;
 }
