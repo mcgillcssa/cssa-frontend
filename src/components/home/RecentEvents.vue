@@ -11,13 +11,16 @@
 
       <!-- Carousel items -->
       <transition-group name="slide" tag="div" class="carousel">
-        <div v-for="(item, index) in items" 
-             :key="index" 
-             v-show="currentIndex === index"
-             :data-direction="direction"
-             class="carousel-item">
+        <a v-for="(item, index) in items"
+           :key="index"
+           v-show="currentIndex === index"
+           :data-direction="direction"
+           class="carousel-item"
+           :href="item.eventLinkUrl"
+           target="_blank"
+           rel="noopener noreferrer">
           <img class="event-image" :src="item.eventImageUrl" alt="Event image" />
-        </div>
+        </a>
       </transition-group>
 
       <!-- next button -->
