@@ -3,6 +3,8 @@ import HomePage from './pages/Home.vue'
 import MembershipPage from './pages/Membership.vue'
 import BenefitsPage from './pages/Benefits.vue'
 import SponsorPage from './pages/SponsorPage.vue'
+import EventPage from './pages/Event.vue'
+
 const routes = [
   {
     path: '/',
@@ -30,6 +32,11 @@ const routes = [
     name: 'Sponsor',
     component: SponsorPage,
     meta: { title: 'McGill CSSA | 赞助商' }
+  },
+  {
+    path: '/events',
+    name: 'Events',
+    component: EventPage,
   }
 ]
 

@@ -4,7 +4,7 @@
       <div class="information-column" v-for="(item, index) in data" :key="index">
         <img :src="item.icon" :alt="`Icon ${index + 1}`" class="icon"/>
         <div class="section-break-small"></div>
-        <p class="number">{{ displayedNumbers[index] }}</p>
+        <p class="number">{{ displayNumber(index) }}</p>
         <p class="text" ref="textElements" :style="{opacity: 0}">{{ item.text }}</p>
       </div>
     </div>
@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       data: [
-        { icon: "https://i.imgur.com/eZbuCtB.png", number: 19877, text: "WECHAT FOLLOWERS" },
+        { icon: "https://i.imgur.com/eZbuCtB.png", number: 20000, text: "WECHAT FOLLOWERS", displayPlus: true},
         { icon: "https://i.imgur.com/AHy7xwc.png", number: 283, text: "EVENTS" },
         { icon: "https://i.imgur.com/5RHnKbG.png", number: 1408, text: "MEMBERSHIPS" }
       ],
@@ -45,6 +45,11 @@ export default {
           this.observer.unobserve(this.$refs.information);
         }
       });
+    },
+    displayNumber(index) {
+      const num = this.displayedNumbers[index];
+      return this.data[index].displayPlus && typeof num === 'number' && num === this.data[index].number
+          ? `${num}+` : num;
     },
     animateNumbers() {
       this.data.forEach((item, index) => {
