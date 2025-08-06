@@ -81,7 +81,7 @@ watch(
     for (let categoryName in newBenefits) {
       visibleCategories.value[categoryName] = true
       setContainerHeight(categoryName)
-      iconColors.value[categoryName] = '#3F83CE'
+      iconColors.value[categoryName] = '#7E21D0'
     }
   },
   { deep: true, immediate: true }
