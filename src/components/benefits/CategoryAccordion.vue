@@ -250,6 +250,7 @@ const handleMouseLeave = categoryName => {
   margin: 10px 0 10px 0;
   cursor: pointer;
   border-radius: 10px;
+  border: 1px solid #7E21D0;
 }
 
 @media screen and (min-width: 801px) and (max-width: 1200px) {
