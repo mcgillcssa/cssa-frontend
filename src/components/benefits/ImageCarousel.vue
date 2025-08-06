@@ -8,7 +8,7 @@
       }"
       theme="two-tone"
       :size="buttonSize"
-      :fill="['#FFF', '#3F83CE']"
+      :fill="['#FFF', '#7E21D0']"
       strokeLinejoin="miter"
       strokeLinecap="square"
       @click="previous"
@@ -21,7 +21,7 @@
       }"
       theme="two-tone"
       :size="buttonSize"
-      :fill="['#FFF', '#3F83CE']"
+      :fill="['#FFF', '#7E21D0']"
       strokeLinejoin="miter"
       strokeLinecap="square"
       @click="next"
@@ -145,14 +145,14 @@ onMounted(() => {
   height: 4px; /* Make the line thicker */
   margin: 0 5px;
   background-color: rgb(255, 255, 255);
-  border: #3F83CE 2px solid;
+  border: #7E21D0 2px solid;
   cursor: pointer;
   transition: width 0.3s ease, border-radius 0.3s ease; /* Added border-radius transition */
   border-radius: 2px; /* Make the ends rounded */
 }
 
 .selector.active {
-  background-color: #3F83CE;
+  background-color: #7E21D0;
   border-radius: 2px; /* Keep the ends rounded when active */
 }
 
