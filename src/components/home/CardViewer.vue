@@ -3,8 +3,8 @@
     <div ref="cardSection" class="card-section" :class="{ 'fade-in': isIntersecting }">
       <div class="left-column">
         <div class="flip-card" ref="flipCard">
-          <img src="https://i.imgur.com/N8t8pC2.png" class="front-image"/>
-          <img src="https://i.imgur.com/Agkzcd0.png" class="back-image"/>
+          <img src="https://i.imgur.com/74uHgMG.jpeg" class="front-image"/>
+          <img src="https://i.imgur.com/GXMsxyJ.jpeg" class="back-image"/>
         </div>
         <p class="invitation-text" :class="{ 'fade-in': isIntersecting }">WANT TO GET ONE?</p>
       </div>
