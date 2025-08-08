@@ -13,8 +13,8 @@
     <div class="mask"></div>
   </div>
   <h4 ref="vipHeaderRef">
-    <span class="vip-title-cn">2023 - 2024 会员卡</span><br>
-    <span class="vip-title-en">2023 - 2024 VIP CARD</span>
+    <span class="vip-title-cn">2025 - 2026 会员卡</span><br>
+    <span class="vip-title-en">2025 - 2026 VIP CARD</span>
   </h4>
     <card-viewer id="card-viewer" ref="cardViewerRef"/>
 
