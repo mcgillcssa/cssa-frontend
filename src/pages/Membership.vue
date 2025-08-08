@@ -94,8 +94,7 @@ const updateWindowWidth = () => {
   const aspectRatio = window.innerWidth / window.innerHeight
 
   if (aspectRatio < 1) {
-    // TODO: Handle mobile view, change banner image to mobile version when available
-    bannerUrl.value = 'https://i.imgur.com/HALkKb6.png'
+    bannerUrl.value = 'https://i.imgur.com/Kx3LZU8.jpeg'
   } else {
     bannerUrl.value = 'https://i.imgur.com/HALkKb6.png'
   }
