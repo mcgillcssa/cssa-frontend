@@ -20,7 +20,7 @@
 import { ref, onMounted } from 'vue'
 
 // carousel images
-const carouselUrls = ref(['https://i.imgur.com/Cqv3xm6.png','https://i.imgur.com/9myUD3h.jpg'])
+const carouselUrls = ref(['https://i.imgur.com/Cqv3xm6.png','https://i.imgur.com/9myUD3h.jpg', 'https://imgur.com/x3IJjj2.jpg',])
 
 onMounted(() => {
   //carousel
