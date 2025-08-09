@@ -58,6 +58,12 @@ const containerRefs = ref({})
 const iconColors = ref({})
 
 const setContainerRef = (element, categoryName) => {
+  if (!element) {
+    // If the element is null, we can safely remove it from the refs
+    containerRefs.value[categoryName] = null
+    return
+  }
+
   containerRefs.value[categoryName] = element
 
   const imgs = element.querySelectorAll('img')

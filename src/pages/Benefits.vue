@@ -151,7 +151,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 48px);
-  background-color: #DBC7F5;
+  background-color: #EEE1FF;
   align-items: center;
 }
 
@@ -161,7 +161,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #DBC7F5;
+  background: #EEE1FF;
   margin: 0;
   padding: 0;
 }
