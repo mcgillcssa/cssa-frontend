@@ -13,8 +13,8 @@
     <div class="mask"></div>
   </div>
   <h4 ref="vipHeaderRef">
-    <span class="vip-title-cn">2023 - 2024 会员卡</span><br>
-    <span class="vip-title-en">2023 - 2024 VIP CARD</span>
+    <span class="vip-title-cn">{{ yearRange }} 会员卡</span><br>
+    <span class="vip-title-en">{{ yearRange }} VIP CARD</span>
   </h4>
     <card-viewer id="card-viewer" ref="cardViewerRef"/>
 
@@ -23,7 +23,7 @@
     <span class="vip-title-cn">近期活动</span><br>
     <span class="vip-title-en">RECENT EVENTS</span>
   </h4>
-    <RecentEvents id="recent-events" ref="recentEventsRef"/> 
+    <RecentEvents id="recent-events" ref="recentEventsRef"/>
 
   <gradient-stripe/>
 <Footer></Footer>
@@ -46,6 +46,8 @@ const sectionBreakRef = ref(null);
 const sectionBreak1Ref = ref(null);
 const vipHeaderRef = ref(null);
 const recentEventsHeaderRef = ref(null); //recent events header
+const currentYear = new Date().getFullYear();
+const yearRange = `${currentYear} - ${currentYear + 1}`;
 
 const calculateRadius = (scrollY) => {
   const screenWidth = window.innerWidth;
@@ -117,7 +119,7 @@ onUnmounted(() => {
 <style>
 body {
   margin: 0;
-  background-color: #E3F4FF;
+  background-color: #EEE1FF;
 }
 
 .navbar {
@@ -138,17 +140,17 @@ z-index: 1;
   height: calc(100vh);
   z-index: 0;
   overflow: hidden;
-  background: linear-gradient(to bottom, #f6f5ea 60%, #E3F4FF 100%);
+  background: linear-gradient(to bottom, #f6f5ea 60%, #EEE1FF 100%);
 
 }
 
 .home-background-image {
   background-image: linear-gradient(
     90deg, 
-    rgba(114, 231, 235, 0.41) 0%,
-    rgba(101, 210, 240, 0.41) 28.5%, 
-    rgba(92, 176, 246, 0.41) 66.66%, 
-    rgba(25, 120, 208, 0.41) 100%),
+    rgba(239, 223, 251, 0.783) 0%,
+    rgb(216, 192, 249) 28.5%, 
+    rgb(199, 163, 246) 66.66%, 
+    rgba(176, 134, 244, 0.825) 90%),
     url('https://i.imgur.com/ZgCeJBq.jpg'
     );
   background-size: cover;
@@ -175,15 +177,15 @@ z-index: 1;
   position: relative;
   height: 1.2vw;
   background: linear-gradient(
-    90deg, 
-    #FFEE8F 0.67%, 
-    #E3FBCF 16.5%, 
-    #BBF0FA 30%, 
-    #ABD9FF 44.5%, 
-    #5DABF3 62%, 
-    #448FD6 81.5%, 
-    #3262BA 99.99%
-    );
+    90deg,
+    #FFC6B4 0.67%,
+    #FFA7D1 13.5%,
+    #AD87CB 26.5%,
+    #A78CD0 44.5%,
+    #8266b3 62%,
+    #5c3f93 75.5%,
+    #431070 96.99%
+  );
   width: 80%;
   margin: 5vw auto;
   border-radius: 20px;
@@ -219,15 +221,15 @@ z-index: 1;
   position: relative;
   height: 1.2vw;
   background: linear-gradient(
-    to left, 
-    #FFEE8F 0.67%, 
-    #E3FBCF 16.5%, 
-    #BBF0FA 30%, 
-    #ABD9FF 44.5%, 
-    #5DABF3 62%, 
-    #448FD6 81.5%, 
-    #3262BA 99.99%
-    );
+    to left,
+    #FFC6B4 0.67%,
+    #FFA7D1 13.5%,
+    #AD87CB 26.5%,
+    #A78CD0 44.5%,
+    #8266b3 62%,
+    #5c3f93 75.5%,
+    #431070 96.99%
+  );
   width: 80%;
   margin: 5vw auto;
   border-radius: 20px;
@@ -237,7 +239,7 @@ h4 {
   text-align: center;
   width: 100%;
   margin: 0 auto;
-  background-color: #BBDEF5;
+  background-color: #dbbbf5;
   padding: 1vw 0;
 }
 
@@ -246,14 +248,14 @@ h4 br {
 }
 
 .vip-title-cn {
-  color: #1A4F87;
+  color: #431070;
   font-family: 'Raleway';
   font-size: 2vw;
   display: block;
 }
 
 .vip-title-en {
-  color: #5291B9;
+  color: #5a1f8e;
   font-family: 'Raleway';
   font-weight: bold;
   font-size: 2.5vw;
@@ -278,7 +280,7 @@ h4 br {
 
 @media screen and (max-width: 700px) {
   .banner-background {
-  background: linear-gradient(to bottom, #f6f5ea 60%, #E3F4FF 100%);
+  background: linear-gradient(to bottom, #f6f5ea 60%, #EEE1FF 100%);
 }
 
   h3 {
@@ -296,14 +298,14 @@ h4 br {
 
 /* Recent Events */
 .events-title-cn {
-  color: #1A4F87;
+  color: #431070;
   font-family: 'Raleway';
   font-size: 2vw;
   display: block;
 }
 
 .events-title-en {
-  color: #5291B9;
+  color: #5a1f8e;
   font-family: 'Raleway';
   font-weight: bold;
   font-size: 2.5vw;

@@ -11,7 +11,7 @@
       <h3>什么是CSSA会员?</h3>
       <h2>What is CSSA Membership?</h2>
       <div class="presentation-description">
-        <img alt="Small Card Design" src="https://i.imgur.com/jkSJenF.png" />
+        <img alt="Small Card Design" src="https://i.imgur.com/AMFdCeA.jpeg" />
         <div class="description-container">
           <p>
             CSSA会员卡是McGill CSSA携手蒙城各大商家, <br />为大家准备的福利折扣卡!<br />
@@ -63,7 +63,7 @@ import GradientStripe from '@/components/GradientStripe.vue'
 import { ArrowDown, ArrowRight } from '@icon-park/vue-next'
 import Footer from '../components/Footer.vue'
 
-const bannerUrl = ref('https://i.imgur.com/x3IJjj2.jpg')
+const bannerUrl = ref('https://i.imgur.com/HALkKb6.png')
 const contentSections = ref([])
 
 const bannerStyle = computed(() => ({
@@ -94,9 +94,9 @@ const updateWindowWidth = () => {
   const aspectRatio = window.innerWidth / window.innerHeight
 
   if (aspectRatio < 1) {
-    bannerUrl.value = 'https://i.imgur.com/SRk5nUk.jpg'
+    bannerUrl.value = 'https://i.imgur.com/Kx3LZU8.jpeg'
   } else {
-    bannerUrl.value = 'https://i.imgur.com/x3IJjj2.jpg'
+    bannerUrl.value = 'https://i.imgur.com/HALkKb6.png'
   }
   if (window.innerWidth <= 600) {
     arrowSize.value = 24

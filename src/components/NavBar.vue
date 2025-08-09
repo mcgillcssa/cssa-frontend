@@ -62,19 +62,19 @@
   <ul class="dropdown" :class="{ open: isDropdownOpen }" ref="dropdownMenu">
     <li v-if="isDropdownOpen">EVENTS
       <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#1A4F87"/>
+        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#431070"/>
       </svg>
     </li>
     <li v-if="isDropdownOpen">
       <router-link class="link-element" to="/membership">MEMBERSHIP</router-link>
       <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#1A4F87"/>
+        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#431070"/>
       </svg>
     </li>
     <li v-if="isDropdownOpen">
       <router-link class="link-element" to="/Sponsor">SPONSORS</router-link>
       <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#1A4F87"/>
+        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#431070"/>
       </svg>
     </li>
   </ul>
@@ -209,7 +209,7 @@ const handleClickOutside = (event) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(26, 79, 135, 0.6);
+  background-color: rgba(62, 26, 135, 0.6);
   border-radius: 40px;
   z-index: 1;
   opacity: 0;
@@ -328,17 +328,17 @@ const handleClickOutside = (event) => {
   justify-content: center;
   gap: 8vh;
 
-  background-color: #E3F4FF;
+  background-color: #ece4f8d8;
 
   border-left-width: 10px;
   border-left-style: solid;
   border-image: linear-gradient(to bottom,     #FFEE8F 10.28%,
-    #E3FBCF 20.63%,
-    #BBF0FA 42.36%,
-    #ABD9FF 56.45%,
-    #5DABF3 70.52%,
-    #448FD6 84.88%,
-    #3262BA 100%) 1;
+    #FFC6B4 20.63%,
+    #FFA7D1 42.36%,
+    #AD87CB 56.45%,
+    #71589d 70.52%,
+    #5c3f93 84.88%,
+    #431070 100%) 1;
   transform: translateX(100%); /* Start the dropdown off-screen */
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
 }
@@ -352,7 +352,7 @@ const handleClickOutside = (event) => {
   font-weight: 700;
   font-style: italic;
   text-indent: 5%;
-  color: #1A4F87;
+  color: #431070;
   display: flex;
   flex-direction: column;
   overflow: hidden;

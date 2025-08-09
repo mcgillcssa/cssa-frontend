@@ -3,7 +3,7 @@
     <div class="about-us-section">
       <div class="left-column">
         <div class="about-us-image-container">
-          <img src="https://i.imgur.com/xfAdEm5.jpg" alt="Group Photo" class="group-photo">
+          <img src="https://i.imgur.com/HuDDhsB.jpeg" alt="Group Photo" class="group-photo">
           <div class="about-us-ellipse"></div>
           <div class="about-us-overlay-text">
             <span>ABOUT</span><br>
@@ -50,7 +50,7 @@ export default {
     position: relative;
     display: flex;
     justify-content: center;
-    background-color: #E3F4FF;
+    background-color: #EEE1FF;
     min-height: 30vh;
     width: 100%;
     margin: 2vw 0 0 0;
@@ -65,7 +65,7 @@ export default {
     width: 90vw;
     height: auto;
     padding: 2vw;
-    border: 1px solid #5291B9;
+    border: 1px solid #CBBCDB;
     box-sizing: border-box;
 }
 
@@ -116,11 +116,11 @@ export default {
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background: linear-gradient(
-      0deg, 
-      #72E7EB 0%, 
-      #65D2F0 28.5%, 
-      #5CB0F6 66.66%, 
-      #1978D0 100%)
+      0deg,
+      #ece5f5 0%,
+      #e1d2f6 28.5%,
+      #bf97f4d4 66.66%,
+      #af65f0dd 100%)
     ;
     overflow: hidden;
     mask-image: radial-gradient(circle, black 35%);
@@ -200,7 +200,7 @@ export default {
     font-family: 'Raleway';
     font-size: 1.6vw;
     font-weight: 500;
-    color: #1A4F87;
+    color: #431070;
 }
 
 .about-us-text-content h1 {
