@@ -127,23 +127,8 @@ export default {
       console.error(err)
     }
 
-  //   //testing
-  //   this.items = [
-  //   {
-  //     eventImageUrl: "https://i.imgur.com/xcLQH4B.jpeg"
-  //   },
-  //   {
-  //     eventImageUrl: "https://i.imgur.com/YaWacqM.png"
-  //   },
-  //   {
-  //     eventImageUrl: "https://i.imgur.com/SttwfZp.png"
-  //   },
-  //   {
-  //     eventImageUrl: "https://i.imgur.com/4VFA7Pe.png"
-  //   },
-  // ]
-  //slideshow
-  this.startSlideShow()
+    //slideshow
+    this.startSlideShow()
 
   }
 }
@@ -152,14 +137,12 @@ export default {
 <style scoped>
 
 .recent-events {
-  position: relative;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: auto;
-  background: #E3F4FF;
-  padding: 20px;
   align-items: center;
+  width: 100%;
+  background: #EEE1FF;
+  padding: 10px 0;
 }
 
 /* 白色框 */
@@ -167,14 +150,14 @@ export default {
   background-color: white;
   border-radius: 40px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 90vw;
-  padding: 2vw;
-  border: 1px solid #5291B9;
+  width: 80vw;
+  padding: 1.5vw;
+  border: 1px solid #CBBCDB;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
   margin-top: 3vw;
-  margin-bottom: 3vw;
+  margin-bottom: 5vw;
   height: fit-content;
   display: flex;
   justify-content: center;
@@ -183,7 +166,7 @@ export default {
 .carousel {
   position: relative;
   width: 95%;
-  min-height: 850px;
+  min-height: 600px;
   max-height: 85vh;
   overflow: hidden;
   display: flex;
@@ -212,7 +195,7 @@ export default {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(26, 79, 135, 0.5);
+  background: rgba(62, 26, 135, 0.5);
   color: white;
   padding: 20px 30px;
   border: none;
@@ -224,7 +207,7 @@ export default {
 }
 
 .carousel-control:hover {
-  background: rgba(26, 79, 135, 0.8); /* darker */
+  background: rgba(71, 26, 135, 0.8); /* darker */
 }
 
 /* indicators and buttons */
@@ -259,7 +242,7 @@ export default {
 }
 
 .indicator.active {
-  background: #1A4F87;
+  background: #3e1a87;
 }
 
 .slide-enter-active,

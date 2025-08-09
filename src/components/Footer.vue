@@ -68,7 +68,7 @@ export default {
 }
 
 .footer {
-  background-color: #3364BB;
+  background-color: #9D69E2;
   color: #ffffff;
   z-index: -100;
 }
@@ -128,7 +128,7 @@ export default {
 
 .social-icons {
   display: grid;
-  color: #3364BB;
+  color: #7033bb;
   font-size: 1vw;
   grid-template-columns: repeat(3, 1fr);
   justify-content: center;
@@ -159,7 +159,7 @@ export default {
   left: 50%;
   width: 100%;
   height: 100%;
-  background-color: #3364BB;
+  background-color: #9D69E2;
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0.6s ease;
@@ -188,7 +188,7 @@ export default {
 
 a:link, a:visited, a:hover, a:active a:focus {
   text-decoration: none;
-  color: #3364BB;
+  color: #9D69E2;
 }
 
 .footer-separator {

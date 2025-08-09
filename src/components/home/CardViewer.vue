@@ -28,7 +28,7 @@
             </div>
             <div class="circle-wrapper">
               <div class="circle">
-                <arrow-right :size="arrowSize" fill="#1A4F87" theme="filled" />
+                <arrow-right :size="arrowSize" fill="#431070" theme="filled" />
               </div>
             </div>
           </router-link>
@@ -106,7 +106,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #E3F4FF;
+  background-color: #EEE1FF;
   width: 100%;
   margin: 4vw 0;
 }
@@ -119,7 +119,7 @@ export default {
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
   width: 90vw;
   height: auto;
-  border: 1px solid #5291B9;
+  border: 1px solid #CBBCDB;
 }
 
 .fade-in {
@@ -212,7 +212,7 @@ export default {
 .invitation-text {
   font-family: 'Raleway';
   font-weight: 700;
-  color: #1A4F87;
+  color: #431070;
   font-style: italic;
   font-size: 2vw;
   text-align: center;
@@ -233,7 +233,7 @@ export default {
 .header {
   font: 'Raleway';
   font-weight: 700;
-  color: #1A4F87;
+  color: #431070;
   font-size: 2.5vw;
   text-align: center;
   padding: auto;
@@ -242,7 +242,7 @@ export default {
 .line {
   width: 18vw;
   height: 2px;
-  background-color: #1A4F87;
+  background-color: #431070;
   position: relative;
   margin: 0 auto 0vw auto;
 }
@@ -252,7 +252,7 @@ export default {
   top: -4px;
   width: 10px;
   height: 10px;
-  background-color: #1A4F87;
+  background-color: #431070;
   border-radius: 50%;
 }
 
@@ -267,7 +267,7 @@ export default {
 .body-text {
   font: 'Raleway';
   font-size: 2vw;
-  color: #5291B9;
+  color: #9D69E2;
   font-weight: 700;
   text-align: center;
   white-space: pre-wrap;
@@ -281,14 +281,14 @@ export default {
   align-items: center;
   justify-content: center;
   background-image: linear-gradient(
-    to right, 
-    #FFEE8F 0.67%, 
-    #E3FBCF 16.5%, 
-    #BBF0FA 30%, 
-    #ABD9FF 44.5%, 
-    #5DABF3 62%, 
-    #448FD6 81.5%, 
-    #3262BA 99.99%
+    to right,
+    #431070 0.67%,
+    #7E21D0 13.5%,
+    #9D69E2 26.5%,
+    #DBC7F5 44.5%,
+    #9D69E2 62%,
+    #7E21D0 75.5%,
+    #431070 90.99%
     );
   text-decoration: none;
   padding: 2vw;
@@ -326,12 +326,12 @@ export default {
 }
 
 .arrow-right {
-  color: #1A4F87;
+  color: #431070;
   font-size: 3vw;
 }
 
 .button-text {
-  color: #1A4F87;
+  color: #431070;
   letter-spacing: 0.2vw;
   font-size: 1em;
   text-decoration: none;
@@ -346,7 +346,7 @@ export default {
   right: 0;
   bottom: -7px;
   height: 2px;
-  background-color: #1A4F87;
+  background-color: #431070;
 }
 
 .fade-in {
