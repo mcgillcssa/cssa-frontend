@@ -13,7 +13,7 @@
           <local
             theme="filled"
             :size="iconSize"
-            fill="#3F83CE"
+            fill="#7E21D0"
             strokeLinejoin="miter"
             strokeLinecap="square"
           />
@@ -23,7 +23,7 @@
           <phone-call
             theme="filled"
             :size="iconSize"
-            fill="#3F83CE"
+            fill="#7E21D0"
             :strokeWidth="3"
             strokeLinejoin="miter"
             strokeLinecap="square"
@@ -34,7 +34,7 @@
           <alarm-clock
             theme="filled"
             :size="iconSize"
-            fill="#3F83CE"
+            fill="#7E21D0"
             :strokeWidth="3"
             strokeLinejoin="miter"
             strokeLinecap="square"
@@ -45,7 +45,7 @@
           <coupon
             theme="filled"
             :size="iconSize"
-            fill="#3F83CE"
+            fill="#7E21D0"
             :strokeWidth="3"
             strokeLinejoin="miter"
             strokeLinecap="square"
@@ -56,7 +56,7 @@
           <buy
             theme="filled"
             :size="iconSize"
-            fill="#3F83CE"
+            fill="#7E21D0"
             :strokeWidth="3"
             strokeLinejoin="miter"
             strokeLinecap="square"
@@ -148,7 +148,7 @@ export default {
 }
 
 .modal::-webkit-scrollbar-thumb {
-  background-color: rgba(63, 131, 206, 1);
+  background-color: rgba(126, 33, 208, 1);
   border-radius: 100px;
 }
 
@@ -158,14 +158,14 @@ export default {
 
 .modal {
   scrollbar-width: thin;
-  scrollbar-color: rgba(63, 131, 206, 1) transparent;
+  scrollbar-color: rgba(126, 33, 208, 1) transparent;
 }
 
 .modal-top-container {
   margin: auto;
   position: relative;
   font-size: 1em;
-  background-color: #3F83CE;
+  background-color: #7E21D0;
   width: 100%;
 }
 
@@ -203,12 +203,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #E3F4FF;
+  background-color: #DBC7F5;
   flex-grow: 1;
   padding: 10px 20px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 450;
-  color: #3F83CE;
+  color: #7E21D0;
   border-radius: 5px;
   transform: scale(1, 0.95);
 }

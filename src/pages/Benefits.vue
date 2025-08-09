@@ -37,7 +37,7 @@
       </div>
       <div class="form-circle-wrapper">
         <div class="form-circle">
-          <arrow-right :size="arrowSize" fill="#1A4F87" theme="filled" />
+          <arrow-right :size="arrowSize" class="arrow-right" theme="filled" />
         </div>
       </div>
     </a>
@@ -145,12 +145,13 @@ onMounted(() => {
 <style>
 body {
   font-size: 24px;
+  /* background-color: #DBC7F5; */
 }
 .page-content {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 48px);
-  background-color: #E3F4FF;
+  background-color: #EEE1FF;
   align-items: center;
 }
 
@@ -160,7 +161,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #E3F4FF;
+  background: #EEE1FF;
   margin: 0;
   padding: 0;
 }
@@ -171,7 +172,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #3F83CE;
+  background: #9d69e2;
   width: 60vw;
   height: auto;
   border-radius: 20px;
@@ -179,7 +180,7 @@ body {
 }
 
 .title {
-  background: #3F83CE;
+  background: #9d69e2;
   text-align: center;
   margin: 0 auto;
   padding: 5px 0 0 0;
@@ -197,7 +198,7 @@ body {
 .right-square {
   width: 10px;
   height: 10px;
-  background-color: #1A4F87;
+  background-color: #431070;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -242,7 +243,7 @@ body {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: #87AECB;
+  background-color: #9D69E2;
 }
 
 .line {
@@ -254,24 +255,24 @@ body {
 .first-line-break .line {
   background: linear-gradient(
     to right,
-    #7ea3b8 0%,
-    #7ea3b8 19%,
+    #9D69E2 0%,
+    #9D69E2 19%,
     transparent 19%,
     transparent 21%,
-    #7ea3b8 21%,
-    #7ea3b8 100%
+    #9D69E2 21%,
+    #9D69E2 100%
   );
 }
 
 .last-line-break .line {
   background: linear-gradient(
     to right,
-    #7ea3b8 0%,
-    #7ea3b8 79%,
+    #9D69E2 0%,
+    #9D69E2 79%,
     transparent 79%,
     transparent 81%,
-    #7ea3b8 81%,
-    #7ea3b8 100%
+    #9D69E2 81%,
+    #9D69E2 100%
   );
 }
 
@@ -284,13 +285,13 @@ body {
   justify-content: center;
   background-image: linear-gradient(
     to right,
-    #FFEE8F 0.67%,
-    #E3FBCF 16.5%,
-    #BBF0FA 30%,
-    #ABD9FF 44.5%,
-    #5DABF3 62%,
-    #448FD6 81.5%,
-    #3262BA 99.99%
+    #431070 1%,
+    #7E21D0 17%,
+    #9D69E2 30%,
+    #DBC7F5 44%,
+    #9D69E2 62%,
+    #7E21D0 81%,
+    #431070 100%
     );
   text-decoration: none;
   padding: 2vw;
@@ -334,12 +335,12 @@ body {
 }
 
 .arrow-right {
-  color: #1A4F87;
+  color: #431070;
   font-size: 3vw;
 }
 
 .form-button-text {
-  color: #1A4F87;
+  color: #431070;
   letter-spacing: 0.2vw;
   font-size: 1.4em;
   text-decoration: none;
@@ -354,7 +355,7 @@ body {
   right: 0;
   bottom: -7px;
   height: 2px;
-  background-color: #1A4F87;
+  background-color: #431070;
 }
 
 .fade-in {
@@ -406,7 +407,7 @@ body {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #7ea3b8;
+    background-color: #9D69E2;
   }
 }
 
@@ -439,7 +440,7 @@ body {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #7ea3b8;
+    background-color: #9D69E2;
   }
 }
 
@@ -474,7 +475,7 @@ body {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #7ea3b8;
+    background-color: #9D69E2;
   }
 
   .circle {

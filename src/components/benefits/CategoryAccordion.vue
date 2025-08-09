@@ -58,6 +58,12 @@ const containerRefs = ref({})
 const iconColors = ref({})
 
 const setContainerRef = (element, categoryName) => {
+  if (!element) {
+    // If the element is null, we can safely remove it from the refs
+    containerRefs.value[categoryName] = null
+    return
+  }
+
   containerRefs.value[categoryName] = element
 
   const imgs = element.querySelectorAll('img')
@@ -81,7 +87,7 @@ watch(
     for (let categoryName in newBenefits) {
       visibleCategories.value[categoryName] = true
       setContainerHeight(categoryName)
-      iconColors.value[categoryName] = '#3F83CE'
+      iconColors.value[categoryName] = '#7E21D0'
     }
   },
   { deep: true, immediate: true }
@@ -147,12 +153,12 @@ const hideModal = () => {
 
 const handleMouseOver = categoryName => {
   if ('ontouchstart' in window) return
-  iconColors.value[categoryName] = '#E3F4FF'
+  iconColors.value[categoryName] = '#c1a3e8'
 }
 
 const handleMouseLeave = categoryName => {
   if ('ontouchstart' in window) return
-  iconColors.value[categoryName] = '#3F83CE'
+  iconColors.value[categoryName] = '#7E21D0'
 }
 </script>
 
@@ -188,7 +194,7 @@ const handleMouseLeave = categoryName => {
   right: 0;
   bottom: 0;
   left: 0;
-  border: 1px solid #3F83CE;
+  border: 1px solid #7E21D0;
   z-index: -2;
 }
 
@@ -204,9 +210,9 @@ const handleMouseLeave = categoryName => {
   position: relative;
   margin: 0;
   padding: 10px;
-  background: #E3F4FF;
-  color: #3F83CE;
-  border: 1px solid #3F83CE;
+  background: #c1a3e8;
+  color: #7e21d0;
+  border: 1px solid #7E21D0;
   font-size: 1em;
   font-weight: bold;
   font-family: 'Raleway';
@@ -216,14 +222,14 @@ const handleMouseLeave = categoryName => {
 }
 
 .category-title:hover {
-  background-color: #3F83CE;
-  color: #E3F4FF;
+  background-color: #7e21d0;
+  color: #c1a3e8;
 }
 
 @media (hover: none) {
   .category-title:hover {
-    background-color: #E3F4FF;
-    color: #3F83CE;
+    background-color: #7e21d0;
+    color: #c1a3e8;
   }
 }
 
@@ -250,6 +256,7 @@ const handleMouseLeave = categoryName => {
   margin: 10px 0 10px 0;
   cursor: pointer;
   border-radius: 10px;
+  border: 1px solid #7E21D0;
 }
 
 @media screen and (min-width: 801px) and (max-width: 1200px) {
