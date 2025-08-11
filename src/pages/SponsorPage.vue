@@ -280,7 +280,7 @@ body {
 }
 
 .sponsor-page {
-  background-image: linear-gradient( #3364BB ,#E3F4FF), url('https://i.imgur.com/ZgCeJBq.jpg');
+  background-image: linear-gradient( #9D69E2 ,#EEE1FF), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -301,7 +301,7 @@ body {
   left: 0;
   width: 27.5%;
   height: 330vh;
-  background-color: #3364BB;
+  background-color: #9D69E2;
 }
 
 .sponsor-section {
@@ -372,13 +372,13 @@ body {
     width: calc(8vw + 0.8vw);
     height: calc(8vw + 0.8vw);
     background: linear-gradient(to right,
-    #FFEE8F 10.28%,
-    #E3FBCF 20.63%,
-    #BBF0FA 42.36%,
-    #ABD9FF 56.45%,
-    #5DABF3 70.52%,
-    #448FD6 84.88%,
-    #3262BA 100%);
+    #431070 0.67%,
+    #7E21D0 13.5%,
+    #9D69E2 35.5%,
+    #DBC7F5 50.5%,
+    #9D69E2 62%,
+    #7E21D0 75.5%,
+    #431070 90.99%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -402,7 +402,7 @@ body {
 .sponsor-name {
   font-size: 1.5vw;
   margin-top: 1vh;
-  color: #1E3D79;
+  color: #431070;
   user-select: none;
 }
 
@@ -410,7 +410,7 @@ body {
   font-size: 1.2vw;
   width: 90%;
   font-weight: bold;
-  color: #1E3D79;
+  color: #431070;
   display: table-cell;
   vertical-align: middle;
   text-align: justify;
@@ -448,22 +448,22 @@ body {
 .pagination button {
   padding: 0.8vw 1vw;
   margin: 0 0.5vw;
-  background-color: #E3F4FF;
+  background-color: #EEE1FF;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  color:#1E3D79;
+  color:#431070;
   font-size: 1vw;
 }
 
 .pagination button.active {
-  background-color: #1E3D79;
-  color: #E3F4FF;
+  background-color: #431070;
+  color: #EEE1FF;
 }
 
 .pagination button:hover {
-  background-color: #1E3D79;
-  color: #E3F4FF;
+  background-color: #431070;
+  color: #EEE1FF;
 }
 
 .left-arrow:before,
@@ -475,26 +475,26 @@ body {
 }
 
 .left-arrow:before {
-  border-right: 0.8vw solid #3364BB;
+  border-right: 0.8vw solid #9D69E2;
 }
 
 .right-arrow:before {
-  border-left: 0.8vw solid #3364BB;
+  border-left: 0.8vw solid #9D69E2;
 }
 
 .pagination button:hover .left-arrow:before {
-  border-right: 0.8vw solid #E3F4FF;
+  border-right: 0.8vw solid #EEE1FF;
 }
 
 .pagination button:hover .right-arrow:before {
-  border-left: 0.8vw solid #E3F4FF;
+  border-left: 0.8vw solid #EEE1FF;
 }
 
 .left-arrow,
 .right-arrow {
   width: 0.8vw;
   height: 0.8vw;
-  color:#E3F4FF;
+  color:#EEE1FF;
 }
 
 .left-arrow {
@@ -534,7 +534,7 @@ body {
     top: 9vh;
     transform: translateX(-50%);
     margin-left: 0;
-    text-shadow: 4px 6px 8px rgba(30, 61, 121, 0.8);
+    text-shadow: 4px 6px 8px rgba(67, 16, 112, 0.8);
   }
 
   .sponsor-container {
@@ -548,7 +548,7 @@ body {
   }
 
   .sponsor-page {
-  background-image: linear-gradient( #3364BB ,#E3F4FF), url('https://i.imgur.com/ZgCeJBq.jpg');
+  background-image: linear-gradient( #9D69E2 ,#EEE1FF), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -591,13 +591,13 @@ body {
   right: 0;
   bottom: 0;
   background: linear-gradient(to left,
-    rgba(255, 238, 143, 0.6) 10.28%,
-    rgba(227, 251, 207, 0.6) 20.63%,
-    rgba(187, 240, 250, 0.6) 42.36%,
-    rgba(171, 217, 255, 0.6) 56.45%,
-    rgba(93, 171, 243, 0.6) 70.52%,
-    rgba(68, 143, 214, 0.6) 84.88%,
-    rgba(50, 98, 186, 0.6) 100%
+    #431070 0.67%,
+    #7E21D0 13.5%,
+    #9D69E2 35.5%,
+    #DBC7F5 50.5%,
+    #9D69E2 62%,
+    #7E21D0 75.5%,
+    #431070 90.99%
   );
   z-index: -1;
   position: absolute;
