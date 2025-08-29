@@ -4,7 +4,7 @@
     <div class="home-background-image"></div>
     <img class="home-title" src="https://i.imgur.com/e75ru0y.png" />
   </div>
-  <AboutUs id="about-us" ref="aboutUsRef" />
+  <!-- <AboutUs id="about-us" ref="aboutUsRef" /> -->
   <div class="section-break" ref="sectionBreakRef">
     <div class="mask"></div>
   </div>
@@ -33,14 +33,14 @@
 import { onMounted, onUnmounted, ref } from 'vue';
 import NavBar from '../components/NavBar.vue';
 import GradientStripe from '../components/GradientStripe.vue';
-import AboutUs from '../components/home/AboutUs.vue';
+// import AboutUs from '../components/home/AboutUsCard.vue';
 import Information from '../components/home/Information.vue';
 import CardViewer from '../components/home/CardViewer.vue'
 import Footer from '../components/Footer.vue';
 
 import RecentEvents from '../components/home/RecentEvents.vue';
 
-const aboutUsRef = ref(null);
+// const aboutUsRef = ref(null);
 const informationRef = ref(null);
 const sectionBreakRef = ref(null);
 const sectionBreak1Ref = ref(null);
@@ -103,7 +103,7 @@ onMounted(() => {
     });
   }, options);
 
-  if (aboutUsRef.value) observer.observe(aboutUsRef.value.$el);
+  // if (aboutUsRef.value) observer.observe(aboutUsRef.value.$el);
   if (informationRef.value) observer.observe(informationRef.value.$el);
   if (sectionBreakRef.value) observer.observe(sectionBreakRef.value);
   if (sectionBreak1Ref.value) observer.observe(sectionBreak1Ref.value);
@@ -116,14 +116,10 @@ onUnmounted(() => {
 });
 </script>
 
-<style>
+<style scoped>
 body {
   margin: 0;
   background-color: #EEE1FF;
-}
-
-.navbar {
-z-index: 1;
 }
 
 .page {

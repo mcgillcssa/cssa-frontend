@@ -112,9 +112,9 @@ export default {
 }
 
 .title-text {
-  margin-left: 4.5vw;
+  margin-left: 3.5vw;
   position: relative;
-  font-size: 5vw;
+  font-size: 6vw;
   line-height: 6vw;
   transform: scale(1, 0.95);
   user-select: none;
@@ -122,6 +122,7 @@ export default {
   font-weight: bold;
   color: #ffffff;
   letter-spacing: -0.2vw;
+  text-shadow: 4px 6px 8px rgba(30, 61, 121, 0.8);
 }
 
 .title-text-1 {
@@ -135,7 +136,7 @@ export default {
   background-image: linear-gradient(#3364BB, #E3F4FF), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-position: center;
-  //background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   background-blend-mode: overlay;
   position: relative;
   top: 0;
@@ -155,42 +156,7 @@ export default {
   background-color: rgba(191, 213, 250, 0.65);
   z-index: 0;
 }
-/*
-//.event-page::before {
-//  position: absolute;
-//  top: 0;
-//  bottom: 0;
-//  left: 0;
-//  width: 23%;
-//  background-color: rgba(172, 200, 255, 0.49);
-//  z-index: 0;
-//}
 
-//.event-page::after {
-//  position: absolute;
-//  top: 0;
-//  left: 22.5%;
-//  width: 9px;
-//  height: 100%;
-//  background: linear-gradient(
-//      to bottom,
-//      #FFEE8F 0.67%,
-//      #E3FBCF 16.5%,
-//      #BBF0FA 30%,
-//      #ABD9FF 44.5%,
-//      #5DABF3 62%,
-//      #448FD6 81.5%,
-//      #3262BA 99.99%
-//  );
-//  animation: pulseStripe 3s ease-in-out infinite;
-//  z-index: 1;
-//}
-
-@keyframes pulseStripe {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
-}
-*/
 
 .section-break {
   position: relative;
@@ -267,13 +233,19 @@ export default {
   }
 
   .title-text-1.title-text {
-    font-size: 8vh;
-    text-align: center;
-    width: 100%;
-    left: 50%;
-    top: 9vh;
-    transform: translateX(-50%);
-    margin-left: 0;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scale(1, 0.95);
+    font-style: italic;
+    margin-left: 3.5vw;
+    font-size: 6vw;
+    line-height: 6vw;
+    user-select: none;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: -0.2vw;
     text-shadow: 4px 6px 8px rgba(30, 61, 121, 0.8);
   }
 
@@ -300,36 +272,6 @@ export default {
     height: 100vh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
-  }
-
-  .event-page::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 25vh;
-  }
-
-  .event-page::after {
-    content: '';
-    position: absolute;
-    top: 25vh;
-    left: 0;
-    width: 100vw;
-    height: 9px;
-    background: linear-gradient(
-        to right,
-        #FFEE8F 0.67%,
-        #E3FBCF 16.5%,
-        #BBF0FA 30%,
-        #ABD9FF 44.5%,
-        #5DABF3 62%,
-        #448FD6 81.5%,
-        #3262BA 99.99%
-    );
-    animation: pulseStripe 3s ease-in-out infinite;
-    z-index: 1;
   }
 
   .event-layout {

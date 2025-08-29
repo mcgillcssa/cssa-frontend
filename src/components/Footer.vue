@@ -30,16 +30,16 @@
       <div class="right-box">
         <div class="rcol1">
           <router-link to="/"><p class="all-text">Home</p></router-link>
-          <a href="https://mp.weixin.qq.com/s/Qi_su6jtGOjAKyHV2TSudg" target="_blank" rel="noopener noreferrer">
-            <p class="all-text">About Us</p>
-          </a>
+          <router-link to="/events"><p class="all-text">Event</p></router-link>
+          
         </div>
         <div class="rcol2">
           <router-link to="/Membership"><p class="all-text">Membership</p></router-link>
-          <router-link to="/"><p class="all-text">Event</p></router-link>
+          <router-link to="/aboutus"><p class="all-text">About Us</p></router-link>
         </div>
         <div class="rcol3">
           <router-link to="/Sponsor"><p class="all-text">Sponsor</p></router-link>
+          <router-link to="/joinus"><p class="all-text">Join Us</p></router-link>
         </div>
       </div>
       <div class="copyright">
