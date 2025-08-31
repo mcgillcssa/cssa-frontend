@@ -147,6 +147,7 @@ onUnmounted(() => {
   overflow-y: auto;
   scroll-snap-type: y proximity;
   scroll-behavior: smooth;
+  background-color: #EEE1FF;
 }
 
 

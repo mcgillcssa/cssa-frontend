@@ -63,7 +63,7 @@
     <div class="register-form">
         <a
         class="register-button"
-        href="https://forms.gle/your-fall-2025-registration-link"
+        href="https://nsgst58fjs1z.sg.larksuite.com/share/base/form/shrlgIEwr4VrEYNZbVOH4XtWZkn"
         target="_blank"
         rel="noopener noreferrer"
         >
@@ -102,6 +102,7 @@
                   <li v-for="(item, idx) in block.items" :key="idx">{{ item }}</li>
                 </ol>
               </template>
+              <p class="dept-note" v-if="d.note">{{ d.note }}</p>
             </div>
           </div>
         </div>
@@ -209,7 +210,7 @@ const departments = ref([
         "组织和筹划学术讲座，邀请行业内专家与学者分享知识和经验",
         "与团队成员共同参与各种集体活动，增强团队凝聚力",
         "积极支持CSSA的各类活动，确保活动顺利进行并达到预期效果",]
-     },
+      },
       { title: '招新要求：', items: [
         "自信与沟通能力：要求自信大方，能够流畅表达自己的想法，具备良好的与各行业专家沟通的能力与情商",
         "具备信息检索能力和文字功底，对Newsletter可以进行撰写和创新",
@@ -283,6 +284,7 @@ const departments = ref([
     key: 'internal',
     name: 'Internal',
     capacity: '2-3 人',
+    intro: '如果你对活动策划充满创意与热情，有领导力、细心又有条理，Internal真诚欢迎你的加入！',
     blocks: [
       { title: '主要工作：', items: [
         "策划有趣又好玩的内部团建活动，为CSSA成员留下美好的社团回忆",
@@ -377,8 +379,17 @@ const departments = ref([
         "逻辑与执行力：清晰分析问题、提出建设性意见，并落实到位",
         "沟通与协调：善于跨部门沟通，能清晰表达并推动合作",
         "团队意识：具备大局观，能在全局和细节间灵活切换",
-    ]}
-    ]
+    ]},
+    { title: '加分项', items: [
+        "熟悉 Lark（飞书） 等协作工具",
+        "有大型项目统筹/流程管理/社团管理等PM经验",
+        "对提升组织效率、建立制度有热情与思考",
+        "勇于挑战自我，乐于在复杂环境中学习和成长",
+        "自信，开朗，善于沟通，有自我认同感和团队精神",
+        "能够从学生利益视角出发，有主观能动性，有大局观",
+    ]},
+    ],
+    note: "如果你想站在组织的核心位置，锻炼统筹与协调能力，并接受真正的挑战，秘书处就是最适合你的舞台。这里不仅能让你深入参与大型活动的策划与执行，还可能接触到国际名企管理层、世界级论坛峰会等高端平台，积累宝贵的项目管理经验。在提升自我的同时，你也将在 CSSA 的平台上，服务好蒙特利尔的海外学子，创造真正有价值的影响力。"
   },
 ]);
 
@@ -782,6 +793,11 @@ body {
 }
 
 .dept-intro { 
+  margin: 0 0 .8rem 0;
+  font-size: clamp(15px, 1.5vw, 18px);
+}
+
+.dept-note { 
   margin: 0 0 .8rem 0;
   font-size: clamp(15px, 1.5vw, 18px);
 }
