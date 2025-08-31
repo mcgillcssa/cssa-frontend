@@ -8,7 +8,7 @@
   </div>
   <div class="content-container vertical-flex">
     <div class="presentation vertical-flex">
-      <h3>什么是CSSA会员?</h3>
+      <h2>什么是CSSA会员?</h2>
       <h2>What is CSSA Membership?</h2>
       <div class="presentation-description">
         <img alt="Small Card Design" src="https://i.imgur.com/AMFdCeA.jpeg" />
@@ -36,7 +36,7 @@
           <h2 class="button-text">点击查看完整商家名单</h2>
         </div>
         <div class="circle">
-          <arrow-right :size="arrowSize" fill="#3961a7" theme="filled" />
+          <arrow-right :size="arrowSize" fill="#7E21D0" theme="filled" />
         </div>
       </router-link>
     </div>
@@ -46,7 +46,7 @@
       <div class="circle-end"></div>
     </div>
     <div class="presentation vertical-flex">
-      <h3>以往会员卡设计</h3>
+      <h2>以往会员卡设计</h2>
       <h2>Past Membership Card Design</h2>
     </div>
     <card-carousel></card-carousel>
@@ -83,11 +83,17 @@ onMounted(() => {
 
   contentSections.value = document.querySelectorAll('.content-container > div')
   window.addEventListener('scroll', handleScroll)
+
+  // Enable page-level scroll snap only on this route
+  document.body.classList.add('membership-snap')
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', updateWindowWidth)
   window.removeEventListener('scroll', handleScroll)
+
+  // Clean up page-level scroll snap when leaving
+  document.body.classList.remove('membership-snap')
 })
 
 const updateWindowWidth = () => {
@@ -148,7 +154,7 @@ const handleScroll = () => {
   font-size: 12vw;
   font-family: 'Infinity';
   text-align: center;
-  text-shadow: 2px 2px 5px #1448a1;
+  text-shadow: 2px 2px 5px #2b0b48;
   animation: fadeInUp 1s forwards 0.5s;
 }
 
@@ -187,28 +193,28 @@ const handleScroll = () => {
 .content-container {
   align-items: center;
   padding-top: 40px;
-  background-color: #ddebf8;
+  /* background-color: #ddebf8; */
 }
 
 .presentation {
   margin: 0;
-
   width: 100%;
   align-items: center;
   gap: 10%;
   font-family: 'CircularStd';
+  scroll-snap-align: start; /* each presentation snaps to top when page scrolls */
 }
 
 .presentation h3 {
   margin: 0;
-  font-size: 2vw;
-  color: #1c529a;
+  font-size: 3vw;
+  color: #431070;
 }
 
 .presentation h2 {
   margin: 0;
   font-size: 3vw;
-  color: #1c529a;
+  color: #431070;
 }
 
 .presentation-description {
@@ -222,7 +228,7 @@ const handleScroll = () => {
   gap: 50px;
 
   background-color: #ffffff;
-  border: 1px solid #99c0e9;
+  border: 1px solid #9D69E2;
   border-radius: 30px;
   box-sizing: border-box;
 }
@@ -239,7 +245,7 @@ const handleScroll = () => {
   flex: 1;
   justify-content: center;
   font-family: 'Infinity';
-  color: #33688c;
+  color: #9D69E2;
   text-align: center;
 
   font-size: 1.4vw;
@@ -260,7 +266,7 @@ const handleScroll = () => {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: #7ea3b8;
+  background-color: #9D69E2;
 }
 
 .line {
@@ -272,24 +278,24 @@ const handleScroll = () => {
 .first-line-break .line {
   background: linear-gradient(
     to right,
-    #7ea3b8 0%,
-    #7ea3b8 19%,
+    #9D69E2 0%,
+    #9D69E2 19%,
     transparent 19%,
     transparent 21%,
-    #7ea3b8 21%,
-    #7ea3b8 100%
+    #9D69E2 21%,
+    #9D69E2 100%
   );
 }
 
 .last-line-break .line {
   background: linear-gradient(
     to right,
-    #7ea3b8 0%,
-    #7ea3b8 79%,
+    #9D69E2 0%,
+    #9D69E2 79%,
     transparent 79%,
     transparent 81%,
-    #7ea3b8 81%,
-    #7ea3b8 100%
+    #9D69E2 81%,
+    #9D69E2 100%
   );
 }
 
@@ -301,11 +307,13 @@ const handleScroll = () => {
   align-items: center;
   background-image: linear-gradient(
     90deg,
-    #faf29b 0.67%,
-    #93e994 14.09%,
-    #93e9ca 20.01%,
-    #90d3ef 80.36%,
-    #6496c3 100%
+    #431070 0.67%,
+    #7E21D0 13.5%,
+    #9D69E2 26.5%,
+    #DBC7F5 44.5%,
+    #9D69E2 62%,
+    #7E21D0 75.5%,
+    #431070 90.99%
   );
   text-decoration: none;
 }
@@ -324,7 +332,7 @@ const handleScroll = () => {
 .button-text {
   margin: 0;
   text-align: center;
-  color: #3961a7;
+  color: #9D69E2;
   letter-spacing: 20px;
   font-size: 1.75em;
   text-decoration: none;
@@ -378,7 +386,7 @@ const handleScroll = () => {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #7ea3b8;
+    background-color: #9D69E2;
   }
 }
 
@@ -408,13 +416,13 @@ const handleScroll = () => {
     height: 2px;
   }
 
-  .circle-start,
+  /* .circle-start,
   .circle-end {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #7ea3b8;
-  }
+    background-color: #9D69E2;
+  } */
 }
 
 @media screen and (max-width: 800px) {
@@ -479,13 +487,13 @@ const handleScroll = () => {
     height: 2px;
   }
 
-  .circle-start,
+  /* .circle-start,
   .circle-end {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     background-color: #7ea3b8;
-  }
+  } */
 
   .to-benefits {
     height: 100px;
@@ -574,5 +582,10 @@ const handleScroll = () => {
 
 .fadeInUp {
   animation: fadeInUp 1s forwards;
+}
+
+:global(body.membership-snap) {
+  scroll-snap-type: y mandatory; /* use 'mandatory' if you prefer hard snapping */
+  scroll-behavior: smooth;
 }
 </style>

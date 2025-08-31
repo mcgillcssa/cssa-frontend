@@ -1,8 +1,6 @@
 <template>
+  <NavBar />
   <div class="event-container">
-    <div class="nav-bar">
-      <NavBar />
-    </div>
     <div class="title-text title-text-1">
       <p>Events</p>
     </div>
@@ -58,6 +56,8 @@ export default {
       eventByYear: []
     };
   },
+  methods: {
+  },
   async mounted() {
     try {
       const eventUrl = process.env.VUE_APP_BACKEND_URL + "/api/events/all";
@@ -88,13 +88,12 @@ export default {
           }));
 
       console.log(res.data.events);
+
     } catch (e) {
       console.error(e);
     }
-  }
+  },
 };
-
-
 </script>
 
 <style scoped>
@@ -130,7 +129,7 @@ body {
   font-weight: bold;
   color: #ffffff;
   letter-spacing: -0.2vw;
-  text-shadow: 4px 6px 8px rgba(30, 61, 121, 0.8);
+  text-shadow: 4px 6px 8px rgba(42, 30, 121, 0.8);
 }
 
 .title-text-1 {
@@ -152,15 +151,15 @@ body {
   height: auto;        /* allow content to define height */
   overflow: visible;   /* page scrolls, not this div */
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  column-gap: 16px;
+  background-attachment: fixed;
 }
 
 .background-stripe {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 23%;
-  height: 100%;
+  flex: 0 0 23%;
+  height: 100vh;           /* full viewport height, independent of event-right expansion */
   background-color: rgba(214, 191, 250, 0.482);
   z-index: 0;
 }
@@ -194,10 +193,12 @@ body {
 
 .event-right {
   flex: 1;
-  margin-left: calc(23% + 16px); /* ensure no overlap with blue bar and gradient stripe */
   padding-left: 24px;
   padding-top: 12vh;
   padding-right: 26px;
+  height: calc(100vh - 12vh);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .year-wrapper {
@@ -230,8 +231,6 @@ body {
 .events-list {
   padding: 16px;
 }
-
-
 
 @media (max-width: 600px) {
   .nav-bar {
@@ -268,7 +267,7 @@ body {
   }
 
   .event-page {
-    background-image: linear-gradient(#3364BB, #E3F4FF), url('https://i.imgur.com/ZgCeJBq.jpg');
+    background-image: linear-gradient(#6733bbb1, #f1e3ff), url('https://i.imgur.com/ZgCeJBq.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -282,6 +281,8 @@ body {
     flex-direction: column;
   }
 
+  .background-stripe { display: none; }
+
   .event-layout {
     flex-direction: column;
     gap: 8px;
@@ -292,11 +293,13 @@ body {
     padding-left: 12px;
     padding-right: 12px;
     padding-top: 20vh;
+    height: calc(100vh - 20vh);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .events-list {
     padding: 12px;
   }
-
 }
 </style>

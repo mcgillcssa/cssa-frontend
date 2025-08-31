@@ -68,7 +68,7 @@ onMounted(() => {
   height: 512px;
   margin: 30px 40px 30px 40px;
   width: 90%;
-  border: 1px solid #5291B9;
+  border: 1px solid #9D69E2;
   border-radius: 30px;
   overflow: hidden;
   position: relative;
@@ -100,8 +100,8 @@ onMounted(() => {
   margin: 30px auto;
   width: 3vw;
   height: 3vw;
-  border-top: 5px solid #7ea3b8;
-  border-left: 5px solid #7ea3b8;
+  border-top: 5px solid #9D69E2;
+  border-left: 5px solid #9D69E2;
   cursor: pointer;
 }
 
@@ -123,13 +123,13 @@ onMounted(() => {
   list-style: none;
   padding: 0;
   margin: 0;
-  background: rgba(51, 100, 187, 0.4);
+  background: rgba(92, 51, 187, 0.4);
 }
 
 .carousel ul li {
   height: 1vw;
   width: 1vw;
-  background-color: #E3F4FF;
+  background-color: #e9e3ff;
   border-radius: 50%;
   margin: 1vh 3vw;
   cursor: pointer;
@@ -182,8 +182,8 @@ onMounted(() => {
   }
 
   .arrow {
-    border-top: 3px solid #33378c;
-    border-left: 3px solid #33378c;
+    border-top: 3px solid #9D69E2;
+    border-left: 3px solid #9D69E2;
   }
 }
 </style>

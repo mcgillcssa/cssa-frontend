@@ -63,7 +63,7 @@ const execTeams = [
     role: 'Co-President',
     members: [
       { name: 'Ivanka Han', email: 'yinuo.han@mail.mcgill.ca' },
-      { name: 'Rachel Fu', email: 'yijia_fu@mail.mcgill.ca' }
+      { name: 'Rachel Fu', email: 'yijia.fu@mail.mcgill.ca' }
     ]
   },
   { role: 'VP Event', members: [{ name: 'Alice Zheng', email: 'alice.zz3@gmail.com' }] },
