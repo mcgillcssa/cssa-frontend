@@ -8,6 +8,12 @@ export default {}
 </script>
 
 <style>
+:root {
+  --footer-bg: #9D69E2;
+  --footer-fg: #ffffff;
+  --footer-link: #9D69E2; /* 示例：深色底时的反差色可另外设置 */
+}
+
 @media only screen and (max-width: 720px) {
   /* For mobile phones: */
   .nav_item{
@@ -33,6 +39,7 @@ export default {}
 
 body{
   margin: 0;
+  background-color: #EEE1FF;
 }
 
 .phone_nav_item{
@@ -128,5 +135,4 @@ body{
   display: flex;
   flex-direction: column;
 }
-
 </style>

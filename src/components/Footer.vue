@@ -62,15 +62,12 @@ export default {
 }
 </script>
 
-<style>
-* {
-  box-sizing: border-box;
-}
+<style scoped>
 
 .footer {
   background-color: #9D69E2;
   color: #ffffff;
-  z-index: -100;
+  z-index: 1;
 }
 
 .footer-container {
@@ -186,7 +183,11 @@ export default {
   }
 }
 
-a:link, a:visited, a:hover, a:active a:focus {
+.footer a:link,
+.footer a:visited,
+.footer a:hover,
+.footer a:active,
+.footer a:focus {
   text-decoration: none;
   color: #9D69E2;
 }

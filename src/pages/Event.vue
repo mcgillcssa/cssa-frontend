@@ -39,16 +39,20 @@
       </div>
     </div>
   </div>
+  <gradient-stripe/>
+  <Footer />
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue";
 import EventCard from "@/components/Event/EventCard.vue";
+import GradientStripe from '../components/GradientStripe.vue';
+import Footer from "@/components/Footer.vue";
 import axios from "axios";
 
 export default {
   name: "EventPage",
-  components: { NavBar, EventCard },
+  components: { NavBar, EventCard, Footer, GradientStripe },
   data() {
     return {
       eventByYear: []
@@ -89,16 +93,20 @@ export default {
     }
   }
 };
+
+
 </script>
 
 <style scoped>
+body {
+  margin: 0;
+  background-color: #EEE1FF;
+}
+
 .event-container {
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
+  min-height: 100vh;
 }
 
 .event-block{
@@ -133,27 +141,27 @@ export default {
 }
 
 .event-page {
-  background-image: linear-gradient(#3364BB, #E3F4FF), url('https://i.imgur.com/ZgCeJBq.jpg');
+  background-image: linear-gradient(#6733bbb1, #f1e3ff), url('https://i.imgur.com/ZgCeJBq.jpg');
   background-size: cover;
   background-position: center;
   /* background-repeat: no-repeat; */
   background-blend-mode: overlay;
   position: relative;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
+  min-height: 100vh;   /* fill at least viewport height */
+  height: auto;        /* allow content to define height */
+  overflow: visible;   /* page scrolls, not this div */
+  display: flex;
+  flex-direction: column;
 }
 
 .background-stripe {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 23%;
-  height: 100vh;
-  background-color: rgba(191, 213, 250, 0.65);
+  height: 100%;
+  background-color: rgba(214, 191, 250, 0.482);
   z-index: 0;
 }
 
@@ -163,13 +171,13 @@ export default {
   height: 1vw;
   background: linear-gradient(
       90deg,
-      #FFEE8F 0.67%,
-      #E3FBCF 16.5%,
-      #BBF0FA 30%,
-      #ABD9FF 44.5%,
-      #5DABF3 62%,
-      #448FD6 81.5%,
-      #3262BA 99.99%
+      #FFC6B4 0.67%,
+      #FFA7D1 13.5%,
+      #AD87CB 26.5%,
+      #A78CD0 44.5%,
+      #8266b3 62%,
+      #5c3f93 75.5%,
+      #431070 96.99%
   );
   width: 80%;
   border-radius: 20px;
@@ -223,6 +231,8 @@ export default {
   padding: 16px;
 }
 
+
+
 @media (max-width: 600px) {
   .nav-bar {
     position: absolute;
@@ -252,11 +262,9 @@ export default {
   .event-container {
     max-width: 100%;
     overflow-x: hidden;
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
   }
 
   .event-page {
@@ -265,13 +273,13 @@ export default {
     background-position: center;
     background-repeat: no-repeat;
     background-blend-mode: overlay;
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 100vh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+    min-height: 100vh;  /* ensure at least full screen height */
+    height: auto;       /* content drives height */
+    overflow: visible;  /* allow page (body) to scroll */
+    display: flex;
+    flex-direction: column;
   }
 
   .event-layout {
@@ -289,5 +297,6 @@ export default {
   .events-list {
     padding: 12px;
   }
+
 }
 </style>
