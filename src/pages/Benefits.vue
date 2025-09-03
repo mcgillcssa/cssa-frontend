@@ -27,7 +27,7 @@
     <a
       ref="formSection"
       class="to-membership-card-form"
-      href="https://docs.google.com/forms/d/e/1FAIpQLSfUENPuXO-JNhb2nKPcZW6hhytXsdGfCV8vYv5Q8zDBC-JHqg/viewform"
+      href="https://wj.qq.com/s2/23671058/2dd9/"
       target="_blank"
       rel="noopener noreferrer"
       :class="{ 'fade-in': isIntersecting }"
