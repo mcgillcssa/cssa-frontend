@@ -66,6 +66,7 @@ const execTeams = [
       { name: 'Rachel Fu', email: 'yijia.fu@mail.mcgill.ca' }
     ]
   },
+  { role: 'Secretariat', members: [{ name: '', email: 'secretariat.mcgillcssa@gmail.com' }] },
   { role: 'VP Event', members: [{ name: 'Alice Zheng', email: 'alice.zz3@gmail.com' }] },
   { role: 'VP External', members: [{ name: 'Rachel Wen', email: 'rachel.xlwen@icloud.com' }] },
   { role: 'VP Finance', members: [{ name: 'Yuchen Song', email: 'yuchen.song8795@gmail.com' }] },
