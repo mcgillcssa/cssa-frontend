@@ -7,6 +7,7 @@
         <h1 class="title">会员卡合作商家 Loyalty Merchants</h1>
         <div class="right-square"></div>
       </div>
+      <p class="subtitle">出示会员卡获得优惠</p>
     </div>
     <div class="categories-list">
       <div
@@ -159,6 +160,7 @@ body {
   width: 100%;
   height: 150px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: #EEE1FF;
@@ -192,6 +194,16 @@ body {
   border-radius: 20px;
   font-size: 1.8em;
   opacity: 0;
+}
+
+.subtitle {
+  text-align: center;
+  margin: 5px 0 0 0;
+  padding: 0;
+  color: #431070;
+  font-size: 1.1em;
+  font-weight: 500;
+  opacity: 0.8;
 }
 
 .left-square,
