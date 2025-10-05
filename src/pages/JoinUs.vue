@@ -3,58 +3,56 @@
   <div class="banner-background">
     <NavBar />
     <div class="joinus-background-image"></div>
-    <img class="joinus-title" src="@/assets/JoinUs.svg" alt="About Us" />
+    <img class="joinus-title" src="@/assets/JoinUs.svg" alt="Join Us" />
   </div>
   <!-- Join Us Card -->
   <section class="join-intro" ref="joinUsRef">
     <h1 class="join-title">
-        <span class="join-cn">加入我们</span><br />
-        <span class="join-en">Join Us</span>
-        
+        <span class="join-cn">{{ $t('joinUs.titleCn') }}</span><br />
+        <span class="join-en">{{ $t('joinUs.title') }}</span>
     </h1>
     <div class="joinus-description">
         <p class="joinus-desc-en">
-            CSSA is a place for opportunity, community, and growth — we’re always here for you.
+            {{ $t('joinUs.descriptionEn') }}
         </p>
         <p class="joinus-desc-cn">
-            加入 McGill CSSA，你将踏上成长快车道，
-            我们一直在这里支持你。
+            {{ $t('joinUs.descriptionCn') }}
         </p>
     </div>
     <div class="join-card">
-      <h2 class="join-heading">Why Join Us?</h2>
+      <h2 class="join-heading">{{ $t('joinUs.whyJoinUs') }}</h2>
       <div class="join-divider">
         <img class="divider" src="@/assets/HorizontalDivider.svg" alt="divider" />
       </div>
 
       <ol class="join-list">
         <li>
-          内部名额 & 免费福利 / Internal spots：优先获得社团岗位与大型活动参与名额；& 票务折扣。
+          {{ $t('joinUs.benefits.internal') }}
         </li>
         <li>
-          人脉 Networking：结识跨年级朋友，与校友/企业赞助方沟通，专属实习内推机会。
+          {{ $t('joinUs.benefits.networking') }}
         </li>
         <li>
-          简历加分 / boost your cv：产生可量化项目成果（预算、到场人数、转化），展示跨语言沟通与领导力。
+          {{ $t('joinUs.benefits.resume') }}
         </li>
         <li>
-          能力飞跃 / Skill improvement：磨练执行力、时间管理、流程与风控、舞台管理与公众呈现。
+          {{ $t('joinUs.benefits.skills') }}
         </li>
       </ol>
 
-      <p class="join-cta">现在加入，让你的大学经历更有分量！</p>
-      <p class="join-subcta">Join CSSA — grow fast, connect widely, shine on your resume.</p>
+      <p class="join-cta">{{ $t('joinUs.cta') }}</p>
+      <p class="join-subcta">{{ $t('joinUs.subcta') }}</p>
     </div>
   </section>
   <section class="apply-section" ref="applyRef">
     <div class="join-card">
-      <h2 class="join-heading">How to Apply?</h2>
+      <h2 class="join-heading">{{ $t('joinUs.howToApply') }}</h2>
       <div class="join-divider">
         <img class="divider" src="@/assets/HorizontalDivider.svg" alt="divider" />
       </div>
       <ol class="join-list">
-        <li>完成报名表信息填写。（记得准备好 resume 上传到报名表中哦）</li>
-        <li>若申请部门为 communication / Media，可额外准备一份作品集</li>
+        <li>{{ $t('joinUs.applicationSteps.step1') }}</li>
+        <li>{{ $t('joinUs.applicationSteps.step2') }}</li>
       </ol>
     </div>
   </section>
@@ -67,14 +65,14 @@
         target="_blank"
         rel="noopener noreferrer"
         >
-        <span class="register-text">点击查看 F A L L 2025 报名表</span>
+        <span class="register-text">{{ $t('joinUs.registerButton') }}</span>
         <span class="register-icon">→</span>
         </a>
     </div>
 
     <!-- Departments Introduction -->
     <section class="departments" ref="deptsRef">
-      <h2 class="depts-title">部门介绍<br/><span>Departments</span></h2>
+      <h2 class="depts-title">{{ $t('joinUs.departments') }}<br/><span>Departments</span></h2>
       <div class="dept-toggle-list">
         <div class="dept-toggle-item" v-for="d in departments" :key="d.key">
           <button 
@@ -115,9 +113,12 @@
 
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
 import NavBar from '../components/NavBar.vue';
 import Footer from '../components/Footer.vue';
 import GradientStripe from '../components/GradientStripe.vue';
+
+const { t } = useI18n();
 
 const joinUsRef = ref(null);
 const applyRef = ref(null);

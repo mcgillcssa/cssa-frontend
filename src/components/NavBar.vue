@@ -25,7 +25,26 @@
     <ul class="navbar-menu" v-if="!isSmallScreen">
       <li class="menu-item" v-for="(link, i) in links" :key="link.to" :style="{ '--i': i }">
         <div class="overlay"></div>
-        <router-link class="link-element" :to="link.to">{{ link.label }}</router-link>
+        <router-link class="link-element" :to="link.to">{{ $t('nav.' + link.key) }}</router-link>
+      </li>
+      <!-- 语言切换按钮 -->
+      <li class="menu-item language-switcher" :style="{ '--i': links.length }">
+        <div class="overlay"></div>
+        <div class="language-dropdown">
+          <button 
+            class="language-btn" 
+            @click.stop="toggleLanguageMenu"
+            type="button"
+          >
+            {{ currentLanguage.name }}
+            <span class="arrow" :class="{ 'arrow-up': isLanguageMenuOpen }">▼</span>
+          </button>
+          <ul class="language-menu" v-show="isLanguageMenuOpen">
+            <li v-for="lang in languages" :key="lang.code" @click.stop="changeLanguage(lang.code)">
+              {{ lang.name }}
+            </li>
+          </ul>
+        </div>
       </li>
     </ul>
     <div
@@ -53,7 +72,28 @@
   </div>
   <ul class="dropdown" :class="{ open: isDropdownOpen }" ref="dropdownMenu">
     <li v-for="(link, i) in links" :key="'dd-'+link.to" :style="{ '--i': i }">
-      <router-link class="link-element" :to="link.to">{{ link.label }}</router-link>
+      <router-link class="link-element" :to="link.to">{{ $t('nav.' + link.key) }}</router-link>
+      <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#431070"/>
+      </svg>
+    </li>
+    <!-- 移动端语言切换 -->
+    <li class="mobile-language-switcher" :style="{ '--i': links.length }">
+      <div class="language-dropdown">
+        <button 
+          class="language-btn mobile" 
+          @click.stop="toggleLanguageMenu"
+          type="button"
+        >
+          {{ currentLanguage.name }}
+          <span class="arrow" :class="{ 'arrow-up': isLanguageMenuOpen }">▼</span>
+        </button>
+        <ul class="language-menu mobile" v-show="isLanguageMenuOpen">
+          <li v-for="lang in languages" :key="lang.code" @click.stop="changeLanguage(lang.code)">
+            {{ lang.name }}
+          </li>
+        </ul>
+      </div>
       <svg width="400" height="17" viewBox="0 0 699 17" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M7.34329e-05 8.99719C0.0190177 13.4154 3.61606 16.9818 8.0343 16.9628C12.4525 16.9439 16.0189 13.3468 15.9999 8.92859C15.981 4.51035 12.3839 0.94402 7.9657 0.962964C3.54746 0.981908 -0.0188708 4.57895 7.34329e-05 8.99719ZM8.00643 10.4629L699.006 7.50005L698.994 4.50007L7.99357 7.4629L8.00643 10.4629Z" fill="#431070"/>
       </svg>
@@ -63,20 +103,38 @@
 
 <script setup>
 /* eslint-disable */
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { locale } = useI18n()
 
 const logoSrc = ref('https://i.imgur.com/ZFcXCeq.png')
 const barColor = ref('#ffffff')
 const isDropdownOpen = ref(false)
 const isSmallScreen = ref(false)
 const dropdownMenu = ref(null)
+const isLanguageMenuOpen = ref(false)
 
+// 语言配置
+const languages = [
+  { code: 'zh', name: '中文' },
+  { code: 'en', name: 'English' },
+  { code: 'fr', name: 'Français' }
+]
+
+// 当前语言
+const currentLanguage = computed(() => {
+  return languages.find(lang => lang.code === locale.value) || languages[0]
+})
+
+// 导航链接配置（使用key而不是label）
 const links = [
-  { label: 'About Us', to: '/aboutus' },
-  { label: 'Join Us', to: '/joinus' },
-  { label: 'Events', to: '/events' },
-  { label: 'Membership', to: '/membership' },
-  { label: 'Sponsorship', to: '/sponsor' }
+  { key: 'about', to: '/aboutus' },
+  { key: 'joinUs', to: '/joinus' },
+  { key: 'event', to: '/events' },
+  { key: 'benefits', to: '/benefits' },
+  { key: 'membership', to: '/membership' },
+  { key: 'sponsor', to: '/sponsor' }
 ]
 
 onMounted(() => {
@@ -113,11 +171,30 @@ const toggleDropdown = () => {
   }
 }
 
+const toggleLanguageMenu = () => {
+  console.log('toggleLanguageMenu called, current state:', isLanguageMenuOpen.value)
+  isLanguageMenuOpen.value = !isLanguageMenuOpen.value
+  console.log('new state:', isLanguageMenuOpen.value)
+}
+
+const changeLanguage = (langCode) => {
+  console.log('changeLanguage called with:', langCode)
+  locale.value = langCode
+  localStorage.setItem('locale', langCode)
+  isLanguageMenuOpen.value = false
+  console.log('language changed to:', langCode)
+}
+
 const handleClickOutside = (event) => {
   if (dropdownMenu.value && !dropdownMenu.value.contains(event.target) && !event.target.closest('.menu-icon')) {
     isDropdownOpen.value = false
     barColor.value = '#ffffff';
     document.body.style.overflow = '';
+  }
+  
+  // 关闭语言菜单
+  if (!event.target.closest('.language-dropdown')) {
+    isLanguageMenuOpen.value = false
   }
 }
 </script>
@@ -205,6 +282,7 @@ const handleClickOutside = (event) => {
   opacity: 0;
   transition: opacity 0.4s ease, transform 0.4s ease, border-radius 0.4s ease;
   transform: scale(1);
+  pointer-events: none; /* 让overlay不阻止点击事件 */
 }
 
 .menu-item:hover .overlay {
@@ -355,5 +433,114 @@ const handleClickOutside = (event) => {
 .link-element:visited {
   text-decoration: none;
   color: inherit;
+}
+
+/* 语言切换样式 */
+.language-switcher {
+  position: relative;
+  pointer-events: auto; /* 确保可以点击 */
+}
+
+.language-dropdown {
+  position: relative;
+  z-index: 10; /* 确保在overlay之上 */
+}
+
+.language-btn {
+  background: rgba(67, 16, 112, 0.2); /* 添加背景色让按钮更明显 */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* 添加边框 */
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  position: relative;
+  z-index: 10; /* 确保在overlay之上 */
+  pointer-events: auto; /* 确保可以点击 */
+}
+
+.language-btn:hover {
+  background-color: rgba(67, 16, 112, 0.4); /* 悬停时更深的背景色 */
+}
+
+.language-btn.mobile {
+  color: #431070;
+  font-size: 28px;
+  font-weight: 400;
+  padding: 0;
+}
+
+.language-btn.mobile:hover {
+  background-color: transparent;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+  font-size: 12px;
+}
+
+.arrow-up {
+  transform: rotate(180deg);
+}
+
+.language-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 120px;
+  z-index: 1000;
+}
+
+.language-menu li {
+  padding: 10px 15px;
+  cursor: pointer;
+  color: #333;
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid #eee;
+}
+
+.language-menu li:last-child {
+  border-bottom: none;
+}
+
+.language-menu li:hover {
+  background-color: #f5f5f5;
+}
+
+.language-menu.mobile {
+  position: static;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  margin-top: 10px;
+}
+
+.language-menu.mobile li {
+  color: #431070;
+  border-bottom: 1px solid #ddd;
+  font-size: 24px;
+  padding: 15px 0;
+}
+
+.mobile-language-switcher {
+  margin-top: 20px;
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 800px) {
+  .language-switcher {
+    display: none;
+  }
 }
 </style>

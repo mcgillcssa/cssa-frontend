@@ -13,14 +13,14 @@
     <div class="mask"></div>
   </div>
   <h4 ref="vipHeaderRef">
-    <span class="vip-title-cn">{{ yearRange }} 会员卡</span><br>
+    <span class="vip-title-cn">{{ yearRange }} {{ $t('home.membershipCard') }}</span><br>
     <span class="vip-title-en">{{ yearRange }} VIP CARD</span>
   </h4>
     <card-viewer id="card-viewer" ref="cardViewerRef"/>
 
   <!--RecentEvents-->
   <h4 ref="recentEventsHeaderRef">
-    <span class="vip-title-cn">近期活动</span><br>
+    <span class="vip-title-cn">{{ $t('home.recentEvents') }}</span><br>
     <span class="vip-title-en">RECENT EVENTS</span>
   </h4>
     <RecentEvents id="recent-events" ref="recentEventsRef"/>

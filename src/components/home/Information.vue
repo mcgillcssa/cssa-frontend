@@ -5,15 +5,21 @@
         <img :src="item.icon" :alt="`Icon ${index + 1}`" class="icon"/>
         <div class="section-break-small"></div>
         <p class="number">{{ displayNumber(index) }}</p>
-        <p class="text" ref="textElements" :style="{opacity: 0}">{{ item.text }}</p>
+        <p class="text" ref="textElements" :style="{opacity: 0}">{{ $t('information.' + item.key) }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { useI18n } from 'vue-i18n'
+
 export default {
   name: 'Information',
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
   props: {
     animationDuration: {
       type: Number,
@@ -23,9 +29,9 @@ export default {
   data() {
     return {
       data: [
-        { icon: "https://i.imgur.com/3hfRWWE.png", number: 20000, text: "WECHAT FOLLOWERS", displayPlus: true},
-        { icon: "https://i.imgur.com/C50bMEj.png", number: 283, text: "EVENTS" },
-        { icon: "https://i.imgur.com/B5jGY3B.png", number: 1408, text: "MEMBERSHIPS" }
+        { icon: "https://i.imgur.com/3hfRWWE.png", number: 20000, key: "wechatFollowers", displayPlus: true},
+        { icon: "https://i.imgur.com/C50bMEj.png", number: 283, key: "events" },
+        { icon: "https://i.imgur.com/B5jGY3B.png", number: 1408, key: "memberships" }
       ],
       displayedNumbers: [0, 0, 0],
       observer: null

@@ -6,25 +6,21 @@
           <img src="https://i.imgur.com/74uHgMG.jpeg" class="front-image"/>
           <img src="https://i.imgur.com/GXMsxyJ.jpeg" class="back-image"/>
         </div>
-        <p class="invitation-text" :class="{ 'fade-in': isIntersecting }">WANT TO GET ONE?</p>
+        <p class="invitation-text" :class="{ 'fade-in': isIntersecting }">{{ $t('cardViewer.invitation') }}</p>
       </div>
       <div class="right-column">
-        <h1 class="header" :class="{ 'fade-in': isIntersecting }">什么是会员卡?</h1>
+        <h1 class="header" :class="{ 'fade-in': isIntersecting }">{{ $t('cardViewer.title') }}</h1>
         <div class="line">
           <span class="dot"></span>
           <span class="dot"></span>
         </div>
         <p class="body-text" :class="{ 'fade-in': isIntersecting }">
-          CSSA会员卡<br>
-          是McGill CSSA携手蒙城各大商家，<br>
-          为大家准备的福利折扣卡！<br>
-          凡是在合作商家店铺消费<br>
-          出示此卡，都可以享受优惠！
+          {{ $t('cardViewer.description') }}
         </p>
         <div>
           <router-link class="to-membership" to="/membership" :class="{ 'fade-in': isIntersecting }">
             <div class="text-wrapper">
-              <h2 class="button-text">SEE MEMBERSHIP PAGE</h2>
+              <h2 class="button-text">{{ $t('cardViewer.buttonText') }}</h2>
             </div>
             <div class="circle-wrapper">
               <div class="circle">

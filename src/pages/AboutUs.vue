@@ -8,16 +8,16 @@
   <!-- About Us Intro Card -->
   <section class="about-intro" ref="aboutUsRef">
     <h1 class="about-title">
-      <span class="about-cn">关于我们</span><br />
-      <span class="about-en">About Us</span>
+      <span class="about-cn">{{ $t('about.title') }}</span><br />
+      <span class="about-en">{{ $t('about.titleEn') }}</span>
     </h1>
     <div class="about-card">
       <div class="about-text">
         <p class="en">
-          McGill University Chinese Students and Scholars Association (CSSA), is the only student community certified by the Chinese Consulate on campus, and it is the only cultural club dedicated mainly to students and scholars from Mainland China.
+          {{ $t('about.description') }}
         </p>
         <p class="cn">
-          这是麦吉尔大学中国学生学者联谊会（McGill CSSA），是一 个正式认证、官方承认、非盈利，并且唯一正式受官方校方允许的主要面向本科生的官方学生组。
+          {{ $t('about.descriptionCn') }}
         </p>
       </div>
       <img class="about-logo" src="@/assets/CSSALogo.svg" alt="CSSA Logo" />
@@ -26,7 +26,7 @@
   <section class="about-intro"></section>
   <!-- Executive Team -->
   <section class="exec-wrapper" ref="execRef">
-    <h3 class="exec-title">Executive Team</h3>
+    <h3 class="exec-title">{{ $t('about.executiveTeam') }}</h3>
     <div class="exec-list">
       <article class="exec-card" v-for="team in execTeams" :key="team.role">
         <div class="exec-role">

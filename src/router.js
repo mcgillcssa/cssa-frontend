@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import i18n from './locales/index.js'
 import HomePage from './pages/Home.vue'
 import AboutUsPage from './pages/AboutUs.vue'
 import JoinUsPage from './pages/JoinUs.vue'
@@ -12,31 +13,31 @@ const routes = [
     path: '/',
     name: 'Home',
     component: HomePage,
-    meta: { title: 'McGill CSSA | 首页' }
+    meta: { titleKey: 'nav.home' }
   },
   {
     path:'/aboutus',
     name: 'AboutUs',
     component: AboutUsPage,
-    meta: { title: 'McGill CSSA | 关于我们' }
+    meta: { titleKey: 'nav.about' }
   },
   {
     path:'/joinus',
     name: 'JoinUs',
     component: JoinUsPage,
-    meta: { title: 'McGill CSSA | 加入我们' }
+    meta: { titleKey: 'nav.joinUs' }
   },
   {
     path: '/membership',
     name: 'Membership',
     component: MembershipPage,
-    meta: { title: 'McGill CSSA | 会员' }
+    meta: { titleKey: 'nav.membership' }
   },
   {
     path: '/benefits',
     name: 'Benefits',
     component: BenefitsPage,
-    meta: { title: 'McGill CSSA | 会员福利' }
+    meta: { titleKey: 'nav.benefits' }
   },
   {
     path: '/access/qrscan',
@@ -46,12 +47,13 @@ const routes = [
     path: '/sponsor',
     name: 'Sponsor',
     component: SponsorPage,
-    meta: { title: 'McGill CSSA | 赞助商' }
+    meta: { titleKey: 'nav.sponsor' }
   },
   {
     path: '/events',
     name: 'Events',
     component: EventPage,
+    meta: { titleKey: 'nav.event' }
   }
 ]
 
@@ -61,7 +63,12 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title || 'McGill CSSA'
+  const { t } = i18n.global
+  if (to.meta.titleKey) {
+    document.title = `McGill CSSA | ${t(to.meta.titleKey)}`
+  } else {
+    document.title = 'McGill CSSA'
+  }
   next()
 })
 
