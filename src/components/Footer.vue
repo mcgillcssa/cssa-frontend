@@ -185,11 +185,15 @@ export default {
 
 .footer a:link,
 .footer a:visited,
-.footer a:hover,
 .footer a:active,
 .footer a:focus {
   text-decoration: none;
   color: #9D69E2;
+}
+
+.icon-background:hover,
+.icon-background:hover * {
+  color: #ffffff !important;
 }
 
 .footer-separator {
@@ -307,19 +311,19 @@ export default {
     padding: 0;
   }
 
-  .footer-separator{
-    border-left: none;
-    border-top: 1.75px solid rgb(255, 255, 255);
-    padding: 0vw;
-    width: 100%;
-    margin-top: 1.2vw;
-  }
+.footer-separator{
+  border-left: none;
+  border-top: 1.75px solid rgb(255, 255, 255);
+  padding: 0vw;
+  width: 100%;
+  margin-top: 1.2vw;
+}
 
-  .copyright {
-  font-size: 2.2vw;
-  display: flex;
-  justify-self: center;
-  margin-top: -4.5vw;
+.copyright {
+font-size: 2.2vw;
+display: flex;
+justify-self: center;
+margin-top: -4.5vw;
 }
 }
 </style>

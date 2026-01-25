@@ -76,7 +76,8 @@ const links = [
   { label: 'Join Us', to: '/joinus' },
   { label: 'Events', to: '/events' },
   { label: 'Membership', to: '/membership' },
-  { label: 'Sponsorship', to: '/sponsor' }
+  { label: 'Sponsorship', to: '/sponsor' },
+  { label: 'Spring Festival Program', to: '/spring-festival-program' }
 ]
 
 onMounted(() => {

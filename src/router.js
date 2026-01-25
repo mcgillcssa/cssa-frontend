@@ -6,6 +6,7 @@ import MembershipPage from './pages/Membership.vue'
 import BenefitsPage from './pages/Benefits.vue'
 import SponsorPage from './pages/SponsorPage.vue'
 import EventPage from './pages/Event.vue'
+import SpringFestivalProgramPage from './pages/SpringFestivalProgram.vue'
 
 const routes = [
   {
@@ -52,6 +53,12 @@ const routes = [
     path: '/events',
     name: 'Events',
     component: EventPage,
+  },
+  {
+    path: '/spring-festival-program',
+    name: 'SpringFestivalProgram',
+    component: SpringFestivalProgramPage,
+    meta: { title: 'McGill CSSA | 春节节目单' }
   }
 ]
 
