@@ -32,7 +32,7 @@ import GradientStripe from '../components/GradientStripe.vue';
 import Footer from '../components/Footer.vue';
 
 // 图片URL占位符 - 稍后替换为实际的春节节目单图片URL
-const programImageUrl = ref('https://i.imgur.com/vQC0Yox.jpeg');
+const programImageUrl = ref('https://i.imgur.com/rcFNFua.png');
 
 const calculateRadius = (scrollY) => {
   const screenWidth = window.innerWidth;
