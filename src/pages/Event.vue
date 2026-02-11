@@ -61,7 +61,6 @@ export default {
   async mounted() {
     try {
       const eventUrl = process.env.VUE_APP_BACKEND_URL + "/api/events/all";
-      console.log(eventUrl);
       const res = await axios.get(eventUrl);
       const events = res.data.events || [];
       const map = new Map();
@@ -86,9 +85,6 @@ export default {
             }),
             open: false
           }));
-
-      console.log(res.data.events);
-
     } catch (e) {
       console.error(e);
     }

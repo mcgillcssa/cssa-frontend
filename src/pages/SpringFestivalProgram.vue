@@ -12,6 +12,27 @@
   
   <div class="spring-festival-program">
     <div class="program-content">
+        <!-- Sponsors Section -->
+        <div class="sponsors-section">
+          <h2 class="sponsors-title">
+            <span class="sponsors-title-cn">赞助商</span>
+            <span class="sponsors-title-en">Our Sponsors</span>
+          </h2>
+          <div class="sponsors-grid">
+            <div 
+              v-for="(sponsor, index) in sponsors" 
+              :key="index"
+              class="sponsor-card"
+            >
+              <img 
+                :src="sponsor.logoUrl" 
+                :alt="sponsor.name"
+                class="sponsor-logo"
+              />
+            </div>
+          </div>
+        </div>
+        
         <div class="image-container">
           <img 
             :src="programImageUrl" 
@@ -19,10 +40,12 @@
             class="program-image"
           />
         </div>
+
+        
     </div>
   </div>
-  <gradient-stripe/>
-  <Footer></Footer>
+  <GradientStripe />
+  <Footer />
 </template>
 
 <script setup>
@@ -33,6 +56,13 @@ import Footer from '../components/Footer.vue';
 
 // 图片URL占位符 - 稍后替换为实际的春节节目单图片URL
 const programImageUrl = ref('https://i.imgur.com/rcFNFua.png');
+
+// 赞助商数据 - 请替换为实际的赞助商Logo URL
+const sponsors = ref([
+  { name: 'CIBC', logoUrl: 'https://i.imgur.com/czfG6Tg.png' },
+  { name: 'CUSSA', logoUrl: 'https://i.imgur.com/BRAyZxQ.jpeg' },
+  { name: '低卡工厂', logoUrl: 'https://i.imgur.com/DR7XnLj.jpeg' },
+]);
 
 const calculateRadius = (scrollY) => {
   const screenWidth = window.innerWidth;
@@ -182,14 +212,73 @@ onUnmounted(() => {
   object-fit: contain;
 }
 
-.description {
+/* Sponsors Section */
+.sponsors-section {
+  margin-top: 80px;
+  padding: 40px 20px;
   text-align: center;
-  font-size: 1.2rem;
-  color: #333;
-  line-height: 1.8;
-  max-width: 800px;
-  margin: 0 auto;
+}
+
+.sponsors-title {
+  margin-bottom: 50px;
   font-family: 'Raleway', 'Noto Sans SC', sans-serif;
+}
+
+.sponsors-title-cn {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 3px;
+}
+
+.sponsors-title-en {
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #666;
+}
+
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: center;
+  justify-items: center;
+}
+
+.sponsor-card {
+  width: 100%;
+  max-width: 280px;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sponsor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.sponsor-logo {
+  width: 100%;
+  height: auto;
+  max-height: 100px;
+  object-fit: contain;
+  display: block;
 }
 
 /* 响应式设计 */
@@ -212,8 +301,17 @@ onUnmounted(() => {
     min-height: 400px;
   }
 
-  .description {
+  .sponsors-title-cn {
+    font-size: 2rem;
+  }
+
+  .sponsors-title-en {
     font-size: 1rem;
+  }
+
+  .sponsors-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
   }
 }
 
@@ -229,6 +327,26 @@ onUnmounted(() => {
 
   .program-image {
     min-height: 300px;
+  }
+
+  .sponsors-title-cn {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .sponsors-title-en {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+  }
+
+  .sponsors-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .sponsor-card {
+    max-width: 100%;
+    padding: 20px;
   }
 }
 </style>

@@ -122,7 +122,6 @@ export default {
     try {
       const response = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/api/events/upcoming/4`)
       this.items = response.data.events
-      console.log(response.data.events)
     } catch (err) {
       console.error(err)
     }
